@@ -1,12 +1,17 @@
 package com.example.android
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.android.base.BaseActivity
+import com.example.android.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : AppCompatActivity()
+@AndroidEntryPoint
+class MainActivity : BaseActivity<ActivityMainBinding>({ ActivityMainBinding.inflate(it) })
 {
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+
     }
 }
