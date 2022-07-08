@@ -23,6 +23,3 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>({ ActivitySplashBindi
         binding.indicator.createIndicators(splashPageLength, 0)
     }
 }
-
-
-

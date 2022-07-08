@@ -19,12 +19,12 @@ abstract class BaseFragment<B: ViewBinding>: Fragment()
         return binding.root
     }
 
-    abstract fun getFragmentBinding(inflater: LayoutInflater, container: ViewGroup?): B
-
     override fun onDestroyView()
     {
         super.onDestroyView()
 
         _binding = null
     }
+
+    abstract fun getFragmentBinding(inflater: LayoutInflater, container: ViewGroup?): B
 }

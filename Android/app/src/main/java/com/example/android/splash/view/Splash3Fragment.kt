@@ -1,21 +1,26 @@
 package com.example.android.splash.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.android.R
+import com.example.android.base.BaseFragment
+import com.example.android.databinding.FragmentSplash3Binding
 
-class Splash3Fragment : Fragment()
+class Splash3Fragment : BaseFragment<FragmentSplash3Binding>()
 {
-    override fun onCreate(savedInstanceState: Bundle?)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
-        super.onCreate(savedInstanceState)
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.signUpButton.setOnClickListener()
+        {
+            
+        }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
+    override fun getFragmentBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentSplash3Binding
     {
-        return inflater.inflate(R.layout.fragment_splash3, container, false)
+        return FragmentSplash3Binding.inflate(inflater, container, false)
     }
 }

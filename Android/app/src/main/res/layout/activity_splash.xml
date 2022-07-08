@@ -10,7 +10,7 @@
         android:id="@+id/splashContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/indicator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,18 +20,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <me.relex.circleindicator.CircleIndicator3
-            android:id="@+id/indicator"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_gravity="bottom|center"
-            android:background="#FFCDD2"
-            app:ci_gravity="center"
-            app:ci_height="10dp"
-            app:ci_margin="10dp"
-            app:ci_orientation="horizontal"
-            app:ci_width="10dp" />
-
 
     </FrameLayout>
+
+    <me.relex.circleindicator.CircleIndicator3
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom|center"
+        android:background="#009AF8"
+        app:ci_gravity="center"
+        app:ci_height="10dp"
+        app:ci_margin="10dp"
+        app:ci_orientation="horizontal"
+        app:ci_width="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

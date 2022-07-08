@@ -10,6 +10,7 @@ import androidx.viewbinding.ViewBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 
 abstract class BaseActivity<B: ViewBinding>(val bindingFactory: (LayoutInflater) -> B) : AppCompatActivity()
 {
@@ -17,6 +18,7 @@ abstract class BaseActivity<B: ViewBinding>(val bindingFactory: (LayoutInflater)
     {
         val firebaseAuth = FirebaseAuth.getInstance()
         val firebaseDataBase = FirebaseFirestore.getInstance()
+        val firebaseStorage = FirebaseStorage.getInstance()
     }
 
     private var _binding: B? = null
@@ -63,6 +65,4 @@ abstract class BaseActivity<B: ViewBinding>(val bindingFactory: (LayoutInflater)
             finishAffinity()
         }
     }
-
-
 }
