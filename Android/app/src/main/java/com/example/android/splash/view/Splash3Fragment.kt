@@ -1,11 +1,13 @@
 package com.example.android.splash.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.android.base.BaseFragment
 import com.example.android.databinding.FragmentSplash3Binding
+import com.example.android.sign.view.SignUpActivity
 
 class Splash3Fragment : BaseFragment<FragmentSplash3Binding>()
 {
@@ -15,7 +17,10 @@ class Splash3Fragment : BaseFragment<FragmentSplash3Binding>()
 
         binding.signUpButton.setOnClickListener()
         {
-            
+            Intent(requireActivity(), SignUpActivity::class.java).run()
+            {
+                startActivity(this)
+            }
         }
     }
 

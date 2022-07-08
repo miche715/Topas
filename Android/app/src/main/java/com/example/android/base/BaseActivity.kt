@@ -2,25 +2,16 @@ package com.example.android.base
 
 import android.content.Context
 import android.os.Bundle
+import android.os.IBinder
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 
 abstract class BaseActivity<B: ViewBinding>(val bindingFactory: (LayoutInflater) -> B) : AppCompatActivity()
 {
-    companion object
-    {
-        val firebaseAuth = FirebaseAuth.getInstance()
-        val firebaseDataBase = FirebaseFirestore.getInstance()
-        val firebaseStorage = FirebaseStorage.getInstance()
-    }
-
     private var _binding: B? = null
     val binding get() = _binding!!
 
@@ -63,6 +54,14 @@ abstract class BaseActivity<B: ViewBinding>(val bindingFactory: (LayoutInflater)
         if(System.currentTimeMillis() <= backKeyPressedTime + 2000)
         {
             finishAffinity()
+        }
+    }
+
+    fun hideKeyBoard(windowToken: IBinder)
+    {
+        (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).run()
+        {
+            this.hideSoftInputFromWindow(windowToken, 0)
         }
     }
 }
