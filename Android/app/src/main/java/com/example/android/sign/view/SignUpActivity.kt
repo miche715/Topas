@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import com.example.android.base.BaseActivity
 import com.example.android.databinding.ActivitySignUpBinding
 import com.example.android.sign.viewmodel.SignViewModel
+import com.example.android.user.domain.User
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,13 +33,13 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>({ ActivitySignUpBindi
         }
         signViewModel.signUpResult.observe(this)
         {
-            if(it)  // 회원가입 성공
+            if(it is User)  // 회원가입 성공
             {
-
+                println(it)
             }
             else  // 회원가입 실패
             {
-                Snackbar.make(binding.root, "이미 가입된 이메일입니다.", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(binding.root, it as String, Snackbar.LENGTH_SHORT).show()
             }
         }
         signViewModel.emailInValidMessage.observe(this)

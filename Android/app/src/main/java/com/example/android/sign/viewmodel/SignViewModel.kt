@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.sign.repository.SignRepository
+import com.example.android.user.domain.User
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -21,8 +22,8 @@ class SignViewModel @Inject constructor(private val signRepository: SignReposito
     val nameInValidMessage: MutableLiveData<String?> = MutableLiveData()
     val nickNameInValidMessage: MutableLiveData<String?> = MutableLiveData()
 
-    private val _signUpResult: MutableLiveData<Boolean> = MutableLiveData()
-    val signUpResult: LiveData<Boolean> = _signUpResult
+    private val _signUpResult: MutableLiveData<Any> = MutableLiveData()
+    val signUpResult: LiveData<Any> = _signUpResult
 
     private val _signInResult: MutableLiveData<String?> = MutableLiveData()
     val signInResult: LiveData<String?> = _signInResult
@@ -48,7 +49,7 @@ class SignViewModel @Inject constructor(private val signRepository: SignReposito
         else { nameInValidMessage.value = null }
 
         if(nickName.isEmpty()) { nickNameInValidMessage.value = "닉네임을 입력해 주세요."; isValid = false }
-        else if(!nickName.matches(nickNameRegex)) { nickNameInValidMessage.value = "잘못된 이메일 형식입니다."; isValid = false }
+        else if(!nickName.matches(nickNameRegex)) { nickNameInValidMessage.value = "잘못된 닉네임 형식입니다."; isValid = false }
         else { nickNameInValidMessage.value = null }
 
         if(isValid)
