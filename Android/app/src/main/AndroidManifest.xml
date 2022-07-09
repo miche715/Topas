@@ -17,6 +17,7 @@
 
         <activity
             android:name=".sign.view.SignUpActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
 
         <activity

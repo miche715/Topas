@@ -22,33 +22,44 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>({ ActivitySignUpBindi
         {
             hideKeyBoard(it.windowToken)
 
-            if(binding.emailTextInputEditText.text!!.isNotEmpty() && binding.passwordTextInputEditText.text!!.isNotEmpty())
-            {
-                signViewModel.signUp(binding.emailTextInputEditText.text.toString(), binding.passwordTextInputEditText.text.toString())
-            }
+            val email = binding.emailTextInputEditText.text.toString()
+            val password = binding.passwordTextInputEditText.text.toString()
+            val passwordConfirm = binding.passwordConfirmTextInputEditText.text.toString()
+            val name = binding.nameTextInputEditText.text.toString()
+            val nickName = binding.nickNameTextInputEditText.text.toString()
 
-            if(binding.emailTextInputEditText.text!!.isEmpty()) { binding.emailTextInputLayout.error = "이메일을 입력해 주세요." }
-            else { binding.emailTextInputLayout.error = null }
-
-            if(binding.passwordTextInputEditText.text!!.isEmpty()) { binding.passwordTextInputLayout.error = "패스워드를 입력해 주세요." }
-            else { binding.passwordTextInputLayout.error = null }
-
+            signViewModel.signUp(email, password, passwordConfirm, name, nickName)
         }
         signViewModel.signUpResult.observe(this)
         {
             if(it)  // 회원가입 성공
             {
-//                Intent(this@SignUpActivity, UserDetailActivity::class.java).run()
-//                {
-//                    startActivity(this)
-//                }
+
             }
             else  // 회원가입 실패
             {
                 Snackbar.make(binding.root, "이미 가입된 이메일입니다.", Snackbar.LENGTH_SHORT).show()
             }
         }
-
-
+        signViewModel.emailInValidMessage.observe(this)
+        {
+            binding.emailTextInputLayout.error = it
+        }
+        signViewModel.passwordInValidMessage.observe(this)
+        {
+            binding.passwordTextInputLayout.error = it
+        }
+        signViewModel.passwordConfirmInValidMessage.observe(this)
+        {
+            binding.passwordConfirmTextInputLayout.error = it
+        }
+        signViewModel.nameInValidMessage.observe(this)
+        {
+            binding.nameTextInputLayout.error = it
+        }
+        signViewModel.nickNameInValidMessage.observe(this)
+        {
+            binding.nickNameTextInputLayout.error = it
+        }
     }
 }
