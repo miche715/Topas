@@ -3,13 +3,15 @@ package com.example.android.sign.repository
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import javax.inject.Inject
 
 class SignRepository @Inject constructor()
 {
     private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val firebaseFirestore: FirebaseFirestore = FirebaseFirestore.getInstance()
 
-    fun signUpFirebase(email: String, password: String, _signUpResult: MutableLiveData<Boolean>)
+    fun signUpFirebase(email: String, password: String, name: String, nickName: String, _signUpResult: MutableLiveData<Boolean>)
     {
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener()
         {
