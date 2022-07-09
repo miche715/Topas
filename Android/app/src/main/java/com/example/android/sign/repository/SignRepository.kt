@@ -1,18 +1,24 @@
 package com.example.android.sign.repository
 
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.android.user.domain.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers.IO
+import java.time.LocalDateTime
 import javax.inject.Inject
 
 class SignRepository @Inject constructor()
 {
-    private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    private val firebaseFirestore: FirebaseFirestore = FirebaseFirestore.getInstance()
+    private val firebaseAuth = FirebaseAuth.getInstance()
+    private val firebaseFirestore = FirebaseFirestore.getInstance()
+    private val firebaseStorage = FirebaseStorage.getInstance().reference
 
-    fun signUpFirebase(email: String, password: String, name: String, nickName: String, _signUpResult: MutableLiveData<Any>)
+    fun signUpFirebase(email: String, password: String, name: String, nickName: String, profilePhoto: Uri?, _signUpResult: MutableLiveData<Any>)
     {
         firebaseFirestore.collection("user").whereEqualTo("nick_name", nickName).get().addOnCompleteListener()  // user 컬렉션에 같은 닉네임이 있는지
         {querySnapshot ->
@@ -24,16 +30,30 @@ class SignRepository @Inject constructor()
                     {
                         Log.d("*** signUpFirebase Auth에 가입 성공 ***", "${authResult.result}")
 
-                        // 여기서 Storage에 프로필 사진 올리는 로직을 구현.
-                        // 프로필 사진이 올라가면 Storage에 저장한 프로필 사진의 URL을 가져와야 함.
-                        // 그리고 밑에 user를 만들 때 "profile_photo_url" to null 이부분에 null 대신 가져온 URL을 넣음.
-                        // 프로필 사진은 필수 사항이 아니므로 Storage에 미리 기본 프로필 사진을 하나 업로드 해두고, 프로필 사진 업로드에 실패하거나 쓰지 않으면 그걸 가져다 쓰자.
-                        // Storage에 올라가는 프로필 사진의 이름이 겹치면 곤란하다. firebaseAuth.currentUser.email+LocalDateTime.now().toString()+.png 같은 형식으로 절대 겹치지 않게 올리자.
+                        var profilePhotoUrl: String? = null
+                        
+                        if(profilePhoto != null)  // 사용자가 따로 프로필 사진을 선택 했으면
+                        {
+                            firebaseStorage.child("profile_photo_${email}").putFile(profilePhoto).addOnCompleteListener()  // Storage에 업로드
+                            {uploadTask ->
+                                if(uploadTask.isSuccessful)  // 업로드에 성공 했으면
+                                {
+                                    firebaseStorage.child("profile_photo_${email}").downloadUrl.addOnCompleteListener()  // 저장된 프로필 사진의 URL을 가져옴
+                                    {uri ->
+                                        profilePhotoUrl = uri.result.toString()
+                                    }
+                                }
+                            }
+                        }
+                        else  // 사용자가 따로 프로필 사진을 선택 안했으면
+                        {
+                            profilePhotoUrl = "https://firebasestorage.googleapis.com/v0/b/topas-ffeec.appspot.com/o/default.png?alt=media&token=8b3bc169-98b1-4f2a-aaa8-1d92a778378a"
+                        }
 
-                        val user: Map<String, Any?> = mapOf("email" to firebaseAuth.currentUser!!.email,
-                                                                            "name" to name,
-                                                                            "nick_name" to nickName,
-                                                                            "profile_photo_url" to null)
+                        val user: Map<String, Any?> = mapOf("email" to email,
+                                                            "name" to name,
+                                                            "nick_name" to nickName,
+                                                            "profile_photo_url" to profilePhotoUrl)
 
                         firebaseFirestore.collection("user").add(user).addOnCompleteListener()  // Auth에 가입은 성공 했으니까 user 컬렉션에 유저 정보를 넣음
                         {documentReference ->
@@ -47,7 +67,7 @@ class SignRepository @Inject constructor()
                                     this.email = user["email"] as String
                                     this.name = user["name"] as String
                                     this.nickName = user["nick_name"] as String
-                                    // this.profilePhotoUrl = user["profile_photo_url"] as String // 여기 구현해야 함
+                                    //this.profilePhotoUrl = user["profile_photo_url"] as String
                                 }
                             }
                             else  // user 컬렉션 등록 실패

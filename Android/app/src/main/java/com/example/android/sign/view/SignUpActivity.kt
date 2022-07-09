@@ -1,7 +1,10 @@
 package com.example.android.sign.view
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.example.android.base.BaseActivity
 import com.example.android.databinding.ActivitySignUpBinding
@@ -15,9 +18,30 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>({ ActivitySignUpBindi
 {
     private val signViewModel: SignViewModel by viewModels()
 
+    private lateinit var activityResultLauncher : ActivityResultLauncher<Intent>
+
+    private var profilePhoto: Uri? = null
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
+
+        binding.profilePhotoImageButton.setOnClickListener()
+        {
+            Intent(Intent.ACTION_GET_CONTENT).run()
+            {
+                this.type = "image/*"
+                activityResultLauncher.launch(this)
+            }
+        }
+        activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+        {
+            if(it.resultCode == RESULT_OK)
+            {
+                profilePhoto = it.data!!.data
+                binding.profilePhotoCircleImageView.setImageURI(profilePhoto)
+            }
+        }
 
         binding.signUpButton.setOnClickListener()
         {
@@ -28,8 +52,9 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>({ ActivitySignUpBindi
             val passwordConfirm = binding.passwordConfirmTextInputEditText.text.toString()
             val name = binding.nameTextInputEditText.text.toString()
             val nickName = binding.nickNameTextInputEditText.text.toString()
+            val profilePhoto = profilePhoto
 
-            signViewModel.signUp(email, password, passwordConfirm, name, nickName)
+            signViewModel.signUp(email, password, passwordConfirm, name, nickName, profilePhoto)
         }
         signViewModel.signUpResult.observe(this)
         {

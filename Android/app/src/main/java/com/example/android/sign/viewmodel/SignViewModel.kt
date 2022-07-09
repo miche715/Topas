@@ -1,11 +1,17 @@
 package com.example.android.sign.viewmodel
 
+import android.graphics.ImageDecoder
+import android.net.Uri
+import android.provider.MediaStore
+import android.provider.MediaStore.Images.Media.getBitmap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.android.sign.repository.SignRepository
 import com.example.android.user.domain.User
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,7 +34,7 @@ class SignViewModel @Inject constructor(private val signRepository: SignReposito
     private val _signInResult: MutableLiveData<String?> = MutableLiveData()
     val signInResult: LiveData<String?> = _signInResult
 
-    fun signUp(email: String, password: String, passwordConfirm: String, name: String, nickName: String)
+    fun signUp(email: String, password: String, passwordConfirm: String, name: String, nickName: String, profilePhoto: Uri?)
     {
         var isValid = true
 
@@ -54,7 +60,7 @@ class SignViewModel @Inject constructor(private val signRepository: SignReposito
 
         if(isValid)
         {
-            signRepository.signUpFirebase(email, password, name, nickName, _signUpResult)
+            signRepository.signUpFirebase(email, password, name, nickName, profilePhoto, _signUpResult)
         }
     }
 
