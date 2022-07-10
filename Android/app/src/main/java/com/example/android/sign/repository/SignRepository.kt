@@ -65,6 +65,7 @@ class SignRepository @Inject constructor()
                                 else  // user 컬렉션 등록 실패
                                 {
                                     Log.e("*** signUpFirebase Firestore user 컬렉션에 등록 실패 ***", "${documentReference.exception?.message}")
+
                                     _signUpResult.value = "알 수 없는 오류가 발생하여 가입에 실패했습니다."
                                 }
                             }
