@@ -6,20 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".sign.view.SignUpActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/tool_bar_style">
+
+        <TextView
+            android:id="@+id/toolBarTitleTextView"
+            android:text="회원가입"
+            style="@style/tool_bar_title_text_view_style"/>
+    </androidx.appcompat.widget.Toolbar>
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_height="0dp"
+            android:orientation="vertical">
 
             <FrameLayout
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="50dp" >
+                android:layout_marginTop="20dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profilePhotoCircleImageView"
@@ -41,31 +58,36 @@
 
             </FrameLayout>
 
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:text="이메일"
+                android:textColor="@color/black_letter_color" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/emailTextInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="8dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="20dp"
                 android:backgroundTint="#009EFF"
+                android:hint="이메일을 입력해주세요."
+                android:textColorHint="@color/hint_letter_color"
                 android:touchscreenBlocksFocus="false"
                 app:boxBackgroundColor="#FFFFFF"
-                app:boxBackgroundMode="outline"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp"
+                app:boxBackgroundMode="filled"
                 app:boxStrokeColor="#0091EA"
-                app:boxStrokeWidth="2dp"
+                app:boxStrokeWidth="1dp"
                 app:boxStrokeWidthFocused="2dp"
                 app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/emailTextInputEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="이메일" />
+                    android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -175,13 +197,8 @@
 
             <Button
                 android:id="@+id/signUpButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="8dp"
-                android:backgroundTint="#2962FF"
-                android:text="회원가입" />
+                android:text="회원가입"
+                style="@style/brand_button_style" />
 
         </LinearLayout>
     </ScrollView>

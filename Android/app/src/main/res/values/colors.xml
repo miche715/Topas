@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- 브랜드 색 -->
+    <color name="brand_color">#0066FF</color>
+
+
+
+    <!-- 툴바 배경 색 -->
+    <color name="tool_bar_background_color">#FFFFFF</color>
+
+
+
+    <!-- 검은 글자 색 -->
+    <color name="black_letter_color">#000000</color>
+    <!-- 하얀 글자 색 -->
+    <color name="white_letter_color">#FFFFFF</color>
+    <!-- 힌트 글자 색 -->
+    <color name="hint_letter_color">#CCCCCC</color>
+
+
+
+    <!-- 브랜드 버튼 배경 색 -->
+    <color name="brand_button_background_color">#0066FF</color>
+    <!-- 하얀 버튼 배경 색 -->
+    <color name="white_button_background_color">#FFFFFF</color>
+
+
+
+
+
+    <!-- system color -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
