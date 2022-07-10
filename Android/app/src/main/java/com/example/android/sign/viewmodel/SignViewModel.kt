@@ -12,7 +12,7 @@ import javax.inject.Inject
 class SignViewModel @Inject constructor(private val signRepository: SignRepository) : ViewModel()
 {
     private val emailRegex = "^[a-z0-9\\.\\-_]+@([a-z0-9\\-]+\\.)+[a-z]{2,6}$".toRegex()  // 이메일 형식
-    private val passwordRegex = "^[a-zA-Z0-9]{4,20}$".toRegex()  // 소문자 대문자 + 숫자 4 ~ 20자리
+    private val passwordRegex = "^[a-zA-Z0-9!@#$%^&*()-_=+]{4,20}$".toRegex()  // 소문자 대문자 + 숫자 4 ~ 20자리
     private val nameRegex = "^[가-힣]*$".toRegex()  // 한글만
     private val nickNameRegex = "^[a-zA-Z가-힣0-9]{2,8}$".toRegex()  // 소문자, 대문자, 한글, 숫자 2 ~ 8자리
 
