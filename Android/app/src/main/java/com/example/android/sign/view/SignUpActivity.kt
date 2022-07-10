@@ -8,6 +8,7 @@ import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import com.example.android.R
 import com.example.android.base.BaseActivity
 import com.example.android.databinding.ActivitySignUpBinding
 import com.example.android.sign.viewmodel.SignViewModel
@@ -22,13 +23,15 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>({ ActivitySignUpBindi
 
     private lateinit var activityResultLauncher : ActivityResultLauncher<Intent>
 
+    private val signLoadingDialog: SignLoadingDialog by lazy { SignLoadingDialog(this@SignUpActivity) }
+
     private var profilePhoto: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
 
-        binding.profilePhotoImageButton.setOnClickListener()
+        binding.addProfilePhotoButton.setOnClickListener()
         {
             Intent(Intent.ACTION_GET_CONTENT).run()
             {
@@ -42,12 +45,25 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>({ ActivitySignUpBindi
             {
                 profilePhoto = it.data!!.data
                 binding.profilePhotoCircleImageView.setImageURI(profilePhoto)
+
+                binding.addProfilePhotoButton.isEnabled = false
+                binding.removeProfilePhotoButton.isEnabled = true
             }
+        }
+
+        binding.removeProfilePhotoButton.setOnClickListener()
+        {
+            profilePhoto = null
+            binding.profilePhotoCircleImageView.setImageResource(R.drawable.default_profile_photo)
+
+            binding.addProfilePhotoButton.isEnabled = true
+            binding.removeProfilePhotoButton.isEnabled = false
         }
 
         binding.signUpButton.setOnClickListener()
         {
             hideKeyBoard(it.windowToken)
+            signLoadingDialog.show()
 
             val email = binding.emailEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
@@ -68,31 +84,37 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>({ ActivitySignUpBindi
             {
                 Snackbar.make(binding.root, it as String, Snackbar.LENGTH_SHORT).show()
             }
+            signLoadingDialog.dismiss()
         }
         signViewModel.emailInValidMessage.observe(this)
         {
             if(it != null) { binding.emailErrorTextView.visibility = View.VISIBLE; binding.emailErrorTextView.text = it }
             else { binding.emailErrorTextView.visibility = View.GONE; binding.emailErrorTextView.text = null }
+            signLoadingDialog.dismiss()
         }
         signViewModel.passwordInValidMessage.observe(this)
         {
             if(it != null) { binding.passwordErrorTextView.visibility = View.VISIBLE; binding.passwordErrorTextView.text = it }
             else { binding.passwordErrorTextView.visibility = View.GONE; binding.passwordErrorTextView.text = null }
+            signLoadingDialog.dismiss()
         }
         signViewModel.passwordConfirmInValidMessage.observe(this)
         {
             if(it != null) { binding.passwordConfirmErrorTextView.visibility = View.VISIBLE; binding.passwordConfirmErrorTextView.text = it }
             else { binding.passwordConfirmErrorTextView.visibility = View.GONE; binding.passwordConfirmErrorTextView.text = null }
+            signLoadingDialog.dismiss()
         }
         signViewModel.nameInValidMessage.observe(this)
         {
             if(it != null) { binding.nameErrorTextView.visibility = View.VISIBLE; binding.nameErrorTextView.text = it }
             else { binding.nameErrorTextView.visibility = View.GONE; binding.nameErrorTextView.text = null }
+            signLoadingDialog.dismiss()
         }
         signViewModel.nickNameInValidMessage.observe(this)
         {
             if(it != null) { binding.nickNameErrorTextView.visibility = View.VISIBLE; binding.nickNameErrorTextView.text = it }
             else { binding.nickNameErrorTextView.visibility = View.GONE; binding.nickNameErrorTextView.text = null }
+            signLoadingDialog.dismiss()
         }
     }
 }

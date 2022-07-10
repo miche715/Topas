@@ -32,32 +32,83 @@
             android:layout_height="0dp"
             android:orientation="vertical">
 
-            <FrameLayout
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/addProfilePhotoButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:backgroundTint="@color/brand_button_background_color"
+                    android:drawableLeft="@drawable/add_photo_alternate"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:text="프로필 사진 추가"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/profilePhotoDescriptionTextView"
+                    app:layout_constraintStart_toStartOf="@+id/profilePhotoDescriptionTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/profilePhotoDescriptionTextView" />
+
+                <Button
+                    android:id="@+id/removeProfilePhotoButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:backgroundTint="@color/error_letter_color"
+                    android:drawableLeft="@drawable/disabled_by_default"
+                    android:elevation="10dp"
+                    android:enabled="false"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:text="프로필 사진 제거"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/addProfilePhotoButton"
+                    app:layout_constraintStart_toStartOf="@+id/addProfilePhotoButton"
+                    app:layout_constraintTop_toBottomOf="@+id/addProfilePhotoButton" />
+
+                <TextView
+                    android:id="@+id/profilePhotoTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:text="프로필 사진"
+                    android:textColor="@color/black_letter_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profilePhotoCircleImageView"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_width="170dp"
+                    android:layout_height="170dp"
+                    android:layout_marginTop="8dp"
                     android:background="@android:color/transparent"
                     android:src="@drawable/default_profile_photo"
                     app:civ_border_color="#000000"
                     app:civ_border_overlay="true"
-                    app:civ_border_width="2dp" />
+                    app:civ_border_width="2dp"
+                    app:layout_constraintStart_toStartOf="@+id/profilePhotoTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/profilePhotoTextView" />
 
-                <ImageButton
-                    android:id="@+id/profilePhotoImageButton"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/profilePhotoDescriptionTextView"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|right"
-                    app:srcCompat="@android:drawable/ic_menu_gallery"
-                    tools:ignore="SpeakableTextPresentCheck" />
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:text="프로필 사진은 선택하지 않을 시\n기본 프로필 사진이 적용됩니다."
+                    android:textColor="@color/black_letter_color"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/profilePhotoTextView"
+                    app:layout_constraintStart_toEndOf="@+id/profilePhotoCircleImageView"
+                    app:layout_constraintTop_toBottomOf="@+id/profilePhotoTextView" />
 
-            </FrameLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/emailTextView"
