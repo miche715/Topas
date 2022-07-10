@@ -29,25 +29,90 @@ class SignViewModel @Inject constructor(private val signRepository: SignReposito
     {
         var isValid = true
 
-        if(email.isEmpty()) { emailInValidMessage.value = "* 이메일을 입력해 주세요."; isValid = false }
-        else if(!email.matches(emailRegex)) { emailInValidMessage.value = "* 잘못된 이메일 형식입니다."; isValid = false }
-        else { emailInValidMessage.value = null }
+        if(email.isEmpty())
+        {
+            emailInValidMessage.value = "* 이메일을 입력해 주세요."
+            _signUpResult.value = "입력을 다시 확인해주세요."
+            isValid = false
+        }
+        else if(!email.matches(emailRegex))
+        {
+            emailInValidMessage.value = "* 잘못된 이메일 형식입니다."
+            _signUpResult.value = "입력을 다시 확인해주세요."
+            isValid = false
+        }
+        else
+        {
+            emailInValidMessage.value = null
+        }
 
-        if(password.isEmpty()) { passwordInValidMessage.value = "* 패스워드를 입력해 주세요."; isValid = false }
-        else if(!password.matches(passwordRegex)) { passwordInValidMessage.value = "* 잘못된 패스워드 형식입니다."; isValid = false }
-        else { passwordInValidMessage.value = null }
+        if(password.isEmpty())
+        {
+            passwordInValidMessage.value = "* 패스워드를 입력해 주세요."
+            _signUpResult.value = "입력을 다시 확인해주세요."
+            isValid = false
+        }
+        else if(!password.matches(passwordRegex))
+        {
+            passwordInValidMessage.value = "* 잘못된 패스워드 형식입니다."
+            _signUpResult.value = "입력을 다시 확인해주세요."
+            isValid = false
+        }
+        else
+        {
+            passwordInValidMessage.value = null
+        }
 
-        if(passwordConfirm.isEmpty()) { passwordConfirmInValidMessage.value = "* 패스워드 확인을 입력해 주세요."; isValid = false }
-        else if(passwordConfirm != password) { passwordConfirmInValidMessage.value = "* 패스워드와 다릅니다."; isValid = false }
-        else { passwordConfirmInValidMessage.value = null }
+        if(passwordConfirm.isEmpty())
+        {
+            passwordConfirmInValidMessage.value = "* 패스워드 확인을 입력해 주세요."
+            _signUpResult.value = "입력을 다시 확인해주세요."
+            isValid = false
+        }
+        else if(passwordConfirm != password)
+        {
+            passwordConfirmInValidMessage.value = "* 패스워드와 다릅니다."
+            _signUpResult.value = "입력을 다시 확인해주세요."
+            isValid = false
+        }
+        else
+        {
+            passwordConfirmInValidMessage.value = null
+        }
 
-        if(name.isEmpty()) { nameInValidMessage.value = "* 이름을 입력해 주세요."; isValid = false }
-        else if(!name.matches(nameRegex)) { nameInValidMessage.value = "* 잘못된 이름 형식입니다."; isValid = false }
-        else { nameInValidMessage.value = null }
+        if(name.isEmpty())
+        {
+            nameInValidMessage.value = "* 이름을 입력해 주세요."
+            _signUpResult.value = "입력을 다시 확인해주세요."
+            isValid = false
+        }
+        else if(!name.matches(nameRegex))
+        {
+            nameInValidMessage.value = "* 잘못된 이름 형식입니다."
+            _signUpResult.value = "입력을 다시 확인해주세요."
+            isValid = false
+        }
+        else
+        {
+            nameInValidMessage.value = null
+        }
 
-        if(nickName.isEmpty()) { nickNameInValidMessage.value = "* 닉네임을 입력해 주세요."; isValid = false }
-        else if(!nickName.matches(nickNameRegex)) { nickNameInValidMessage.value = "* 잘못된 닉네임 형식입니다."; isValid = false }
-        else { nickNameInValidMessage.value = null }
+        if(nickName.isEmpty())
+        {
+            nickNameInValidMessage.value = "* 닉네임을 입력해 주세요."
+            _signUpResult.value = "입력을 다시 확인해주세요."
+            isValid = false
+        }
+        else if(!nickName.matches(nickNameRegex))
+        {
+            nickNameInValidMessage.value = "* 잘못된 닉네임 형식입니다."
+            _signUpResult.value = "입력을 다시 확인해주세요."
+            isValid = false
+        }
+        else
+        {
+            nickNameInValidMessage.value = null
+        }
 
         if(isValid)
         {
