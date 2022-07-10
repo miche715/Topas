@@ -7,6 +7,7 @@
         <item name="colorPrimary">@color/brand_color</item>
         <item name="colorPrimaryVariant">@color/brand_color</item>
         <item name="colorOnPrimary">@color/brand_color</item>
+        <item name="colorAccent">@color/brand_color</item>
 
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/negative_brand_color</item>
