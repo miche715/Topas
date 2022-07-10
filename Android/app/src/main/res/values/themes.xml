@@ -15,10 +15,22 @@
         <item name="colorOnSecondary">@color/negative_brand_color</item>
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="q">false</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="q">false</item>
 
         <!-- Customize your theme here. -->
 
     </style>
+
+    <style name="Theme.Android.Splash">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/brand_color</item>
+        <item name="android:navigationBarColor">@color/brand_color</item>
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="q">false</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="q">false</item>
+    </style>
+
 </resources>
