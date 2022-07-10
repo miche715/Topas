@@ -2,6 +2,8 @@
 <resources>
     <!-- 브랜드 색 -->
     <color name="brand_color">#0066FF</color>
+    <!-- 반전 브랜드 색 -->
+    <color name="negative_brand_color">#FA9000</color>
 
     <!-- 툴바 배경 색 -->
     <color name="tool_bar_background_color">#FFFFFF</color>
