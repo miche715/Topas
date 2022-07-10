@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!-- 브랜드 색 -->
     <color name="brand_color">#0066FF</color>
 
-
-
     <!-- 툴바 배경 색 -->
     <color name="tool_bar_background_color">#FFFFFF</color>
-
-
 
     <!-- 검은 글자 색 -->
     <color name="black_letter_color">#000000</color>
@@ -17,8 +12,8 @@
     <color name="white_letter_color">#FFFFFF</color>
     <!-- 힌트 글자 색 -->
     <color name="hint_letter_color">#CCCCCC</color>
-
-
+    <!-- 힌트 글자 색 -->
+    <color name="error_letter_color">#CC0000</color>
 
     <!-- 브랜드 버튼 배경 색 -->
     <color name="brand_button_background_color">#0066FF</color>

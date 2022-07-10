@@ -54,151 +54,177 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|right"
-                    app:srcCompat="@android:drawable/ic_menu_gallery" />
+                    app:srcCompat="@android:drawable/ic_menu_gallery"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
             </FrameLayout>
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/emailTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/noto_sans_kr_regular"
                 android:text="이메일"
                 android:textColor="@color/black_letter_color" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/emailTextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginHorizontal="20dp"
-                android:backgroundTint="#009EFF"
-                android:hint="이메일을 입력해주세요."
-                android:textColorHint="@color/hint_letter_color"
-                android:touchscreenBlocksFocus="false"
-                app:boxBackgroundColor="#FFFFFF"
-                app:boxBackgroundMode="filled"
-                app:boxStrokeColor="#0091EA"
-                app:boxStrokeWidth="1dp"
-                app:boxStrokeWidthFocused="2dp"
-                app:errorEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/emailTextInputEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/passwordTextInputLayout"
+            <EditText
+                android:id="@+id/emailEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginRight="8dp"
-                app:boxBackgroundColor="#FFFFFF"
-                app:boxBackgroundMode="outline"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:boxStrokeColor="#0091EA"
-                app:boxStrokeWidth="2dp"
-                app:boxStrokeWidthFocused="2dp"
-                app:errorEnabled="true"
-                app:passwordToggleEnabled="false">
+                android:layout_marginHorizontal="20dp"
+                android:ems="10"
+                android:hint="example@domain.com 형식의 이메일"
+                android:inputType="textEmailAddress"
+                android:textColorHint="@color/hint_letter_color"
+                android:textSize="16sp"
+                tools:ignore="TouchTargetSizeCheck" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/passwordTextInputEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="패스워드"
-                    android:inputType="textPassword" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/passwordConfirmTextInputLayout"
+            <TextView
+                android:id="@+id/emailErrorTextView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginRight="8dp"
-                app:boxBackgroundColor="#FFFFFF"
-                app:boxBackgroundMode="outline"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:boxStrokeColor="#0091EA"
-                app:boxStrokeWidth="2dp"
-                app:boxStrokeWidthFocused="2dp"
-                app:errorEnabled="true">
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:textColor="@color/error_letter_color"
+                android:textSize="12sp"
+                android:visibility="gone" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/passwordConfirmTextInputEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="패스워드 확인"
-                    android:inputType="textPassword" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/nameTextInputLayout"
+            <TextView
+                android:id="@+id/passwordTextView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginRight="8dp"
-                app:boxBackgroundColor="#FFFFFF"
-                app:boxBackgroundMode="outline"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:boxStrokeColor="#0091EA"
-                app:boxStrokeWidth="2dp"
-                app:boxStrokeWidthFocused="2dp"
-                app:errorEnabled="true">
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:text="패스워드"
+                android:textColor="@color/black_letter_color" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nameTextInputEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="이름" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/nickNameTextInputLayout"
+            <EditText
+                android:id="@+id/passwordEditText"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginRight="8dp"
-                app:boxBackgroundColor="#FFFFFF"
-                app:boxBackgroundMode="outline"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:boxStrokeColor="#0091EA"
-                app:boxStrokeWidth="2dp"
-                app:boxStrokeWidthFocused="2dp"
-                app:errorEnabled="true">
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:ems="10"
+                android:hint="4 ~ 20자리 영대·소문자, 숫자 조합"
+                android:inputType="textPassword"
+                android:textColorHint="@color/hint_letter_color"
+                android:textSize="16sp"
+                tools:ignore="TouchTargetSizeCheck" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nickNameTextInputEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="닉네임" />
+            <TextView
+                android:id="@+id/passwordErrorTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:textColor="@color/error_letter_color"
+                android:textSize="12sp"
+                android:visibility="gone" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/passwordConfirmTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:text="패스워드 확인"
+                android:textColor="@color/black_letter_color" />
+
+            <EditText
+                android:id="@+id/passwordConfirmEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:ems="10"
+                android:hint="4 ~ 20자리 영대·소문자, 숫자 조합"
+                android:inputType="textPassword"
+                android:textColorHint="@color/hint_letter_color"
+                android:textSize="16sp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <TextView
+                android:id="@+id/passwordConfirmErrorTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:textColor="@color/error_letter_color"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/nameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:text="이름"
+                android:textColor="@color/black_letter_color" />
+
+            <EditText
+                android:id="@+id/nameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:ems="10"
+                android:hint="한글로 이루어진 이름"
+                android:inputType="textPersonName"
+                android:textColorHint="@color/hint_letter_color"
+                android:textSize="16sp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <TextView
+                android:id="@+id/nameErrorTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:textColor="@color/error_letter_color"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/nickNameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:text="닉네임"
+                android:textColor="@color/black_letter_color" />
+
+            <EditText
+                android:id="@+id/nickNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:ems="10"
+                android:hint="2 ~ 8자리 한글, 영대·소문자, 숫자 조합"
+                android:inputType="text"
+                android:textColorHint="@color/hint_letter_color"
+                android:textSize="16sp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <TextView
+                android:id="@+id/nickNameErrorTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:textColor="@color/error_letter_color"
+                android:textSize="12sp"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/signUpButton"
-                android:text="회원가입"
-                style="@style/brand_button_style" />
+                style="@style/brand_button_style"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="회원가입" />
 
         </LinearLayout>
     </ScrollView>

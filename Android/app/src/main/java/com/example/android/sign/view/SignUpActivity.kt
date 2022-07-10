@@ -2,7 +2,9 @@ package com.example.android.sign.view
 
 import android.content.Intent
 import android.net.Uri
+import android.opengl.Visibility
 import android.os.Bundle
+import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -47,11 +49,11 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>({ ActivitySignUpBindi
         {
             hideKeyBoard(it.windowToken)
 
-            val email = binding.emailTextInputEditText.text.toString()
-            val password = binding.passwordTextInputEditText.text.toString()
-            val passwordConfirm = binding.passwordConfirmTextInputEditText.text.toString()
-            val name = binding.nameTextInputEditText.text.toString()
-            val nickName = binding.nickNameTextInputEditText.text.toString()
+            val email = binding.emailEditText.text.toString()
+            val password = binding.passwordEditText.text.toString()
+            val passwordConfirm = binding.passwordConfirmEditText.text.toString()
+            val name = binding.nameEditText.text.toString()
+            val nickName = binding.nickNameEditText.text.toString()
             val profilePhoto = profilePhoto
 
             signViewModel.signUp(email, password, passwordConfirm, name, nickName, profilePhoto)
@@ -69,23 +71,28 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>({ ActivitySignUpBindi
         }
         signViewModel.emailInValidMessage.observe(this)
         {
-            binding.emailTextInputLayout.error = it
+            if(it != null) { binding.emailErrorTextView.visibility = View.VISIBLE; binding.emailErrorTextView.text = it }
+            else { binding.emailErrorTextView.visibility = View.GONE; binding.emailErrorTextView.text = null }
         }
         signViewModel.passwordInValidMessage.observe(this)
         {
-            binding.passwordTextInputLayout.error = it
+            if(it != null) { binding.passwordErrorTextView.visibility = View.VISIBLE; binding.passwordErrorTextView.text = it }
+            else { binding.passwordErrorTextView.visibility = View.GONE; binding.passwordErrorTextView.text = null }
         }
         signViewModel.passwordConfirmInValidMessage.observe(this)
         {
-            binding.passwordConfirmTextInputLayout.error = it
+            if(it != null) { binding.passwordConfirmErrorTextView.visibility = View.VISIBLE; binding.passwordConfirmErrorTextView.text = it }
+            else { binding.passwordConfirmErrorTextView.visibility = View.GONE; binding.passwordConfirmErrorTextView.text = null }
         }
         signViewModel.nameInValidMessage.observe(this)
         {
-            binding.nameTextInputLayout.error = it
+            if(it != null) { binding.nameErrorTextView.visibility = View.VISIBLE; binding.nameErrorTextView.text = it }
+            else { binding.nameErrorTextView.visibility = View.GONE; binding.nameErrorTextView.text = null }
         }
         signViewModel.nickNameInValidMessage.observe(this)
         {
-            binding.nickNameTextInputLayout.error = it
+            if(it != null) { binding.nickNameErrorTextView.visibility = View.VISIBLE; binding.nickNameErrorTextView.text = it }
+            else { binding.nickNameErrorTextView.visibility = View.GONE; binding.nickNameErrorTextView.text = null }
         }
     }
 }
