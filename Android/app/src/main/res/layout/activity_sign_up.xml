@@ -16,7 +16,7 @@
         <TextView
             android:id="@+id/toolBarTitleTextView"
             android:text="회원가입"
-            style="@style/tool_bar_title_text_view_style"/>
+            style="@style/tool_bar_title_text_view_style" />
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
@@ -55,6 +55,7 @@
                         android:drawableLeft="@drawable/add_photo_alternate"
                         android:elevation="10dp"
                         android:fontFamily="@font/noto_sans_kr_regular"
+                        android:includeFontPadding="false"
                         android:paddingLeft="8dp"
                         android:shadowColor="@color/hint_letter_color"
                         android:text="사진 등록"
@@ -70,6 +71,7 @@
                         android:elevation="10dp"
                         android:enabled="false"
                         android:fontFamily="@font/noto_sans_kr_regular"
+                        android:includeFontPadding="false"
                         android:paddingLeft="8dp"
                         android:shadowColor="@color/hint_letter_color"
                         android:text="사진 제거"
@@ -78,17 +80,11 @@
 
                 <TextView
                     android:id="@+id/profilePhotoTextView"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="20dp"
-                    android:fontFamily="@font/noto_sans_kr_regular"
                     android:text="프로필 사진"
-                    android:textColor="@color/black_letter_color"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    style="@style/description_text_view_style" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profilePhotoCircleImageView"
@@ -107,170 +103,95 @@
 
             <TextView
                 android:id="@+id/emailTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/noto_sans_kr_regular"
                 android:text="* 이메일"
-                android:textColor="@color/black_letter_color" />
+                style="@style/description_text_view_style" />
 
             <EditText
                 android:id="@+id/emailEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:ems="10"
                 android:hint="example@domain.com 형식의 이메일"
                 android:inputType="textEmailAddress"
-                android:textColorHint="@color/hint_letter_color"
-                android:textSize="16sp"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck"
+                style="@style/sign_edit_text_style" />
 
             <TextView
                 android:id="@+id/emailErrorTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:fontFamily="@font/noto_sans_kr_regular"
-                android:textColor="@color/error_letter_color"
-                android:textSize="12sp"
-                android:visibility="gone" />
+                android:visibility="gone"
+                style="@style/error_text_view_style" />
 
             <TextView
                 android:id="@+id/passwordTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/noto_sans_kr_regular"
                 android:text="* 패스워드"
-                android:textColor="@color/black_letter_color" />
+                style="@style/description_text_view_style" />
 
             <EditText
                 android:id="@+id/passwordEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:ems="10"
                 android:hint="4 ~ 20자리 영대·소문자, 숫자, 특수문자 조합"
                 android:inputType="textPassword"
-                android:textColorHint="@color/hint_letter_color"
-                android:textSize="16sp"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck"
+                style="@style/sign_edit_text_style" />
 
             <TextView
                 android:id="@+id/passwordErrorTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:fontFamily="@font/noto_sans_kr_regular"
-                android:textColor="@color/error_letter_color"
-                android:textSize="12sp"
-                android:visibility="gone" />
+                android:visibility="gone"
+                style="@style/error_text_view_style" />
 
             <TextView
                 android:id="@+id/passwordConfirmTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/noto_sans_kr_regular"
                 android:text="* 패스워드 확인"
-                android:textColor="@color/black_letter_color" />
+                style="@style/description_text_view_style" />
 
             <EditText
                 android:id="@+id/passwordConfirmEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:ems="10"
                 android:hint="4 ~ 20자리 영대·소문자, 숫자, 특수문자 조합"
                 android:inputType="textPassword"
-                android:textColorHint="@color/hint_letter_color"
-                android:textSize="16sp"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck"
+                style="@style/sign_edit_text_style" />
 
             <TextView
                 android:id="@+id/passwordConfirmErrorTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:fontFamily="@font/noto_sans_kr_regular"
-                android:textColor="@color/error_letter_color"
-                android:textSize="12sp"
-                android:visibility="gone" />
+                android:visibility="gone"
+                style="@style/error_text_view_style" />
 
             <TextView
                 android:id="@+id/nameTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/noto_sans_kr_regular"
                 android:text="* 이름"
-                android:textColor="@color/black_letter_color" />
+                style="@style/description_text_view_style" />
 
             <EditText
                 android:id="@+id/nameEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:ems="10"
                 android:hint="한글로 이루어진 이름"
                 android:inputType="textPersonName"
-                android:textColorHint="@color/hint_letter_color"
-                android:textSize="16sp"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck"
+                style="@style/sign_edit_text_style" />
 
             <TextView
                 android:id="@+id/nameErrorTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:fontFamily="@font/noto_sans_kr_regular"
-                android:textColor="@color/error_letter_color"
-                android:textSize="12sp"
-                android:visibility="gone" />
+                android:visibility="gone"
+                style="@style/error_text_view_style" />
 
             <TextView
                 android:id="@+id/nickNameTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/noto_sans_kr_regular"
                 android:text="* 닉네임"
-                android:textColor="@color/black_letter_color" />
+                style="@style/description_text_view_style" />
 
             <EditText
                 android:id="@+id/nickNameEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:ems="10"
                 android:hint="2 ~ 8자리 한글, 영대·소문자, 숫자 조합"
                 android:inputType="text"
-                android:textColorHint="@color/hint_letter_color"
-                android:textSize="16sp"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck"
+                style="@style/sign_edit_text_style" />
 
             <TextView
                 android:id="@+id/nickNameErrorTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:fontFamily="@font/noto_sans_kr_regular"
-                android:textColor="@color/error_letter_color"
-                android:textSize="12sp"
-                android:visibility="gone" />
+                android:visibility="gone"
+                style="@style/error_text_view_style" />
 
             <Button
                 android:id="@+id/signUpButton"
-                style="@style/brand_button_style"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="회원가입" />
+                android:text="회원가입"
+                style="@style/brand_button_style" />
 
         </LinearLayout>
     </ScrollView>

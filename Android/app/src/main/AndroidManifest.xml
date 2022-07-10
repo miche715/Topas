@@ -4,9 +4,7 @@
     package="com.example.android">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:name=".base.BaseApplication"
@@ -27,7 +25,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".splash.view.SplashActivity"
+            android:name=".onboard.view.OnBoardingActivity"
             android:theme="@style/Theme.Android.Splash"
             android:exported="true">
             <intent-filter>

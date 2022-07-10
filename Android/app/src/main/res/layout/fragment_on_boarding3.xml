@@ -8,17 +8,22 @@
     android:gravity="center">
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="&quot;협업하세요.&quot;"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="50sp"
+        android:id="@+id/onBoardTitleTextView3"
+        style="@style/on_board_title_text_view_style"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="120dp"
+        android:text="Topas 지금 시작하세요."
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="시작하기"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        style="@style/white_button_style" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
