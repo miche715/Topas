@@ -15,7 +15,7 @@ class OnBoarding3Fragment : BaseFragment<FragmentOnBoarding3Binding>()
     {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.startButton.setOnClickListener()
+        binding.signUpButton.setOnClickListener()
         {
             Intent(requireActivity(), SignUpActivity::class.java).run()
             {
