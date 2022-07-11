@@ -40,7 +40,7 @@
 
                 <TextView
                     android:id="@+id/profilePhotoTextView"
-                    style="@style/description_text_view_style"
+                    style="@style/sign_up_description_text_view_style"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="12dp"
                     android:text="프로필 사진"
@@ -106,7 +106,7 @@
 
             <TextView
                 android:id="@+id/emailTextView"
-                style="@style/description_text_view_style"
+                style="@style/sign_up_description_text_view_style"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="24dp"
                 android:text="* 이메일" />
@@ -127,7 +127,7 @@
 
             <TextView
                 android:id="@+id/passwordTextView"
-                style="@style/description_text_view_style"
+                style="@style/sign_up_description_text_view_style"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="24dp"
                 android:text="* 패스워드" />
@@ -148,7 +148,7 @@
 
             <TextView
                 android:id="@+id/passwordConfirmTextView"
-                style="@style/description_text_view_style"
+                style="@style/sign_up_description_text_view_style"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="24dp"
                 android:text="* 패스워드 확인" />
@@ -169,7 +169,7 @@
 
             <TextView
                 android:id="@+id/nameTextView"
-                style="@style/description_text_view_style"
+                style="@style/sign_up_description_text_view_style"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="24dp"
                 android:text="* 이름" />
@@ -190,7 +190,7 @@
 
             <TextView
                 android:id="@+id/nickNameTextView"
-                style="@style/description_text_view_style"
+                style="@style/sign_up_description_text_view_style"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="24dp"
                 android:text="* 닉네임" />

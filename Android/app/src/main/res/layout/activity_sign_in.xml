@@ -35,7 +35,7 @@
 
             <TextView
                 android:id="@+id/signInTitleTextView1"
-                style="@style/sign_up_title_text_view_style"
+                style="@style/sign_in_title_text_view_style"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="120dp"
                 android:text="Topas 에서"
@@ -44,14 +44,14 @@
 
             <TextView
                 android:id="@+id/signInTitleTextView2"
-                style="@style/sign_up_title_text_view_style"
+                style="@style/sign_in_title_text_view_style"
                 android:text="스터디, 프로젝트"
                 app:layout_constraintStart_toStartOf="@+id/signInTitleTextView1"
                 app:layout_constraintTop_toBottomOf="@+id/signInTitleTextView1" />
 
             <TextView
                 android:id="@+id/signInTitleTextView3"
-                style="@style/sign_up_title_text_view_style"
+                style="@style/sign_in_title_text_view_style"
                 android:text="팀 완성"
                 app:layout_constraintStart_toStartOf="@+id/signInTitleTextView2"
                 app:layout_constraintTop_toBottomOf="@+id/signInTitleTextView2" />
