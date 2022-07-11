@@ -1,36 +1,23 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme. -->
     <style name="Theme.Android" parent="Theme.AppCompat.Light.NoActionBar">
-
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/brand_color</item>
         <item name="colorPrimaryVariant">@color/brand_color</item>
         <item name="colorOnPrimary">@color/brand_color</item>
         <item name="colorAccent">@color/brand_color</item>
 
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/negative_brand_color</item>
-        <item name="colorSecondaryVariant">@color/negative_brand_color</item>
-        <item name="colorOnSecondary">@color/negative_brand_color</item>
-
         <!-- Status bar color. -->
         <item name="android:windowLightStatusBar">true</item>
-        <item name="android:statusBarColor">@color/white</item>
-        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:statusBarColor">@color/white_color</item>
+        <item name="android:navigationBarColor">@color/white_color</item>
         <item name="android:enforceNavigationBarContrast" tools:targetApi="q">false</item>
         <item name="android:enforceStatusBarContrast" tools:targetApi="q">false</item>
-
-        <!-- Customize your theme here. -->
-
     </style>
 
-    <style name="Theme.Android.Splash">
-        <item name="android:windowLightStatusBar">true</item>
+    <style name="Theme.Android.OnBoarding">
         <item name="android:statusBarColor">@color/brand_color</item>
         <item name="android:navigationBarColor">@color/brand_color</item>
-        <item name="android:enforceNavigationBarContrast" tools:targetApi="q">false</item>
-        <item name="android:enforceStatusBarContrast" tools:targetApi="q">false</item>
     </style>
 
 </resources>

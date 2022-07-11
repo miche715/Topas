@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.snackbar.Snackbar
 
-abstract class BaseActivity<B: ViewBinding>(val bindingFactory: (LayoutInflater) -> B) : AppCompatActivity()
+abstract class BaseActivity<B: ViewBinding>(val bindingFactory: (LayoutInflater) -> B) : AppCompatActivity()  // 액티비티에 공통적으로 들어가는 뷰 바인딩 코드나 동작들을 가지고 있음
 {
     private var _binding: B? = null
     val binding get() = _binding!!

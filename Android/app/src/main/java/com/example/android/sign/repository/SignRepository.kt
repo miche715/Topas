@@ -4,19 +4,15 @@ import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.android.user.domain.User
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
+import com.example.android.base.BaseApplication.Companion.firebaseAuth
+import com.example.android.base.BaseApplication.Companion.firebaseFirestore
+import com.example.android.base.BaseApplication.Companion.firebaseStorage
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class SignRepository @Inject constructor()
 {
-    private val firebaseAuth = FirebaseAuth.getInstance()
-    private val firebaseFirestore = FirebaseFirestore.getInstance()
-    private val firebaseStorage = FirebaseStorage.getInstance().reference
-
     fun signUpFirebase(email: String, password: String, name: String, nickName: String, profilePhoto: Uri?, _signUpResult: MutableLiveData<Any>)
     {
         CoroutineScope(Dispatchers.IO).launch()
@@ -92,16 +88,7 @@ class SignRepository @Inject constructor()
     {
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener()
         {
-            if(it.isSuccessful)
-            {
-                _signInResult.value = FirebaseAuth.getInstance().uid
-                Log.d("*** signIn 성공 ***", "${it.result}")
-            }
-            else
-            {
-                _signInResult.value = null
-                Log.e("*** signIn 실패 ***", "${it.exception}")
-            }
+
         }
     }
 }

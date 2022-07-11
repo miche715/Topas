@@ -2,25 +2,25 @@
 <resources>
     <!-- 브랜드 색 -->
     <color name="brand_color">#0066FF</color>
+
     <!-- 반전 브랜드 색 -->
     <color name="negative_brand_color">#FA9000</color>
 
-    <!-- 툴바 배경 색 -->
-    <color name="tool_bar_background_color">#FFFFFF</color>
+    <!-- 강한 색 (주로 검은색이 필요한 곳에 사용)-->
+    <color name="strong_color">#191919</color>
 
-    <!-- 검은 글자 색 -->
-    <color name="black_letter_color">#000000</color>
-    <!-- 하얀 글자 색 -->
-    <color name="white_letter_color">#FFFFFF</color>
-    <!-- 힌트 글자 색 -->
-    <color name="hint_letter_color">#CCCCCC</color>
-    <!-- 힌트 글자 색 -->
-    <color name="error_letter_color">#CC0000</color>
+    <!-- 중간 색 (주로 컴포넌트 배경에 사용)-->
+    <color name="middle_color">#F1F1F5</color>
 
-    <!-- 브랜드 버튼 배경 색 -->
-    <color name="brand_button_background_color">#0066FF</color>
-    <!-- 하얀 버튼 배경 색 -->
-    <color name="white_button_background_color">#FFFFFF</color>
+    <!-- 약한 색 (주로 힌트 글자에 사용)-->
+    <color name="week_color">#999999</color>
+
+    <!-- 에러 색 -->
+    <color name="error_color">#FF3120</color>
+
+    <!-- 하얀 색 (주로 하얀색이 필요한 곳이나 배경에 사용) -->
+    <color name="white_color">#F8F8FA</color>
+
 
 
 
