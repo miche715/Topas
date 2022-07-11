@@ -18,7 +18,35 @@
         <item name="android:includeFontPadding">false</item>
     </style>
 
-    <style name="on_board_title_text_view_style">
+
+
+    <style name="brand_button_style">
+        <item name="android:background">@drawable/brand_button_round_edge_background</item>
+        <item name="android:elevation">4dp</item>
+        <item name="android:fontFamily">@font/noto_sans_kr_bold</item>
+        <item name="android:textColor">@color/white_color</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:translationZ">4dp</item>
+    </style>
+
+    <style name="white_button_style">
+        <item name="android:background">@drawable/white_button_round_edge_background</item>
+        <item name="android:elevation">4dp</item>
+        <item name="android:fontFamily">@font/noto_sans_kr_bold</item>
+        <item name="android:textColor">@color/brand_color</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:translationZ">4dp</item>
+    </style>
+
+
+
+    <style name="on_boarding_title_text_view_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/noto_sans_kr_bold</item>
@@ -27,33 +55,13 @@
         <item name="android:textSize">26sp</item>
     </style>
 
-    <style name="on_board_text_text_view_style">
+    <style name="on_boarding_text_text_view_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/noto_sans_kr_regular</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/white_color</item>
-    </style>
-
-    <style name="brand_button_style">
-        <item name="android:background">@drawable/brand_button_round_edge_background</item>
-        <item name="android:elevation">10dp</item>
-        <item name="android:fontFamily">@font/noto_sans_kr_bold</item>
-        <item name="android:textColor">@color/white_color</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:textAlignment">center</item>
-        <item name="android:includeFontPadding">false</item>
-    </style>
-
-    <style name="white_button_style">
-        <item name="android:background">@drawable/white_button_round_edge_background</item>
-        <item name="android:elevation">10dp</item>
-        <item name="android:fontFamily">@font/noto_sans_kr_bold</item>
-        <item name="android:textColor">@color/brand_color</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:textAlignment">center</item>
-        <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="description_text_view_style">
@@ -65,7 +73,18 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="sign_edit_text_style">
+
+
+    <style name="sign_up_title_text_view_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/noto_sans_kr_bold</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">@color/strong_color</item>
+        <item name="android:textSize">26sp</item>
+    </style>
+
+    <style name="sign_up_edit_text_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:includeFontPadding">true</item>
@@ -73,7 +92,7 @@
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="error_text_view_style">
+    <style name="sign_up_error_text_view_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/noto_sans_kr_regular</item>
@@ -83,5 +102,29 @@
     </style>
 
 
+
+    <style name="sign_in_edit_text_style">
+        <item name="android:background">@color/middle_color</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:textColorHint">@color/week_color</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="sign_in_description_text_view_style">
+        <item name="android:layout_weight">1</item>
+        <item name="android:fontFamily">@font/noto_sans_kr_regular</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">@color/week_color</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="sign_in_action_text_view_style">
+        <item name="android:layout_weight">1</item>
+        <item name="android:fontFamily">@font/noto_sans_kr_bold</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">@color/brand_color</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 
 </resources>

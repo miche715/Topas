@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/onBoardTitleTextView1"
-        style="@style/on_board_title_text_view_style"
+        style="@style/on_boarding_title_text_view_style"
         android:layout_marginStart="20dp"
         android:layout_marginTop="120dp"
         android:text="팀을 찾고 계십니까?"
@@ -21,18 +21,18 @@
         android:text="Toaps에는"
         app:layout_constraintStart_toStartOf="@+id/onBoardTitleTextView1"
         app:layout_constraintTop_toBottomOf="@+id/onBoardTitleTextView1"
-        style="@style/on_board_text_text_view_style" />
+        style="@style/on_boarding_text_text_view_style" />
 
     <TextView
         android:id="@+id/onBoardTextTextView12"
-        style="@style/on_board_text_text_view_style"
+        style="@style/on_boarding_text_text_view_style"
         android:text="수 많은 팀들이"
         app:layout_constraintStart_toStartOf="@+id/onBoardTextTextView11"
         app:layout_constraintTop_toBottomOf="@+id/onBoardTextTextView11" />
 
     <TextView
         android:id="@+id/onBoardTextTextView13"
-        style="@style/on_board_text_text_view_style"
+        style="@style/on_boarding_text_text_view_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="당신을 위해 기다립니다."

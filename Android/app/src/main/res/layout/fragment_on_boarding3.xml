@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/onBoardTitleTextView3"
-        style="@style/on_board_title_text_view_style"
+        style="@style/on_boarding_title_text_view_style"
         android:layout_marginStart="20dp"
         android:layout_marginTop="120dp"
         android:text="Topas 지금 시작하세요."
