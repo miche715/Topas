@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.os.IBinder
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
@@ -55,6 +56,16 @@ abstract class BaseActivity<B: ViewBinding>(val bindingFactory: (LayoutInflater)
         {
             finishAffinity()
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean
+    {
+        when(item.itemId)
+        {
+            android.R.id.home -> finish()
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     fun hideKeyBoard(windowToken: IBinder)

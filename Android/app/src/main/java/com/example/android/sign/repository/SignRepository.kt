@@ -7,6 +7,7 @@ import com.example.android.user.domain.User
 import com.example.android.base.BaseApplication.Companion.firebaseAuth
 import com.example.android.base.BaseApplication.Companion.firebaseFirestore
 import com.example.android.base.BaseApplication.Companion.firebaseStorage
+import com.example.android.base.BaseApplication.Companion.currentUser
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
@@ -41,22 +42,24 @@ class SignRepository @Inject constructor()
                                 }
                             }
 
-                            val user: Map<String, Any?> = mapOf("email" to email, "name" to name, "nick_name" to nickName, "profile_photo_url" to profilePhotoUrl)
+                            val newUser: Map<String, Any?> = mapOf("email" to email, "name" to name, "nick_name" to nickName, "profile_photo_url" to profilePhotoUrl)
 
-                            firebaseFirestore.collection("user").add(user).addOnCompleteListener()  // Auth에 가입은 성공 했으니까 user 컬렉션에 유저 정보를 넣음
+                            firebaseFirestore.collection("user").add(newUser).addOnCompleteListener()  // Auth에 가입은 성공 했으니까 user 컬렉션에 유저 정보를 넣음
                             {documentReference ->
                                 if(documentReference.isSuccessful)  // user 컬렉션 등록 성공
                                 {
                                     Log.d("*** signUpFirebase Firestore user 컬렉션에 등록 성공 ***", "${documentReference.result}")
 
-                                    _signUpResult.value = User().apply()
+                                    currentUser = User().apply()
                                     {
                                         this.documentId = documentReference.result.id
-                                        this.email = user["email"] as String
-                                        this.name = user["name"] as String
-                                        this.nickName = user["nick_name"] as String
-                                        this.profilePhotoUrl = user["profile_photo_url"] as String
+                                        this.email = newUser["email"] as String
+                                        this.name = newUser["name"] as String
+                                        this.nickName = newUser["nick_name"] as String
+                                        this.profilePhotoUrl = newUser["profile_photo_url"] as String
                                     }
+
+                                    _signUpResult.value = true
                                 }
                                 else  // user 컬렉션 등록 실패
                                 {

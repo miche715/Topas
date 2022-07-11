@@ -23,8 +23,6 @@ class OnBoarding3Fragment : BaseFragment<FragmentOnBoarding3Binding>()
             Intent(activity, SignUpActivity::class.java).run()
             {
                 startActivity(this)
-
-                activity?.finish()
             }
         }
     }

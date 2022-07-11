@@ -9,9 +9,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.example.android.R
 import com.example.android.base.BaseActivity
+import com.example.android.base.BaseApplication.Companion.currentUser
 import com.example.android.databinding.ActivitySignUpBinding
 import com.example.android.sign.viewmodel.SignViewModel
-import com.example.android.user.domain.User
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,6 +29,11 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>({ ActivitySignUpBindi
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
+
+        setSupportActionBar(binding.toolBar)
+        supportActionBar!!.setDisplayShowCustomEnabled(true)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         binding.addProfilePhotoButton.setOnClickListener()
         {
@@ -75,9 +80,9 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>({ ActivitySignUpBindi
         }
         signViewModel.signUpResult.observe(this)
         {
-            if(it is User)  // 회원가입 성공
+            if((it is Boolean) && it)  // 회원가입 성공
             {
-                println(it)
+                println(currentUser)
             }
             else  // 회원가입 실패
             {
