@@ -87,11 +87,34 @@ class SignRepository @Inject constructor()
         }
     }
 
-    fun signInFirebase(email: String, password: String, _signInResult: MutableLiveData<String?>)
+    fun signInFirebase(email: String, password: String, _signInResult: MutableLiveData<Any>)
     {
-        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener()
-        {
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener()  // Auth에 로그인 시도
+        {authResult ->
+            if(authResult.isSuccessful)  // Auth 로그인 성공
+            {
+                Log.d("*** signInFirebase Auth에 로그인 성공 ***", "${authResult.result}")
 
+                firebaseFirestore.collection("user").whereEqualTo("email", email).get().addOnCompleteListener()
+                {querySnapshot ->
+                    currentUser = User().apply()
+                    {
+                        this.documentId = querySnapshot.result.documents[0].id
+                        this.email = querySnapshot.result.documents[0].data!!["email"] as String
+                        this.name = querySnapshot.result.documents[0].data!!["name"] as String
+                        this.nickName = querySnapshot.result.documents[0].data!!["nick_name"] as String
+                        this.profilePhotoUrl = querySnapshot.result.documents[0].data!!["profile_photo_url"] as String
+                    }
+
+                    _signInResult.value = true
+                }
+            }
+            else  // Auth 로그인 실패
+            {
+                Log.e("*** signInFirebase Auth에 로그인 실패 ***", "${authResult.exception?.message}")
+
+                _signInResult.value = "이메일 또는 패스워드가 잘못됐습니다."
+            }
         }
     }
 }

@@ -119,6 +119,13 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="sign_in_error_text_view_style">
+        <item name="android:fontFamily">@font/noto_sans_kr_regular</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">@color/error_color</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
     <style name="sign_in_action_text_view_style">
         <item name="android:layout_weight">1</item>
         <item name="android:fontFamily">@font/noto_sans_kr_bold</item>

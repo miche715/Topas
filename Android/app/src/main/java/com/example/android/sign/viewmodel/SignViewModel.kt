@@ -120,11 +120,29 @@ class SignViewModel @Inject constructor(private val signRepository: SignReposito
         }
     }
 
-    private val _signInResult: MutableLiveData<String?> = MutableLiveData()
-    val signInResult: LiveData<String?> = _signInResult
+    val emailOrPasswordInValidMessage: MutableLiveData<String?> = MutableLiveData()
+
+    private val _signInResult: MutableLiveData<Any> = MutableLiveData()
+    val signInResult: LiveData<Any> = _signInResult
 
     fun signIn(email: String, password: String)
     {
-        signRepository.signInFirebase(email, password, _signInResult)
+        var isValid = true
+
+        if(email.isEmpty() || password.isEmpty())
+        {
+            emailOrPasswordInValidMessage.value = "* 이메일과 패스워드를 모두 입력해주세요."
+            _signInResult.value = "입력을 다시 확인해주세요."
+            isValid = false
+        }
+        else
+        {
+            emailOrPasswordInValidMessage.value = null
+        }
+
+        if(isValid)
+        {
+            signRepository.signInFirebase(email, password, _signInResult)
+        }
     }
 }
