@@ -162,10 +162,10 @@
 
                 <TextView
                     android:id="@+id/signUpTextView"
+                    style="@style/sign_in_action_text_view_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" 회원 가입"
-                    style="@style/sign_in_action_text_view_style" />
+                    android:text=" 회원가입" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
