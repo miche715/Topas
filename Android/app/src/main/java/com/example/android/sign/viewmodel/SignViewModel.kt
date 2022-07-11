@@ -16,14 +16,13 @@ class SignViewModel @Inject constructor(private val signRepository: SignReposito
     private val nameRegex = "^[가-힣]*$".toRegex()  // 한글만
     private val nickNameRegex = "^[a-zA-Z가-힣0-9]{2,8}$".toRegex()  // 소문자, 대문자, 한글, 숫자 2 ~ 8자리
 
+    private val _signUpResult: MutableLiveData<Any> = MutableLiveData()
+    val signUpResult: LiveData<Any> = _signUpResult
     val emailInValidMessage: MutableLiveData<String?> = MutableLiveData()
     val passwordInValidMessage: MutableLiveData<String?> = MutableLiveData()
     val passwordConfirmInValidMessage: MutableLiveData<String?> = MutableLiveData()
     val nameInValidMessage: MutableLiveData<String?> = MutableLiveData()
     val nickNameInValidMessage: MutableLiveData<String?> = MutableLiveData()
-
-    private val _signUpResult: MutableLiveData<Any> = MutableLiveData()
-    val signUpResult: LiveData<Any> = _signUpResult
 
     fun signUp(email: String, password: String, passwordConfirm: String, name: String, nickName: String, profilePhoto: Uri?)
     {
@@ -120,10 +119,9 @@ class SignViewModel @Inject constructor(private val signRepository: SignReposito
         }
     }
 
-    val emailOrPasswordInValidMessage: MutableLiveData<String?> = MutableLiveData()
-
     private val _signInResult: MutableLiveData<Any> = MutableLiveData()
     val signInResult: LiveData<Any> = _signInResult
+    val emailOrPasswordInValidMessage: MutableLiveData<String?> = MutableLiveData()
 
     fun signIn(email: String, password: String)
     {
