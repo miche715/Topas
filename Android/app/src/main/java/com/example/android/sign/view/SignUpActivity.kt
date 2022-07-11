@@ -82,6 +82,12 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>({ ActivitySignUpBindi
         {
             if((it is Boolean) && it)  // 회원가입 성공
             {
+//                Intent(this@SignUpActivity, SignInActivity::class.java).run()
+//                {
+//                    startActivity(this)
+//
+//                    finish()
+//                }
                 println(currentUser)
             }
             else  // 회원가입 실패

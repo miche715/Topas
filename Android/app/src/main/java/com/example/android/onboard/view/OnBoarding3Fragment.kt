@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.example.android.base.BaseApplication.Companion.sharedPreferences
 import com.example.android.base.BaseFragment
 import com.example.android.databinding.FragmentOnBoarding3Binding
+import com.example.android.sign.view.SignInActivity
 import com.example.android.sign.view.SignUpActivity
 
 class OnBoarding3Fragment : BaseFragment<FragmentOnBoarding3Binding>()
@@ -21,6 +22,16 @@ class OnBoarding3Fragment : BaseFragment<FragmentOnBoarding3Binding>()
             sharedPreferences.edit().putBoolean("isOnBoarded", true).commit()  // 온보딩 화면 다 봤으니까, 다시 않나오게 저장
 
             Intent(activity, SignUpActivity::class.java).run()
+            {
+                startActivity(this)
+            }
+        }
+
+        binding.signInButton.setOnClickListener()
+        {
+            sharedPreferences.edit().putBoolean("isOnBoarded", true).commit()  // 온보딩 화면 다 봤으니까, 다시 않나오게 저장
+
+            Intent(activity, SignInActivity::class.java).run()
             {
                 startActivity(this)
             }

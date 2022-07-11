@@ -3,10 +3,10 @@ package com.example.android.onboard.view
 import android.content.Intent
 import android.os.Bundle
 import com.example.android.base.BaseActivity
-import com.example.android.base.BaseApplication
+import com.example.android.base.BaseApplication.Companion.sharedPreferences
 import com.example.android.databinding.ActivityOnBoardingBinding
 import com.example.android.onboard.adapter.OnBoardingAdapter
-import com.example.android.sign.view.SignUpActivity
+import com.example.android.sign.view.SignInActivity
 
 class OnBoardingActivity : BaseActivity<ActivityOnBoardingBinding>({ ActivityOnBoardingBinding.inflate(it) })
 {
@@ -16,9 +16,9 @@ class OnBoardingActivity : BaseActivity<ActivityOnBoardingBinding>({ ActivityOnB
     {
         super.onCreate(savedInstanceState)
 
-//        if(BaseApplication.sharedPreferences.getBoolean("isOnBoarded", false))  // 사용자가 이미 온보딩 화면을 봤는지 검사
+//        if(sharedPreferences.getBoolean("isOnBoarded", false))  // 사용자가 이미 온보딩 화면을 봤는지 검사
 //        {
-//            Intent(this, SignUpActivity::class.java).run()
+//            Intent(this, SignInActivity::class.java).run()
 //            {
 //                startActivity(this)
 //

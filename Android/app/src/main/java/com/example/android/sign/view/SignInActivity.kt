@@ -18,6 +18,10 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>({ ActivitySignInBindi
     {
         super.onCreate(savedInstanceState)
 
+        setSupportActionBar(binding.toolBar)
+        supportActionBar!!.setDisplayShowCustomEnabled(true)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
+
 
     }
 }
