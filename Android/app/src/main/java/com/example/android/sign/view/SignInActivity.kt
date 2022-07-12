@@ -1,9 +1,9 @@
 package com.example.android.sign.view
 
 import android.content.Intent
-import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import com.example.android.R
 import com.example.android.base.BaseActivity
 import com.example.android.base.BaseApplication.Companion.currentUser
 import com.example.android.databinding.ActivitySignInBinding
@@ -12,16 +12,14 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SignInActivity : BaseActivity<ActivitySignInBinding>({ ActivitySignInBinding.inflate(it) })
+class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sign_in)
 {
     private val signViewModel: SignViewModel by viewModels()
 
     private val signLoadingDialog: SignLoadingDialog by lazy { SignLoadingDialog(this@SignInActivity) }
 
-    override fun onCreate(savedInstanceState: Bundle?)
+    override fun onInitialize()
     {
-        super.onCreate(savedInstanceState)
-
         setSupportActionBar(binding.toolBar)
         supportActionBar!!.setDisplayShowCustomEnabled(true)
         supportActionBar!!.setDisplayShowTitleEnabled(false)

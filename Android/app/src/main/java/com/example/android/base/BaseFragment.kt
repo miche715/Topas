@@ -4,27 +4,37 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.viewbinding.ViewBinding
 
-abstract class BaseFragment<B: ViewBinding>: Fragment()  // 프래그먼트에 공통적으로 들어가는 뷰 바인딩 코드나 동작들을 가지고 있음
+abstract class BaseFragment<T: ViewDataBinding>(@LayoutRes val layoutRes: Int): Fragment()  // 프래그먼트에 공통적으로 들어가는 뷰·데이터 바인딩 코드나 메서드들을 가지고 있음
 {
-    private var _binding: B? = null
-    val binding get() = _binding!!
+    protected var binding: T? = null
+
+    protected abstract fun onInitialize()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
     {
-        _binding = getFragmentBinding(inflater, container)
+        binding = DataBindingUtil.inflate(inflater, layoutRes, container, false)
 
-        return binding.root
+        return binding!!.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+    {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding!!.lifecycleOwner = viewLifecycleOwner
+
+        onInitialize()
     }
 
     override fun onDestroyView()
     {
         super.onDestroyView()
 
-        _binding = null
+        binding = null
     }
-
-    abstract fun getFragmentBinding(inflater: LayoutInflater, container: ViewGroup?): B
 }

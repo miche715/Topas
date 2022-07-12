@@ -2,7 +2,6 @@ package com.example.android.sign.view
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Bundle
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -16,7 +15,7 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SignUpActivity : BaseActivity<ActivitySignUpBinding>({ ActivitySignUpBinding.inflate(it) })
+class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sign_up)
 {
     private val signViewModel: SignViewModel by viewModels()
 
@@ -26,10 +25,8 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>({ ActivitySignUpBindi
 
     private var profilePhoto: Uri? = null
 
-    override fun onCreate(savedInstanceState: Bundle?)
+    override fun onInitialize()
     {
-        super.onCreate(savedInstanceState)
-
         setSupportActionBar(binding.toolBar)
         supportActionBar!!.setDisplayShowCustomEnabled(true)
         supportActionBar!!.setDisplayShowTitleEnabled(false)

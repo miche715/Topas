@@ -3,32 +3,29 @@ package com.example.android.base
 import android.content.Context
 import android.os.Bundle
 import android.os.IBinder
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewbinding.ViewBinding
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import com.google.android.material.snackbar.Snackbar
 
-abstract class BaseActivity<B: ViewBinding>(val bindingFactory: (LayoutInflater) -> B) : AppCompatActivity()  // 액티비티에 공통적으로 들어가는 뷰 바인딩 코드나 동작들을 가지고 있음
+abstract class BaseActivity<T: ViewDataBinding>(@LayoutRes val layoutRes: Int) : AppCompatActivity()  // 액티비티에 공통적으로 들어가는 뷰·데이터 바인딩 코드나 메서드들을 가지고 있음
 {
-    private var _binding: B? = null
-    val binding get() = _binding!!
+    protected lateinit var binding: T
+
+    protected abstract fun onInitialize()
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
 
-        _binding = bindingFactory(layoutInflater)
-        setContentView(binding.root)
-    }
+        binding = DataBindingUtil.setContentView(this, layoutRes)
+        binding.lifecycleOwner = this
 
-    override fun onDestroy()
-    {
-        super.onDestroy()
-
-        _binding = null
+        onInitialize()
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean
