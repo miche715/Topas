@@ -3,6 +3,7 @@ package com.example.android.sign.view
 import android.content.Intent
 import android.view.View
 import androidx.activity.viewModels
+import androidx.core.view.marginTop
 import com.example.android.R
 import com.example.android.base.BaseActivity
 import com.example.android.base.BaseApplication.Companion.currentUser
@@ -24,16 +25,9 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
         supportActionBar!!.setDisplayShowCustomEnabled(true)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
 
-        binding.signInButton.setOnClickListener()
-        {
-            hideKeyBoard(it.windowToken)
-            signLoadingDialog.show()
+        binding.signViewModel = signViewModel
+        binding.signInActivity = this@SignInActivity
 
-            val email = binding.emailEditText.text.toString()
-            val password = binding.passwordEditText.text.toString()
-
-            signViewModel.signIn(email, password)
-        }
         signViewModel.signInResult.observe(this)
         {
             if((it is Boolean) && it)  // 로그인 성공 - Boolean, 로그인 실패 - String
@@ -46,36 +40,34 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
             }
             signLoadingDialog.dismiss()
         }
-        signViewModel.emailOrPasswordInValidMessage.observe(this)
-        {
-            if(it != null)
-            {
-                binding.errorTextView.visibility = View.VISIBLE
-                binding.errorTextView.text = it
-            }
-            else
-            {
-                binding.errorTextView.visibility = View.GONE
-                binding.errorTextView.text = null
-            }
-        }
+    }
 
-        binding.findEmailTextView.setOnClickListener()
-        {
-            // 이메일 찾기 로직 구현, 근데 Auth는 이메일 찾기 기능이 없어서 쓸일이 없을 수도...
-        }
+    fun signIn(view: View)
+    {
+        hideKeyBoard(view.windowToken)
+        signLoadingDialog.show()
 
-        binding.findPasswordTextView.setOnClickListener()
-        {
-            // 비밀번호 찾기 로직 구현
-        }
+        val email = binding.emailEditText.text.toString()
+        val password = binding.passwordEditText.text.toString()
 
-        binding.signUpTextView.setOnClickListener()
+        signViewModel.signIn(email, password)
+    }
+
+    fun findEmail()
+    {
+        println("이메일 찾기")
+    }
+
+    fun findPassword()
+    {
+        println("비밀번호 찾기")
+    }
+
+    fun signUp()
+    {
+        Intent(this@SignInActivity, SignUpActivity::class.java).run()
         {
-            Intent(this@SignInActivity, SignUpActivity::class.java).run()
-            {
-                startActivity(this)
-            }
+            startActivity(this)
         }
     }
 }
