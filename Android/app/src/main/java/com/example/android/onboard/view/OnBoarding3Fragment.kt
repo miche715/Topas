@@ -12,24 +12,26 @@ class OnBoarding3Fragment : BaseFragment<FragmentOnBoarding3Binding>(R.layout.fr
 {
     override fun onInitialize()
     {
-        binding!!.signUpButton.setOnClickListener()
-        {
-            sharedPreferences.edit().putBoolean("isOnBoarded", true).commit()  // 온보딩 화면 다 봤으니까, 다시 않나오게 저장
+        binding!!.onBoarding3Fragment = this
+    }
 
-            Intent(activity, SignUpActivity::class.java).run()
-            {
-                startActivity(this)
-            }
+    fun signUp()
+    {
+        sharedPreferences.edit().putBoolean("isOnBoarded", true).commit()  // 온보딩 화면 다 봤으니까, 다시 않나오게 저장
+
+        Intent(activity, SignUpActivity::class.java).run()
+        {
+            startActivity(this)
         }
+    }
 
-        binding!!.signInButton.setOnClickListener()
+    fun signIn()
+    {
+        sharedPreferences.edit().putBoolean("isOnBoarded", true).commit()  // 온보딩 화면 다 봤으니까, 다시 않나오게 저장
+
+        Intent(activity, SignInActivity::class.java).run()
         {
-            sharedPreferences.edit().putBoolean("isOnBoarded", true).commit()  // 온보딩 화면 다 봤으니까, 다시 않나오게 저장
-
-            Intent(activity, SignInActivity::class.java).run()
-            {
-                startActivity(this)
-            }
+            startActivity(this)
         }
     }
 }

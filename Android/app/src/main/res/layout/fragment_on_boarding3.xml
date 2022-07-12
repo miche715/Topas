@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="onBoarding3Fragment"
+            type="com.example.android.onboard.view.OnBoarding3Fragment" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,7 +34,8 @@
             android:text="새로운 회원으로 가입하기"
             app:layout_constraintBottom_toTopOf="@+id/signInButton"
             app:layout_constraintEnd_toEndOf="@+id/signInButton"
-            app:layout_constraintStart_toStartOf="@+id/signInButton" />
+            app:layout_constraintStart_toStartOf="@+id/signInButton"
+            android:onClick="@{() -> onBoarding3Fragment.signUp()}"/>
 
         <Button
             android:id="@+id/signInButton"
@@ -41,7 +48,8 @@
             android:text="기존 회원으로 시작하기"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:onClick="@{() -> onBoarding3Fragment.signIn()}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
