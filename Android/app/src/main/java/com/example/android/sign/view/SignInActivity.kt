@@ -3,7 +3,6 @@ package com.example.android.sign.view
 import android.content.Intent
 import android.view.View
 import androidx.activity.viewModels
-import androidx.core.view.marginTop
 import com.example.android.R
 import com.example.android.base.BaseActivity
 import com.example.android.base.BaseApplication.Companion.currentUser
