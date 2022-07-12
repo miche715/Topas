@@ -3,7 +3,6 @@ package com.example.android.sign.view
 import android.content.Intent
 import android.net.Uri
 import android.view.View
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.example.android.R
@@ -19,11 +18,21 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
 {
     private val signViewModel: SignViewModel by viewModels()
 
-    private lateinit var activityResultLauncher : ActivityResultLauncher<Intent>
-
     private val signLoadingDialog: SignLoadingDialog by lazy { SignLoadingDialog(this@SignUpActivity) }
 
     private var profilePhoto: Uri? = null
+
+    private var activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+    {
+        if(it.resultCode == RESULT_OK)
+        {
+            profilePhoto = it.data!!.data
+            binding.profilePhotoCircleImageView.setImageURI(profilePhoto)
+
+            binding.addProfilePhotoButton.isEnabled = false
+            binding.removeProfilePhotoButton.isEnabled = true
+        }
+    }
 
     override fun onInitialize()
     {
@@ -32,49 +41,9 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        binding.addProfilePhotoButton.setOnClickListener()
-        {
-            Intent(Intent.ACTION_GET_CONTENT).run()
-            {
-                this.type = "image/*"
-                activityResultLauncher.launch(this)
-            }
-        }
-        activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
-        {
-            if(it.resultCode == RESULT_OK)
-            {
-                profilePhoto = it.data!!.data
-                binding.profilePhotoCircleImageView.setImageURI(profilePhoto)
+        binding.signViewModel = signViewModel  // xml 파일에 signViewModel이라는 변수에 그 변수가 사용하는 파일을 바인딩, 이 한줄 때문에 얼마나 삽질을 한거지?
+        binding.signUpActivity = this@SignUpActivity  // xml 파일에 signUpActivity이라는 변수에 그 변수가 사용하는 파일을 바인딩
 
-                binding.addProfilePhotoButton.isEnabled = false
-                binding.removeProfilePhotoButton.isEnabled = true
-            }
-        }
-
-        binding.removeProfilePhotoButton.setOnClickListener()
-        {
-            profilePhoto = null
-            binding.profilePhotoCircleImageView.setImageResource(R.drawable.default_profile_photo)
-
-            binding.addProfilePhotoButton.isEnabled = true
-            binding.removeProfilePhotoButton.isEnabled = false
-        }
-
-        binding.signUpButton.setOnClickListener()
-        {
-            hideKeyBoard(it.windowToken)
-            signLoadingDialog.show()
-
-            val email = binding.emailEditText.text.toString()
-            val password = binding.passwordEditText.text.toString()
-            val passwordConfirm = binding.passwordConfirmEditText.text.toString()
-            val name = binding.nameEditText.text.toString()
-            val nickName = binding.nickNameEditText.text.toString()
-            val profilePhoto = profilePhoto
-
-            signViewModel.signUp(email, password, passwordConfirm, name, nickName, profilePhoto)
-        }
         signViewModel.signUpResult.observe(this)
         {
             if((it is Boolean) && it)  // 회원가입 성공
@@ -93,69 +62,38 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
             }
             signLoadingDialog.dismiss()
         }
-//        signViewModel.emailInValidMessage.observe(this)
-//        {
-//            if(it != null)
-//            {
-//                binding.emailErrorTextView.visibility = View.VISIBLE
-//                binding.emailErrorTextView.text = it
-//            }
-//            else
-//            {
-//                binding.emailErrorTextView.visibility = View.GONE
-//                binding.emailErrorTextView.text = null
-//            }
-//        }
-        signViewModel.passwordInValidMessage.observe(this)
+    }
+
+    fun addProfilePhoto()  // 프로필 사진 선택
+    {
+        Intent(Intent.ACTION_GET_CONTENT).run()
         {
-            if(it != null)
-            {
-                binding.passwordErrorTextView.visibility = View.VISIBLE
-                binding.passwordErrorTextView.text = it
-            }
-            else
-            {
-                binding.passwordErrorTextView.visibility = View.GONE
-                binding.passwordErrorTextView.text = null
-            }
+            this.type = "image/*"
+            activityResultLauncher.launch(this)
         }
-        signViewModel.passwordConfirmInValidMessage.observe(this)
-        {
-            if(it != null)
-            {
-                binding.passwordConfirmErrorTextView.visibility = View.VISIBLE
-                binding.passwordConfirmErrorTextView.text = it
-            }
-            else
-            {
-                binding.passwordConfirmErrorTextView.visibility = View.GONE
-                binding.passwordConfirmErrorTextView.text = null
-            }
-        }
-        signViewModel.nameInValidMessage.observe(this)
-        {
-            if(it != null)
-            {
-                binding.nameErrorTextView.visibility = View.VISIBLE
-                binding.nameErrorTextView.text = it
-            }
-            else
-            { binding.nameErrorTextView.visibility = View.GONE
-                binding.nameErrorTextView.text = null
-            }
-        }
-        signViewModel.nickNameInValidMessage.observe(this)
-        {
-            if(it != null)
-            {
-                binding.nickNameErrorTextView.visibility = View.VISIBLE
-                binding.nickNameErrorTextView.text = it
-            }
-            else
-            {
-                binding.nickNameErrorTextView.visibility = View.GONE
-                binding.nickNameErrorTextView.text = null
-            }
-        }
+    }
+
+    fun removeProfilePhoto()  // 선택한 프로필 사진을 제거
+    {
+        profilePhoto = null
+        binding.profilePhotoCircleImageView.setImageResource(R.drawable.default_profile_photo)
+
+        binding.addProfilePhotoButton.isEnabled = true
+        binding.removeProfilePhotoButton.isEnabled = false
+    }
+
+    fun signUp(view: View)  // 회원가입
+    {
+        hideKeyBoard(view.windowToken)
+        signLoadingDialog.show()
+
+        val email = binding.emailEditText.text.toString()
+        val password = binding.passwordEditText.text.toString()
+        val passwordConfirm = binding.passwordConfirmEditText.text.toString()
+        val name = binding.nameEditText.text.toString()
+        val nickName = binding.nickNameEditText.text.toString()
+        val profilePhoto = profilePhoto
+
+        signViewModel.signUp(email, password, passwordConfirm, name, nickName, profilePhoto)
     }
 }
