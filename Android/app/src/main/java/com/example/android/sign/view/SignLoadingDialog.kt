@@ -14,11 +14,8 @@ class SignLoadingDialog(context: Context) : Dialog(context)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sign_loading_dialog)
 
-        // 취소 불가능
-        setCancelable(false)
+        setCancelable(false)  // 취소 불가능
 
-        // 배경 투명하게 바꿔줌
-        window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
+        window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))  // 다이얼로그의 배경 투명하게 바꿔줌
     }
 }

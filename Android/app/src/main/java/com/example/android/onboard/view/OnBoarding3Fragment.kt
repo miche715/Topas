@@ -32,34 +32,4 @@ class OnBoarding3Fragment : BaseFragment<FragmentOnBoarding3Binding>(R.layout.fr
             }
         }
     }
-
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-//    {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//        binding.signUpButton.setOnClickListener()
-//        {
-//            sharedPreferences.edit().putBoolean("isOnBoarded", true).commit()  // 온보딩 화면 다 봤으니까, 다시 않나오게 저장
-//
-//            Intent(activity, SignUpActivity::class.java).run()
-//            {
-//                startActivity(this)
-//            }
-//        }
-//
-//        binding.signInButton.setOnClickListener()
-//        {
-//            sharedPreferences.edit().putBoolean("isOnBoarded", true).commit()  // 온보딩 화면 다 봤으니까, 다시 않나오게 저장
-//
-//            Intent(activity, SignInActivity::class.java).run()
-//            {
-//                startActivity(this)
-//            }
-//        }
-//    }
-//
-//    override fun getFragmentBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentOnBoarding3Binding
-//    {
-//        return FragmentOnBoarding3Binding.inflate(inflater, container, false)
-//    }
 }
