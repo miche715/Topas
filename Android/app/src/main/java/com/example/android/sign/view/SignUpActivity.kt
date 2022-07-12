@@ -93,19 +93,19 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
             }
             signLoadingDialog.dismiss()
         }
-        signViewModel.emailInValidMessage.observe(this)
-        {
-            if(it != null)
-            {
-                binding.emailErrorTextView.visibility = View.VISIBLE
-                binding.emailErrorTextView.text = it
-            }
-            else
-            {
-                binding.emailErrorTextView.visibility = View.GONE
-                binding.emailErrorTextView.text = null
-            }
-        }
+//        signViewModel.emailInValidMessage.observe(this)
+//        {
+//            if(it != null)
+//            {
+//                binding.emailErrorTextView.visibility = View.VISIBLE
+//                binding.emailErrorTextView.text = it
+//            }
+//            else
+//            {
+//                binding.emailErrorTextView.visibility = View.GONE
+//                binding.emailErrorTextView.text = null
+//            }
+//        }
         signViewModel.passwordInValidMessage.observe(this)
         {
             if(it != null)
