@@ -114,12 +114,12 @@
                     style="@style/brand_button_style"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="24dp"
+                    android:onClick="@{() -> signInActivity.signIn(signInButton)}"
                     android:text="로그인"
                     app:layout_constraintEnd_toEndOf="@+id/passwordEditText"
                     app:layout_constraintStart_toStartOf="@+id/passwordEditText"
-                    app:layout_constraintTop_toBottomOf="@+id/passwordEditText"
-                    android:onClick="@{() -> signInActivity.signIn(signInButton)}"/>
+                    app:layout_constraintTop_toBottomOf="@+id/errorTextView" />
 
                 <LinearLayout
                     android:id="@+id/linearLayout1"
@@ -132,32 +132,32 @@
                     app:layout_constraintTop_toBottomOf="@+id/signInButton">
 
                     <TextView
+                        style="@style/sign_in_description_text_view_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="계정을 잊으셨습니까?"
-                        style="@style/sign_in_description_text_view_style" />
+                        android:text="계정을 잊으셨습니까?" />
 
                     <TextView
                         android:id="@+id/findEmailTextView"
+                        style="@style/sign_in_action_text_view_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" 이메일 찾기 "
-                        style="@style/sign_in_action_text_view_style"
-                        android:onClick="@{() -> signInActivity.findEmail()}"/>
+                        android:onClick="@{() -> signInActivity.findEmail()}"
+                        android:text=" 이메일 찾기 " />
 
                     <TextView
+                        style="@style/sign_in_description_text_view_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="또는"
-                        style="@style/sign_in_description_text_view_style" />
+                        android:text="또는" />
 
                     <TextView
                         android:id="@+id/findPasswordTextView"
+                        style="@style/sign_in_action_text_view_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" 패스워드 찾기"
-                        style="@style/sign_in_action_text_view_style"
-                        android:onClick="@{() -> signInActivity.findPassword()}"/>
+                        android:onClick="@{() -> signInActivity.findPassword()}"
+                        android:text=" 패스워드 찾기" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -173,18 +173,18 @@
 
 
                     <TextView
+                        style="@style/sign_in_description_text_view_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="아직 회원이 아니십니까?"
-                        style="@style/sign_in_description_text_view_style" />
+                        android:text="아직 회원이 아니십니까?" />
 
                     <TextView
                         android:id="@+id/signUpTextView"
                         style="@style/sign_in_action_text_view_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" 회원가입"
-                        android:onClick="@{() -> signInActivity.signUp()}"/>
+                        android:onClick="@{() -> signInActivity.signUp()}"
+                        android:text=" 회원가입" />
                 </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

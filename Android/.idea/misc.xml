@@ -7,7 +7,10 @@
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable-v24/chevron_left.xml" value="0.2065" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable-v24/chevron_right-48px.xml" value="0.1" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable-v24/chevron_right.xml" value="0.2065" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/add_box-48px.xml" value="0.1" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/add_box.xml" value="0.2075" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/add_photo_alternate-48px.xml" value="0.206" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/add_photo_alternate.xml" value="0.2075" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/brand_button_background_shape.xml" value="0.14" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/brand_button_round_edge_background.xml" value="0.206" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/disabled_by_default-48px.xml" value="0.1" />
@@ -19,10 +22,10 @@
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_contact.xml" value="0.3496376811594203" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_on_boarding.xml" value="0.30833333333333335" />
-        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_sign_in.xml" value="0.33" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_sign_in.xml" value="0.30833333333333335" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_sign_up.xml" value="0.30833333333333335" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_splash.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_user_setting.xml" value="0.3496376811594203" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_user_setting.xml" value="0.30833333333333335" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/fragment_on_boarding1.xml" value="0.30833333333333335" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/fragment_on_boarding2.xml" value="0.30833333333333335" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/fragment_on_boarding3.xml" value="0.30833333333333335" />

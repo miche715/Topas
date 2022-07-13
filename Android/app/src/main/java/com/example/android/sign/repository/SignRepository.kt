@@ -46,7 +46,7 @@ class SignRepository @Inject constructor()
                                                                   "nick_name" to nickName,
                                                                   "profile_photo_url" to profilePhotoUrl,
                                                                   "exposure" to false,
-                                                                  "tech_stack" to mutableListOf<String>())
+                                                                  "skill" to mutableListOf<String>())
 
                             firebaseFirestore.collection("user").add(newUser).addOnCompleteListener()  // Auth에 가입은 성공 했으니까 user 컬렉션에 유저 정보를 넣음
                             {documentReference ->
@@ -63,7 +63,7 @@ class SignRepository @Inject constructor()
                                         this.nickName = newUser["nick_name"] as String
                                         this.profilePhotoUrl = newUser["profile_photo_url"] as String
                                         this.exposure = newUser["exposure"] as Boolean
-                                        this.techStack = newUser["tech_stack"] as MutableList<String>
+                                        this.skill = newUser["skill"] as MutableList<String>
                                     }
 
                                     _signUpResult.value = true
@@ -104,6 +104,7 @@ class SignRepository @Inject constructor()
 
                 firebaseFirestore.collection("user").whereEqualTo("email", email).get().addOnCompleteListener()
                 {querySnapshot ->
+                    @Suppress("UNCHECKED_CAST")
                     currentUser = User().apply()
                     {
                         this.documentId = querySnapshot.result.documents[0].id
@@ -111,6 +112,8 @@ class SignRepository @Inject constructor()
                         this.name = querySnapshot.result.documents[0].data!!["name"] as String
                         this.nickName = querySnapshot.result.documents[0].data!!["nick_name"] as String
                         this.profilePhotoUrl = querySnapshot.result.documents[0].data!!["profile_photo_url"] as String
+                        this.exposure = querySnapshot.result.documents[0].data!!["exposure"] as Boolean
+                        this.skill = querySnapshot.result.documents[0].data!!["skill"] as MutableList<String>
                     }
 
                     _signInResult.value = true
