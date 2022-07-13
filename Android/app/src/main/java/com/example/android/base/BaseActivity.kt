@@ -6,6 +6,7 @@ import android.os.IBinder
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.widget.Toolbar
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -71,5 +72,13 @@ abstract class BaseActivity<T: ViewDataBinding>(@LayoutRes val layoutRes: Int) :
         {
             this.hideSoftInputFromWindow(windowToken, 0)
         }
+    }
+
+    fun setToolBar(toolbar: Toolbar, enableBack: Boolean = false)
+    {
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayShowCustomEnabled(true)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(enableBack)
     }
 }

@@ -20,9 +20,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
 
     override fun onInitialize()
     {
-        setSupportActionBar(binding.toolBar)
-        supportActionBar!!.setDisplayShowCustomEnabled(true)
-        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        setToolBar(binding.toolBar)
 
         binding.signViewModel = signViewModel
         binding.signInActivity = this@SignInActivity
