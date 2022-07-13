@@ -28,10 +28,9 @@ class SignRepository @Inject constructor()
                         {
                             Log.d("*** signUpFirebase Auth에 가입 성공 ***", "${authResult.result}")
 
-                            var profilePhotoUrl: String
-                            runBlocking()  // 프로필 사진을 업로드하고 그 URL을 가져오는 동안 유저 등록을 잠시 기다리도록 하기 위해 사용
+                            val profilePhotoUrl = runBlocking()  // 프로필 사진을 업로드하고 그 URL을 가져오는 동안 유저 등록을 잠시 기다리도록 하기 위해 사용
                             {
-                                profilePhotoUrl = if(profilePhoto != null)  // 사용자가 프로필 사진을 선택 했으면
+                                if(profilePhoto != null)  // 사용자가 프로필 사진을 선택 했으면
                                 {
                                     firebaseStorage.child("profile_photo_${email}").putFile(profilePhoto).await()  // Storage에 프로필 사진 저장
                                     firebaseStorage.child("profile_photo_${email}").downloadUrl.await().toString()  // 방금 저장한 프로필 사진을 가져옴
@@ -42,7 +41,12 @@ class SignRepository @Inject constructor()
                                 }
                             }
 
-                            val newUser: Map<String, Any> = mapOf("email" to email, "name" to name, "nick_name" to nickName, "profile_photo_url" to profilePhotoUrl)
+                            val newUser: Map<String, Any> = mapOf("email" to email,
+                                                                  "name" to name,
+                                                                  "nick_name" to nickName,
+                                                                  "profile_photo_url" to profilePhotoUrl,
+                                                                  "exposure" to false,
+                                                                  "tech_stack" to mutableListOf<String>())
 
                             firebaseFirestore.collection("user").add(newUser).addOnCompleteListener()  // Auth에 가입은 성공 했으니까 user 컬렉션에 유저 정보를 넣음
                             {documentReference ->
@@ -50,6 +54,7 @@ class SignRepository @Inject constructor()
                                 {
                                     Log.d("*** signUpFirebase Firestore user 컬렉션에 등록 성공 ***", "${documentReference.result}")
 
+                                    @Suppress("UNCHECKED_CAST")
                                     currentUser = User().apply()
                                     {
                                         this.documentId = documentReference.result.id
@@ -57,6 +62,8 @@ class SignRepository @Inject constructor()
                                         this.name = newUser["name"] as String
                                         this.nickName = newUser["nick_name"] as String
                                         this.profilePhotoUrl = newUser["profile_photo_url"] as String
+                                        this.exposure = newUser["exposure"] as Boolean
+                                        this.techStack = newUser["tech_stack"] as MutableList<String>
                                     }
 
                                     _signUpResult.value = true

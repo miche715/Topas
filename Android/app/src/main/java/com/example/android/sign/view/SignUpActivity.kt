@@ -7,9 +7,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.example.android.R
 import com.example.android.base.BaseActivity
-import com.example.android.base.BaseApplication.Companion.currentUser
 import com.example.android.databinding.ActivitySignUpBinding
 import com.example.android.sign.viewmodel.SignViewModel
+import com.example.android.user.view.UserSettingActivity
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -45,13 +45,11 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
         {
             if((it is Boolean) && it)  // 회원가입 성공
             {
-//                Intent(this@SignUpActivity, SignInActivity::class.java).run()
-//                {
-//                    startActivity(this)
-//
-//                    finish()
-//                }
-                println(currentUser)
+                Intent(this@SignUpActivity, UserSettingActivity::class.java).run()
+                {
+                    startActivity(this)
+                    finish()
+                }
             }
             else  // 회원가입 실패
             {

@@ -5,7 +5,7 @@ import android.view.View
 import androidx.activity.viewModels
 import com.example.android.R
 import com.example.android.base.BaseActivity
-import com.example.android.base.BaseApplication.Companion.currentUser
+import com.example.android.contact.view.ContactActivity
 import com.example.android.databinding.ActivitySignInBinding
 import com.example.android.sign.viewmodel.SignViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -29,7 +29,11 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
         {
             if((it is Boolean) && it)  // 로그인 성공 - Boolean, 로그인 실패 - String
             {
-                println(currentUser)
+                Intent(this@SignInActivity, ContactActivity::class.java).run()
+                {
+                    startActivity(this)
+                    finish()
+                }
             }
             else
             {
