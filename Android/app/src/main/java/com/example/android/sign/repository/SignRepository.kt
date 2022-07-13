@@ -42,7 +42,7 @@ class SignRepository @Inject constructor()
                                 }
                             }
 
-                            val newUser: Map<String, Any?> = mapOf("email" to email, "name" to name, "nick_name" to nickName, "profile_photo_url" to profilePhotoUrl)
+                            val newUser: Map<String, Any> = mapOf("email" to email, "name" to name, "nick_name" to nickName, "profile_photo_url" to profilePhotoUrl)
 
                             firebaseFirestore.collection("user").add(newUser).addOnCompleteListener()  // Auth에 가입은 성공 했으니까 user 컬렉션에 유저 정보를 넣음
                             {documentReference ->
