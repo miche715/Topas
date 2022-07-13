@@ -37,11 +37,11 @@ class SignRepository @Inject constructor()
                                 }
                                 else  // 사용자가 프로필 사진을 선택 안했으면
                                 {
-                                    firebaseStorage.child("default.png").downloadUrl.await().toString()  // 미리 저장해 둔 기본 프로필 사진을 가져옴
+                                    null  // null로 FireStore에 저장하고, 나중에 화면에 뿌릴때 URL이 null이면 미리 등록한 디폴트 프로필 사진을 띄움
                                 }
                             }
 
-                            val newUser: Map<String, Any> = mapOf("email" to email,
+                            val newUser: Map<String, Any?> = mapOf("email" to email,
                                                                   "name" to name,
                                                                   "nick_name" to nickName,
                                                                   "profile_photo_url" to profilePhotoUrl,
@@ -61,7 +61,13 @@ class SignRepository @Inject constructor()
                                         this.email = newUser["email"] as String
                                         this.name = newUser["name"] as String
                                         this.nickName = newUser["nick_name"] as String
-                                        this.profilePhotoUrl = newUser["profile_photo_url"] as String
+                                        this.profilePhotoUrl = newUser["profile_photo_url"]?.run()
+                                        {
+                                            this as String
+                                        }?: kotlin.run()
+                                        {
+                                            null
+                                        }
                                         this.exposure = newUser["exposure"] as Boolean
                                         this.skill = newUser["skill"] as MutableList<String>
                                     }
@@ -111,7 +117,13 @@ class SignRepository @Inject constructor()
                         this.email = querySnapshot.result.documents[0].data!!["email"] as String
                         this.name = querySnapshot.result.documents[0].data!!["name"] as String
                         this.nickName = querySnapshot.result.documents[0].data!!["nick_name"] as String
-                        this.profilePhotoUrl = querySnapshot.result.documents[0].data!!["profile_photo_url"] as String
+                        this.profilePhotoUrl = querySnapshot.result.documents[0].data!!["profile_photo_url"]?.run()
+                        {
+                            this as String
+                        }?: kotlin.run()
+                        {
+                            null
+                        }
                         this.exposure = querySnapshot.result.documents[0].data!!["exposure"] as Boolean
                         this.skill = querySnapshot.result.documents[0].data!!["skill"] as MutableList<String>
                     }
