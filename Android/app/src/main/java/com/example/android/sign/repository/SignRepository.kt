@@ -45,6 +45,7 @@ class SignRepository @Inject constructor()
                                                                   "name" to name,
                                                                   "nick_name" to nickName,
                                                                   "profile_photo_url" to profilePhotoUrl,
+                                                                  "introduce" to "",
                                                                   "exposure" to false,
                                                                   "skill" to mutableListOf<String>())
 
@@ -68,6 +69,7 @@ class SignRepository @Inject constructor()
                                         {
                                             null
                                         }
+                                        this.introduce = newUser["introduce"] as String
                                         this.exposure = newUser["exposure"] as Boolean
                                         this.skill = newUser["skill"] as MutableList<String>
                                     }
@@ -124,6 +126,7 @@ class SignRepository @Inject constructor()
                         {
                             null
                         }
+                        this.introduce = querySnapshot.result.documents[0].data!!["introduce"] as String
                         this.exposure = querySnapshot.result.documents[0].data!!["exposure"] as Boolean
                         this.skill = querySnapshot.result.documents[0].data!!["skill"] as MutableList<String>
                     }

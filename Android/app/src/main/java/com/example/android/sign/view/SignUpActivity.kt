@@ -10,6 +10,7 @@ import com.example.android.base.BaseActivity
 import com.example.android.databinding.ActivitySignUpBinding
 import com.example.android.sign.viewmodel.SignViewModel
 import com.example.android.user.view.UserSettingActivity
+import com.example.android.utility.LoadingDialog
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,7 +19,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
 {
     private val signViewModel: SignViewModel by viewModels()
 
-    private val signLoadingDialog: SignLoadingDialog by lazy { SignLoadingDialog(this@SignUpActivity) }
+    private val loadingDialog: LoadingDialog by lazy { LoadingDialog(this@SignUpActivity) }
 
     private var profilePhoto: Uri? = null
 
@@ -55,7 +56,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
             {
                 Snackbar.make(binding.root, it as String, Snackbar.LENGTH_SHORT).show()
             }
-            signLoadingDialog.dismiss()
+            loadingDialog.dismiss()
         }
     }
 
@@ -80,7 +81,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
     fun signUp(view: View)  // 회원가입
     {
         hideKeyBoard(view.windowToken)
-        signLoadingDialog.show()
+        loadingDialog.show()
 
         val email = binding.emailEditText.text.toString()
         val password = binding.passwordEditText.text.toString()

@@ -1,4 +1,4 @@
-package com.example.android.sign.view
+package com.example.android.utility
 
 import android.app.Dialog
 import android.content.Context
@@ -7,7 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import com.example.android.R
 
-class SignLoadingDialog(context: Context) : Dialog(context)
+class LoadingDialog(context: Context) : Dialog(context)
 {
     override fun onCreate(savedInstanceState: Bundle?)
     {
