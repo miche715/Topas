@@ -54,7 +54,7 @@
             app:layout_constraintTop_toBottomOf="@+id/skillEditText" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/mySkillRecyclerView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -63,14 +63,15 @@
             app:layout_constraintTop_toBottomOf="@+id/skillDescriptionTextView" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/searchSkillRecyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             app:layout_constraintBottom_toTopOf="@+id/updateSkillButton"
-            app:layout_constraintEnd_toEndOf="@+id/recyclerView"
-            app:layout_constraintStart_toStartOf="@+id/recyclerView"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+            app:layout_constraintEnd_toEndOf="@+id/mySkillRecyclerView"
+            app:layout_constraintStart_toStartOf="@+id/mySkillRecyclerView"
+            app:layout_constraintTop_toBottomOf="@+id/mySkillRecyclerView" />
 
         <Button
             android:id="@+id/updateSkillButton"

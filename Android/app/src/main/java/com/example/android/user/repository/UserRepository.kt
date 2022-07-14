@@ -93,4 +93,10 @@ class UserRepository @Inject constructor()
             }
         }
     }
+
+    val skillList = listOf("c", "c++", "c#", "go", "java", "javascript", "typescript", "php", "perl", "ruby",
+                           "scala", "python", "swift", "objective-c", "clojure", "rust", "haskell", "coffeescript", "elixir", "erlang",
+                           "nim")
+
+
 }
