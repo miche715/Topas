@@ -1,10 +1,13 @@
 package com.example.android.user.view
 
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.R
 import com.example.android.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.android.databinding.ActivityUserSkillBinding
+import com.example.android.user.adapter.MySkillAdapter
 import com.example.android.user.adapter.SearchSkillAdapter
 import com.example.android.user.viewmodel.UserViewModel
 
@@ -14,12 +17,17 @@ class UserSkillActivity : BaseActivity<ActivityUserSkillBinding>(R.layout.activi
     private val userViewModel: UserViewModel by viewModels()
 
     private val searchSkillAdapter: SearchSkillAdapter by lazy { SearchSkillAdapter(this@UserSkillActivity) }
+    private val mySkillAdapter: MySkillAdapter by lazy { MySkillAdapter(this@UserSkillActivity) }
 
     override fun onInitialize()
     {
         setToolBar(binding.toolBar, true)
 
+        binding.mySkillRecyclerView.adapter = mySkillAdapter
+        binding.mySkillRecyclerView.layoutManager = GridLayoutManager(this, 3)
+
         binding.searchSkillRecyclerView.adapter = searchSkillAdapter
+        binding.searchSkillRecyclerView.layoutManager = LinearLayoutManager(this)
 
         binding.userViewModel = userViewModel
         binding.userSkillActivity = this@UserSkillActivity
@@ -31,6 +39,7 @@ class UserSkillActivity : BaseActivity<ActivityUserSkillBinding>(R.layout.activi
 
         userViewModel.mySkillResult.observe(this)
         {
+            mySkillAdapter.setMySkillList(it)
             println(it)
         }
     }
@@ -44,5 +53,10 @@ class UserSkillActivity : BaseActivity<ActivityUserSkillBinding>(R.layout.activi
     {
         userViewModel.updateMySkill(skill)
         binding.skillEditText.text = null
+    }
+
+    fun complete()
+    {
+        
     }
 }

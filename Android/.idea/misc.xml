@@ -13,8 +13,10 @@
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/add_photo_alternate.xml" value="0.2075" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/brand_button_background_shape.xml" value="0.14" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/brand_button_round_edge_background.xml" value="0.206" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/cancel.xml" value="0.1" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/disabled_by_default-48px.xml" value="0.1" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/disabled_by_default.xml" value="0.1185" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/my_skill_round_edge_background.xml" value="0.2075" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/radius_button.xml" value="0.14" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/temp.xml" value="0.206" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/white_button_round_edge_background.xml" value="0.206" />
@@ -26,7 +28,7 @@
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_sign_up.xml" value="0.30833333333333335" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_splash.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_user_setting.xml" value="0.3175438596491228" />
-        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_user_skill.xml" value="0.3175438596491228" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_user_skill.xml" value="0.33" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/fragment_on_boarding1.xml" value="0.30833333333333335" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/fragment_on_boarding2.xml" value="0.30833333333333335" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/fragment_on_boarding3.xml" value="0.30833333333333335" />

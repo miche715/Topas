@@ -79,7 +79,7 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
             {
                 if(it.length >= skillString.length)  // 앞에서 부터 잘라서 검사할 것이므로 들어온 문자열이 스킬의 이름보다 길면 예외가 뜸
                 {
-                    if(skillString == it.slice(IntRange(0, skillString.length - 1)) && it !in _mySkillResult.value!!)  // 앞에서부터 그 글자랑 일치하면
+                    if(skillString == it.slice(IntRange(0, skillString.length - 1)) && it !in _mySkillResult.value!!)  // 앞에서부터 그 글자랑 일치하고 내 스킬에 없는거면
                     {
                         tempSearchSkillList.add(it)  // 임시 리스트에 저장
                     }
@@ -109,7 +109,6 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
     fun updateMySkill(skill: String)
     {
         tempMySkillList = _mySkillResult.value!!
-        //_searchSkillResult.value = mutableListOf()
 
         if(skill in tempMySkillList)
         {

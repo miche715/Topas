@@ -69,7 +69,8 @@
             android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="@+id/skillDescriptionTextView"
             app:layout_constraintStart_toStartOf="@+id/skillDescriptionTextView"
-            app:layout_constraintTop_toBottomOf="@+id/skillDescriptionTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/skillDescriptionTextView"
+            tools:listitem="@layout/item_my_skill" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/searchSkillRecyclerView"
@@ -78,7 +79,6 @@
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             android:visibility="@{userViewModel.searchSkillErrorMessage == null ?  View.VISIBLE : View.GONE}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_search_skill"
             app:layout_constraintBottom_toTopOf="@+id/updateSkillButton"
             app:layout_constraintEnd_toEndOf="@+id/mySkillRecyclerView"
@@ -95,10 +95,10 @@
             android:textColor="@color/week_color"
             android:textSize="14sp"
             android:visibility="@{userViewModel.searchSkillErrorMessage == null ?  View.GONE : View.VISIBLE}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/searchSkillRecyclerView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolBar" />
+            app:layout_constraintTop_toTopOf="@+id/searchSkillRecyclerView" />
 
         <Button
             android:id="@+id/updateSkillButton"
