@@ -46,6 +46,8 @@ class UserSettingActivity : BaseActivity<ActivityUserSettingBinding>(R.layout.ac
         binding.userViewModel = userViewModel
         binding.userSettingActivity = this@UserSettingActivity
 
+        binding.skillTextView.text = intent.getStringExtra("skillString") ?: currentUser!!.skill!!.joinToString(", ")
+
         userViewModel.updateUserResult.observe(this)
         {
             if((it is Boolean) && it)  // 정보 수정 성공
@@ -102,7 +104,7 @@ class UserSettingActivity : BaseActivity<ActivityUserSettingBinding>(R.layout.ac
     {
         Intent(this@UserSettingActivity, UserSkillActivity::class.java).run()
         {
-            startActivity(this)
+            activityResultLauncher.launch(this)
         }
     }
 
@@ -116,7 +118,15 @@ class UserSettingActivity : BaseActivity<ActivityUserSettingBinding>(R.layout.ac
         val profilePhoto = profilePhoto
         val introduce = binding.introduceEditText.text.toString()
         val isExposureChecked = binding.exposureCheckBox.isChecked
+        val skill = if(binding.skillTextView.text.isEmpty())
+        {
+            null
+        }
+        else
+        {
+            binding.skillTextView.text.split(", ")
+        }
 
-        userViewModel.updateUser(name, nickName, profilePhoto, introduce, isExposureChecked)
+        userViewModel.updateUser(name, nickName, profilePhoto, introduce, isExposureChecked, skill)
     }
 }

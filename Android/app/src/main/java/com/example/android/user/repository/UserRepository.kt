@@ -17,7 +17,7 @@ import kotlinx.coroutines.tasks.await
 
 class UserRepository @Inject constructor()
 {
-    fun updateUserFirebase(name: String, nickName: String, profilePhoto: Uri?, introduce: String, isExposureChecked: Boolean, _userUpdateResult: MutableLiveData<Any>)
+    fun updateUserFirebase(name: String, nickName: String, profilePhoto: Uri?, introduce: String, isExposureChecked: Boolean, skill: List<String>?, _userUpdateResult: MutableLiveData<Any>)
     {
         CoroutineScope(Dispatchers.IO).launch()
         {
@@ -49,18 +49,12 @@ class UserRepository @Inject constructor()
                         }
                     }
 
-//                    val updateUser: Map<String, Any?> = mapOf("name" to name,
-//                                                           "nick_name" to nickName,
-//                                                           "profile_photo_url" to profilePhotoUrl,
-//                                                           "introduce" to introduce,
-//                                                           "exposure" to false,
-//                                                           "skill" to mutableListOf<String>())
-
                     val updateUser: Map<String, Any?> = mapOf("name" to name,
                                                               "nick_name" to nickName,
                                                               "profile_photo_url" to profilePhotoUrl,
                                                               "introduce" to introduce,
-                                                              "exposure" to isExposureChecked)
+                                                              "exposure" to isExposureChecked,
+                                                              "skill" to skill)
 
                     firebaseFirestore.collection("user").document(currentUser!!.documentId!!).set(updateUser, SetOptions.merge()).addOnCompleteListener()  // 병합
                     {void ->
@@ -73,6 +67,7 @@ class UserRepository @Inject constructor()
                             currentUser!!.profilePhotoUrl = profilePhotoUrl
                             currentUser!!.introduce = introduce
                             currentUser!!.exposure = isExposureChecked
+                            currentUser!!.skill = skill
 
                             _userUpdateResult.value = true
                         }

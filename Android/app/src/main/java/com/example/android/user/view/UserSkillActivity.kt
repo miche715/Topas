@@ -1,5 +1,6 @@
 package com.example.android.user.view
 
+import android.content.Intent
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +19,8 @@ class UserSkillActivity : BaseActivity<ActivityUserSkillBinding>(R.layout.activi
 
     private val searchSkillAdapter: SearchSkillAdapter by lazy { SearchSkillAdapter(this@UserSkillActivity) }
     private val mySkillAdapter: MySkillAdapter by lazy { MySkillAdapter(this@UserSkillActivity) }
+
+    private var skillString: String? = null
 
     override fun onInitialize()
     {
@@ -40,7 +43,7 @@ class UserSkillActivity : BaseActivity<ActivityUserSkillBinding>(R.layout.activi
         userViewModel.mySkillResult.observe(this)
         {
             mySkillAdapter.setMySkillList(it)
-            println(it)
+            skillString = it.joinToString(", ")
         }
     }
 
@@ -57,6 +60,12 @@ class UserSkillActivity : BaseActivity<ActivityUserSkillBinding>(R.layout.activi
 
     fun complete()
     {
-        
+        Intent(this@UserSkillActivity, UserSettingActivity::class.java).run()
+        {
+            this.putExtra("skillString", skillString)
+            setResult(1, this)
+            startActivity(this)
+            finish()
+        }
     }
 }

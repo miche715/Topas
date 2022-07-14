@@ -109,6 +109,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="12dp"
             android:text="완료"
+            android:onClick="@{() -> userSkillActivity.complete()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

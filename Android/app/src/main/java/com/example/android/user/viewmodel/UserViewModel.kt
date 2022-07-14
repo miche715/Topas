@@ -20,7 +20,7 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
     val nameInValidMessage: MutableLiveData<String?> = MutableLiveData()
     val nickNameInValidMessage: MutableLiveData<String?> = MutableLiveData()
 
-    fun updateUser(name: String, nickName: String, profilePhoto: Uri?, introduce: String, isExposureChecked: Boolean)
+    fun updateUser(name: String, nickName: String, profilePhoto: Uri?, introduce: String, isExposureChecked: Boolean, skill: List<String>?)
     {
         var isValid = true
 
@@ -60,7 +60,7 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
 
         if(isValid)
         {
-            userRepository.updateUserFirebase(name, nickName, profilePhoto, introduce, isExposureChecked, _updateUserResult)
+            userRepository.updateUserFirebase(name, nickName, profilePhoto, introduce, isExposureChecked, skill, _updateUserResult)
         }
     }
 
@@ -120,5 +120,4 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
         }
         _mySkillResult.value = tempMySkillList
     }
-
 }
