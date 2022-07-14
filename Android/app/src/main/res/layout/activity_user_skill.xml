@@ -5,7 +5,9 @@
     tools:context=".user.view.UserSkillActivity">
 
     <data>
-
+        <variable
+            name="userViewModel"
+            type="com.example.android.user.viewmodel.UserViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -68,6 +70,8 @@
             android:layout_height="0dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_search_skill"
             app:layout_constraintBottom_toTopOf="@+id/updateSkillButton"
             app:layout_constraintEnd_toEndOf="@+id/mySkillRecyclerView"
             app:layout_constraintStart_toStartOf="@+id/mySkillRecyclerView"

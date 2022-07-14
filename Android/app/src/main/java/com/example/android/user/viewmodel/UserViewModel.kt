@@ -64,6 +64,7 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
     }
 
     val skillSearchResult: MutableLiveData<MutableList<String>> = MutableLiveData()
+    val skillSearchErrorMessage: MutableLiveData<String?> = MutableLiveData()
     private val tempSkillSearchList = mutableListOf<String>()
 
     fun searchSkill(skillString: String)
@@ -83,11 +84,19 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
                 }
             }
             skillSearchResult.value = tempSkillSearchList  // 저장을 다했으면 결과에 넣음. 이렇게 하지 않고 위에서 바로 넣으면 skillSearchResult가 직접 변하는게 아니라 observe가 안먹음
+
+            if(skillSearchResult.value!!.size == 0)
+            {
+                skillSearchErrorMessage.value = "검색 결과가 없습니다."
+            }
+            else
+            {
+                skillSearchErrorMessage.value = null
+            }
         }
         else  // 스킬을 검색하는 에디트 텍스트가 비었음
         {
-
+            skillSearchErrorMessage.value = "스킬을 검색해 주세요."
         }
-
     }
 }
