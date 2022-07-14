@@ -1,11 +1,8 @@
 package com.example.android.user.view
 
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.activity.viewModels
 import com.example.android.R
 import com.example.android.base.BaseActivity
-import com.example.android.base.BaseApplication
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.android.databinding.ActivityUserSkillBinding
 import com.example.android.user.adapter.SearchSkillAdapter
@@ -16,7 +13,7 @@ class UserSkillActivity : BaseActivity<ActivityUserSkillBinding>(R.layout.activi
 {
     private val userViewModel: UserViewModel by viewModels()
 
-    private val searchSkillAdapter = SearchSkillAdapter()
+    private val searchSkillAdapter: SearchSkillAdapter by lazy { SearchSkillAdapter(this@UserSkillActivity) }
 
     override fun onInitialize()
     {
@@ -24,28 +21,28 @@ class UserSkillActivity : BaseActivity<ActivityUserSkillBinding>(R.layout.activi
 
         binding.searchSkillRecyclerView.adapter = searchSkillAdapter
 
-        //binding.currentUser = BaseApplication.currentUser
         binding.userViewModel = userViewModel
         binding.userSkillActivity = this@UserSkillActivity
 
-        binding.skillEditText.addTextChangedListener(object: TextWatcher
-        {
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int)
-            {
-                userViewModel.searchSkill(p0.toString())
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
-
-            override fun afterTextChanged(p0: Editable?) { }
-        })
-        userViewModel.skillSearchResult.observe(this)
+        userViewModel.searchSkillResult.observe(this)
         {
             searchSkillAdapter.setSearchSkillList(it)
         }
 
+        userViewModel.mySkillResult.observe(this)
+        {
+            println(it)
+        }
+    }
 
+    fun searchSkill()
+    {
+        userViewModel.searchSkill(binding.skillEditText.text.toString())
+    }
 
-
+    fun selectSkill(skill: String)
+    {
+        userViewModel.updateMySkill(skill)
+        binding.skillEditText.text = null
     }
 }

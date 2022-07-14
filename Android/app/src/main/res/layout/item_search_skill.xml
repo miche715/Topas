@@ -4,6 +4,10 @@
 
     <data>
         <variable
+            name="userSkillActivity"
+            type="com.example.android.user.view.UserSkillActivity" />
+
+        <variable
             name="skill"
             type="String" />
     </data>
@@ -22,6 +26,7 @@
             android:text="@{skill}"
             android:textColor="@color/strong_color"
             android:textSize="16sp"
+            android:onClick="@{() -> userSkillActivity.selectSkill(skill)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

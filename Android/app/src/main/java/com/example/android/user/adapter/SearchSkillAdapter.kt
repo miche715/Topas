@@ -1,11 +1,14 @@
 package com.example.android.user.adapter
 
+import android.app.Activity
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.databinding.ItemSearchSkillBinding
+import com.example.android.user.view.UserSkillActivity
 
-class SearchSkillAdapter : RecyclerView.Adapter<SearchSkillAdapter.ViewHolder>()
+class SearchSkillAdapter(private val activity: Activity) : RecyclerView.Adapter<SearchSkillAdapter.ViewHolder>()
 {
     private var searchSkillList = mutableListOf<String>()
 
@@ -28,6 +31,7 @@ class SearchSkillAdapter : RecyclerView.Adapter<SearchSkillAdapter.ViewHolder>()
         fun bind(skill: String)
         {
             binding.skill = skill
+            binding.userSkillActivity = activity as UserSkillActivity
         }
     }
 

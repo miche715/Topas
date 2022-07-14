@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.android.user.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+import com.example.android.base.BaseApplication.Companion.currentUser
 
 @HiltViewModel
 class UserViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel()
@@ -63,13 +64,14 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
         }
     }
 
-    val skillSearchResult: MutableLiveData<MutableList<String>> = MutableLiveData()
-    val skillSearchErrorMessage: MutableLiveData<String?> = MutableLiveData()
-    private val tempSkillSearchList = mutableListOf<String>()
+    private val _searchSkillResult: MutableLiveData<MutableList<String>> = MutableLiveData()
+    val searchSkillResult: MutableLiveData<MutableList<String>> = _searchSkillResult
+    val searchSkillErrorMessage: MutableLiveData<String?> = MutableLiveData()
+    private val tempSearchSkillList = mutableListOf<String>()
 
     fun searchSkill(skillString: String)
     {
-        tempSkillSearchList.clear()
+        tempSearchSkillList.clear()
 
         if(skillString.isNotEmpty())  // 스킬을 검색하는 에디트 텍스트가 비어있지 않음
         {
@@ -77,26 +79,47 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
             {
                 if(it.length >= skillString.length)  // 앞에서 부터 잘라서 검사할 것이므로 들어온 문자열이 스킬의 이름보다 길면 예외가 뜸
                 {
-                    if(skillString == it.slice(IntRange(0, skillString.length - 1)))  // 앞에서부터 그 글자랑 일치하면
+                    if(skillString == it.slice(IntRange(0, skillString.length - 1)) && it !in _mySkillResult.value!!)  // 앞에서부터 그 글자랑 일치하면
                     {
-                        tempSkillSearchList.add(it)  // 임시 리스트에 저장
+                        tempSearchSkillList.add(it)  // 임시 리스트에 저장
                     }
                 }
             }
-            skillSearchResult.value = tempSkillSearchList  // 저장을 다했으면 결과에 넣음. 이렇게 하지 않고 위에서 바로 넣으면 skillSearchResult가 직접 변하는게 아니라 observe가 안먹음
+            _searchSkillResult.value = tempSearchSkillList  // 저장을 다했으면 결과에 넣음. 이렇게 하지 않고 위에서 바로 넣으면 skillSearchResult가 직접 변하는게 아니라 observe가 안먹음
 
-            if(skillSearchResult.value!!.size == 0)
+            if(_searchSkillResult.value!!.size == 0)
             {
-                skillSearchErrorMessage.value = "검색 결과가 없습니다."
+                searchSkillErrorMessage.value = "검색 결과가 없습니다."
             }
             else
             {
-                skillSearchErrorMessage.value = null
+                searchSkillErrorMessage.value = null
             }
         }
         else  // 스킬을 검색하는 에디트 텍스트가 비었음
         {
-            skillSearchErrorMessage.value = "스킬을 검색해 주세요."
+            searchSkillErrorMessage.value = "스킬을 검색해 주세요."
         }
     }
+
+    private val _mySkillResult: MutableLiveData<MutableList<String>> = MutableLiveData(currentUser!!.skill!!.toMutableList())  // 화면에 보여질 원래 내 스킬 들을 넣어줌
+    val mySkillResult: MutableLiveData<MutableList<String>> = _mySkillResult
+    private var tempMySkillList = mutableListOf<String>()
+
+    fun updateMySkill(skill: String)
+    {
+        tempMySkillList = _mySkillResult.value!!
+        //_searchSkillResult.value = mutableListOf()
+
+        if(skill in tempMySkillList)
+        {
+            tempMySkillList.remove(skill)
+        }
+        else
+        {
+            tempMySkillList.add(skill)
+        }
+        _mySkillResult.value = tempMySkillList
+    }
+
 }
