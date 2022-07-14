@@ -5,9 +5,15 @@
     tools:context=".user.view.UserSkillActivity">
 
     <data>
+        <import type="android.view.View" />
+
         <variable
             name="userViewModel"
             type="com.example.android.user.viewmodel.UserViewModel" />
+
+        <variable
+            name="userSkillActivity"
+            type="com.example.android.user.view.UserSkillActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -70,12 +76,28 @@
             android:layout_height="0dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
+            android:visibility="@{userViewModel.skillSearchErrorMessage == null ?  View.VISIBLE : View.GONE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_search_skill"
             app:layout_constraintBottom_toTopOf="@+id/updateSkillButton"
             app:layout_constraintEnd_toEndOf="@+id/mySkillRecyclerView"
             app:layout_constraintStart_toStartOf="@+id/mySkillRecyclerView"
             app:layout_constraintTop_toBottomOf="@+id/mySkillRecyclerView" />
+
+        <TextView
+            android:id="@+id/skillSearchErrorMessageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@{userViewModel.skillSearchErrorMessage}"
+            android:textColor="@color/week_color"
+            android:textSize="14sp"
+            android:visibility="@{userViewModel.skillSearchErrorMessage == null ?  View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolBar" />
 
         <Button
             android:id="@+id/updateSkillButton"

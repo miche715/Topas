@@ -5,6 +5,7 @@ import android.text.TextWatcher
 import androidx.activity.viewModels
 import com.example.android.R
 import com.example.android.base.BaseActivity
+import com.example.android.base.BaseApplication
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.android.databinding.ActivityUserSkillBinding
 import com.example.android.user.adapter.SearchSkillAdapter
@@ -22,6 +23,10 @@ class UserSkillActivity : BaseActivity<ActivityUserSkillBinding>(R.layout.activi
         setToolBar(binding.toolBar, true)
 
         binding.searchSkillRecyclerView.adapter = searchSkillAdapter
+
+        //binding.currentUser = BaseApplication.currentUser
+        binding.userViewModel = userViewModel
+        binding.userSkillActivity = this@UserSkillActivity
 
         binding.skillEditText.addTextChangedListener(object: TextWatcher
         {
