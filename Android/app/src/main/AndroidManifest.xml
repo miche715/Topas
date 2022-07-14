@@ -18,6 +18,9 @@
         android:theme="@style/Theme.Android"
         tools:targetApi="31">
         <activity
+            android:name=".user.view.UserSkillActivity"
+            android:exported="false" />
+        <activity
             android:name=".contact.view.ContactActivity"
             android:exported="false" />
         <activity

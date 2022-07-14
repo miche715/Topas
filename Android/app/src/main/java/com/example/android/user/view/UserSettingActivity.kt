@@ -98,6 +98,14 @@ class UserSettingActivity : BaseActivity<ActivityUserSettingBinding>(R.layout.ac
         binding.removeProfilePhotoButton.isEnabled = false
     }
 
+    fun updateSkill()
+    {
+        Intent(this@UserSettingActivity, UserSkillActivity::class.java).run()
+        {
+            startActivity(this)
+        }
+    }
+
     fun updateUser(view: View)
     {
         hideKeyBoard(view.windowToken)

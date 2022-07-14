@@ -66,7 +66,7 @@ class UserRepository @Inject constructor()
                     {void ->
                         if(void.isSuccessful)  // 사용자 정보 업데이트 성공
                         {
-                            Log.d("*** updateUserFirebase Firestore user 컬렉션에 업데이트 성공 ***", "${void.result}")
+                            Log.d("*** updateUserFirebase Firestore user 컬렉션에 업데이트 성공 ***", "User information update has been completed.")
 
                             currentUser!!.name = name
                             currentUser!!.nickName = nickName
@@ -78,7 +78,7 @@ class UserRepository @Inject constructor()
                         }
                         else  // 사용자 정보 업데이트 실패
                         {
-                            Log.d("*** updateUserFirebase Firestore user 컬렉션에 업데이트 실패 ***", "${void.exception}")
+                            Log.d("*** updateUserFirebase Firestore user 컬렉션에 업데이트 실패 ***", "Failed to update user information due to an unknown error.")
 
                             _userUpdateResult.value = "알 수 없는 오류가 발생하여 저장에 실패했습니다."
                         }

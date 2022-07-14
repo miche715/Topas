@@ -247,7 +247,8 @@
                         app:layout_constraintBottom_toBottomOf="@+id/skillDescriptionTextView"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/skillDescriptionTextView"
-                        app:srcCompat="@drawable/chevron_right" />
+                        app:srcCompat="@drawable/chevron_right"
+                        android:onClick="@{() -> userSettingActivity.updateSkill()}"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
