@@ -64,6 +64,11 @@ class UserSettingActivity : BaseActivity<ActivityUserSettingBinding>(R.layout.ac
             }
             loadingDialog.dismiss()
         }
+
+        userViewModel.mySkillString.observe(this)
+        {
+            binding.skillTextView.text = it
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean  // 여기서만 재정의
@@ -100,12 +105,10 @@ class UserSettingActivity : BaseActivity<ActivityUserSettingBinding>(R.layout.ac
         binding.removeProfilePhotoButton.isEnabled = false
     }
 
-    fun updateSkill()
+    fun updateSkill(view: View)
     {
-        Intent(this@UserSettingActivity, UserSkillActivity::class.java).run()
-        {
-            activityResultLauncher.launch(this)
-        }
+        hideKeyBoard(view.windowToken)
+        supportFragmentManager.beginTransaction().replace(binding.userSkillFragmentContainerView.id, UserSkillFragment()).commit()
     }
 
     fun updateUser(view: View)

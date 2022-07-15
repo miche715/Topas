@@ -3,11 +3,12 @@ package com.example.android.user.adapter
 import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.databinding.ItemMySkillBinding
-import com.example.android.user.view.UserSkillActivity
+import com.example.android.user.view.UserSkillFragment
 
-class MySkillAdapter(private val activity: Activity) : RecyclerView.Adapter<MySkillAdapter.ViewHolder>()
+class MySkillAdapter(private val fragment: UserSkillFragment) : RecyclerView.Adapter<MySkillAdapter.ViewHolder>()
 {
     private var mySkillList = mutableListOf<String>()
 
@@ -30,7 +31,7 @@ class MySkillAdapter(private val activity: Activity) : RecyclerView.Adapter<MySk
         fun bind(skill: String)
         {
             binding.skill = skill
-            binding.userSkillActivity = activity as UserSkillActivity
+            binding.userSkillFragment = fragment
         }
     }
 

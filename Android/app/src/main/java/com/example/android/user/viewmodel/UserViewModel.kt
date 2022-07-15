@@ -1,6 +1,7 @@
 package com.example.android.user.viewmodel
 
 import android.net.Uri
+import android.text.TextUtils.split
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -119,5 +120,18 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
             tempMySkillList.add(skill)
         }
         _mySkillResult.value = tempMySkillList
+    }
+
+    private val _mySkillString: MutableLiveData<String> = MutableLiveData()
+    val mySkillString: MutableLiveData<String> = _mySkillString
+
+    fun completeMySkill()
+    {
+        _mySkillString.value = _mySkillResult.value?.joinToString(", ")
+    }
+
+    fun cancelMySkill()
+    {
+        _mySkillResult.value = _mySkillString.value?.split(", ")?.toMutableList() ?: currentUser!!.skill?.toMutableList()
     }
 }

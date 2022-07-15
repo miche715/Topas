@@ -4,8 +4,8 @@
 
     <data>
         <variable
-            name="userSkillActivity"
-            type="com.example.android.user.view.UserSkillActivity" />
+            name="userSkillFragment"
+            type="com.example.android.user.view.UserSkillFragment" />
 
         <variable
             name="skill"
@@ -23,7 +23,7 @@
             android:fontFamily="@font/noto_sans_kr_regular"
             android:gravity="left|center_vertical"
             android:includeFontPadding="true"
-            android:onClick="@{() -> userSkillActivity.selectSkill(skill)}"
+            android:onClick="@{() -> userSkillFragment.selectSkill(skill)}"
             android:text="@{skill}"
             android:textColor="@color/strong_color"
             android:textSize="14sp"
