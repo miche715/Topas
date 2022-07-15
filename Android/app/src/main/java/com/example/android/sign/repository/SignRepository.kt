@@ -28,7 +28,7 @@ class SignRepository @Inject constructor()
                         {
                             Log.d("*** signUpFirebase Auth에 가입 성공 ***", "${authResult.result}")
 
-                            val profilePhotoUrl = runBlocking()  // 프로필 사진을 업로드하고 그 URL을 가져오는 동안 유저 등록을 잠시 기다리도록 하기 위해 사용
+                            val profilePhotoUri = runBlocking()  // 프로필 사진을 업로드하고 그 URI을 가져오는 동안 유저 등록을 잠시 기다리도록 하기 위해 사용
                             {
                                 if(profilePhoto != null)  // 사용자가 프로필 사진을 선택 했으면
                                 {
@@ -37,14 +37,14 @@ class SignRepository @Inject constructor()
                                 }
                                 else  // 사용자가 프로필 사진을 선택 안했으면
                                 {
-                                    null  // null로 FireStore에 저장하고, 나중에 화면에 뿌릴때 URL이 null이면 미리 등록한 디폴트 프로필 사진을 띄움
+                                    null  // null로 FireStore에 저장하고, 나중에 화면에 뿌릴때 URI가 null이면 미리 등록한 디폴트 프로필 사진을 띄움
                                 }
                             }
 
                             val newUser: Map<String, Any?> = mapOf("email" to email,
                                                                   "name" to name,
                                                                   "nick_name" to nickName,
-                                                                  "profile_photo_url" to profilePhotoUrl,
+                                                                  "profile_photo_uri" to profilePhotoUri,
                                                                   "introduce" to "",
                                                                   "exposure" to false,
                                                                   "skill" to mutableListOf<String>())
@@ -62,7 +62,7 @@ class SignRepository @Inject constructor()
                                         this.email = newUser["email"] as String
                                         this.name = newUser["name"] as String
                                         this.nickName = newUser["nick_name"] as String
-                                        this.profilePhotoUrl = newUser["profile_photo_url"]?.run()
+                                        this.profilePhotoUri = newUser["profile_photo_uri"]?.run()
                                         {
                                             this as String
                                         }?: kotlin.run()
@@ -119,7 +119,7 @@ class SignRepository @Inject constructor()
                         this.email = querySnapshot.result.documents[0].data!!["email"] as String
                         this.name = querySnapshot.result.documents[0].data!!["name"] as String
                         this.nickName = querySnapshot.result.documents[0].data!!["nick_name"] as String
-                        this.profilePhotoUrl = querySnapshot.result.documents[0].data!!["profile_photo_url"]?.run()
+                        this.profilePhotoUri = querySnapshot.result.documents[0].data!!["profile_photo_uri"]?.run()
                         {
                             this as String
                         }?: kotlin.run()

@@ -12,7 +12,7 @@ class OnBoarding3Fragment : BaseFragment<FragmentOnBoarding3Binding>(R.layout.fr
 {
     override fun onInitialize()
     {
-        binding!!.onBoarding3Fragment = this
+        binding!!.onBoarding3Fragment = this@OnBoarding3Fragment
     }
 
     fun signUp()

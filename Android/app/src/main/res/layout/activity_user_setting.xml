@@ -83,7 +83,7 @@
                         app:civ_border_width="2dp"
                         app:layout_constraintStart_toStartOf="@+id/profilePhotoTextView"
                         app:layout_constraintTop_toBottomOf="@+id/profilePhotoTextView"
-                        app:profilePhotoUrl="@{currentUser.profilePhotoUrl}" />
+                        app:profilePhotoUrl="@{currentUser.profilePhotoUri}" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -102,7 +102,7 @@
                             android:background="@color/brand_color"
                             android:drawableLeft="@drawable/add_photo_alternate"
                             android:elevation="10dp"
-                            android:enabled="@{currentUser.profilePhotoUrl == null ? true : false}"
+                            android:enabled="@{currentUser.profilePhotoUri == null ? true : false}"
                             android:fontFamily="@font/noto_sans_kr_regular"
                             android:includeFontPadding="false"
                             android:onClick="@{() -> userSettingActivity.addProfilePhoto()}"
@@ -119,7 +119,7 @@
                             android:background="@color/error_color"
                             android:drawableLeft="@drawable/disabled_by_default"
                             android:elevation="10dp"
-                            android:enabled="@{currentUser.profilePhotoUrl == null ? false : true}"
+                            android:enabled="@{currentUser.profilePhotoUri == null ? false : true}"
                             android:fontFamily="@font/noto_sans_kr_regular"
                             android:includeFontPadding="false"
                             android:onClick="@{() -> userSettingActivity.removeProfilePhoto()}"

@@ -14,10 +14,10 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class UserSkillFragment : BaseFragment<FragmentUserSkillBinding>(R.layout.fragment_user_skill)
 {
-    private val userViewModel: UserViewModel by activityViewModels()
+    private val userViewModel: UserViewModel by activityViewModels()  // 자신의 부모인 UserSettingActivity와 뷰모델 공유
 
-    private val searchSkillAdapter: SearchSkillAdapter by lazy { SearchSkillAdapter(this@UserSkillFragment) }
-    private val mySkillAdapter: MySkillAdapter by lazy { MySkillAdapter(this@UserSkillFragment) }
+    private val searchSkillAdapter: SearchSkillAdapter by lazy { SearchSkillAdapter(this@UserSkillFragment) }  // 터치 이벤트 때문에 자신을 넘겨줘야 함
+    private val mySkillAdapter: MySkillAdapter by lazy { MySkillAdapter(this@UserSkillFragment) }  // 터치 이벤트 때문에 자신을 넘겨줘야 함
 
     override fun onInitialize()
     {
@@ -32,6 +32,8 @@ class UserSkillFragment : BaseFragment<FragmentUserSkillBinding>(R.layout.fragme
 
         binding!!.skillEditText.isFocusableInTouchMode = true
         binding!!.skillEditText.requestFocus()
+
+        userViewModel.initializeSearchErrorMessage()
 
         userViewModel.searchSkillResult.observe(this@UserSkillFragment.activity!!)
         {

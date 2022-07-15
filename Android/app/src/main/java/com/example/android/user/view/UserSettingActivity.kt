@@ -7,7 +7,6 @@ import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.net.toUri
-import androidx.fragment.app.FragmentTransaction
 import com.example.android.R
 import com.example.android.base.BaseActivity
 import com.example.android.contact.view.ContactActivity
@@ -25,7 +24,7 @@ class UserSettingActivity : BaseActivity<ActivityUserSettingBinding>(R.layout.ac
 
     private val loadingDialog: LoadingDialog by lazy { LoadingDialog(this@UserSettingActivity) }
 
-    private var profilePhoto: Uri? = currentUser!!.profilePhotoUrl?.toUri()
+    private var profilePhoto: Uri? = currentUser!!.profilePhotoUri?.toUri()
 
     private var activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
     {
@@ -49,7 +48,7 @@ class UserSettingActivity : BaseActivity<ActivityUserSettingBinding>(R.layout.ac
 
         binding.skillTextView.text = intent.getStringExtra("skillString") ?: currentUser!!.skill!!.joinToString(", ")
 
-        userViewModel.updateUserResult.observe(this)
+        userViewModel.updateUserResult.observe(this@UserSettingActivity)
         {
             if((it is Boolean) && it)  // 정보 수정 성공
             {
@@ -66,7 +65,7 @@ class UserSettingActivity : BaseActivity<ActivityUserSettingBinding>(R.layout.ac
             loadingDialog.dismiss()
         }
 
-        userViewModel.mySkillString.observe(this)
+        userViewModel.mySkillString.observe(this@UserSettingActivity)
         {
             binding.skillTextView.text = it
         }

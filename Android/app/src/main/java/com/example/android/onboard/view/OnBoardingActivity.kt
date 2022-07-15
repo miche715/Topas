@@ -24,7 +24,7 @@ class OnBoardingActivity : BaseActivity<ActivityOnBoardingBinding>(R.layout.acti
 //            }
 //        }
 
-        binding.viewPager.adapter = OnBoardingAdapter(this, onBoardingPageLength)
+        binding.viewPager.adapter = OnBoardingAdapter(this@OnBoardingActivity, onBoardingPageLength)
         binding.viewPager.currentItem = 0
         binding.viewPager.offscreenPageLimit = onBoardingPageLength
 

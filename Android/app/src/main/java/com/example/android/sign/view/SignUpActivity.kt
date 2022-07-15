@@ -42,7 +42,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
         binding.signViewModel = signViewModel  // xml 파일에 signViewModel이라는 변수에 그 변수가 사용하는 파일을 바인딩, 이 한줄 때문에 얼마나 삽질을 한거지?
         binding.signUpActivity = this@SignUpActivity  // xml 파일에 signUpActivity이라는 변수에 그 변수가 사용하는 파일을 바인딩
 
-        signViewModel.signUpResult.observe(this)
+        signViewModel.signUpResult.observe(this@SignUpActivity)
         {
             if((it is Boolean) && it)  // 회원가입 성공
             {

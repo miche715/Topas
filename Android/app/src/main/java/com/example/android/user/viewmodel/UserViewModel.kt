@@ -1,7 +1,6 @@
 package com.example.android.user.viewmodel
 
 import android.net.Uri
-import android.text.TextUtils.split
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -86,7 +85,7 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
                     }
                 }
             }
-            _searchSkillResult.value = tempSearchSkillList  // 저장을 다했으면 결과에 넣음. 이렇게 하지 않고 위에서 바로 넣으면 skillSearchResult가 직접 변하는게 아니라 observe가 안먹음
+            _searchSkillResult.value = tempSearchSkillList  // 저장을 다했으면 결과에 넣음, 이렇게 하지 않고 위에서 바로 넣으면 skillSearchResult가 직접 변하는게 아니라 observe가 안먹음
 
             if(_searchSkillResult.value!!.size == 0)
             {
@@ -133,5 +132,10 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
     fun cancelMySkill()
     {
         _mySkillResult.value = _mySkillString.value?.split(", ")?.toMutableList() ?: currentUser!!.skill?.toMutableList()
+    }
+
+    fun initializeSearchErrorMessage()
+    {
+        searchSkillErrorMessage.value = null
     }
 }

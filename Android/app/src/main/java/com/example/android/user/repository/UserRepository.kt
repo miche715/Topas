@@ -25,23 +25,23 @@ class UserRepository @Inject constructor()
             {querySnapshot ->
                 if(querySnapshot.result.size() == 0 || querySnapshot.result.documents[0].id == currentUser!!.documentId)  // 내가 닉네임을 바꿨는데 같은 사람이 없거나 || 닉네임을 안바꿈
                 {
-                    val profilePhotoUrl = runBlocking()  // 프로필 사진을 업로드하고 그 URL을 가져오는 동안 유저 등록을 잠시 기다리도록 하기 위해 사용
+                    val profilePhotoUri = runBlocking()  // 프로필 사진을 업로드하고 그 URI를 가져오는 동안 유저 등록을 잠시 기다리도록 하기 위해 사용
                     {
                         if(profilePhoto != null)  // 프로필 사진이 선택됨
                         {
-                            if(profilePhoto != currentUser!!.profilePhotoUrl?.toUri())  // 넘어온 프로필 사진과 원래 프로필 사진이 다른 경우
+                            if(profilePhoto != currentUser!!.profilePhotoUri?.toUri())  // 넘어온 프로필 사진과 원래 프로필 사진이 다른 경우
                             {
                                 firebaseStorage.child("profile_photo_${currentUser!!.email}").putFile(profilePhoto).await()  // 그대로 덮어씌움
                                 firebaseStorage.child("profile_photo_${currentUser!!.email}").downloadUrl.await().toString()  // 그리고 받아옴
                             }
                             else  // 넘어온 프로필 사진과 원래 프로필 사진이 같은 경우
                             {
-                                currentUser!!.profilePhotoUrl
+                                currentUser!!.profilePhotoUri
                             }
                         }
                         else
                         {
-                            if(currentUser!!.profilePhotoUrl != null)  // 원래 프로필 사진이 있으면 Storage에서 삭제해야 함
+                            if(currentUser!!.profilePhotoUri != null)  // 원래 프로필 사진이 있으면 Storage에서 삭제해야 함
                             {
                                 firebaseStorage.child("profile_photo_${currentUser!!.email}").delete().await()
                             }
@@ -51,7 +51,7 @@ class UserRepository @Inject constructor()
 
                     val updateUser: Map<String, Any?> = mapOf("name" to name,
                                                               "nick_name" to nickName,
-                                                              "profile_photo_url" to profilePhotoUrl,
+                                                              "profile_photo_url" to profilePhotoUri,
                                                               "introduce" to introduce,
                                                               "exposure" to isExposureChecked,
                                                               "skill" to skill)
@@ -64,7 +64,7 @@ class UserRepository @Inject constructor()
 
                             currentUser!!.name = name
                             currentUser!!.nickName = nickName
-                            currentUser!!.profilePhotoUrl = profilePhotoUrl
+                            currentUser!!.profilePhotoUri = profilePhotoUri
                             currentUser!!.introduce = introduce
                             currentUser!!.exposure = isExposureChecked
                             currentUser!!.skill = skill
