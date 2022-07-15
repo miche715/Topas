@@ -51,7 +51,7 @@ class UserRepository @Inject constructor()
 
                     val updateUser: Map<String, Any?> = mapOf("name" to name,
                                                               "nick_name" to nickName,
-                                                              "profile_photo_url" to profilePhotoUri,
+                                                              "profile_photo_uri" to profilePhotoUri,
                                                               "introduce" to introduce,
                                                               "exposure" to isExposureChecked,
                                                               "skill" to skill)
