@@ -58,12 +58,18 @@ class UserSkillFragment : BaseFragment<FragmentUserSkillBinding>(R.layout.fragme
     fun complete()
     {
         userViewModel.completeMySkill()
-        activity!!.supportFragmentManager.beginTransaction().remove(this@UserSkillFragment).commit()
+        activity!!.supportFragmentManager
+            .beginTransaction()
+            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right)
+            .remove(this@UserSkillFragment).commit()
     }
 
     fun cancel()
     {
         userViewModel.cancelMySkill()
-        activity!!.supportFragmentManager.beginTransaction().remove(this@UserSkillFragment).commit()
+        activity!!.supportFragmentManager
+            .beginTransaction()
+            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right)
+            .remove(this@UserSkillFragment).commit()
     }
 }

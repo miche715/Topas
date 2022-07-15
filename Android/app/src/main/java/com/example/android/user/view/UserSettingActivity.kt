@@ -7,6 +7,7 @@ import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.net.toUri
+import androidx.fragment.app.FragmentTransaction
 import com.example.android.R
 import com.example.android.base.BaseActivity
 import com.example.android.contact.view.ContactActivity
@@ -108,7 +109,10 @@ class UserSettingActivity : BaseActivity<ActivityUserSettingBinding>(R.layout.ac
     fun updateSkill(view: View)
     {
         hideKeyBoard(view.windowToken)
-        supportFragmentManager.beginTransaction().replace(binding.userSkillFragmentContainerView.id, UserSkillFragment()).commit()
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right)
+            .replace(binding.userSkillFragmentContainerView.id, UserSkillFragment())
+            .commitNow()
     }
 
     fun updateUser(view: View)
