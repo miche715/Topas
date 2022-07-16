@@ -126,7 +126,7 @@ class UserSettingActivity : BaseActivity<ActivityUserSettingBinding>(R.layout.ac
         val isExposureChecked = binding.exposureCheckBox.isChecked
         val skill = if(binding.skillTextView.text.isEmpty())
         {
-            null
+            listOf()
         }
         else
         {
