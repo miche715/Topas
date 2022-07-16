@@ -21,8 +21,6 @@ class ContactActivity : BaseActivity<ActivityContactBinding>(R.layout.activity_c
     {
         setToolBar(binding.toolBar)
 
-        contactViewModel.loadMemberList()
-
         binding.bottomNavigationView.setOnItemSelectedListener()
         {
             replaceFragment(

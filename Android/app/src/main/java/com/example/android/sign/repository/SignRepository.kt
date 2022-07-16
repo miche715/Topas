@@ -10,6 +10,7 @@ import com.example.android.base.BaseApplication.Companion.firebaseStorage
 import com.example.android.base.BaseApplication.Companion.currentUser
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
+import com.google.firebase.Timestamp
 import javax.inject.Inject
 
 class SignRepository @Inject constructor()
@@ -47,7 +48,8 @@ class SignRepository @Inject constructor()
                                                                   "profile_photo_uri" to profilePhotoUri,
                                                                   "introduce" to "",
                                                                   "exposure" to false,
-                                                                  "skill" to mutableListOf<String>())
+                                                                  "skill" to mutableListOf<String>(),
+                                                                  "update_at" to Timestamp.now())
 
                             firebaseFirestore.collection("user").add(newUser).addOnCompleteListener()  // Auth에 가입은 성공 했으니까 user 컬렉션에 유저 정보를 넣음
                             {documentReference ->

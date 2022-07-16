@@ -2,7 +2,6 @@ package com.example.android.contact.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.contact.view.MemberContactFragment
 import com.example.android.databinding.ItemMemberBinding
@@ -47,9 +46,14 @@ class MemberAdapter(private val memberContactFragment: MemberContactFragment) : 
         }
     }
 
-    fun setMemberList(memberList: MutableList<User>)
+    fun addMemberList(memberList: MutableList<User>)
     {
-        this.memberList = memberList
+        this.memberList.addAll(memberList)
         notifyDataSetChanged()
+    }
+
+    fun clearMemberList()
+    {
+        this.memberList = mutableListOf()
     }
 }

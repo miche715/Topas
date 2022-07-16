@@ -19,7 +19,7 @@
         <TextView
             android:id="@+id/skillTextView"
             android:layout_width="0dp"
-            android:layout_height="40sp"
+            android:layout_height="30dp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:gravity="left|center_vertical"
             android:includeFontPadding="true"

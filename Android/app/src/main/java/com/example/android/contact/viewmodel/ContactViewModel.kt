@@ -12,10 +12,15 @@ import javax.inject.Inject
 class ContactViewModel @Inject constructor(private val contactRepository: ContactRepository) : ViewModel()
 {
     private val _loadMemberListResult: MutableLiveData<MutableList<User>> = MutableLiveData()
-    val loadMemberListResult: MutableLiveData<MutableList<User>> = _loadMemberListResult
+    val loadMemberListResult: LiveData<MutableList<User>> = _loadMemberListResult
 
     fun loadMemberList()
     {
         contactRepository.loadMemberListFirebase(_loadMemberListResult)
+    }
+
+    fun initializeLoadMemberListQuery()
+    {
+        contactRepository.initializeLoadMemberListQuery()
     }
 }

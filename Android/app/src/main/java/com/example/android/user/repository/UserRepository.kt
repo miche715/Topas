@@ -11,6 +11,7 @@ import javax.inject.Inject
 import com.example.android.base.BaseApplication.Companion.firebaseFirestore
 import com.example.android.base.BaseApplication.Companion.firebaseStorage
 import com.example.android.base.BaseApplication.Companion.currentUser
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
@@ -54,7 +55,8 @@ class UserRepository @Inject constructor()
                                                               "profile_photo_uri" to profilePhotoUri,
                                                               "introduce" to introduce,
                                                               "exposure" to isExposureChecked,
-                                                              "skill" to skill)
+                                                              "skill" to skill,
+                                                              "update_at" to Timestamp.now())
 
                     firebaseFirestore.collection("user").document(currentUser!!.documentId!!).set(updateUser, SetOptions.merge()).addOnCompleteListener()  // 병합
                     {void ->
