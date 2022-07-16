@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.contact.view.MemberContactFragment
 import com.example.android.databinding.ItemMemberBinding
 import com.example.android.user.domain.User
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
 
 class MemberAdapter(private val memberContactFragment: MemberContactFragment) : RecyclerView.Adapter<MemberAdapter.ViewHolder>()
 {
@@ -31,20 +33,17 @@ class MemberAdapter(private val memberContactFragment: MemberContactFragment) : 
         fun bind(member: User)
         {
             val memberSkillAdapter = MemberSkillAdapter()
+            val flexBoxLayoutManager = FlexboxLayoutManager(memberContactFragment.context)
+            flexBoxLayoutManager.justifyContent = JustifyContent.CENTER
+
 
             binding.member = member
             binding.memberSkillRecyclerView.apply()
             {
                 adapter = memberSkillAdapter
-                layoutManager = GridLayoutManager(context, 3)
+                layoutManager = flexBoxLayoutManager
             }
             memberSkillAdapter.setMemberSkillList(member.skill!!.toMutableList())
-
-
-
-
-
-            // binding.userSkillFragment = userSkillFragment
         }
     }
 
