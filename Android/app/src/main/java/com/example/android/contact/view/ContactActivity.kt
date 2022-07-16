@@ -1,9 +1,11 @@
 package com.example.android.contact.view
 
 import android.content.Intent
+import android.view.Menu
+import android.view.MenuItem
+import androidx.fragment.app.Fragment
 import com.example.android.R
 import com.example.android.base.BaseActivity
-import com.example.android.base.BaseApplication.Companion.currentUser
 import com.example.android.databinding.ActivityContactBinding
 import com.example.android.user.view.UserSettingActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -13,13 +15,48 @@ class ContactActivity : BaseActivity<ActivityContactBinding>(R.layout.activity_c
 {
     override fun onInitialize()
     {
-        binding.button.setOnClickListener()
+        setToolBar(binding.toolBar)
+
+        binding.bottomNavigationView.setOnItemSelectedListener()
         {
-            Intent(this@ContactActivity, UserSettingActivity::class.java).run()
-            {
-                startActivity(this)
-                finish()
+            replaceFragment(
+                when(it.itemId)
+                {
+                    R.id.member -> MemberContactFragment()
+                    else -> TeamContactFragment()
+                })
+            true
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean
+    {
+        menuInflater.inflate(R.menu.menu_toolbar_contact, menu)
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean
+    {
+        when(item.itemId)
+        {
+            R.id.userSettingIcon -> {
+                Intent(this@ContactActivity, UserSettingActivity::class.java).run()
+                {
+                    startActivity(this)
+                    finish()
+                }
             }
         }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun replaceFragment(fragment: Fragment)
+    {
+        supportFragmentManager.beginTransaction()
+            //.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right)
+            .replace(binding.memberTeamFragmentContainerView.id, fragment)
+            .commit()
     }
 }

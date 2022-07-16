@@ -5,17 +5,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".contact.view.ContactActivity">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBar"
+            style="@style/tool_bar_style"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/toolBarTitleTextView"
+                style="@style/tool_bar_title_text_view_style"
+                android:text="팀 구성" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/memberTeamFragmentContainerView"
+            android:name="com.example.android.contact.view.MemberContactFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolBar" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Button"
-            tools:layout_editor_absoluteX="150dp"
-            tools:layout_editor_absoluteY="272dp" />
+            android:background="@color/white_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/menu_bottom_navigation_contact" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

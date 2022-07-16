@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable-v24/account_circle.xml" value="0.2075" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable-v24/chevron_left-48px.xml" value="0.1" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable-v24/chevron_left.xml" value="0.2065" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable-v24/chevron_right-48px.xml" value="0.1" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable-v24/chevron_right.xml" value="0.2065" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable-v24/groups.xml" value="0.2075" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable-v24/person.xml" value="0.1" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/add_box-48px.xml" value="0.1" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/add_box.xml" value="0.2075" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/add_photo_alternate-48px.xml" value="0.206" />
@@ -21,14 +24,15 @@
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/temp.xml" value="0.206" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/white_button_round_edge_background.xml" value="0.206" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/font/font.xml" value="0.3963541666666667" />
-        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_contact.xml" value="0.3496376811594203" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_contact.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_on_boarding.xml" value="0.30833333333333335" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_sign_in.xml" value="0.30833333333333335" />
-        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_sign_up.xml" value="0.30833333333333335" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_sign_up.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_splash.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_user_setting.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_user_skill.xml" value="0.3175438596491228" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/fragment_member_contact.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/fragment_on_boarding1.xml" value="0.30833333333333335" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/fragment_on_boarding2.xml" value="0.30833333333333335" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/fragment_on_boarding3.xml" value="0.30833333333333335" />
@@ -36,6 +40,7 @@
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/fragment_splash1.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/fragment_splash2.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/fragment_splash3.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/fragment_team_contact.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/fragment_user_skill.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/item_my_skill.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/item_search_skill.xml" value="0.3175438596491228" />
@@ -44,6 +49,9 @@
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/splash1.xml" value="0.3651041666666667" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/splash2.xml" value="0.3651041666666667" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/splash3.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/menu/bottom_navigation_contact_menu.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/menu/menu_bottom_navigation_contact.xml" value="0.3770833333333333" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/menu/menu_contact.xml" value="0.36614583333333334" />
       </map>
     </option>
   </component>

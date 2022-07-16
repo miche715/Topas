@@ -75,13 +75,11 @@ class UserSettingActivity : BaseActivity<ActivityUserSettingBinding>(R.layout.ac
     {
         when(item.itemId)
         {
-            android.R.id.home -> {
-                Intent(this@UserSettingActivity, ContactActivity::class.java).run()
-                {
-                    startActivity(this)
-                    finish()
-                }
-            }
+            android.R.id.home -> Intent(this@UserSettingActivity, ContactActivity::class.java).run()
+                                {
+                                    startActivity(this)
+                                    finish()
+                                }
         }
 
         return super.onOptionsItemSelected(item)
