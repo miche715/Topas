@@ -1,6 +1,5 @@
 package com.example.android.contact.view
 
-import android.content.Intent
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView

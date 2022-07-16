@@ -35,7 +35,6 @@ class MemberAdapter(private val memberContactFragment: MemberContactFragment) : 
             val flexBoxLayoutManager = FlexboxLayoutManager(memberContactFragment.context)
             flexBoxLayoutManager.justifyContent = JustifyContent.CENTER
 
-
             binding.member = member
             binding.memberSkillRecyclerView.apply()
             {
