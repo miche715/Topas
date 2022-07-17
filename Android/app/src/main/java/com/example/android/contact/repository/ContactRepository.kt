@@ -80,7 +80,7 @@ class ContactRepository @Inject constructor()
 
     private var tempLoadMemberBySkillList = mutableListOf<User>()
 
-    fun loadMemberBySkillListFirebase(skill: List<String>, _loadMemberBySkillResult: MutableLiveData<MutableList<User>>)
+    fun loadMemberBySkillListFirebase(skill: List<String>, _loadMemberBySkillResult: MutableLiveData<MutableList<User>>, _loadMemberBySkillErrorMessage: MutableLiveData<String?>)
     {
         tempLoadMemberBySkillList.clear()
 
@@ -119,10 +119,11 @@ class ContactRepository @Inject constructor()
                     }
                 }
                 _loadMemberBySkillResult.value = tempLoadMemberBySkillList
+                _loadMemberBySkillErrorMessage.value = null
             }
             else  // 정보 노출을 허용한 유저가 없음
             {
-
+                _loadMemberBySkillErrorMessage.value = "검색 결과가 없습니다."
             }
         }
     }
