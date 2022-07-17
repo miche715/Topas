@@ -8,6 +8,7 @@ import com.example.android.user.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import com.example.android.base.BaseApplication.Companion.currentUser
+import com.example.android.utility.skillList
 
 @HiltViewModel
 class UserViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel()
@@ -75,7 +76,7 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
 
         if(skillString.isNotEmpty())  // 스킬을 검색하는 에디트 텍스트가 비어있지 않음
         {
-            userRepository.skillList.forEach()  // 스킬들을 넣어둔 리스트에서 검색 조건에 맞는 스킬들을 찾을건데
+            skillList.forEach()  // 스킬들을 넣어둔 리스트에서 검색 조건에 맞는 스킬들을 찾을건데
             {
                 if(it.length >= skillString.length)  // 앞에서 부터 잘라서 검사할 것이므로 들어온 문자열이 스킬의 이름보다 길면 예외가 뜸
                 {

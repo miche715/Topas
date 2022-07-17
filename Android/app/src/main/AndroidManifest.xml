@@ -18,7 +18,7 @@
         android:theme="@style/Theme.Android"
         tools:targetApi="31">
         <activity
-            android:name=".user.view.UserSkillActivity"
+            android:name=".contact.view.MemberSearchActivity"
             android:exported="false" />
         <activity
             android:name=".contact.view.ContactActivity"

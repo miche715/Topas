@@ -8,11 +8,14 @@ import com.example.android.R
 import com.example.android.base.BaseActivity
 import com.example.android.databinding.ActivityContactBinding
 import com.example.android.user.view.UserSettingActivity
+import com.example.android.utility.NowFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ContactActivity : BaseActivity<ActivityContactBinding>(R.layout.activity_contact)
 {
+    private var nowFragment = NowFragment.MEMBER
+
     override fun onInitialize()
     {
         setToolBar(binding.toolBar)
@@ -22,8 +25,14 @@ class ContactActivity : BaseActivity<ActivityContactBinding>(R.layout.activity_c
             replaceFragment(
                 when(it.itemId)
                 {
-                    R.id.member -> MemberContactFragment()
-                    else -> TeamContactFragment()
+                    R.id.member -> {
+                        nowFragment = NowFragment.MEMBER
+                        MemberContactFragment()
+                    }
+                    else -> {
+                        nowFragment = NowFragment.TEAM
+                        TeamContactFragment()
+                    }
                 })
             true
         }
@@ -47,6 +56,22 @@ class ContactActivity : BaseActivity<ActivityContactBinding>(R.layout.activity_c
                     finish()
                 }
             }
+
+            R.id.searchIcon -> {
+                when(nowFragment)
+                {
+                    NowFragment.MEMBER -> {
+                        Intent(this@ContactActivity, MemberSearchActivity::class.java).run()
+                        {
+                            startActivity(this)
+                        }
+                    }
+                    else ->
+                    {
+
+                    }
+                }
+            }
         }
 
         return super.onOptionsItemSelected(item)
@@ -55,7 +80,6 @@ class ContactActivity : BaseActivity<ActivityContactBinding>(R.layout.activity_c
     private fun replaceFragment(fragment: Fragment)
     {
         supportFragmentManager.beginTransaction()
-            //.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right)
             .replace(binding.memberTeamFragmentContainerView.id, fragment)
             .commit()
     }
