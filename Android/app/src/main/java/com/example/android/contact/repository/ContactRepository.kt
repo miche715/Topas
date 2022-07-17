@@ -77,4 +77,56 @@ class ContactRepository @Inject constructor()
             }
         }
     }
+
+    private var tempLoadMemberListForSkillResult = mutableListOf<User>()
+    private lateinit var loadMemberListForSkillQuery: Query
+
+    fun loadMemberListForSkillFirebase(skill: List<String>, _loadMemberListForSkillResult: MutableLiveData<MutableList<User>>)
+    {
+        tempLoadMemberListForSkillResult.clear()
+
+        firebaseFirestore
+            .collection("user")
+            .whereEqualTo("exposure", true)
+            .whereArrayContainsAny("skill", skill)
+            .orderBy("update_at", Query.Direction.DESCENDING)
+            .limit(5).get().addOnCompleteListener()
+        {querySnapshot ->
+            if(querySnapshot.result.size() > 0)  // 정보 노출을 허용한 유저가 0명 이상임
+            {
+                Log.d("*** loadMemberListForSkillFirebase User 리스트 로딩 성공 ***", "${querySnapshot.result}")
+
+                querySnapshot.result.documents.forEach()
+                {
+                    if((it["email"] as String) != currentUser!!.email)  // 자기 자신은 표시하지 않음
+                    {
+                        @Suppress("UNCHECKED_CAST")
+                        User().apply()
+                        {
+                            this.email = it["email"] as String
+                            this.name = it["name"] as String
+                            this.nickName = it["nick_name"] as String
+                            this.profilePhotoUri = it["profile_photo_uri"]?.run()
+                            {
+                                this as String
+                            }?: kotlin.run()
+                            {
+                                null
+                            }
+                            this.introduce = it["introduce"] as String
+                            this.skill = it["skill"] as List<String>
+                        }.run()
+                        {
+                            tempLoadMemberListForSkillResult.add(this)
+                        }
+                    }
+                }
+                _loadMemberListForSkillResult.value = tempLoadMemberListForSkillResult
+            }
+            else  // 정보 노출을 허용한 유저가 없음
+            {
+
+            }
+        }
+    }
 }

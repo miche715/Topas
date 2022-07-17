@@ -1,15 +1,16 @@
 package com.example.android.contact.adapter
 
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.contact.view.MemberContactFragment
 import com.example.android.databinding.ItemMemberBinding
 import com.example.android.user.domain.User
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 
-class MemberAdapter(private val memberContactFragment: MemberContactFragment) : RecyclerView.Adapter<MemberAdapter.ViewHolder>()
+class MemberAdapter(private val view: Any) : RecyclerView.Adapter<MemberAdapter.ViewHolder>()
 {
     private var memberList = mutableListOf<User>()
 
@@ -32,7 +33,14 @@ class MemberAdapter(private val memberContactFragment: MemberContactFragment) : 
         fun bind(member: User)
         {
             val memberSkillAdapter = MemberSkillAdapter()
-            val flexBoxLayoutManager = FlexboxLayoutManager(memberContactFragment.context)
+            val flexBoxLayoutManager = if(view is Fragment)
+            {
+                FlexboxLayoutManager(view.context)
+            }
+            else
+            {
+                FlexboxLayoutManager((view as Activity))
+            }
             flexBoxLayoutManager.justifyContent = JustifyContent.CENTER
 
             binding.member = member
