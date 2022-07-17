@@ -1,11 +1,12 @@
 package com.example.android.contact.view
 
+import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.R
 import com.example.android.base.BaseActivity
 import com.example.android.contact.adapter.MemberAdapter
-import com.example.android.contact.adapter.SearchMemberSkillAdapter
+import com.example.android.contact.adapter.MemberSearchSkillAdapter
 import com.example.android.contact.viewmodel.ContactViewModel
 import com.example.android.databinding.ActivityMemberSearchBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,14 +16,14 @@ class MemberSearchActivity : BaseActivity<ActivityMemberSearchBinding>(R.layout.
 {
     private val contactViewModel: ContactViewModel by viewModels()
 
-    private val searchMemberSkillAdapter: SearchMemberSkillAdapter by lazy { SearchMemberSkillAdapter(this@MemberSearchActivity) }
+    private val memberSearchSkillAdapter: MemberSearchSkillAdapter by lazy { MemberSearchSkillAdapter(this@MemberSearchActivity) }
     private val memberAdapter: MemberAdapter by lazy { MemberAdapter(this@MemberSearchActivity) }
 
     override fun onInitialize()
     {
         setToolBar(binding.toolBar, true)
 
-        binding.searchSkillRecyclerView.adapter = searchMemberSkillAdapter
+        binding.searchSkillRecyclerView.adapter = memberSearchSkillAdapter
         binding.searchSkillRecyclerView.layoutManager = LinearLayoutManager(this@MemberSearchActivity)
 
         binding.memberRecyclerView.adapter = memberAdapter
@@ -33,7 +34,7 @@ class MemberSearchActivity : BaseActivity<ActivityMemberSearchBinding>(R.layout.
 
         contactViewModel.searchSkillResult.observe(this@MemberSearchActivity)
         {
-            searchMemberSkillAdapter.setSearchSkillList(it)
+            memberSearchSkillAdapter.setSearchSkillList(it)
         }
 
         contactViewModel.loadMemberBySkillResult.observe(this@MemberSearchActivity)
@@ -47,8 +48,9 @@ class MemberSearchActivity : BaseActivity<ActivityMemberSearchBinding>(R.layout.
         contactViewModel.searchSkill(binding.skillEditText.text.toString())
     }
 
-    fun selectSkill(skill: String)
+    fun selectSkill(skill: String, view: View)
     {
+        hideKeyBoard(view.windowToken)
         binding.skillEditText.text = null
         memberAdapter.clearMemberList()
         loadMember(skill)
