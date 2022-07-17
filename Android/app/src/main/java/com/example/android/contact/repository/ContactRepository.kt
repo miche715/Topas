@@ -78,23 +78,20 @@ class ContactRepository @Inject constructor()
         }
     }
 
-    private var tempLoadMemberListForSkillResult = mutableListOf<User>()
-    private lateinit var loadMemberListForSkillQuery: Query
+    private var tempLoadMemberBySkillList = mutableListOf<User>()
 
-    fun loadMemberListForSkillFirebase(skill: List<String>, _loadMemberListForSkillResult: MutableLiveData<MutableList<User>>)
+    fun loadMemberBySkillListFirebase(skill: List<String>, _loadMemberBySkillResult: MutableLiveData<MutableList<User>>)
     {
-        tempLoadMemberListForSkillResult.clear()
+        tempLoadMemberBySkillList.clear()
 
-        firebaseFirestore
-            .collection("user")
-            .whereEqualTo("exposure", true)
-            .whereArrayContainsAny("skill", skill)
-            .orderBy("update_at", Query.Direction.DESCENDING)
-            .limit(5).get().addOnCompleteListener()
+        firebaseFirestore.collection("user")
+            .whereEqualTo("exposure", true).whereArrayContainsAny("skill", skill)
+            .orderBy("update_at", Query.Direction.DESCENDING).limit(5).get()
+            .addOnCompleteListener()
         {querySnapshot ->
             if(querySnapshot.result.size() > 0)  // 정보 노출을 허용한 유저가 0명 이상임
             {
-                Log.d("*** loadMemberListForSkillFirebase User 리스트 로딩 성공 ***", "${querySnapshot.result}")
+                Log.d("*** loadMemberBySkillListFirebase User 리스트 로딩 성공 ***", "${querySnapshot.result}")
 
                 querySnapshot.result.documents.forEach()
                 {
@@ -117,11 +114,11 @@ class ContactRepository @Inject constructor()
                             this.skill = it["skill"] as List<String>
                         }.run()
                         {
-                            tempLoadMemberListForSkillResult.add(this)
+                            tempLoadMemberBySkillList.add(this)
                         }
                     }
                 }
-                _loadMemberListForSkillResult.value = tempLoadMemberListForSkillResult
+                _loadMemberBySkillResult.value = tempLoadMemberBySkillList
             }
             else  // 정보 노출을 허용한 유저가 없음
             {

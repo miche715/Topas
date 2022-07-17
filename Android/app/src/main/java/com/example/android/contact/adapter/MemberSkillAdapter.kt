@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.databinding.ItemMemberSkillBinding
 
-class MemberSkillAdapter : RecyclerView.Adapter<MemberSkillAdapter.ViewHolder>()
+class MemberSkillAdapter : RecyclerView.Adapter<MemberSkillAdapter.ViewHolder>()  // 멤버를 보면 스킬 목록이 있다, 거기 리사이클러뷰에 쓰이는 어댑터
 {
     private var memberSkillList = mutableListOf<String>()
 

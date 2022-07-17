@@ -53,11 +53,11 @@ class ContactViewModel @Inject constructor(private val contactRepository: Contac
         }
     }
 
-    private val _loadMemberListForSkillResult: MutableLiveData<MutableList<User>> = MutableLiveData()
-    val loadMemberListForSkillResult: LiveData<MutableList<User>> = _loadMemberListForSkillResult
+    private val _loadMemberBySkillResult: MutableLiveData<MutableList<User>> = MutableLiveData()
+    val loadMemberBySkillResult: LiveData<MutableList<User>> = _loadMemberBySkillResult
 
-    fun searchMemberBySkill(skill: String)
+    fun loadMemberBySkillList(skill: String)
     {
-        contactRepository.loadMemberListForSkillFirebase(listOf(skill), _loadMemberListForSkillResult)
+        contactRepository.loadMemberBySkillListFirebase(listOf(skill), _loadMemberBySkillResult)
     }
 }

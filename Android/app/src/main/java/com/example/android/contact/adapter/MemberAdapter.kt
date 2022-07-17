@@ -10,7 +10,7 @@ import com.example.android.user.domain.User
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 
-class MemberAdapter(private val view: Any) : RecyclerView.Adapter<MemberAdapter.ViewHolder>()
+class MemberAdapter(private val view: Any) : RecyclerView.Adapter<MemberAdapter.ViewHolder>()  // 멤버들의 목록을 표시하는 어댑터, 일반과 검색 둘 다 사용
 {
     private var memberList = mutableListOf<User>()
 
@@ -39,7 +39,7 @@ class MemberAdapter(private val view: Any) : RecyclerView.Adapter<MemberAdapter.
             }
             else
             {
-                FlexboxLayoutManager((view as Activity))
+                FlexboxLayoutManager(view as Activity)
             }
             flexBoxLayoutManager.justifyContent = JustifyContent.CENTER
 

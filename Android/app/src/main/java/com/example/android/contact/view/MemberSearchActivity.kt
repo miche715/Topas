@@ -36,7 +36,7 @@ class MemberSearchActivity : BaseActivity<ActivityMemberSearchBinding>(R.layout.
             searchMemberSkillAdapter.setSearchSkillList(it)
         }
 
-        contactViewModel.loadMemberListForSkillResult.observe(this@MemberSearchActivity)
+        contactViewModel.loadMemberBySkillResult.observe(this@MemberSearchActivity)
         {
             memberAdapter.addMemberList(it)
         }
@@ -54,8 +54,8 @@ class MemberSearchActivity : BaseActivity<ActivityMemberSearchBinding>(R.layout.
         loadMember(skill)
     }
 
-    fun loadMember(skill: String)
+    private fun loadMember(skill: String)
     {
-        contactViewModel.searchMemberBySkill(skill)
+        contactViewModel.loadMemberBySkillList(skill)
     }
 }

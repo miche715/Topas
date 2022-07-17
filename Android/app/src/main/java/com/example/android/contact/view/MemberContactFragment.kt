@@ -56,7 +56,7 @@ class MemberContactFragment : BaseFragment<FragmentMemberContactBinding>(R.layou
         }
     }
 
-    fun loadMember()
+    private fun loadMember()
     {
         contactViewModel.loadMemberList()
     }

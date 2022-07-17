@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.contact.view.MemberSearchActivity
 import com.example.android.databinding.ItemSearchMemberSkillBinding
 
-class SearchMemberSkillAdapter(private val memberSearchActivity: MemberSearchActivity) : RecyclerView.Adapter<SearchMemberSkillAdapter.ViewHolder>()
+class SearchMemberSkillAdapter(private val memberSearchActivity: MemberSearchActivity) : RecyclerView.Adapter<SearchMemberSkillAdapter.ViewHolder>()  // 검색할때 아래로 뜨는 어댑터
 {
     private var searchSkillList = mutableListOf<String>()
 
