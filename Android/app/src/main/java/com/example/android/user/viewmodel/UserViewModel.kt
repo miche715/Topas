@@ -127,11 +127,13 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
 
     fun completeMySkill()
     {
+        _searchSkillResult.value?.clear()
         _mySkillString.value = _mySkillResult.value?.joinToString(", ")
     }
 
     fun cancelMySkill()
     {
+        _searchSkillResult.value?.clear()
         _mySkillResult.value = _mySkillString.value?.split(", ")?.toMutableList() ?: currentUser!!.skill?.toMutableList()
     }
 

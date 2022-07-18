@@ -120,6 +120,11 @@ class ContactRepository @Inject constructor()
                 }
                 _loadMemberBySkillResult.value = tempLoadMemberBySkillList
                 _loadMemberBySkillErrorMessage.value = null
+
+                if(_loadMemberBySkillResult.value!!.size == 0)  // 다른 사람은 해당 스킬을 안가지고 있는데 본인이 가지고 있어서 에러 메세지가 안나올 수도 있다.
+                {
+                    _loadMemberBySkillErrorMessage.value = "검색 결과가 없습니다."
+                }
             }
             else  // 정보 노출을 허용한 유저가 없음
             {
