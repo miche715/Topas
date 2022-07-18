@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="teamCreateActivity"
+            type="com.example.android.team.view.TeamCreateActivity" />
+
+        <variable
+            name="skill"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/skillTextView"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="true"
+            android:onClick="@{() -> teamCreateActivity.selectSkill(skill)}"
+            android:text="@{skill}"
+            android:textColor="@color/strong_color"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
