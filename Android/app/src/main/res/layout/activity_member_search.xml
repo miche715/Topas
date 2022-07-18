@@ -2,18 +2,18 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".contact.view.MemberSearchActivity">
+    tools:context=".member.view.MemberSearchActivity">
 
     <data>
         <import type="android.view.View" />
 
         <variable
             name="contactViewModel"
-            type="com.example.android.contact.viewmodel.ContactViewModel" />
+            type="com.example.android.member.viewmodel.MemberViewModel" />
 
         <variable
             name="memberSearchActivity"
-            type="com.example.android.contact.view.MemberSearchActivity" />
+            type="com.example.android.member.view.MemberSearchActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

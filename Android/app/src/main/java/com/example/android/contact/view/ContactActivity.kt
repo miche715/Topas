@@ -4,9 +4,12 @@ import android.content.Intent
 import android.view.Menu
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
+import com.example.android.member.view.MemberContactFragment
+import com.example.android.member.view.MemberSearchActivity
 import com.example.android.R
 import com.example.android.base.BaseActivity
 import com.example.android.databinding.ActivityContactBinding
+import com.example.android.team.view.TeamContactFragment
 import com.example.android.user.view.UserSettingActivity
 import com.example.android.utility.NowFragment
 import dagger.hilt.android.AndroidEntryPoint

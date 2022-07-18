@@ -1,4 +1,4 @@
-package com.example.android.contact.view
+package com.example.android.team.view
 
 import com.example.android.R
 import com.example.android.base.BaseFragment

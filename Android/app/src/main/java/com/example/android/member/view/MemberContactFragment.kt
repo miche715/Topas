@@ -1,19 +1,19 @@
-package com.example.android.contact.view
+package com.example.android.member.view
 
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.R
 import com.example.android.base.BaseFragment
-import com.example.android.contact.adapter.MemberAdapter
-import com.example.android.contact.viewmodel.ContactViewModel
+import com.example.android.member.adapter.MemberAdapter
+import com.example.android.member.viewmodel.MemberViewModel
 import com.example.android.databinding.FragmentMemberContactBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MemberContactFragment : BaseFragment<FragmentMemberContactBinding>(R.layout.fragment_member_contact)
 {
-    private val contactViewModel: ContactViewModel by activityViewModels()
+    private val memberViewModel: MemberViewModel by activityViewModels()
 
     private val memberAdapter: MemberAdapter by lazy { MemberAdapter(this@MemberContactFragment) }
 
@@ -22,13 +22,13 @@ class MemberContactFragment : BaseFragment<FragmentMemberContactBinding>(R.layou
         binding!!.memberRecyclerView.adapter = memberAdapter
         binding!!.memberRecyclerView.layoutManager = LinearLayoutManager(this@MemberContactFragment.context)
 
-        contactViewModel.initializeLoadMemberListQuery()
+        memberViewModel.initializeLoadMemberListQuery()
         loadMember()
 
         binding!!.swipeRefreshLayout.setOnRefreshListener()  // 맨 위로 스크롤 하면 새로고침
         {
             memberAdapter.clearMemberList()  // 어댑터의 리스트를 비움
-            contactViewModel.initializeLoadMemberListQuery()  // 쿼리를 초기로 돌림
+            memberViewModel.initializeLoadMemberListQuery()  // 쿼리를 초기로 돌림
             loadMember()  // 리스트 로딩
 
             binding!!.swipeRefreshLayout.isRefreshing = false
@@ -50,7 +50,7 @@ class MemberContactFragment : BaseFragment<FragmentMemberContactBinding>(R.layou
             }
         })
 
-        contactViewModel.loadMemberListResult.observe(this@MemberContactFragment.activity!!)
+        memberViewModel.loadMemberListResult.observe(this@MemberContactFragment.activity!!)
         {
             memberAdapter.addMemberList(it)
         }
@@ -58,6 +58,6 @@ class MemberContactFragment : BaseFragment<FragmentMemberContactBinding>(R.layou
 
     private fun loadMember()
     {
-        contactViewModel.loadMemberList()
+        memberViewModel.loadMemberList()
     }
 }

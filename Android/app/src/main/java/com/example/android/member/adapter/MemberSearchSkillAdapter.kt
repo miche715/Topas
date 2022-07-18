@@ -1,9 +1,9 @@
-package com.example.android.contact.adapter
+package com.example.android.member.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.contact.view.MemberSearchActivity
+import com.example.android.member.view.MemberSearchActivity
 import com.example.android.databinding.ItemSearchMemberSkillBinding
 
 class MemberSearchSkillAdapter(private val memberSearchActivity: MemberSearchActivity) : RecyclerView.Adapter<MemberSearchSkillAdapter.ViewHolder>()  // 검색할때 아래로 뜨는 어댑터

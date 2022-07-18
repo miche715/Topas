@@ -1,28 +1,28 @@
-package com.example.android.contact.viewmodel
+package com.example.android.member.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.android.contact.repository.ContactRepository
+import com.example.android.member.repository.MemberRepository
 import com.example.android.user.domain.User
 import com.example.android.utility.skillList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ContactViewModel @Inject constructor(private val contactRepository: ContactRepository) : ViewModel()
+class MemberViewModel @Inject constructor(private val memberRepository: MemberRepository) : ViewModel()
 {
     private val _loadMemberListResult: MutableLiveData<MutableList<User>> = MutableLiveData()
     val loadMemberListResult: LiveData<MutableList<User>> = _loadMemberListResult
 
     fun loadMemberList()
     {
-        contactRepository.loadMemberListFirebase(_loadMemberListResult)
+        memberRepository.loadMemberListFirebase(_loadMemberListResult)
     }
 
     fun initializeLoadMemberListQuery()
     {
-        contactRepository.initializeLoadMemberListQuery()
+        memberRepository.initializeLoadMemberListQuery()
     }
 
     private val _searchSkillResult: MutableLiveData<MutableList<String>> = MutableLiveData()
@@ -60,6 +60,6 @@ class ContactViewModel @Inject constructor(private val contactRepository: Contac
 
     fun loadMemberBySkillList(skill: String)
     {
-        contactRepository.loadMemberBySkillListFirebase(listOf(skill), _loadMemberBySkillResult, _loadMemberBySkillErrorMessage)
+        memberRepository.loadMemberBySkillListFirebase(listOf(skill), _loadMemberBySkillResult, _loadMemberBySkillErrorMessage)
     }
 }

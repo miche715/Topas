@@ -1,4 +1,4 @@
-package com.example.android.contact.adapter
+package com.example.android.member.adapter
 
 import android.app.Activity
 import android.view.LayoutInflater

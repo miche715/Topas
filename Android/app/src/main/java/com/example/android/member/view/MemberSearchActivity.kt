@@ -1,20 +1,20 @@
-package com.example.android.contact.view
+package com.example.android.member.view
 
 import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.R
 import com.example.android.base.BaseActivity
-import com.example.android.contact.adapter.MemberAdapter
-import com.example.android.contact.adapter.MemberSearchSkillAdapter
-import com.example.android.contact.viewmodel.ContactViewModel
+import com.example.android.member.adapter.MemberAdapter
+import com.example.android.member.adapter.MemberSearchSkillAdapter
+import com.example.android.member.viewmodel.MemberViewModel
 import com.example.android.databinding.ActivityMemberSearchBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MemberSearchActivity : BaseActivity<ActivityMemberSearchBinding>(R.layout.activity_member_search)
 {
-    private val contactViewModel: ContactViewModel by viewModels()
+    private val memberViewModel: MemberViewModel by viewModels()
 
     private val memberSearchSkillAdapter: MemberSearchSkillAdapter by lazy { MemberSearchSkillAdapter(this@MemberSearchActivity) }
     private val memberAdapter: MemberAdapter by lazy { MemberAdapter(this@MemberSearchActivity) }
@@ -29,15 +29,15 @@ class MemberSearchActivity : BaseActivity<ActivityMemberSearchBinding>(R.layout.
         binding.memberRecyclerView.adapter = memberAdapter
         binding.memberRecyclerView.layoutManager = LinearLayoutManager(this@MemberSearchActivity)
 
-        binding.contactViewModel = contactViewModel
+        binding.contactViewModel = memberViewModel
         binding.memberSearchActivity = this@MemberSearchActivity
 
-        contactViewModel.searchSkillResult.observe(this@MemberSearchActivity)
+        memberViewModel.searchSkillResult.observe(this@MemberSearchActivity)
         {
             memberSearchSkillAdapter.setSearchSkillList(it)
         }
 
-        contactViewModel.loadMemberBySkillResult.observe(this@MemberSearchActivity)
+        memberViewModel.loadMemberBySkillResult.observe(this@MemberSearchActivity)
         {
             memberAdapter.addMemberList(it)
         }
@@ -45,7 +45,7 @@ class MemberSearchActivity : BaseActivity<ActivityMemberSearchBinding>(R.layout.
 
     fun searchSkill()
     {
-        contactViewModel.searchSkill(binding.skillEditText.text.toString())
+        memberViewModel.searchSkill(binding.skillEditText.text.toString())
     }
 
     fun selectSkill(skill: String, view: View)
@@ -58,6 +58,6 @@ class MemberSearchActivity : BaseActivity<ActivityMemberSearchBinding>(R.layout.
 
     private fun loadMember(skill: String)
     {
-        contactViewModel.loadMemberBySkillList(skill)
+        memberViewModel.loadMemberBySkillList(skill)
     }
 }

@@ -1,4 +1,4 @@
-package com.example.android.contact.repository
+package com.example.android.member.repository
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -9,7 +9,7 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Query
 import javax.inject.Inject
 
-class ContactRepository @Inject constructor()
+class MemberRepository @Inject constructor()
 {
     private var tempLoadMemberListResult = mutableListOf<User>()
     private lateinit var loadMemberListQuery: Query
