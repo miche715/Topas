@@ -67,6 +67,8 @@
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             android:visibility="@{userViewModel.searchSkillErrorMessage == null ?  View.VISIBLE : View.GONE}"
+            android:scrollbarFadeDuration="0"
+            android:scrollbars="vertical"
             app:layout_constraintBottom_toTopOf="@+id/cancelSkillButton"
             app:layout_constraintEnd_toEndOf="@+id/mySkillRecyclerView"
             app:layout_constraintStart_toStartOf="@+id/mySkillRecyclerView"

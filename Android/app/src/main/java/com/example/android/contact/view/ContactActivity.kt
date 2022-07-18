@@ -71,7 +71,7 @@ class ContactActivity : BaseActivity<ActivityContactBinding>(R.layout.activity_c
                     }
                     else ->
                     {
-
+                        // 팀 프래그먼트에서 검색
                     }
                 }
             }

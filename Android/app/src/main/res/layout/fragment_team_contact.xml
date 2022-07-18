@@ -5,7 +5,9 @@
     tools:context=".contact.view.teamContactFragment">
 
     <data>
-
+        <variable
+            name="teamContactFragment"
+            type="com.example.android.team.view.TeamContactFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,6 +31,7 @@
             android:layout_marginBottom="12dp"
             android:clickable="true"
             android:src="@drawable/group_add"
+            android:onClick="@{() -> teamContactFragment.createTeam()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
