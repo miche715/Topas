@@ -71,10 +71,10 @@ class ContactRepository @Inject constructor()
                 }
                 _loadMemberListResult.value = tempLoadMemberListResult
             }
-            else  // 정보 노출을 허용한 유저가 없음
-            {
-
-            }
+//            else  // 정보 노출을 허용한 유저가 없음
+//            {
+//
+//            }
         }
     }
 
