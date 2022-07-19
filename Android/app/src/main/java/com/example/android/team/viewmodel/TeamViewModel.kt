@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.base.BaseApplication
+import com.example.android.team.doamin.Team
 import com.example.android.team.repository.TeamRepository
+import com.example.android.user.domain.User
 import com.example.android.utility.skillList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -12,9 +14,22 @@ import javax.inject.Inject
 @HiltViewModel
 class TeamViewModel @Inject constructor(private val teamRepository: TeamRepository) : ViewModel()
 {
+    private val _loadTeamListResult: MutableLiveData<MutableList<Team>> = MutableLiveData()
+    val loadTeamListResult: LiveData<MutableList<Team>> = _loadTeamListResult
+
+    fun loadMemberList()
+    {
+        teamRepository.loadTeamListFirebase(_loadTeamListResult)
+    }
+
+    fun initializeLoadTeamListQuery()
+    {
+        teamRepository.initializeLoadTeamListQuery()
+    }
+
+
     private val _searchTeamRequireSkillResult: MutableLiveData<MutableList<String>> = MutableLiveData()
     val searchTeamRequireSkillResult: LiveData<MutableList<String>> = _searchTeamRequireSkillResult
-    val searchTeamRequireSkillErrorMessage: MutableLiveData<String?> = MutableLiveData()
     private val tempSearchTeamRequireSkillResult = mutableListOf<String>()
 
     fun searchSkill(skillString: String)
