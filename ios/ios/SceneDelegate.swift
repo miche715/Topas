@@ -18,9 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
         if true {//UserDB.isFirstTime(){
-            let storyboard = UIStoryboard(name: "OnboardingView", bundle: nil)
+            let storyboard = UIStoryboard(name: "Onboard", bundle: nil)
             
             guard let onboarding = storyboard.instantiateViewController(withIdentifier: "onBoarding") as? OnBoarding else { return }
+            
             window?.rootViewController = onboarding
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)

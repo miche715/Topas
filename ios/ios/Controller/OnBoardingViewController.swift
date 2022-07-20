@@ -7,88 +7,68 @@
 
 import UIKit
 
-class OnBoarding: UIViewController {
+class OnBoarding: UIViewController, UIScrollViewDelegate {
+    
+    
+    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    let onboardone : onboard1 = {
+        let view = onboard1()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let onboardtwo : onboard2 = {
+        let view = onboard2()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let onboardthree : onboard3 = {
+        let view = onboard3()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    lazy var onboards : [UIView] = [onboardone, onboardtwo, onboardthree]
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture(_:)))
-        swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
-        self.view.addGestureRecognizer(swipeLeft)
-    }
-
-    @objc func respondToSwipeGesture(_ gesture: UIGestureRecognizer) {
-        print("First Swipe")
-        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
-            switch swipeGesture.direction {
-                case UISwipeGestureRecognizer.Direction.left :
-                    self.performSegue(withIdentifier: "firstSegue", sender: self)
-            default:
-                break
-            }
-        }
-    }
-}
-
-class OnBoardingSecond: UIViewController{
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture(_:)))
-        swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
-        self.view.addGestureRecognizer(swipeLeft)
         
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture(_:)))
-        swipeRight.direction = UISwipeGestureRecognizer.Direction.right
-        self.view.addGestureRecognizer(swipeRight)
-    }
-
-    @objc func respondToSwipeGesture(_ gesture: UIGestureRecognizer) {
-        print("Second Swipe")
-        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
-            switch swipeGesture.direction {
-            case UISwipeGestureRecognizer.Direction.left :
-                self.performSegue(withIdentifier: "secondSegue", sender: self)
-            case UISwipeGestureRecognizer.Direction.right :
-                self.presentingViewController?.dismiss(animated: true)
-            default:
-                break
-            }
+        
+        
+        for i in 0..<onboards.count{
+            let onbaord = onboards[i]
+            var xPosition = self.view.frame.width * CGFloat(i)
+            onbaord.frame = CGRect(x: xPosition, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+            scrollView.contentSize.width = self.view.frame.width * CGFloat(1 + i)
+            scrollView.addSubview(onbaord)
         }
+        setPageControl()
     }
-}
-
-class OnBoardingThree: UIViewController{
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture(_:)))
-        swipeRight.direction = UISwipeGestureRecognizer.Direction.right
-        self.view.addGestureRecognizer(swipeRight)
-    }
-
-    @objc func respondToSwipeGesture(_ gesture: UIGestureRecognizer) {
-        print("Second Swipe")
-        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
-            switch swipeGesture.direction {
-            case UISwipeGestureRecognizer.Direction.right :
-                self.presentingViewController?.dismiss(animated: true)
-            default:
-                break
-            }
-        }
+    
+    private func setPageControl(){
+        pageControl.currentPage = 0
+        pageControl.numberOfPages = onboards.count
+        pageControl.pageIndicatorTintColor = .lightGray
+        pageControl.currentPageIndicatorTintColor = .black
     }
     
     
-    @IBAction func SignIn(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "SignIn", bundle: nil)
-        let signin = storyboard.instantiateViewController(identifier: "SignInView")
-        self.present(signin, animated: true)
+    private func setPageControlSelectedPage(currentPage : Int){
+        pageControl.currentPage = currentPage
     }
-    @IBAction func SignUp(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "SignUp", bundle: nil)
-        let signup = storyboard.instantiateViewController(identifier: "SignUpView")
-        self.present(signup, animated: true)
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let value = scrollView.contentOffset.x / scrollView.frame.size.width
+        setPageControlSelectedPage(currentPage: Int(round(value)))
     }
+    
 }
+
+
+
+
