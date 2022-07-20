@@ -45,24 +45,24 @@ class MemberRepository @Inject constructor()
                 nextLoadMemberListQuery(querySnapshot.result.documents[querySnapshot.result.size() - 1])
 
                 querySnapshot.result.documents.forEach()
-                {
-                    if((it["email"] as String) != currentUser!!.email)  // 자기 자신은 표시하지 않음
+                {documentSnapshot ->
+                    if((documentSnapshot["email"] as String) != currentUser!!.email)  // 자기 자신은 표시하지 않음
                     {
                         @Suppress("UNCHECKED_CAST")
                         User().apply()
                         {
-                            this.email = it["email"] as String
-                            this.name = it["name"] as String
-                            this.nickName = it["nick_name"] as String
-                            this.profilePhotoUri = it["profile_photo_uri"]?.run()
+                            this.email = documentSnapshot["email"] as String
+                            this.name = documentSnapshot["name"] as String
+                            this.nickName = documentSnapshot["nick_name"] as String
+                            this.profilePhotoUri = documentSnapshot["profile_photo_uri"]?.let()
                             {
-                                this as String
+                                it as String
                             }?: kotlin.run()
                             {
                                 null
                             }
-                            this.introduce = it["introduce"] as String
-                            this.skill = it["skill"] as List<String>
+                            this.introduce = documentSnapshot["introduce"] as String
+                            this.skill = documentSnapshot["skill"] as List<String>
                         }.run()
                         {
                             tempLoadMemberListResult.add(this)
@@ -94,24 +94,24 @@ class MemberRepository @Inject constructor()
                 Log.d("*** loadMemberBySkillListFirebase User 리스트 로딩 성공 ***", "${querySnapshot.result}")
 
                 querySnapshot.result.documents.forEach()
-                {
-                    if((it["email"] as String) != currentUser!!.email)  // 자기 자신은 표시하지 않음
+                {documentSnapshot ->
+                    if((documentSnapshot["email"] as String) != currentUser!!.email)  // 자기 자신은 표시하지 않음
                     {
                         @Suppress("UNCHECKED_CAST")
                         User().apply()
                         {
-                            this.email = it["email"] as String
-                            this.name = it["name"] as String
-                            this.nickName = it["nick_name"] as String
-                            this.profilePhotoUri = it["profile_photo_uri"]?.run()
+                            this.email = documentSnapshot["email"] as String
+                            this.name = documentSnapshot["name"] as String
+                            this.nickName = documentSnapshot["nick_name"] as String
+                            this.profilePhotoUri = documentSnapshot["profile_photo_uri"]?.let()
                             {
-                                this as String
+                                it as String
                             }?: kotlin.run()
                             {
                                 null
                             }
-                            this.introduce = it["introduce"] as String
-                            this.skill = it["skill"] as List<String>
+                            this.introduce = documentSnapshot["introduce"] as String
+                            this.skill = documentSnapshot["skill"] as List<String>
                         }.run()
                         {
                             tempLoadMemberBySkillList.add(this)

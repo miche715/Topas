@@ -3,39 +3,37 @@ package com.example.android.member.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.databinding.ItemMemberSearchSkillAllBinding
 import com.example.android.member.view.MemberSearchActivity
-import com.example.android.databinding.ItemSearchMemberSkillBinding
 
 class MemberSearchSkillAdapter(private val memberSearchActivity: MemberSearchActivity) : RecyclerView.Adapter<MemberSearchSkillAdapter.ViewHolder>()  // 검색할때 아래로 뜨는 어댑터
 {
-    private var searchSkillList = mutableListOf<String>()
+    private var items = mutableListOf<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
     {
-        val binding = ItemSearchMemberSkillBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-
-        return ViewHolder(binding)
+        return ViewHolder(ItemMemberSearchSkillAllBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int)
     {
-        holder.bind(searchSkillList[position])
+        holder.bind(items[position])
     }
 
-    override fun getItemCount(): Int = searchSkillList.size
+    override fun getItemCount(): Int = items.size
 
-    inner class ViewHolder(private val binding: ItemSearchMemberSkillBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(private val binding: ItemMemberSearchSkillAllBinding) : RecyclerView.ViewHolder(binding.root)
     {
-        fun bind(skill: String)
+        fun bind(item: String)
         {
-            binding.skill = skill
+            binding.skill = item
             binding.memberSearchActivity = memberSearchActivity
         }
     }
 
-    fun setSearchSkillList(searchSkillList: MutableList<String>)
+    fun setSearchSkillList(items: MutableList<String>)
     {
-        this.searchSkillList = searchSkillList
+        this.items = items
         notifyDataSetChanged()
     }
 }

@@ -6,7 +6,6 @@ import javax.inject.Inject
 import com.example.android.base.BaseApplication.Companion.firebaseFirestore
 import com.example.android.base.BaseApplication.Companion.currentUser
 import com.example.android.team.doamin.Team
-import com.example.android.user.domain.User
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Query
@@ -106,7 +105,6 @@ class TeamRepository @Inject constructor()
 
     fun loadTeamBySkillListFirebase(skill: List<String>, _loadTeamBySkillResult: MutableLiveData<MutableList<Team>>, _loadTeamBySkillErrorMessage: MutableLiveData<String?>)
     {
-        println("dsadasdasdasdasda")
         tempLoadTeamBySkillList.clear()
 
         firebaseFirestore.collection("team")
@@ -116,7 +114,7 @@ class TeamRepository @Inject constructor()
             {querySnapshot ->
                 if(querySnapshot.result.size() > 0)  // 정보 노출을 허용한 유저가 0명 이상임
                 {
-                    Log.d("*** loadMemberBySkillListFirebase User 리스트 로딩 성공 ***", "${querySnapshot.result}")
+                    Log.d("*** loadTeamBySkillListFirebase Team 리스트 로딩 성공 ***", "${querySnapshot.result}")
 
                     querySnapshot.result.documents.forEach()
                     {

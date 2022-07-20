@@ -12,27 +12,25 @@ import com.google.android.flexbox.JustifyContent
 
 class MemberAdapter(private val view: Any) : RecyclerView.Adapter<MemberAdapter.ViewHolder>()  // 멤버들의 목록을 표시하는 어댑터, 일반과 검색 둘 다 사용
 {
-    private var memberList = mutableListOf<User>()
+    private var items = mutableListOf<User>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
     {
-        val binding = ItemMemberBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-
-        return ViewHolder(binding)
+        return ViewHolder(ItemMemberBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int)
     {
-        holder.bind(memberList[position])
+        holder.bind(items[position])
     }
 
-    override fun getItemCount(): Int = memberList.size
+    override fun getItemCount(): Int = items.size
 
     inner class ViewHolder(private val binding: ItemMemberBinding) : RecyclerView.ViewHolder(binding.root)
     {
-        fun bind(member: User)
+        fun bind(item: User)
         {
-            val memberSkillAdapter = MemberSkillAdapter()
+            val memberHaveSkillAdapter = MemberHaveSkillAdapter()
             val flexBoxLayoutManager = if(view is Fragment)
             {
                 FlexboxLayoutManager(view.context)
@@ -43,24 +41,24 @@ class MemberAdapter(private val view: Any) : RecyclerView.Adapter<MemberAdapter.
             }
             flexBoxLayoutManager.justifyContent = JustifyContent.CENTER
 
-            binding.member = member
+            binding.member = item
             binding.memberSkillRecyclerView.apply()
             {
-                adapter = memberSkillAdapter
+                adapter = memberHaveSkillAdapter
                 layoutManager = flexBoxLayoutManager
             }
-            memberSkillAdapter.setMemberSkillList(member.skill!!.toMutableList())
+            memberHaveSkillAdapter.setMemberSkillList(item.skill!!.toMutableList())
         }
     }
 
-    fun addMemberList(memberList: MutableList<User>)
+    fun addMemberList(items: MutableList<User>)
     {
-        this.memberList.addAll(memberList)
+        this.items.addAll(items)
         notifyDataSetChanged()
     }
 
     fun clearMemberList()
     {
-        this.memberList = mutableListOf()
+        this.items = mutableListOf()
     }
 }

@@ -29,7 +29,7 @@ class MemberSearchActivity : BaseActivity<ActivityMemberSearchBinding>(R.layout.
         binding.memberRecyclerView.adapter = memberAdapter
         binding.memberRecyclerView.layoutManager = LinearLayoutManager(this@MemberSearchActivity)
 
-        binding.contactViewModel = memberViewModel
+        binding.memberViewModel = memberViewModel
         binding.memberSearchActivity = this@MemberSearchActivity
 
         memberViewModel.searchSkillResult.observe(this@MemberSearchActivity)

@@ -3,8 +3,7 @@ package com.example.android.team.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.databinding.ItemMemberSkillBinding
-import com.example.android.databinding.ItemTeamRequireSkillBinding
+import com.example.android.databinding.ItemMemberHaveSkillBinding
 
 class TeamSkillAdapter : RecyclerView.Adapter<TeamSkillAdapter.ViewHolder>()
 {
@@ -12,7 +11,7 @@ class TeamSkillAdapter : RecyclerView.Adapter<TeamSkillAdapter.ViewHolder>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
     {
-        val binding = ItemMemberSkillBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemMemberHaveSkillBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return ViewHolder(binding)
     }
@@ -24,7 +23,7 @@ class TeamSkillAdapter : RecyclerView.Adapter<TeamSkillAdapter.ViewHolder>()
 
     override fun getItemCount(): Int = teamRequireSkillList.size
 
-    inner class ViewHolder(private val binding: ItemMemberSkillBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(private val binding: ItemMemberHaveSkillBinding) : RecyclerView.ViewHolder(binding.root)
     {
         fun bind(skill: String)
         {
