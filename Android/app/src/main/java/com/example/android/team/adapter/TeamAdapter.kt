@@ -10,29 +10,27 @@ import com.example.android.team.doamin.Team
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 
-class TeamAdapter(private val view: Any) : RecyclerView.Adapter<TeamAdapter.ViewHolder>()  // 멤버들의 목록을 표시하는 어댑터, 일반과 검색 둘 다 사용
+class TeamAdapter(private val view: Any) : RecyclerView.Adapter<TeamAdapter.ViewHolder>()  // 팀의 목록을 표시하는 어댑터, 일반과 검색 둘 다 사용
 {
-    private var teamList = mutableListOf<Team>()
+    private var items = mutableListOf<Team>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
     {
-        val binding = ItemTeamBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-
-        return ViewHolder(binding)
+        return ViewHolder(ItemTeamBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int)
     {
-        holder.bind(teamList[position])
+        holder.bind(items[position])
     }
 
-    override fun getItemCount(): Int = teamList.size
+    override fun getItemCount(): Int = items.size
 
     inner class ViewHolder(private val binding: ItemTeamBinding) : RecyclerView.ViewHolder(binding.root)
     {
-        fun bind(team: Team)
+        fun bind(item: Team)
         {
-            val teamSkillAdapter = TeamSkillAdapter()
+            val teamRequireSkillAdapter = TeamRequireSkillAdapter()
             val flexBoxLayoutManager = if(view is Fragment)
             {
                 FlexboxLayoutManager(view.context)
@@ -43,24 +41,24 @@ class TeamAdapter(private val view: Any) : RecyclerView.Adapter<TeamAdapter.View
             }
             flexBoxLayoutManager.justifyContent = JustifyContent.CENTER
 
-            binding.team = team
+            binding.team = item
             binding.teamRequireSkillRecyclerView.apply()
             {
-                adapter = teamSkillAdapter
+                adapter = teamRequireSkillAdapter
                 layoutManager = flexBoxLayoutManager
             }
-            teamSkillAdapter.setTeamRequireSkillList(team.skill!!.toMutableList())
+            teamRequireSkillAdapter.setTeamRequireSkillList(item.skill!!.toMutableList())
         }
     }
 
-    fun addTeamList(teamList: MutableList<Team>)
+    fun addTeamList(items: MutableList<Team>)
     {
-        this.teamList.addAll(teamList)
+        this.items.addAll(items)
         notifyDataSetChanged()
     }
 
     fun clearTeamList()
     {
-        this.teamList = mutableListOf()
+        this.items = mutableListOf()
     }
 }

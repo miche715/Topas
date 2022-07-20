@@ -3,10 +3,8 @@ package com.example.android.team.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.android.base.BaseApplication
 import com.example.android.team.doamin.Team
 import com.example.android.team.repository.TeamRepository
-import com.example.android.user.domain.User
 import com.example.android.utility.skillList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -42,7 +40,7 @@ class TeamViewModel @Inject constructor(private val teamRepository: TeamReposito
             {
                 if(it.length >= skillString.length)
                 {
-                    if(skillString == it.slice(IntRange(0, skillString.length - 1)))
+                    if(skillString == it.slice(IntRange(0, skillString.length - 1)) && it !in _selectedTeamRequireSkillResult.value!!)
                     {
                         tempSearchTeamRequireSkillResult.add(it)  // 임시 리스트에 저장
                     }
@@ -60,7 +58,7 @@ class TeamViewModel @Inject constructor(private val teamRepository: TeamReposito
     val selectedTeamRequireSkillResult: LiveData<MutableList<String>> = _selectedTeamRequireSkillResult
     private var tempSelectedTeamRequireSkillList = mutableListOf<String>()
 
-    fun updateMySkill(skill: String)
+    fun updateRequireSkill(skill: String)
     {
         tempSelectedTeamRequireSkillList = _selectedTeamRequireSkillResult.value!!
 

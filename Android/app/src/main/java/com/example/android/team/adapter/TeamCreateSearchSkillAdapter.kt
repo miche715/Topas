@@ -3,16 +3,16 @@ package com.example.android.team.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.databinding.ItemTeamSearchSkillAllBinding
-import com.example.android.team.view.TeamSearchActivity
+import com.example.android.databinding.ItemTeamCreateSearchSkillAllBinding
+import com.example.android.team.view.TeamCreateActivity
 
-class TeamSearchSkillAdapter(private val teamSearchActivity: TeamSearchActivity) : RecyclerView.Adapter<TeamSearchSkillAdapter.ViewHolder>()  // 검색할때 아래로 뜨는 어댑터
+class TeamCreateSearchSkillAdapter(private val teamCreateActivity: TeamCreateActivity) : RecyclerView.Adapter<TeamCreateSearchSkillAdapter.ViewHolder>()  // 팀 생성에서 스킬 검색
 {
     private var items = mutableListOf<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
     {
-        return ViewHolder(ItemTeamSearchSkillAllBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return ViewHolder(ItemTeamCreateSearchSkillAllBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int)
@@ -22,12 +22,12 @@ class TeamSearchSkillAdapter(private val teamSearchActivity: TeamSearchActivity)
 
     override fun getItemCount(): Int = items.size
 
-    inner class ViewHolder(private val binding: ItemTeamSearchSkillAllBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(private val binding: ItemTeamCreateSearchSkillAllBinding) : RecyclerView.ViewHolder(binding.root)
     {
         fun bind(item: String)
         {
             binding.skill = item
-            binding.teamSearchActivity = teamSearchActivity
+            binding.teamCreateActivity = teamCreateActivity
         }
     }
 

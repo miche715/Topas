@@ -44,22 +44,22 @@ class TeamRepository @Inject constructor()
                 nextLoadTeamListQuery(querySnapshot.result.documents[querySnapshot.result.size() - 1])
 
                 querySnapshot.result.documents.forEach()
-                {
+                {documentSnapshot ->
                     @Suppress("UNCHECKED_CAST")
                     Team().apply()
                     {
-                        this.leaderDocumentId = it["leader_document_id"] as String
-                        this.leaderNickName = it["leader_nick_name"] as String
-                        this.leaderProfilePhotoUri = it["leader_profile_photo_uri"]?.run()
+                        this.leaderDocumentId = documentSnapshot["leader_document_id"] as String
+                        this.leaderNickName = documentSnapshot["leader_nick_name"] as String
+                        this.leaderProfilePhotoUri = documentSnapshot["leader_profile_photo_uri"]?.let()
                         {
-                            this as String
+                            it as String
                         }?: kotlin.run()
                         {
                             null
                         }
-                        this.title = it["title"] as String
-                        this.explanation = it["explanation"] as String
-                        this.skill = it["skill"] as List<String>
+                        this.title = documentSnapshot["title"] as String
+                        this.explanation = documentSnapshot["explanation"] as String
+                        this.skill = documentSnapshot["skill"] as List<String>
                     }.run()
                     {
                         tempLoadTeamListResult.add(this)
@@ -117,22 +117,22 @@ class TeamRepository @Inject constructor()
                     Log.d("*** loadTeamBySkillListFirebase Team 리스트 로딩 성공 ***", "${querySnapshot.result}")
 
                     querySnapshot.result.documents.forEach()
-                    {
+                    {documentSnapshot ->
                         @Suppress("UNCHECKED_CAST")
                         Team().apply()
                         {
-                            this.leaderDocumentId = it["leader_document_id"] as String
-                            this.leaderNickName = it["leader_nick_name"] as String
-                            this.leaderProfilePhotoUri = it["leader_profile_photo_uri"]?.run()
+                            this.leaderDocumentId = documentSnapshot["leader_document_id"] as String
+                            this.leaderNickName = documentSnapshot["leader_nick_name"] as String
+                            this.leaderProfilePhotoUri = documentSnapshot["leader_profile_photo_uri"]?.let()
                             {
-                                this as String
+                                it as String
                             }?: kotlin.run()
                             {
                                 null
                             }
-                            this.title = it["title"] as String
-                            this.explanation = it["explanation"] as String
-                            this.skill = it["skill"] as List<String>
+                            this.title = documentSnapshot["title"] as String
+                            this.explanation = documentSnapshot["explanation"] as String
+                            this.skill = documentSnapshot["skill"] as List<String>
                         }.run()
                         {
                             tempLoadTeamBySkillList.add(this)
