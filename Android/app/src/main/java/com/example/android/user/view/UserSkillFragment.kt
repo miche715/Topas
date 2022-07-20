@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.R
 import com.example.android.base.BaseFragment
 import com.example.android.databinding.FragmentUserSkillBinding
-import com.example.android.user.adapter.MySkillAdapter
-import com.example.android.user.adapter.SearchSkillAdapter
+import com.example.android.user.adapter.UserHaveSkillAdapter
+import com.example.android.user.adapter.UserSearchSkillAdapter
 import com.example.android.user.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,15 +16,15 @@ class UserSkillFragment : BaseFragment<FragmentUserSkillBinding>(R.layout.fragme
 {
     private val userViewModel: UserViewModel by activityViewModels()  // 자신의 부모인 UserSettingActivity와 뷰모델 공유
 
-    private val searchSkillAdapter: SearchSkillAdapter by lazy { SearchSkillAdapter(this@UserSkillFragment) }  // 터치 이벤트 때문에 자신을 넘겨줘야 함
-    private val mySkillAdapter: MySkillAdapter by lazy { MySkillAdapter(this@UserSkillFragment) }  // 터치 이벤트 때문에 자신을 넘겨줘야 함
+    private val userSearchSkillAdapter: UserSearchSkillAdapter by lazy { UserSearchSkillAdapter(this@UserSkillFragment) }  // 터치 이벤트 때문에 자신을 넘겨줘야 함
+    private val userHaveSkillAdapter: UserHaveSkillAdapter by lazy { UserHaveSkillAdapter(this@UserSkillFragment) }  // 터치 이벤트 때문에 자신을 넘겨줘야 함
 
     override fun onInitialize()
     {
-        binding!!.mySkillRecyclerView.adapter = mySkillAdapter
+        binding!!.mySkillRecyclerView.adapter = userHaveSkillAdapter
         binding!!.mySkillRecyclerView.layoutManager = GridLayoutManager(this@UserSkillFragment.context, 3)
 
-        binding!!.searchSkillRecyclerView.adapter = searchSkillAdapter
+        binding!!.searchSkillRecyclerView.adapter = userSearchSkillAdapter
         binding!!.searchSkillRecyclerView.layoutManager = LinearLayoutManager(this@UserSkillFragment.context)
 
         binding!!.userViewModel = userViewModel
@@ -37,12 +37,12 @@ class UserSkillFragment : BaseFragment<FragmentUserSkillBinding>(R.layout.fragme
 
         userViewModel.searchSkillResult.observe(this@UserSkillFragment.activity!!)
         {
-            searchSkillAdapter.setSearchSkillList(it)
+            userSearchSkillAdapter.setSearchSkillList(it)
         }
 
         userViewModel.mySkillResult.observe(this@UserSkillFragment.activity!!)
         {
-            mySkillAdapter.setMySkillList(it)
+            userHaveSkillAdapter.setMySkillList(it)
         }
     }
 
