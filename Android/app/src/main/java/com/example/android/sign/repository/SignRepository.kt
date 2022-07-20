@@ -64,9 +64,9 @@ class SignRepository @Inject constructor()
                                         this.email = newUser["email"] as String
                                         this.name = newUser["name"] as String
                                         this.nickName = newUser["nick_name"] as String
-                                        this.profilePhotoUri = newUser["profile_photo_uri"]?.run()
+                                        this.profilePhotoUri = newUser["profile_photo_uri"]?.let()
                                         {
-                                            this as String
+                                            it as String
                                         }?: kotlin.run()
                                         {
                                             null
@@ -121,9 +121,9 @@ class SignRepository @Inject constructor()
                         this.email = querySnapshot.result.documents[0].data!!["email"] as String
                         this.name = querySnapshot.result.documents[0].data!!["name"] as String
                         this.nickName = querySnapshot.result.documents[0].data!!["nick_name"] as String
-                        this.profilePhotoUri = querySnapshot.result.documents[0].data!!["profile_photo_uri"]?.run()
+                        this.profilePhotoUri = querySnapshot.result.documents[0].data!!["profile_photo_uri"]?.let()
                         {
-                            this as String
+                            it as String
                         }?: kotlin.run()
                         {
                             null
