@@ -42,7 +42,7 @@ class TeamViewModel @Inject constructor(private val teamRepository: TeamReposito
             {
                 if(it.length >= skillString.length)
                 {
-                    if(skillString == it.slice(IntRange(0, skillString.length - 1)) && it !in _selectedTeamRequireSkillResult.value!!)
+                    if(skillString == it.slice(IntRange(0, skillString.length - 1)))
                     {
                         tempSearchTeamRequireSkillResult.add(it)  // 임시 리스트에 저장
                     }
@@ -82,5 +82,15 @@ class TeamViewModel @Inject constructor(private val teamRepository: TeamReposito
     {
         val skill = selectedTeamRequireSkillResult.value?.toList()
         teamRepository.createTeamFirebase(title, explanation, skill, _createTeamResult)
+    }
+
+    private val _loadTeamBySkillResult: MutableLiveData<MutableList<Team>> = MutableLiveData()
+    val loadTeamBySkillResult: LiveData<MutableList<Team>> = _loadTeamBySkillResult
+    private val _loadTeamBySkillErrorMessage: MutableLiveData<String?> = MutableLiveData()
+    val loadTeamBySkillErrorMessage: LiveData<String?> = _loadTeamBySkillErrorMessage
+
+    fun loadTeamBySkillList(skill: String)
+    {
+        teamRepository.loadTeamBySkillListFirebase(listOf(skill), _loadTeamBySkillResult, _loadTeamBySkillErrorMessage)
     }
 }

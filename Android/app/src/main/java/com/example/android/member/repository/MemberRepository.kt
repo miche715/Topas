@@ -86,7 +86,7 @@ class MemberRepository @Inject constructor()
 
         firebaseFirestore.collection("user")
             .whereEqualTo("exposure", true).whereArrayContainsAny("skill", skill)
-            .orderBy("update_at", Query.Direction.DESCENDING).limit(5).get()
+            .orderBy("update_at", Query.Direction.DESCENDING).get()
             .addOnCompleteListener()
         {querySnapshot ->
             if(querySnapshot.result.size() > 0)  // 정보 노출을 허용한 유저가 0명 이상임

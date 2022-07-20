@@ -10,6 +10,7 @@ import com.example.android.R
 import com.example.android.base.BaseActivity
 import com.example.android.databinding.ActivityContactBinding
 import com.example.android.team.view.TeamContactFragment
+import com.example.android.team.view.TeamSearchActivity
 import com.example.android.user.view.UserSettingActivity
 import com.example.android.utility.NowFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -71,7 +72,10 @@ class ContactActivity : BaseActivity<ActivityContactBinding>(R.layout.activity_c
                     }
                     else ->
                     {
-                        // 팀 프래그먼트에서 검색
+                        Intent(this@ContactActivity, TeamSearchActivity::class.java).run()
+                        {
+                            startActivity(this)
+                        }
                     }
                 }
             }

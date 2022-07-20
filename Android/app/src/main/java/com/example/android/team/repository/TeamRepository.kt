@@ -101,4 +101,58 @@ class TeamRepository @Inject constructor()
             }
         }
     }
+
+    private var tempLoadTeamBySkillList = mutableListOf<Team>()
+
+    fun loadTeamBySkillListFirebase(skill: List<String>, _loadTeamBySkillResult: MutableLiveData<MutableList<Team>>, _loadTeamBySkillErrorMessage: MutableLiveData<String?>)
+    {
+        println("dsadasdasdasdasda")
+        tempLoadTeamBySkillList.clear()
+
+        firebaseFirestore.collection("team")
+            .whereArrayContainsAny("skill", skill)
+            .orderBy("update_at", Query.Direction.DESCENDING).get()
+            .addOnCompleteListener()
+            {querySnapshot ->
+                if(querySnapshot.result.size() > 0)  // 정보 노출을 허용한 유저가 0명 이상임
+                {
+                    Log.d("*** loadMemberBySkillListFirebase User 리스트 로딩 성공 ***", "${querySnapshot.result}")
+
+                    querySnapshot.result.documents.forEach()
+                    {
+                        @Suppress("UNCHECKED_CAST")
+                        Team().apply()
+                        {
+                            this.leaderDocumentId = it["leader_document_id"] as String
+                            this.leaderNickName = it["leader_nick_name"] as String
+                            this.leaderProfilePhotoUri = it["leader_profile_photo_uri"]?.run()
+                            {
+                                this as String
+                            }?: kotlin.run()
+                            {
+                                null
+                            }
+                            this.title = it["title"] as String
+                            this.explanation = it["explanation"] as String
+                            this.skill = it["skill"] as List<String>
+                        }.run()
+                        {
+                            tempLoadTeamBySkillList.add(this)
+                        }
+
+                    }
+                    _loadTeamBySkillResult.value = tempLoadTeamBySkillList
+                    _loadTeamBySkillErrorMessage.value = null
+
+                    if(_loadTeamBySkillResult.value!!.size == 0)
+                    {
+                        _loadTeamBySkillErrorMessage.value = "검색 결과가 없습니다."
+                    }
+                }
+                else  // 정보 노출을 허용한 유저가 없음
+                {
+                    _loadTeamBySkillErrorMessage.value = "검색 결과가 없습니다."
+                }
+            }
+    }
 }

@@ -59,7 +59,7 @@ class TeamAdapter(private val view: Any) : RecyclerView.Adapter<TeamAdapter.View
         notifyDataSetChanged()
     }
 
-    fun clearMemberList()
+    fun clearTeamList()
     {
         this.teamList = mutableListOf()
     }

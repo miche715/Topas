@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".team.view.TeamSearchActivity">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="teamViewModel"
+            type="com.example.android.team.viewmodel.TeamViewModel" />
+
+        <variable
+            name="teamSearchActivity"
+            type="com.example.android.team.view.TeamSearchActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBar"
+            style="@style/tool_bar_style"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/toolBarTitleTextView"
+                style="@style/tool_bar_title_text_view_style"
+                android:text="팀 검색" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <EditText
+            android:id="@+id/skillEditText"
+            style="@style/sign_up_edit_text_style"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/my_skill_round_edge_background"
+            android:drawableLeft="?android:attr/actionModeWebSearchDrawable"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:hint="스킬을 입력해주세요."
+            android:includeFontPadding="false"
+            android:inputType="text"
+            android:onTextChanged="@{() -> teamSearchActivity.searchSkill()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolBar" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/searchSkillRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="4dp"
+            android:scrollbarFadeDuration="0"
+            android:scrollbars="vertical"
+            android:visibility="@{teamViewModel.searchTeamRequireSkillResult.size() > 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="@+id/skillEditText"
+            app:layout_constraintStart_toStartOf="@+id/skillEditText"
+            app:layout_constraintTop_toBottomOf="@+id/skillEditText">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/teamRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="12dp"
+            android:visibility="@{teamViewModel.loadTeamBySkillErrorMessage == null ?  View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchSkillRecyclerView"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/loadSearchMemberErrorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:textColor="@color/week_color"
+            android:textSize="14sp"
+            android:text="@{teamViewModel.loadTeamBySkillErrorMessage}"
+            android:visibility="@{teamViewModel.loadTeamBySkillErrorMessage == null ?  View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolBar" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

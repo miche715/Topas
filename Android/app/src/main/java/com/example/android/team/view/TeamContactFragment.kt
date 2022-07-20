@@ -30,7 +30,7 @@ class TeamContactFragment : BaseFragment<FragmentTeamContactBinding>(R.layout.fr
 
         binding!!.swipeRefreshLayout.setOnRefreshListener()  // 맨 위로 스크롤 하면 새로고침
         {
-            teamAdapter.clearMemberList()  // 어댑터의 리스트를 비움
+            teamAdapter.clearTeamList()  // 어댑터의 리스트를 비움
             teamViewModel.initializeLoadTeamListQuery()  // 쿼리를 초기로 돌림
             loadTeam()  // 리스트 로딩
 
