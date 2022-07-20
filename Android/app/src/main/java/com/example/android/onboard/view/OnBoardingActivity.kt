@@ -14,15 +14,15 @@ class OnBoardingActivity : BaseActivity<ActivityOnBoardingBinding>(R.layout.acti
 
     override fun onInitialize()
     {
-//        if(sharedPreferences.getBoolean("isOnBoarded", false))  // 사용자가 이미 온보딩 화면을 봤는지 검사
-//        {
-//            Intent(this, SignInActivity::class.java).run()
-//            {
-//                startActivity(this)
-//
-//                finish()
-//            }
-//        }
+        if(sharedPreferences.getBoolean("isOnBoarded", false))  // 사용자가 이미 온보딩 화면을 봤는지 검사
+        {
+            Intent(this, SignInActivity::class.java).run()
+            {
+                startActivity(this)
+
+                finish()
+            }
+        }
 
         binding.viewPager.adapter = OnBoardingAdapter(this@OnBoardingActivity, onBoardingPageLength)
         binding.viewPager.currentItem = 0
