@@ -27,7 +27,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:android:onItemSelected="@{() -> teamContactFragment.teamViewModeSelect()}" />
+                android:onItemSelected="@{() -> teamContactFragment.teamViewModeSelect()}" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/teamRecyclerView"
