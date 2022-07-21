@@ -74,6 +74,71 @@ class TeamRepository @Inject constructor()
         }
     }
 
+    fun initializeLoadMyTeamListQuery()  // 초기 쿼리
+    {
+        loadTeamListQuery = firebaseFirestore
+            .collection("team")
+            .whereEqualTo("leader_document_id", currentUser!!.documentId)
+            .orderBy("update_at", Query.Direction.DESCENDING)
+            .limit(5)
+    }
+
+    private fun nextLoadMyTeamListQuery(documentSnapshot: DocumentSnapshot)  // 이전 쿼리 결과에 다음 쿼리 결과를 이어 붙히기 위함, 페이지네이션
+    {
+        loadTeamListQuery = firebaseFirestore
+            .collection("team")
+            .whereEqualTo("leader_document_id", currentUser!!.documentId)
+            .orderBy("update_at", Query.Direction.DESCENDING)
+            .startAfter(documentSnapshot)
+            .limit(5)
+    }
+
+    fun loadMyTeamListFirebase(_loadTeamListResult: MutableLiveData<MutableList<Team>>)
+    {
+        tempLoadTeamListResult.clear()
+
+        loadTeamListQuery.get().addOnCompleteListener()
+        {querySnapshot ->
+            if(querySnapshot.result.size() > 0)
+            {
+                Log.d("*** loadMyTeamListFirebase Team 리스트 로딩 성공 ***", "${querySnapshot.result}")
+
+                nextLoadMyTeamListQuery(querySnapshot.result.documents[querySnapshot.result.size() - 1])
+
+                querySnapshot.result.documents.forEach()
+                {documentSnapshot ->
+                    @Suppress("UNCHECKED_CAST")
+                    Team().apply()
+                    {
+                        this.leaderDocumentId = documentSnapshot["leader_document_id"] as String
+                        this.leaderNickName = documentSnapshot["leader_nick_name"] as String
+                        this.leaderProfilePhotoUri = documentSnapshot["leader_profile_photo_uri"]?.let()
+                        {
+                            it as String
+                        }?: kotlin.run()
+                        {
+                            null
+                        }
+                        this.title = documentSnapshot["title"] as String
+                        this.explanation = documentSnapshot["explanation"] as String
+                        this.skill = documentSnapshot["skill"] as List<String>
+                    }.run()
+                    {
+                        tempLoadTeamListResult.add(this)
+                    }
+                }
+                _loadTeamListResult.value = tempLoadTeamListResult
+            }
+//            else
+//            {
+//                Log.d("*** loadMyTeamListFirebase Team 리스트 로딩 성공 ***", "근데 하나도 없음")
+//            }
+        }
+    }
+
+
+
+
     fun createTeamFirebase(title: String, explanation: String, skill: List<String>?, _createTeamResult: MutableLiveData<Boolean>)
     {
         val newTeam: Map<String, Any?> = mapOf("leader_document_id" to currentUser!!.documentId,

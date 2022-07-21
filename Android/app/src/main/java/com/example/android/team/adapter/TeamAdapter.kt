@@ -1,6 +1,7 @@
 package com.example.android.team.adapter
 
 import android.app.Activity
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -60,5 +61,6 @@ class TeamAdapter(private val view: Any) : RecyclerView.Adapter<TeamAdapter.View
     fun clearTeamList()
     {
         this.items = mutableListOf()
+        notifyDataSetChanged()
     }
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="team">
+        <item>전체</item>
+        <item>내가 만든 팀</item>
+    </string-array>
+</resources>

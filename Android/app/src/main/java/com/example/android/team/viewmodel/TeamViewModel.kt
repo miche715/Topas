@@ -15,7 +15,7 @@ class TeamViewModel @Inject constructor(private val teamRepository: TeamReposito
     private val _loadTeamListResult: MutableLiveData<MutableList<Team>> = MutableLiveData()
     val loadTeamListResult: LiveData<MutableList<Team>> = _loadTeamListResult
 
-    fun loadMemberList()
+    fun loadTeamList()
     {
         teamRepository.loadTeamListFirebase(_loadTeamListResult)
     }
@@ -25,6 +25,15 @@ class TeamViewModel @Inject constructor(private val teamRepository: TeamReposito
         teamRepository.initializeLoadTeamListQuery()
     }
 
+    fun loadMyTeamList()
+    {
+        teamRepository.loadMyTeamListFirebase(_loadTeamListResult)
+    }
+
+    fun initializeLoadMyTeamListQuery()
+    {
+        teamRepository.initializeLoadMyTeamListQuery()
+    }
 
     private val _searchTeamRequireSkillResult: MutableLiveData<MutableList<String>> = MutableLiveData()
     val searchTeamRequireSkillResult: LiveData<MutableList<String>> = _searchTeamRequireSkillResult
