@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.R
 import com.example.android.base.BaseActivity
 import com.example.android.databinding.ActivityTeamSearchBinding
-import com.example.android.team.adapter.TeamAdapter
 import com.example.android.team.adapter.TeamSearchAdapter
 import com.example.android.team.adapter.TeamSearchSkillAdapter
 import com.example.android.team.doamin.Team
