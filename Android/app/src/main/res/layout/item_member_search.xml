@@ -9,8 +9,8 @@
             type="com.example.android.user.domain.User" />
 
         <variable
-            name="memberContactFragment"
-            type="com.example.android.member.view.MemberContactFragment" />
+            name="memberSearchActivity"
+            type="com.example.android.member.view.MemberSearchActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

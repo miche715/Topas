@@ -5,10 +5,10 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.R
 import com.example.android.base.BaseActivity
-import com.example.android.member.adapter.MemberAdapter
 import com.example.android.member.adapter.MemberSearchSkillAdapter
 import com.example.android.member.viewmodel.MemberViewModel
 import com.example.android.databinding.ActivityMemberSearchBinding
+import com.example.android.member.adapter.MemberSearchAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,7 +17,7 @@ class MemberSearchActivity : BaseActivity<ActivityMemberSearchBinding>(R.layout.
     private val memberViewModel: MemberViewModel by viewModels()
 
     private val memberSearchSkillAdapter: MemberSearchSkillAdapter by lazy { MemberSearchSkillAdapter(this@MemberSearchActivity) }
-    private val memberAdapter: MemberAdapter by lazy { MemberAdapter(this@MemberSearchActivity) }
+    private val memberSearchAdapter: MemberSearchAdapter by lazy { MemberSearchAdapter(this@MemberSearchActivity) }
 
     override fun onInitialize()
     {
@@ -26,7 +26,7 @@ class MemberSearchActivity : BaseActivity<ActivityMemberSearchBinding>(R.layout.
         binding.searchSkillRecyclerView.adapter = memberSearchSkillAdapter
         binding.searchSkillRecyclerView.layoutManager = LinearLayoutManager(this@MemberSearchActivity)
 
-        binding.memberRecyclerView.adapter = memberAdapter
+        binding.memberRecyclerView.adapter = memberSearchAdapter
         binding.memberRecyclerView.layoutManager = LinearLayoutManager(this@MemberSearchActivity)
 
         binding.memberViewModel = memberViewModel
@@ -39,7 +39,7 @@ class MemberSearchActivity : BaseActivity<ActivityMemberSearchBinding>(R.layout.
 
         memberViewModel.loadMemberBySkillResult.observe(this@MemberSearchActivity)
         {
-            memberAdapter.addMemberList(it)
+            memberSearchAdapter.addMemberList(it)
         }
     }
 
@@ -52,7 +52,7 @@ class MemberSearchActivity : BaseActivity<ActivityMemberSearchBinding>(R.layout.
     {
         hideKeyBoard(view.windowToken)
         binding.skillEditText.text = null
-        memberAdapter.clearMemberList()
+        memberSearchAdapter.clearMemberList()
         loadMember(skill)
     }
 
