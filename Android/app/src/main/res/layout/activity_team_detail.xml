@@ -5,7 +5,13 @@
     tools:context=".team.view.TeamDetailActivity">
 
     <data>
+        <variable
+            name="team"
+            type="com.example.android.team.doamin.Team" />
 
+        <variable
+            name="teamDetailActivity"
+            type="com.example.android.team.view.TeamDetailActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +29,7 @@
             <TextView
                 android:id="@+id/toolBarTitleTextView"
                 style="@style/tool_bar_title_text_view_style"
-                android:text="팀 생성"
+                android:text="팀 상세"
                 tools:layout_editor_absoluteX="156dp"
                 tools:layout_editor_absoluteY="13dp" />
         </androidx.appcompat.widget.Toolbar>
@@ -32,6 +38,8 @@
             android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toTopOf="@+id/contactButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,25 +49,57 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profilePhotoCircleImageView"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/default_profile_photo"
+                    app:civ_border_color="#000000"
+                    app:civ_border_overlay="true"
+                    app:civ_border_width="2dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:profilePhotoUrl="@{team.leaderProfilePhotoUri}" />
+
+                <TextView
+                    android:id="@+id/nickNameTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:includeFontPadding="false"
+                    android:text="@{team.leaderNickName}"
+                    android:textColor="@color/strong_color"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/profilePhotoCircleImageView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/profilePhotoCircleImageView"
+                    app:layout_constraintTop_toTopOf="@+id/profilePhotoCircleImageView" />
+
                 <TextView
                     android:id="@+id/titleTextView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginEnd="20dp"
                     android:background="@color/middle_color"
                     android:fontFamily="@font/noto_sans_kr_regular"
                     android:includeFontPadding="true"
                     android:inputType="text"
                     android:maxLength="30"
+                    android:text="@{team.title}"
                     android:textColor="@color/strong_color"
                     android:textColorHint="@color/week_color"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/profilePhotoCircleImageView" />
 
                 <TextView
                     android:id="@+id/explanationTextView"
@@ -73,6 +113,7 @@
                     android:inputType="textMultiLine"
                     android:maxLength="200"
                     android:padding="4dp"
+                    android:text="@{team.explanation}"
                     android:textColor="@color/strong_color"
                     android:textColorHint="@color/week_color"
                     android:textSize="14sp"
@@ -80,8 +121,52 @@
                     app:layout_constraintStart_toStartOf="@+id/titleTextView"
                     app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/skillRecyclerView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/requireSkillDescriptionTextView"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/requireSkillDescriptionTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/requireSkillDescriptionTextView"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/requireSkillDescriptionTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:includeFontPadding="false"
+                    android:text="사용 스킬"
+                    android:textColor="@color/strong_color"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@+id/explanationTextView"
+                    app:layout_constraintStart_toStartOf="@+id/explanationTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/explanationTextView" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
+
+        <Button
+            android:id="@+id/contactButton"
+            style="@style/brand_button_style"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="12dp"
+            android:drawableLeft="@android:drawable/sym_action_chat"
+            android:drawableTint="@color/white_color"
+            android:paddingLeft="110dp"
+            android:paddingRight="100dp"
+            android:text="함께하기"
+            android:onClick="@{() -> teamDetailActivity.onContactClick()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
