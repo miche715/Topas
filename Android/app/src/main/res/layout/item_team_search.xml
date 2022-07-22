@@ -9,8 +9,8 @@
             type="com.example.android.team.doamin.Team" />
 
         <variable
-            name="teamContactFragment"
-            type="com.example.android.team.view.TeamContactFragment" />
+            name="teamSearchActivity"
+            type="com.example.android.team.view.TeamSearchActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,7 +28,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:onClick="@{() -> teamContactFragment.onClickTeam(team)}">
+            android:onClick="@{() -> teamSearchActivity.onClickTeam(team)}">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

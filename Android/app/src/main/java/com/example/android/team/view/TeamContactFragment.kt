@@ -9,6 +9,7 @@ import com.example.android.R
 import com.example.android.base.BaseFragment
 import com.example.android.databinding.FragmentTeamContactBinding
 import com.example.android.team.adapter.TeamAdapter
+import com.example.android.team.doamin.Team
 import com.example.android.team.viewmodel.TeamViewModel
 import com.example.android.utility.TeamViewMode
 import dagger.hilt.android.AndroidEntryPoint
@@ -104,6 +105,16 @@ class TeamContactFragment : BaseFragment<FragmentTeamContactBinding>(R.layout.fr
     {
         Intent(this@TeamContactFragment.context, TeamCreateActivity::class.java).run()
         {
+            startActivity(this)
+        }
+    }
+
+    fun onClickTeam(team: Team)
+    {
+        println(team)
+        Intent(this@TeamContactFragment.context, TeamDetailActivity::class.java).run()
+        {
+            putExtra("team", team)
             startActivity(this)
         }
     }
