@@ -5,6 +5,8 @@
     tools:context=".team.view.TeamDetailActivity">
 
     <data>
+        <import type="android.view.View" />
+
         <variable
             name="team"
             type="com.example.android.team.doamin.Team" />
@@ -12,6 +14,10 @@
         <variable
             name="teamDetailActivity"
             type="com.example.android.team.view.TeamDetailActivity" />
+
+        <variable
+            name="currentUser"
+            type="com.example.android.user.domain.User" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,6 +38,7 @@
                 android:text="팀 상세"
                 tools:layout_editor_absoluteX="156dp"
                 tools:layout_editor_absoluteY="13dp" />
+
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.core.widget.NestedScrollView
@@ -79,6 +86,43 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/profilePhotoCircleImageView"
                     app:layout_constraintTop_toTopOf="@+id/profilePhotoCircleImageView" />
+
+                <Button
+                    android:id="@+id/deleteButton"
+                    style="@style/brand_button_style"
+                    android:layout_width="40dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/error_button_round_edge_background"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:includeFontPadding="false"
+                    android:text="삭제"
+                    android:textSize="12sp"
+                    android:visibility="@{currentUser.documentId.equals(team.leaderDocumentId) ? View.VISIBLE : View.GONE}"
+                    android:onClick="@{() -> teamDetailActivity.onDeleteClick(team)}"
+                    app:layout_constraintBottom_toTopOf="@+id/nickNameTextView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/modifyButton"
+                    style="@style/brand_button_style"
+                    android:layout_width="40dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:includeFontPadding="false"
+                    android:text="수정"
+                    android:textSize="12sp"
+                    android:onClick="@{() -> teamDetailActivity.onModifyClick(team)}"
+                    android:visibility="@{currentUser.documentId.equals(team.leaderDocumentId) ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toTopOf="@+id/nickNameTextView"
+                    app:layout_constraintEnd_toStartOf="@+id/deleteButton"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/titleTextView"
@@ -164,6 +208,7 @@
             android:paddingRight="100dp"
             android:text="함께하기"
             android:onClick="@{() -> teamDetailActivity.onContactClick()}"
+            android:visibility="@{currentUser.documentId.equals(team.leaderDocumentId) ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

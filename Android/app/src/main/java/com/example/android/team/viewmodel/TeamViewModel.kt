@@ -82,6 +82,16 @@ class TeamViewModel @Inject constructor(private val teamRepository: TeamReposito
         _selectedTeamRequireSkillResult.value = tempSelectedTeamRequireSkillList
     }
 
+    private val _loadTeamBySkillResult: MutableLiveData<MutableList<Team>> = MutableLiveData()
+    val loadTeamBySkillResult: LiveData<MutableList<Team>> = _loadTeamBySkillResult
+    private val _loadTeamBySkillErrorMessage: MutableLiveData<String?> = MutableLiveData()
+    val loadTeamBySkillErrorMessage: LiveData<String?> = _loadTeamBySkillErrorMessage
+
+    fun loadTeamBySkillList(skill: String)
+    {
+        teamRepository.loadTeamBySkillListFirebase(listOf(skill), _loadTeamBySkillResult, _loadTeamBySkillErrorMessage)
+    }
+
     private val _createTeamResult: MutableLiveData<Boolean> = MutableLiveData()
     val createTeamResult: LiveData<Boolean> = _createTeamResult
 
@@ -91,13 +101,20 @@ class TeamViewModel @Inject constructor(private val teamRepository: TeamReposito
         teamRepository.createTeamFirebase(title, explanation, skill, _createTeamResult)
     }
 
-    private val _loadTeamBySkillResult: MutableLiveData<MutableList<Team>> = MutableLiveData()
-    val loadTeamBySkillResult: LiveData<MutableList<Team>> = _loadTeamBySkillResult
-    private val _loadTeamBySkillErrorMessage: MutableLiveData<String?> = MutableLiveData()
-    val loadTeamBySkillErrorMessage: LiveData<String?> = _loadTeamBySkillErrorMessage
+    private val _deleteTeamResult: MutableLiveData<Boolean> = MutableLiveData()
+    val deleteTeamResult: LiveData<Boolean> = _deleteTeamResult
 
-    fun loadTeamBySkillList(skill: String)
+    fun deleteTeam(team: Team)
     {
-        teamRepository.loadTeamBySkillListFirebase(listOf(skill), _loadTeamBySkillResult, _loadTeamBySkillErrorMessage)
+        teamRepository.deleteTeamFirebase(team, _deleteTeamResult)
+    }
+
+    private val _modifyTeamResult: MutableLiveData<Boolean> = MutableLiveData()
+    val modifyTeamResult: LiveData<Boolean> = _modifyTeamResult
+
+    fun modifyTeam(title: String, explanation: String, teamDocumentId: String)
+    {
+        val skill = selectedTeamRequireSkillResult.value?.toList()
+        teamRepository.modifyTeamFirebase(title, explanation, skill, teamDocumentId, _modifyTeamResult)
     }
 }

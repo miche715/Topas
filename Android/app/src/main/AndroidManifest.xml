@@ -18,6 +18,9 @@
         android:theme="@style/Theme.Android"
         tools:targetApi="31">
         <activity
+            android:name=".team.view.TeamModifyActivity"
+            android:exported="false" />
+        <activity
             android:name=".team.view.TeamDetailActivity"
             android:exported="false" />
         <activity

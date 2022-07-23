@@ -21,6 +21,7 @@
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/cancel.xml" value="0.1" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/disabled_by_default-48px.xml" value="0.1" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/disabled_by_default.xml" value="0.1185" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/error_button_round_edge_background.xml" value="0.1985" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/group_add.xml" value="0.1" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/my_skill_round_edge_background.xml" value="0.2075" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable/radius_button.xml" value="0.14" />
@@ -35,7 +36,8 @@
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_splash.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_team_create.xml" value="0.3175438596491228" />
-        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_team_detail.xml" value="0.33" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_team_detail.xml" value="0.3175438596491228" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_team_modify.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_team_search.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_user_setting.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_user_skill.xml" value="0.3175438596491228" />
@@ -52,6 +54,7 @@
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/item_member.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/item_member_have_skill.xml" value="0.2210144927536232" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/item_member_search.xml" value="0.3175438596491228" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/item_member_search_skill_all.xml" value="0.2210144927536232" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/item_member_skill.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/item_my_skill.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/item_search_member_skill.xml" value="0.3175438596491228" />
@@ -59,7 +62,10 @@
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/item_search_team_skill.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/item_team.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/item_team_create_require_skill.xml" value="0.3770833333333333" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/item_team_create_search_skill_all.xml" value="0.2210144927536232" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/item_team_detail_require_skill.xml" value="0.3770833333333333" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/item_team_modify_require_skill.xml" value="0.2210144927536232" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/item_team_modify_search_skill_all.xml" value="0.2210144927536232" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/item_team_require_skill.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/item_team_search.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/item_team_search_require_skill.xml" value="0.3175438596491228" />

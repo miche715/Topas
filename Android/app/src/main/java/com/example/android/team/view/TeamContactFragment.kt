@@ -111,7 +111,6 @@ class TeamContactFragment : BaseFragment<FragmentTeamContactBinding>(R.layout.fr
 
     fun onClickTeam(team: Team)
     {
-        println(team)
         Intent(this@TeamContactFragment.context, TeamDetailActivity::class.java).run()
         {
             putExtra("team", team)

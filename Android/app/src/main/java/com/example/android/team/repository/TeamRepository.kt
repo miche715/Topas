@@ -9,6 +9,7 @@ import com.example.android.team.doamin.Team
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.SetOptions
 
 class TeamRepository @Inject constructor()
 {
@@ -48,6 +49,7 @@ class TeamRepository @Inject constructor()
                     @Suppress("UNCHECKED_CAST")
                     Team().apply()
                     {
+                        this.teamDocumentId = documentSnapshot.id
                         this.leaderDocumentId = documentSnapshot["leader_document_id"] as String
                         this.leaderNickName = documentSnapshot["leader_nick_name"] as String
                         this.leaderProfilePhotoUri = documentSnapshot["leader_profile_photo_uri"]?.let()
@@ -110,6 +112,7 @@ class TeamRepository @Inject constructor()
                     @Suppress("UNCHECKED_CAST")
                     Team().apply()
                     {
+                        this.teamDocumentId = documentSnapshot.id
                         this.leaderDocumentId = documentSnapshot["leader_document_id"] as String
                         this.leaderNickName = documentSnapshot["leader_nick_name"] as String
                         this.leaderProfilePhotoUri = documentSnapshot["leader_profile_photo_uri"]?.let()
@@ -133,36 +136,6 @@ class TeamRepository @Inject constructor()
 //            {
 //                Log.d("*** loadMyTeamListFirebase Team 리스트 로딩 성공 ***", "근데 하나도 없음")
 //            }
-        }
-    }
-
-
-
-
-    fun createTeamFirebase(title: String, explanation: String, skill: List<String>?, _createTeamResult: MutableLiveData<Boolean>)
-    {
-        val newTeam: Map<String, Any?> = mapOf("leader_document_id" to currentUser!!.documentId,
-                                               "leader_nick_name" to currentUser!!.nickName,
-                                               "leader_profile_photo_uri" to currentUser!!.profilePhotoUri,
-                                               "title" to title,
-                                               "explanation" to explanation,
-                                               "skill" to skill,
-                                               "update_at" to Timestamp.now())
-
-        firebaseFirestore.collection("team").add(newTeam).addOnCompleteListener()  // Firestroe에 팀 등록 시도
-        {documentReference ->
-            if(documentReference.isSuccessful)  // 성공
-            {
-                Log.d("*** createTeamFirebase Firestore team 컬렉션에 등록 성공 ***", "${documentReference.result}")
-
-                _createTeamResult.value = true
-            }
-            else
-            {
-                Log.d("*** createTeamFirebase Firestore team 컬렉션에 등록 실패 ***", "${documentReference.exception?.message}")
-
-                _createTeamResult.value = false
-            }
         }
     }
 
@@ -217,5 +190,59 @@ class TeamRepository @Inject constructor()
                     _loadTeamBySkillErrorMessage.value = "검색 결과가 없습니다."
                 }
             }
+    }
+
+    fun createTeamFirebase(title: String, explanation: String, skill: List<String>?, _createTeamResult: MutableLiveData<Boolean>)
+    {
+        val newTeam: Map<String, Any?> = mapOf("leader_document_id" to currentUser!!.documentId,
+            "leader_nick_name" to currentUser!!.nickName,
+            "leader_profile_photo_uri" to currentUser!!.profilePhotoUri,
+            "title" to title,
+            "explanation" to explanation,
+            "skill" to skill,
+            "update_at" to Timestamp.now())
+
+        firebaseFirestore.collection("team").add(newTeam).addOnCompleteListener()  // Firestroe에 팀 등록 시도
+        {documentReference ->
+            if(documentReference.isSuccessful)  // 성공
+            {
+                Log.d("*** createTeamFirebase Firestore team 컬렉션에 등록 성공 ***", "${documentReference.result}")
+
+                _createTeamResult.value = true
+            }
+        }
+    }
+
+    fun deleteTeamFirebase(team: Team, _deleteTeamResult: MutableLiveData<Boolean>)
+    {
+        firebaseFirestore.collection("team").document(team.teamDocumentId!!).delete().addOnCompleteListener()
+        {void ->
+            if(void.isSuccessful)
+            {
+                Log.d("*** deleteTeamFirebase Team 삭제 성공 ***", "${void.result}")
+
+                _deleteTeamResult.value = true
+            }
+        }
+    }
+
+    fun modifyTeamFirebase(title: String, explanation: String, skill: List<String>?, teamDocumentId: String, _modifyTeamResult: MutableLiveData<Boolean>)
+    {
+        val updateTeam: Map<String, Any?> = mapOf("leader_nick_name" to currentUser!!.nickName,
+                                                  "leader_profile_photo_uri" to currentUser!!.profilePhotoUri,
+                                                  "title" to title,
+                                                  "explanation" to explanation,
+                                                  "skill" to skill,
+                                                  "update_at" to Timestamp.now())
+
+        firebaseFirestore.collection("team").document(teamDocumentId).set(updateTeam, SetOptions.merge()).addOnCompleteListener()
+        {void ->
+            if(void.isSuccessful)  // 성공
+            {
+                Log.d("*** modifyTeamFirebase Firestore team 컬렉션에 수정 성공 ***", "${void.result}")
+
+                _modifyTeamResult.value = true
+            }
+        }
     }
 }
