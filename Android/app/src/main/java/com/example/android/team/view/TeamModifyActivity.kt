@@ -8,8 +8,6 @@ import com.example.android.R
 import com.example.android.base.BaseActivity
 import com.example.android.contact.view.ContactActivity
 import com.example.android.databinding.ActivityTeamModifyBinding
-import com.example.android.team.adapter.TeamCreateSearchSkillAdapter
-import com.example.android.team.adapter.TeamCreateRequireSkillAdapter
 import com.example.android.team.adapter.TeamModifyRequireSkillAdapter
 import com.example.android.team.adapter.TeamModifySearchSkillAdapter
 import com.example.android.team.doamin.Team
