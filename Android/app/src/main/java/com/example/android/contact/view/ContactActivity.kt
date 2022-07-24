@@ -8,6 +8,7 @@ import com.example.android.member.view.MemberContactFragment
 import com.example.android.member.view.MemberSearchActivity
 import com.example.android.R
 import com.example.android.base.BaseActivity
+import com.example.android.chat.view.ChatRoomListFragment
 import com.example.android.databinding.ActivityContactBinding
 import com.example.android.team.view.TeamContactFragment
 import com.example.android.team.view.TeamSearchActivity
@@ -33,18 +34,30 @@ class ContactActivity : BaseActivity<ActivityContactBinding>(R.layout.activity_c
                         nowFragment = NowFragment.MEMBER
                         MemberContactFragment()
                     }
-                    else -> {
+                    R.id.team -> {
                         nowFragment = NowFragment.TEAM
                         TeamContactFragment()
                     }
+                    else -> {
+                        nowFragment = NowFragment.CHAT
+                        ChatRoomListFragment()
+                    }
                 })
+            binding.nowFragment = nowFragment
             true
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean
     {
-        menuInflater.inflate(R.menu.menu_toolbar_contact, menu)
+        if(nowFragment == NowFragment.CHAT)
+        {
+            menuInflater.inflate(R.menu.menu_toolbar_contact_chat, menu)
+        }
+        else
+        {
+            menuInflater.inflate(R.menu.menu_toolbar_contact, menu)
+        }
 
         return true
     }
@@ -70,12 +83,14 @@ class ContactActivity : BaseActivity<ActivityContactBinding>(R.layout.activity_c
                             startActivity(this)
                         }
                     }
-                    else ->
-                    {
+                    NowFragment.TEAM -> {
                         Intent(this@ContactActivity, TeamSearchActivity::class.java).run()
                         {
                             startActivity(this)
                         }
+                    }
+                    else -> {
+
                     }
                 }
             }

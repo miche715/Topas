@@ -20,7 +20,7 @@ fun bindImageFromUrl(view: CircleImageView, profilePhotoUrl: String?)
 
 enum class NowFragment
 {
-    MEMBER, TEAM
+    MEMBER, TEAM, CHAT
 }
 
 enum class TeamViewMode

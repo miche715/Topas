@@ -41,6 +41,7 @@
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_team_search.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_user_setting.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/activity_user_skill.xml" value="0.3175438596491228" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/fragment_chat_room_list.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/fragment_member_contact.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/fragment_on_boarding1.xml" value="0.30833333333333335" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/fragment_on_boarding2.xml" value="0.30833333333333335" />
@@ -80,6 +81,7 @@
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/menu/menu_bottom_navigation_contact.xml" value="0.3770833333333333" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/menu/menu_contact.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/menu/menu_toolbar_contact.xml" value="0.3770833333333333" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/menu/menu_toolbar_contact_chat.xml" value="0.36614583333333334" />
       </map>
     </option>
   </component>
