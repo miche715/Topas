@@ -8,6 +8,7 @@ import com.example.android.base.BaseFragment
 import com.example.android.member.adapter.MemberAdapter
 import com.example.android.member.viewmodel.MemberViewModel
 import com.example.android.databinding.FragmentMemberContactBinding
+import com.example.android.user.domain.User
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -59,5 +60,11 @@ class MemberContactFragment : BaseFragment<FragmentMemberContactBinding>(R.layou
     private fun loadMember()
     {
         memberViewModel.loadMemberList()
+    }
+
+    fun onContactClick(member: User)
+    {
+        println(member)
+        println("함께 하기")
     }
 }

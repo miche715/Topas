@@ -83,14 +83,11 @@ class ContactActivity : BaseActivity<ActivityContactBinding>(R.layout.activity_c
                             startActivity(this)
                         }
                     }
-                    NowFragment.TEAM -> {
+                    else -> {
                         Intent(this@ContactActivity, TeamSearchActivity::class.java).run()
                         {
                             startActivity(this)
                         }
-                    }
-                    else -> {
-
                     }
                 }
             }

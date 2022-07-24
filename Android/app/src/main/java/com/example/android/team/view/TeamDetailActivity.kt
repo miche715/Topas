@@ -67,8 +67,9 @@ class TeamDetailActivity : BaseActivity<ActivityTeamDetailBinding>(R.layout.acti
         }.show()
     }
 
-    fun onContactClick()
+    fun onContactClick(team: Team)
     {
+        println(team)
         println("함께 하기")
     }
 }

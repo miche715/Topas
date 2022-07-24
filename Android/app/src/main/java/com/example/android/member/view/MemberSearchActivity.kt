@@ -9,6 +9,7 @@ import com.example.android.member.adapter.MemberSearchSkillAdapter
 import com.example.android.member.viewmodel.MemberViewModel
 import com.example.android.databinding.ActivityMemberSearchBinding
 import com.example.android.member.adapter.MemberSearchAdapter
+import com.example.android.user.domain.User
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -59,5 +60,11 @@ class MemberSearchActivity : BaseActivity<ActivityMemberSearchBinding>(R.layout.
     private fun loadMember(skill: String)
     {
         memberViewModel.loadMemberBySkillList(skill)
+    }
+
+    fun onContactClick(member: User)
+    {
+        println(member)
+        println("함께 하기")
     }
 }

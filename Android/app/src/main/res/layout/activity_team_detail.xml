@@ -207,7 +207,7 @@
             android:paddingLeft="110dp"
             android:paddingRight="100dp"
             android:text="함께하기"
-            android:onClick="@{() -> teamDetailActivity.onContactClick()}"
+            android:onClick="@{() -> teamDetailActivity.onContactClick(team)}"
             android:visibility="@{currentUser.documentId.equals(team.leaderDocumentId) ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

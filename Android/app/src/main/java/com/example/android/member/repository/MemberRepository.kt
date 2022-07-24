@@ -51,6 +51,7 @@ class MemberRepository @Inject constructor()
                         @Suppress("UNCHECKED_CAST")
                         User().apply()
                         {
+                            this.documentId = documentSnapshot.id
                             this.email = documentSnapshot["email"] as String
                             this.name = documentSnapshot["name"] as String
                             this.nickName = documentSnapshot["nick_name"] as String
@@ -61,6 +62,7 @@ class MemberRepository @Inject constructor()
                             {
                                 null
                             }
+                            this.exposure = documentSnapshot["exposure"] as Boolean
                             this.introduce = documentSnapshot["introduce"] as String
                             this.skill = documentSnapshot["skill"] as List<String>
                         }.run()
@@ -100,6 +102,7 @@ class MemberRepository @Inject constructor()
                         @Suppress("UNCHECKED_CAST")
                         User().apply()
                         {
+                            this.documentId = documentSnapshot.id
                             this.email = documentSnapshot["email"] as String
                             this.name = documentSnapshot["name"] as String
                             this.nickName = documentSnapshot["nick_name"] as String
@@ -110,6 +113,7 @@ class MemberRepository @Inject constructor()
                             {
                                 null
                             }
+                            this.exposure = documentSnapshot["exposure"] as Boolean
                             this.introduce = documentSnapshot["introduce"] as String
                             this.skill = documentSnapshot["skill"] as List<String>
                         }.run()
