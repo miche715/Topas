@@ -1,10 +1,12 @@
 package com.example.android.member.view
 
+import android.content.Intent
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.R
 import com.example.android.base.BaseFragment
+import com.example.android.chat.view.ChatRoomActivity
 import com.example.android.member.adapter.MemberAdapter
 import com.example.android.member.viewmodel.MemberViewModel
 import com.example.android.databinding.FragmentMemberContactBinding
@@ -64,7 +66,11 @@ class MemberContactFragment : BaseFragment<FragmentMemberContactBinding>(R.layou
 
     fun onContactClick(member: User)
     {
-        println(member)
-        println("함께 하기")
+        Intent(this@MemberContactFragment.context!!, ChatRoomActivity::class.java).run()
+        {
+            this.putExtra("destinationDocumentId", member.documentId)
+            this.putExtra("destinationNickName", member.nickName)
+            startActivity(this)
+        }
     }
 }

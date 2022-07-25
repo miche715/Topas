@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.android.R
 import com.example.android.base.BaseActivity
 import com.example.android.base.BaseApplication.Companion.currentUser
+import com.example.android.chat.view.ChatRoomActivity
 import com.example.android.contact.view.ContactActivity
 import com.example.android.databinding.ActivityTeamDetailBinding
 import com.example.android.team.adapter.TeamDetailRequireSkillAdapter
@@ -69,7 +70,11 @@ class TeamDetailActivity : BaseActivity<ActivityTeamDetailBinding>(R.layout.acti
 
     fun onContactClick(team: Team)
     {
-        println(team)
-        println("함께 하기")
+        Intent(this@TeamDetailActivity, ChatRoomActivity::class.java).run()
+        {
+            this.putExtra("destinationDocumentId", team.leaderDocumentId)
+            this.putExtra("destinationNickName", team.leaderNickName)
+            startActivity(this)
+        }
     }
 }

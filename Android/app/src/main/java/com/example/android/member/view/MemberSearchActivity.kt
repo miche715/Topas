@@ -1,10 +1,12 @@
 package com.example.android.member.view
 
+import android.content.Intent
 import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.R
 import com.example.android.base.BaseActivity
+import com.example.android.chat.view.ChatRoomActivity
 import com.example.android.member.adapter.MemberSearchSkillAdapter
 import com.example.android.member.viewmodel.MemberViewModel
 import com.example.android.databinding.ActivityMemberSearchBinding
@@ -64,7 +66,11 @@ class MemberSearchActivity : BaseActivity<ActivityMemberSearchBinding>(R.layout.
 
     fun onContactClick(member: User)
     {
-        println(member)
-        println("함께 하기")
+        Intent(this@MemberSearchActivity, ChatRoomActivity::class.java).run()
+        {
+            this.putExtra("destinationDocumentId", member.documentId)
+            this.putExtra("destinationNickName", member.nickName)
+            startActivity(this)
+        }
     }
 }
