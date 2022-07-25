@@ -44,6 +44,7 @@ class ChatRepository @Inject constructor()
     }
 
     private lateinit var tempReceiveChatList: MutableList<Chat>
+    
     fun receiveChatFirebase(currentChatRoomDocumentId: String, _receiveChatResult: MutableLiveData<List<Chat>>)
     {
         tempReceiveChatList = mutableListOf()
