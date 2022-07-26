@@ -59,9 +59,17 @@ class ChatRepository @Inject constructor()
                    {
                        this.userDocumentId = it["user_document_id"] as String
                        this.userNickName = it["user_nick_name"] as String
-                       this.userProfilePhotoUri = it["user_profile_photo_uri"] as String
-                       this.message = it["message"] as String
+                       this.userProfilePhotoUri = it["user_profile_photo_uri"]?.let { it as String }
+                       this.message = it["message"]?.let { it as String }?: ""
                        this.timeStamp = it["time_stamp"] as Timestamp
+                       this.viewType = if(this.userDocumentId == currentUser!!.documentId)
+                       {
+                           0  // 내 채팅
+                       }
+                       else
+                       {
+                           1  // 상대방 채팅
+                       }
                    })
                }
                _receiveChatResult.value = tempReceiveChatList.toList()
