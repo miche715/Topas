@@ -15,20 +15,14 @@ class ChatRepository @Inject constructor()
         val newChatRoom: Map<String, List<String>> = mapOf("join_user_document_id" to listOf(currentUser!!.documentId!!, destinationDocumentId))
 
         firebaseFirestore.collection("chat").add(newChatRoom).addOnCompleteListener()
-        {documentReference1 ->
+        {documentReference ->
             _currentChatRoomResult.value = ChatRoom().apply()
             {
-                this.chatRoomDocumentId = documentReference1.result.id
+                this.chatRoomDocumentId = documentReference.result.id
                 this.joinUserDocumentId = newChatRoom["join_user_document_id"]
             }
 
-            val newChat: Map<String, Any> = mapOf("message" to message,
-                                                  "user_document_id" to currentUser!!.documentId!!,
-                                                  "user_nick_name" to currentUser!!.nickName!!,
-                                                  "user_profile_photo_uri" to currentUser!!.profilePhotoUri!!,
-                                                  "time_stamp" to Timestamp.now())
-
-            firebaseFirestore.collection("chat").document(documentReference1.result.id).collection("chatting").add(newChat)
+            sendChatFirebase(message, documentReference.result.id)
         }
     }
 
