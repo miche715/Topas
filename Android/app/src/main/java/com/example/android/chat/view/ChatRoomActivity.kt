@@ -17,8 +17,9 @@ class ChatRoomActivity : BaseActivity<ActivityChatRoomBinding>(R.layout.activity
 
     private val chatAdapter = ChatAdapter()
 
-    private val destinationDocumentId: String by lazy { intent.getStringExtra("destinationDocumentId")!! }
-    private val destinationNickName: String by lazy { intent.getStringExtra("destinationNickName")!! }
+    private val destinationDocumentId: String? by lazy { intent.getStringExtra("destinationDocumentId") }
+    private val destinationNickName: String? by lazy { intent.getStringExtra("destinationNickName") }
+    private val destinationProfilePhotoUri: String? by lazy { intent.getStringExtra("destinationProfilePhotoUri") }
     private lateinit var currentChatRoom: ChatRoom
 
     override fun onInitialize()
@@ -42,6 +43,7 @@ class ChatRoomActivity : BaseActivity<ActivityChatRoomBinding>(R.layout.activity
 
         if(currentChatRoom.chatRoomDocumentId != null)
         {
+            chatViewModel.receiveInitialChat(currentChatRoom)
             chatViewModel.receiveChat(currentChatRoom)
         }
 
@@ -56,6 +58,12 @@ class ChatRoomActivity : BaseActivity<ActivityChatRoomBinding>(R.layout.activity
             chatViewModel.receiveChat(currentChatRoom)
         }
 
+        chatViewModel.receiveInitialChatResult.observe(this)
+        {
+            chatAdapter.addChatList(it.toMutableList())
+            binding.chatRecyclerView.smoothScrollToPosition(chatAdapter.itemCount - 1)
+        }
+
         chatViewModel.receiveChatResult.observe(this)
         {
             chatAdapter.addChatList(it.toMutableList())
@@ -65,7 +73,7 @@ class ChatRoomActivity : BaseActivity<ActivityChatRoomBinding>(R.layout.activity
 
     fun onChatButtonClick()
     {
-        chatViewModel.sendChat(binding.chatEditText.text.toString(), currentChatRoom, destinationDocumentId)
+        chatViewModel.sendChat(binding.chatEditText.text.toString(), currentChatRoom, destinationDocumentId, destinationNickName, destinationProfilePhotoUri)
         binding.chatEditText.text = null
     }
 }

@@ -70,6 +70,7 @@ class MemberContactFragment : BaseFragment<FragmentMemberContactBinding>(R.layou
         {
             this.putExtra("destinationDocumentId", member.documentId)
             this.putExtra("destinationNickName", member.nickName)
+            this.putExtra("destinationProfilePhotoUri", member.profilePhotoUri)
             startActivity(this)
         }
     }

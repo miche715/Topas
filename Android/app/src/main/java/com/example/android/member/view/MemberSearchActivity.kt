@@ -70,6 +70,7 @@ class MemberSearchActivity : BaseActivity<ActivityMemberSearchBinding>(R.layout.
         {
             this.putExtra("destinationDocumentId", member.documentId)
             this.putExtra("destinationNickName", member.nickName)
+            this.putExtra("destinationProfilePhotoUri", member.profilePhotoUri)
             startActivity(this)
         }
     }
