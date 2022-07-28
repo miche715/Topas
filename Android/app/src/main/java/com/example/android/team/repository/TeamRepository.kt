@@ -192,7 +192,7 @@ class TeamRepository @Inject constructor()
             }
     }
 
-    fun createTeamFirebase(title: String, explanation: String, skill: List<String>?, _createTeamResult: MutableLiveData<Boolean>)
+    fun createTeamFirebase(title: String, explanation: String, skill: MutableList<String>?, _createTeamResult: MutableLiveData<Boolean>)
     {
         val newTeam: Map<String, Any?> = mapOf("leader_document_id" to currentUser.documentId,
             "leader_nick_name" to currentUser.nickName,
@@ -226,7 +226,7 @@ class TeamRepository @Inject constructor()
         }
     }
 
-    fun modifyTeamFirebase(title: String, explanation: String, skill: List<String>?, teamDocumentId: String, _modifyTeamResult: MutableLiveData<Boolean>)
+    fun modifyTeamFirebase(title: String, explanation: String, skill: MutableList<String>?, teamDocumentId: String, _modifyTeamResult: MutableLiveData<Boolean>)
     {
         val updateTeam: Map<String, Any?> = mapOf("leader_nick_name" to currentUser.nickName,
                                                   "leader_profile_photo_uri" to currentUser.profilePhotoUri,

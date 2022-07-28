@@ -97,7 +97,7 @@ class TeamViewModel @Inject constructor(private val teamRepository: TeamReposito
 
     fun createTeam(title: String, explanation: String)
     {
-        val skill = selectedTeamRequireSkillResult.value?.toList()
+        val skill = selectedTeamRequireSkillResult.value
         teamRepository.createTeamFirebase(title, explanation, skill, _createTeamResult)
     }
 
@@ -114,7 +114,7 @@ class TeamViewModel @Inject constructor(private val teamRepository: TeamReposito
 
     fun modifyTeam(title: String, explanation: String, teamDocumentId: String)
     {
-        val skill = selectedTeamRequireSkillResult.value?.toList()
+        val skill = selectedTeamRequireSkillResult.value
         teamRepository.modifyTeamFirebase(title, explanation, skill, teamDocumentId, _modifyTeamResult)
     }
 }

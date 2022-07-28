@@ -67,7 +67,8 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
 
     private val _searchSkillResult: MutableLiveData<MutableList<String>> = MutableLiveData()
     val searchSkillResult: LiveData<MutableList<String>> = _searchSkillResult
-    val searchSkillErrorMessage: MutableLiveData<String?> = MutableLiveData()
+    private val _searchSkillErrorMessage: MutableLiveData<String?> = MutableLiveData()
+    val searchSkillErrorMessage: LiveData<String?> = _searchSkillErrorMessage
     private val tempSearchSkillList = mutableListOf<String>()
 
     fun searchSkill(skillString: String)
@@ -90,20 +91,20 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
 
             if(_searchSkillResult.value!!.size == 0)
             {
-                searchSkillErrorMessage.value = "검색 결과가 없습니다."
+                _searchSkillErrorMessage.value = "검색 결과가 없습니다."
             }
             else
             {
-                searchSkillErrorMessage.value = null
+                _searchSkillErrorMessage.value = null
             }
         }
         else  // 스킬을 검색하는 에디트 텍스트가 비었음
         {
-            searchSkillErrorMessage.value = "스킬을 검색해 주세요."
+            _searchSkillErrorMessage.value = "스킬을 검색해 주세요."
         }
     }
 
-    private val _mySkillResult: MutableLiveData<MutableList<String>> = MutableLiveData(currentUser.skill!!)  // 화면에 보여질 원래 내 스킬 들을 넣어줌
+    private val _mySkillResult: MutableLiveData<MutableList<String>> = MutableLiveData(currentUser.skill!!.toMutableList())  // 화면에 보여질 원래 내 스킬 들을 넣어줌
     val mySkillResult: LiveData<MutableList<String>> = _mySkillResult
     private var tempMySkillList = mutableListOf<String>()
 
@@ -134,11 +135,11 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
     fun cancelMySkill()
     {
         _searchSkillResult.value?.clear()
-        _mySkillResult.value = _mySkillString.value?.split(", ")?.toMutableList() ?: currentUser.skill
+        _mySkillResult.value = _mySkillString.value?.split(", ")?.toMutableList() ?: currentUser.skill?.toMutableList()
     }
 
     fun initializeSearchErrorMessage()
     {
-        searchSkillErrorMessage.value = null
+        _searchSkillErrorMessage.value = null
     }
 }
