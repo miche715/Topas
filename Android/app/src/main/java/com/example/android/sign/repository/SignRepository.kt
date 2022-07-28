@@ -15,15 +15,31 @@ import javax.inject.Inject
 
 class SignRepository @Inject constructor()
 {
-    fun signUpFirebase(email: String, password: String, name: String, nickName: String, profilePhoto: Uri?, _signUpResult: MutableLiveData<Any>)
+    //=======================================================================================================================================================================//
+    /*
+        * 사용: SignUpActivity
+        * 용도: Authentication 및 Firestore에 유저 등록.
+    */
+    fun signUpFirebase(email: String,
+                       password: String,
+                       name: String,
+                       nickName: String,
+                       profilePhoto: Uri?,
+                       _signUpResult: MutableLiveData<Any>)
     {
         CoroutineScope(Dispatchers.IO).launch()
         {
-            firebaseFirestore.collection("user").whereEqualTo("nick_name", nickName).get().addOnCompleteListener()  // user 컬렉션에 같은 닉네임이 있는지
+            firebaseFirestore
+                .collection("user")
+                .whereEqualTo("nick_name", nickName)
+                .get()
+                .addOnCompleteListener()  // user 컬렉션에 같은 닉네임이 있는지
             {querySnapshot ->
                 if(querySnapshot.result.size() == 0)  // 같은 닉네임이 없다
                 {
-                    firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener()  // Auth에 회원가입 시도
+                    firebaseAuth
+                        .createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener()  // Auth에 회원가입 시도
                     {authResult ->
                         if(authResult.isSuccessful)  // Auth에 가입 성공
                         {
@@ -51,7 +67,10 @@ class SignRepository @Inject constructor()
                                                                   "skill" to mutableListOf<String>(),
                                                                   "update_at" to Timestamp.now())
 
-                            firebaseFirestore.collection("user").add(newUser).addOnCompleteListener()  // Auth에 가입은 성공 했으니까 user 컬렉션에 유저 정보를 넣음
+                            firebaseFirestore
+                                .collection("user")
+                                .add(newUser)
+                                .addOnCompleteListener()  // Auth에 가입은 성공 했으니까 user 컬렉션에 유저 정보를 넣음
                             {documentReference ->
                                 if(documentReference.isSuccessful)  // user 컬렉션 등록 성공
                                 {
@@ -103,16 +122,30 @@ class SignRepository @Inject constructor()
             }
         }
     }
+    //=======================================================================================================================================================================//
 
-    fun signInFirebase(email: String, password: String, _signInResult: MutableLiveData<Any>)
+    //=======================================================================================================================================================================//
+    /*
+        * 사용: SignInActivity
+        * 용도: 입력으로 들어온 정보가 Firestore에 있는지 확인.
+    */
+    fun signInFirebase(email: String,
+                       password: String,
+                       _signInResult: MutableLiveData<Any>)
     {
-        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener()  // Auth에 로그인 시도
+        firebaseAuth
+            .signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener()  // Auth에 로그인 시도
         {authResult ->
             if(authResult.isSuccessful)  // Auth 로그인 성공
             {
                 Log.d("*** signInFirebase Auth에 로그인 성공 ***", "${authResult.result}")
 
-                firebaseFirestore.collection("user").whereEqualTo("email", email).get().addOnCompleteListener()
+                firebaseFirestore
+                    .collection("user")
+                    .whereEqualTo("email", email)
+                    .get()
+                    .addOnCompleteListener()
                 {querySnapshot ->
                     @Suppress("UNCHECKED_CAST")
                     currentUser = User().apply()
@@ -144,4 +177,5 @@ class SignRepository @Inject constructor()
             }
         }
     }
+    //=======================================================================================================================================================================//
 }

@@ -12,6 +12,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ChatViewModel @Inject constructor(private val chatRepository: ChatRepository) : ViewModel()
 {
+    //=======================================================================================================================================================================//
     private val _chatRoomResult: MutableLiveData<MutableList<ChatRoom>> = MutableLiveData()
     val chatRoomResult: LiveData<MutableList<ChatRoom>> = _chatRoomResult
 
@@ -19,7 +20,9 @@ class ChatViewModel @Inject constructor(private val chatRepository: ChatReposito
     {
         chatRepository.loadChatRoomFirebase(_chatRoomResult)
     }
+    //=======================================================================================================================================================================//
 
+    //=======================================================================================================================================================================//
     private val _currentChatRoomResult: MutableLiveData<ChatRoom> = MutableLiveData()
     val currentChatRoomResult: LiveData<ChatRoom> = _currentChatRoomResult
 
@@ -34,7 +37,9 @@ class ChatViewModel @Inject constructor(private val chatRepository: ChatReposito
             chatRepository.sendChatFirebase(message, currentChatRoom.chatRoomDocumentId!!)
         }
     }
+    //=======================================================================================================================================================================//
 
+    //=======================================================================================================================================================================//
     private val _receiveInitialChatResult: MutableLiveData<MutableList<Chat>> = MutableLiveData()
     val receiveInitialChatResult: LiveData<MutableList<Chat>> = _receiveInitialChatResult
 
@@ -42,7 +47,9 @@ class ChatViewModel @Inject constructor(private val chatRepository: ChatReposito
     {
         chatRepository.receiveInitialChatFirebase(currentChatRoom.chatRoomDocumentId!!, _receiveInitialChatResult)
     }
+    //=======================================================================================================================================================================//
 
+    //=======================================================================================================================================================================//
     private val _receiveChatResult: MutableLiveData<MutableList<Chat>> = MutableLiveData()
     val receiveChatResult: LiveData<MutableList<Chat>> = _receiveChatResult
 
@@ -50,4 +57,5 @@ class ChatViewModel @Inject constructor(private val chatRepository: ChatReposito
     {
         chatRepository.receiveChatFirebase(currentChatRoom.chatRoomDocumentId!!, _receiveChatResult)
     }
+    //=======================================================================================================================================================================//
 }

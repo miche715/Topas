@@ -12,29 +12,34 @@ import javax.inject.Inject
 @HiltViewModel
 class TeamViewModel @Inject constructor(private val teamRepository: TeamRepository) : ViewModel()
 {
+    //=======================================================================================================================================================================//
     private val _loadTeamListResult: MutableLiveData<MutableList<Team>> = MutableLiveData()
     val loadTeamListResult: LiveData<MutableList<Team>> = _loadTeamListResult
-
-    fun loadTeamList()
-    {
-        teamRepository.loadTeamListFirebase(_loadTeamListResult)
-    }
 
     fun initializeLoadTeamListQuery()
     {
         teamRepository.initializeLoadTeamListQuery()
     }
 
-    fun loadMyTeamList()
+    fun loadTeamList()
     {
-        teamRepository.loadMyTeamListFirebase(_loadTeamListResult)
+        teamRepository.loadTeamListFirebase(_loadTeamListResult)
     }
+    //=======================================================================================================================================================================//
 
+    //=======================================================================================================================================================================//
     fun initializeLoadMyTeamListQuery()
     {
         teamRepository.initializeLoadMyTeamListQuery()
     }
 
+    fun loadMyTeamList()
+    {
+        teamRepository.loadMyTeamListFirebase(_loadTeamListResult)
+    }
+    //=======================================================================================================================================================================//
+
+    //=======================================================================================================================================================================//
     private val _searchTeamRequireSkillResult: MutableLiveData<MutableList<String>> = MutableLiveData()
     val searchTeamRequireSkillResult: LiveData<MutableList<String>> = _searchTeamRequireSkillResult
     private val tempSearchTeamRequireSkillResult = mutableListOf<String>()
@@ -62,7 +67,9 @@ class TeamViewModel @Inject constructor(private val teamRepository: TeamReposito
             _searchTeamRequireSkillResult.value = mutableListOf()
         }
     }
+    //=======================================================================================================================================================================//
 
+    //=======================================================================================================================================================================//
     private val _selectedTeamRequireSkillResult: MutableLiveData<MutableList<String>> = MutableLiveData(mutableListOf())
     val selectedTeamRequireSkillResult: LiveData<MutableList<String>> = _selectedTeamRequireSkillResult
     private var tempSelectedTeamRequireSkillList = mutableListOf<String>()
@@ -81,7 +88,9 @@ class TeamViewModel @Inject constructor(private val teamRepository: TeamReposito
         }
         _selectedTeamRequireSkillResult.value = tempSelectedTeamRequireSkillList
     }
+    //=======================================================================================================================================================================//
 
+    //=======================================================================================================================================================================//
     private val _loadTeamBySkillResult: MutableLiveData<MutableList<Team>> = MutableLiveData()
     val loadTeamBySkillResult: LiveData<MutableList<Team>> = _loadTeamBySkillResult
     private val _loadTeamBySkillErrorMessage: MutableLiveData<String?> = MutableLiveData()
@@ -91,7 +100,9 @@ class TeamViewModel @Inject constructor(private val teamRepository: TeamReposito
     {
         teamRepository.loadTeamBySkillListFirebase(listOf(skill), _loadTeamBySkillResult, _loadTeamBySkillErrorMessage)
     }
+    //=======================================================================================================================================================================//
 
+    //=======================================================================================================================================================================//
     private val _createTeamResult: MutableLiveData<Boolean> = MutableLiveData()
     val createTeamResult: LiveData<Boolean> = _createTeamResult
 
@@ -100,7 +111,9 @@ class TeamViewModel @Inject constructor(private val teamRepository: TeamReposito
         val skill = selectedTeamRequireSkillResult.value
         teamRepository.createTeamFirebase(title, explanation, skill, _createTeamResult)
     }
+    //=======================================================================================================================================================================//
 
+    //=======================================================================================================================================================================//
     private val _deleteTeamResult: MutableLiveData<Boolean> = MutableLiveData()
     val deleteTeamResult: LiveData<Boolean> = _deleteTeamResult
 
@@ -108,7 +121,9 @@ class TeamViewModel @Inject constructor(private val teamRepository: TeamReposito
     {
         teamRepository.deleteTeamFirebase(team, _deleteTeamResult)
     }
+    //=======================================================================================================================================================================//
 
+    //=======================================================================================================================================================================//
     private val _modifyTeamResult: MutableLiveData<Boolean> = MutableLiveData()
     val modifyTeamResult: LiveData<Boolean> = _modifyTeamResult
 
@@ -117,4 +132,5 @@ class TeamViewModel @Inject constructor(private val teamRepository: TeamReposito
         val skill = selectedTeamRequireSkillResult.value
         teamRepository.modifyTeamFirebase(title, explanation, skill, teamDocumentId, _modifyTeamResult)
     }
+    //=======================================================================================================================================================================//
 }

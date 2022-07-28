@@ -12,6 +12,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MemberViewModel @Inject constructor(private val memberRepository: MemberRepository) : ViewModel()
 {
+    //=======================================================================================================================================================================//
     private val _loadMemberListResult: MutableLiveData<MutableList<User>> = MutableLiveData()
     val loadMemberListResult: LiveData<MutableList<User>> = _loadMemberListResult
 
@@ -24,7 +25,9 @@ class MemberViewModel @Inject constructor(private val memberRepository: MemberRe
     {
         memberRepository.initializeLoadMemberListQuery()
     }
+    //=======================================================================================================================================================================//
 
+    //=======================================================================================================================================================================//
     private val _searchSkillResult: MutableLiveData<MutableList<String>> = MutableLiveData()
     val searchSkillResult: LiveData<MutableList<String>> = _searchSkillResult
     private val tempSearchSkillList = mutableListOf<String>()
@@ -52,7 +55,9 @@ class MemberViewModel @Inject constructor(private val memberRepository: MemberRe
             _searchSkillResult.value = mutableListOf()
         }
     }
+    //=======================================================================================================================================================================//
 
+    //=======================================================================================================================================================================//
     private val _loadMemberBySkillResult: MutableLiveData<MutableList<User>> = MutableLiveData()
     val loadMemberBySkillResult: LiveData<MutableList<User>> = _loadMemberBySkillResult
     private val _loadMemberBySkillErrorMessage: MutableLiveData<String?> = MutableLiveData()
@@ -62,4 +67,5 @@ class MemberViewModel @Inject constructor(private val memberRepository: MemberRe
     {
         memberRepository.loadMemberBySkillListFirebase(mutableListOf(skill), _loadMemberBySkillResult, _loadMemberBySkillErrorMessage)
     }
+    //=======================================================================================================================================================================//
 }

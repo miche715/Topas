@@ -11,6 +11,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SignViewModel @Inject constructor(private val signRepository: SignRepository) : ViewModel()
 {
+    //=======================================================================================================================================================================//
     private val emailRegex = "^[a-z0-9\\.\\-_]+@([a-z0-9\\-]+\\.)+[a-z]{2,6}$".toRegex()  // 이메일 형식
     private val passwordRegex = "^[a-zA-Z0-9!@#$%^&*()-_=+]{4,20}$".toRegex()  // 소문자 대문자 + 숫자 4 ~ 20자리
     private val nameRegex = "^[가-힣]*$".toRegex()  // 한글만
@@ -118,7 +119,9 @@ class SignViewModel @Inject constructor(private val signRepository: SignReposito
             signRepository.signUpFirebase(email, password, name, nickName, profilePhoto, _signUpResult)
         }
     }
+    //=======================================================================================================================================================================//
 
+    //=======================================================================================================================================================================//
     private val _signInResult: MutableLiveData<Any> = MutableLiveData()
     val signInResult: LiveData<Any> = _signInResult
     val emailOrPasswordInValidMessage: MutableLiveData<String?> = MutableLiveData()
@@ -143,4 +146,5 @@ class SignViewModel @Inject constructor(private val signRepository: SignReposito
             signRepository.signInFirebase(email, password, _signInResult)
         }
     }
+    //=======================================================================================================================================================================//
 }

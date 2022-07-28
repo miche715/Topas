@@ -13,6 +13,7 @@ import com.example.android.utility.skillList
 @HiltViewModel
 class UserViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel()
 {
+    //=======================================================================================================================================================================//
     private val nameRegex = "^[가-힣]*$".toRegex()  // 한글만
     private val nickNameRegex = "^[a-zA-Z가-힣0-9]{2,8}$".toRegex()  // 소문자, 대문자, 한글, 숫자 2 ~ 8자리
 
@@ -64,7 +65,9 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
             userRepository.updateUserFirebase(name, nickName, profilePhoto, introduce, isExposureChecked, skill, _updateUserResult)
         }
     }
+    //=======================================================================================================================================================================//
 
+    //=======================================================================================================================================================================//
     private val _searchSkillResult: MutableLiveData<MutableList<String>> = MutableLiveData()
     val searchSkillResult: LiveData<MutableList<String>> = _searchSkillResult
     private val _searchSkillErrorMessage: MutableLiveData<String?> = MutableLiveData()
@@ -103,7 +106,9 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
             _searchSkillErrorMessage.value = "스킬을 검색해 주세요."
         }
     }
+    //=======================================================================================================================================================================//
 
+    //=======================================================================================================================================================================//
     private val _mySkillResult: MutableLiveData<MutableList<String>> = MutableLiveData(currentUser.skill!!.toMutableList())  // 화면에 보여질 원래 내 스킬 들을 넣어줌
     val mySkillResult: LiveData<MutableList<String>> = _mySkillResult
     private var tempMySkillList = mutableListOf<String>()
@@ -122,7 +127,9 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
         }
         _mySkillResult.value = tempMySkillList
     }
+    //=======================================================================================================================================================================//
 
+    //=======================================================================================================================================================================//
     private val _mySkillString: MutableLiveData<String> = MutableLiveData()
     val mySkillString: LiveData<String> = _mySkillString
 
@@ -137,9 +144,12 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
         _searchSkillResult.value?.clear()
         _mySkillResult.value = _mySkillString.value?.split(", ")?.toMutableList() ?: currentUser.skill?.toMutableList()
     }
+    //=======================================================================================================================================================================//
 
+    //=======================================================================================================================================================================//
     fun initializeSearchErrorMessage()
     {
         _searchSkillErrorMessage.value = null
     }
+    //=======================================================================================================================================================================//
 }

@@ -18,13 +18,28 @@ import kotlinx.coroutines.tasks.await
 
 class UserRepository @Inject constructor()
 {
-    fun updateUserFirebase(name: String, nickName: String, profilePhoto: Uri?, introduce: String, isExposureChecked: Boolean, skill: MutableList<String>?, _userUpdateResult: MutableLiveData<Any>)
+    //=======================================================================================================================================================================//
+    /*
+        * 사용: UserSettingActivity
+        * 용도: 나의 정보를 수정해서 서버에 저장.
+    */
+    fun updateUserFirebase(name: String,
+                           nickName: String,
+                           profilePhoto: Uri?,
+                           introduce: String,
+                           isExposureChecked: Boolean,
+                           skill: MutableList<String>?,
+                           _userUpdateResult: MutableLiveData<Any>)
     {
         CoroutineScope(Dispatchers.IO).launch()
         {
-            firebaseFirestore.collection("user").whereEqualTo("nick_name", nickName).get().addOnCompleteListener()
+            firebaseFirestore
+                .collection("user")
+                .whereEqualTo("nick_name", nickName)
+                .get()
+                .addOnCompleteListener()
             {querySnapshot ->
-                if(querySnapshot.result.size() == 0 || querySnapshot.result.documents[0].id == currentUser.documentId)  // 내가 닉네임을 바꿨는데 같은 사람이 없거나 || 닉네임을 안바꿈
+                if(querySnapshot.result.size() == 0 || querySnapshot.result.documents[0].id == currentUser.documentId)  // 내가 닉네임을 바꿨는데 같은 사람이 없거나 혹은 닉네임을 안바꿈
                 {
                     val profilePhotoUri = runBlocking()  // 프로필 사진을 업로드하고 그 URI를 가져오는 동안 유저 등록을 잠시 기다리도록 하기 위해 사용
                     {
@@ -58,7 +73,10 @@ class UserRepository @Inject constructor()
                                                               "skill" to skill,
                                                               "update_at" to Timestamp.now())
 
-                    firebaseFirestore.collection("user").document(currentUser.documentId!!).set(updateUser, SetOptions.merge()).addOnCompleteListener()  // 병합
+                    firebaseFirestore
+                        .collection("user").document(currentUser.documentId!!)
+                        .set(updateUser, SetOptions.merge())
+                        .addOnCompleteListener()  // 병합
                     {void ->
                         if(void.isSuccessful)  // 사용자 정보 업데이트 성공
                         {
@@ -90,4 +108,5 @@ class UserRepository @Inject constructor()
             }
         }
     }
+    //=======================================================================================================================================================================//
 }
