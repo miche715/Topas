@@ -20,7 +20,7 @@ class BaseApplication : Application()  // 앱에서 전역적으로 쓰이는 �
         lateinit var firebaseFirestore: FirebaseFirestore
         lateinit var firebaseStorage: StorageReference
 
-        var currentUser: User? = null  // 지금 로그인한 유저의 정보
+        lateinit var currentUser: User  // 지금 로그인한 유저의 정보
     }
 
     override fun onCreate()

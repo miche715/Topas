@@ -80,7 +80,7 @@ class TeamRepository @Inject constructor()
     {
         loadTeamListQuery = firebaseFirestore
             .collection("team")
-            .whereEqualTo("leader_document_id", currentUser!!.documentId)
+            .whereEqualTo("leader_document_id", currentUser.documentId)
             .orderBy("update_at", Query.Direction.DESCENDING)
             .limit(5)
     }
@@ -89,7 +89,7 @@ class TeamRepository @Inject constructor()
     {
         loadTeamListQuery = firebaseFirestore
             .collection("team")
-            .whereEqualTo("leader_document_id", currentUser!!.documentId)
+            .whereEqualTo("leader_document_id", currentUser.documentId)
             .orderBy("update_at", Query.Direction.DESCENDING)
             .startAfter(documentSnapshot)
             .limit(5)
@@ -194,9 +194,9 @@ class TeamRepository @Inject constructor()
 
     fun createTeamFirebase(title: String, explanation: String, skill: List<String>?, _createTeamResult: MutableLiveData<Boolean>)
     {
-        val newTeam: Map<String, Any?> = mapOf("leader_document_id" to currentUser!!.documentId,
-            "leader_nick_name" to currentUser!!.nickName,
-            "leader_profile_photo_uri" to currentUser!!.profilePhotoUri,
+        val newTeam: Map<String, Any?> = mapOf("leader_document_id" to currentUser.documentId,
+            "leader_nick_name" to currentUser.nickName,
+            "leader_profile_photo_uri" to currentUser.profilePhotoUri,
             "title" to title,
             "explanation" to explanation,
             "skill" to skill,
@@ -228,8 +228,8 @@ class TeamRepository @Inject constructor()
 
     fun modifyTeamFirebase(title: String, explanation: String, skill: List<String>?, teamDocumentId: String, _modifyTeamResult: MutableLiveData<Boolean>)
     {
-        val updateTeam: Map<String, Any?> = mapOf("leader_nick_name" to currentUser!!.nickName,
-                                                  "leader_profile_photo_uri" to currentUser!!.profilePhotoUri,
+        val updateTeam: Map<String, Any?> = mapOf("leader_nick_name" to currentUser.nickName,
+                                                  "leader_profile_photo_uri" to currentUser.profilePhotoUri,
                                                   "title" to title,
                                                   "explanation" to explanation,
                                                   "skill" to skill,

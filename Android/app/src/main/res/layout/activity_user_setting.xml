@@ -83,7 +83,7 @@
                         app:civ_border_width="2dp"
                         app:layout_constraintStart_toStartOf="@+id/profilePhotoTextView"
                         app:layout_constraintTop_toBottomOf="@+id/profilePhotoTextView"
-                        app:profilePhotoUrl="@{currentUser.profilePhotoUri}" />
+                        app:photo_uri="@{currentUser.profilePhotoUri}" />
 
                     <LinearLayout
                         android:layout_width="0dp"

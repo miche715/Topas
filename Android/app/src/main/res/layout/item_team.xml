@@ -57,7 +57,7 @@
                     app:civ_border_width="2dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/colorTextView"
-                    app:profilePhotoUrl="@{team.leaderProfilePhotoUri}" />
+                    app:photo_uri="@{team.leaderProfilePhotoUri}" />
 
                 <TextView
                     android:id="@+id/nickNameTextView"

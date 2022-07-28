@@ -18,7 +18,7 @@ class ChatRepository @Inject constructor()
     {
         tempChatRoomList = mutableListOf()
 
-        firebaseFirestore.collection("chat").whereArrayContainsAny("join_user_document_id", listOf(currentUser!!.documentId!!)).orderBy("time_stamp", Query.Direction.DESCENDING).addSnapshotListener()
+        firebaseFirestore.collection("chat").whereArrayContainsAny("join_user_document_id", listOf(currentUser.documentId!!)).orderBy("time_stamp", Query.Direction.DESCENDING).addSnapshotListener()
         {querySnapshot, exception ->
             if(querySnapshot != null)
             {
@@ -29,9 +29,9 @@ class ChatRepository @Inject constructor()
                     {
                         this.chatRoomDocumentId = queryDocumentSnapshot.id
                         this.joinUserDocumentId = queryDocumentSnapshot.data["join_user_document_id"] as List<String>
-                        this.destinationUserDocumentId = (queryDocumentSnapshot.data["join_user_document_id"] as List<String>).filterNot { it == currentUser!!.documentId }.first()
-                        this.destinationUserNickName = (queryDocumentSnapshot.data["join_user_nick_name"]?.let { it as List<String>})?.filterNot { it == currentUser!!.nickName }?.first()
-                        this.destinationUserProfilePhotoUri = (queryDocumentSnapshot.data["join_user_profile_photo_uri"]?.let { it as List<String> })?.filterNot { it == currentUser!!.profilePhotoUri }?.first()
+                        this.destinationUserDocumentId = (queryDocumentSnapshot.data["join_user_document_id"] as List<String>).filterNot { it == currentUser.documentId }.first()
+                        this.destinationUserNickName = (queryDocumentSnapshot.data["join_user_nick_name"]?.let { it as List<String>})?.filterNot { it == currentUser.nickName }?.first()
+                        this.destinationUserProfilePhotoUri = (queryDocumentSnapshot.data["join_user_profile_photo_uri"]?.let { it as List<String> })?.filterNot { it == currentUser.profilePhotoUri }?.first()
                     })
                 }
                 _chatRoomResult.value = tempChatRoomList.toList()
@@ -41,9 +41,9 @@ class ChatRepository @Inject constructor()
 
     fun makeChatRoomAndSendChatFirebase(message: String, destinationDocumentId: String?, destinationNickName: String?, destinationProfilePhotoUri: String?, _currentChatRoomResult: MutableLiveData<ChatRoom>)
     {
-        val newChatRoom: Map<String, List<String?>> = mapOf("join_user_document_id" to listOf(currentUser!!.documentId!!, destinationDocumentId),
-                                                           "join_user_nick_name" to listOf(currentUser!!.nickName!!, destinationNickName),
-                                                           "join_user_profile_photo_uri" to listOf(currentUser!!.profilePhotoUri, destinationProfilePhotoUri))
+        val newChatRoom: Map<String, List<String?>> = mapOf("join_user_document_id" to listOf(currentUser.documentId!!, destinationDocumentId),
+                                                           "join_user_nick_name" to listOf(currentUser.nickName!!, destinationNickName),
+                                                           "join_user_profile_photo_uri" to listOf(currentUser.profilePhotoUri, destinationProfilePhotoUri))
 
         firebaseFirestore.collection("chat").add(newChatRoom).addOnCompleteListener()
         {documentReference ->
@@ -62,9 +62,9 @@ class ChatRepository @Inject constructor()
     fun sendChatFirebase(message: String, currentChatRoomDocumentId: String)
     {
         val newChat: Map<String, Any?> = mapOf("message" to message,
-                                              "user_document_id" to currentUser!!.documentId!!,
-                                              "user_nick_name" to currentUser!!.nickName!!,
-                                              "user_profile_photo_uri" to currentUser!!.profilePhotoUri,
+                                              "user_document_id" to currentUser.documentId!!,
+                                              "user_nick_name" to currentUser.nickName!!,
+                                              "user_profile_photo_uri" to currentUser.profilePhotoUri,
                                               "time_stamp" to Timestamp.now())
 
         firebaseFirestore.collection("chat").document(currentChatRoomDocumentId).collection("chatting").add(newChat)
@@ -88,7 +88,7 @@ class ChatRepository @Inject constructor()
                     this.userProfilePhotoUri = it["user_profile_photo_uri"]?.let { it as String }
                     this.message = it["message"]?.let { it as String }?: ""
                     this.timeStamp = it["time_stamp"] as Timestamp
-                    this.viewType = if(this.userDocumentId == currentUser!!.documentId)
+                    this.viewType = if(this.userDocumentId == currentUser.documentId)
                     {
                         0  // 내 채팅
                     }
@@ -119,7 +119,7 @@ class ChatRepository @Inject constructor()
                        this.userProfilePhotoUri = it["user_profile_photo_uri"]?.let { it as String }
                        this.message = it["message"]?.let { it as String }?: ""
                        this.timeStamp = it["time_stamp"] as Timestamp
-                       this.viewType = if(this.userDocumentId == currentUser!!.documentId)
+                       this.viewType = if(this.userDocumentId == currentUser.documentId)
                        {
                            0  // 내 채팅
                        }
@@ -133,7 +133,6 @@ class ChatRepository @Inject constructor()
            }
         }
     }
-
 }
 
 

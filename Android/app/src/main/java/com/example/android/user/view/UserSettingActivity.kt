@@ -24,7 +24,7 @@ class UserSettingActivity : BaseActivity<ActivityUserSettingBinding>(R.layout.ac
 
     private val loadingDialog: LoadingDialog by lazy { LoadingDialog(this@UserSettingActivity) }
 
-    private var profilePhoto: Uri? = currentUser!!.profilePhotoUri?.toUri()
+    private var profilePhoto: Uri? = currentUser.profilePhotoUri?.toUri()
 
     private var activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
     {
@@ -46,7 +46,7 @@ class UserSettingActivity : BaseActivity<ActivityUserSettingBinding>(R.layout.ac
         binding.userViewModel = userViewModel
         binding.userSettingActivity = this@UserSettingActivity
 
-        binding.skillTextView.text = intent.getStringExtra("skillString") ?: currentUser!!.skill!!.joinToString(", ")
+        binding.skillTextView.text = intent.getStringExtra("skillString") ?: currentUser.skill!!.joinToString(", ")
 
         userViewModel.updateUserResult.observe(this@UserSettingActivity)
         {

@@ -24,27 +24,27 @@ class UserRepository @Inject constructor()
         {
             firebaseFirestore.collection("user").whereEqualTo("nick_name", nickName).get().addOnCompleteListener()
             {querySnapshot ->
-                if(querySnapshot.result.size() == 0 || querySnapshot.result.documents[0].id == currentUser!!.documentId)  // 내가 닉네임을 바꿨는데 같은 사람이 없거나 || 닉네임을 안바꿈
+                if(querySnapshot.result.size() == 0 || querySnapshot.result.documents[0].id == currentUser.documentId)  // 내가 닉네임을 바꿨는데 같은 사람이 없거나 || 닉네임을 안바꿈
                 {
                     val profilePhotoUri = runBlocking()  // 프로필 사진을 업로드하고 그 URI를 가져오는 동안 유저 등록을 잠시 기다리도록 하기 위해 사용
                     {
                         if(profilePhoto != null)  // 프로필 사진이 선택됨
                         {
-                            if(profilePhoto != currentUser!!.profilePhotoUri?.toUri())  // 넘어온 프로필 사진과 원래 프로필 사진이 다른 경우
+                            if(profilePhoto != currentUser.profilePhotoUri?.toUri())  // 넘어온 프로필 사진과 원래 프로필 사진이 다른 경우
                             {
-                                firebaseStorage.child("profile_photo_${currentUser!!.email}").putFile(profilePhoto).await()  // 그대로 덮어씌움
-                                firebaseStorage.child("profile_photo_${currentUser!!.email}").downloadUrl.await().toString()  // 그리고 받아옴
+                                firebaseStorage.child("profile_photo_${currentUser.email}").putFile(profilePhoto).await()  // 그대로 덮어씌움
+                                firebaseStorage.child("profile_photo_${currentUser.email}").downloadUrl.await().toString()  // 그리고 받아옴
                             }
                             else  // 넘어온 프로필 사진과 원래 프로필 사진이 같은 경우
                             {
-                                currentUser!!.profilePhotoUri
+                                currentUser.profilePhotoUri
                             }
                         }
                         else
                         {
-                            if(currentUser!!.profilePhotoUri != null)  // 원래 프로필 사진이 있으면 Storage에서 삭제해야 함
+                            if(currentUser.profilePhotoUri != null)  // 원래 프로필 사진이 있으면 Storage에서 삭제해야 함
                             {
-                                firebaseStorage.child("profile_photo_${currentUser!!.email}").delete().await()
+                                firebaseStorage.child("profile_photo_${currentUser.email}").delete().await()
                             }
                             null
                         }
@@ -58,18 +58,18 @@ class UserRepository @Inject constructor()
                                                               "skill" to skill,
                                                               "update_at" to Timestamp.now())
 
-                    firebaseFirestore.collection("user").document(currentUser!!.documentId!!).set(updateUser, SetOptions.merge()).addOnCompleteListener()  // 병합
+                    firebaseFirestore.collection("user").document(currentUser.documentId!!).set(updateUser, SetOptions.merge()).addOnCompleteListener()  // 병합
                     {void ->
                         if(void.isSuccessful)  // 사용자 정보 업데이트 성공
                         {
                             Log.d("*** updateUserFirebase Firestore user 컬렉션에 업데이트 성공 ***", "User information update has been completed.")
 
-                            currentUser!!.name = name
-                            currentUser!!.nickName = nickName
-                            currentUser!!.profilePhotoUri = profilePhotoUri
-                            currentUser!!.introduce = introduce
-                            currentUser!!.exposure = isExposureChecked
-                            currentUser!!.skill = skill
+                            currentUser.name = name
+                            currentUser.nickName = nickName
+                            currentUser.profilePhotoUri = profilePhotoUri
+                            currentUser.introduce = introduce
+                            currentUser.exposure = isExposureChecked
+                            currentUser.skill = skill
 
                             _userUpdateResult.value = true
                         }

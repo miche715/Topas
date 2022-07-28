@@ -5,19 +5,6 @@ import com.bumptech.glide.Glide
 import com.example.android.R
 import de.hdodenhof.circleimageview.CircleImageView
 
-@BindingAdapter("profilePhotoUrl")
-fun bindImageFromUrl(view: CircleImageView, profilePhotoUrl: String?)
-{
-    if (!profilePhotoUrl.isNullOrEmpty())
-    {
-        Glide.with(view.context).load(profilePhotoUrl).into(view)
-    }
-    else
-    {
-        Glide.with(view.context).load(R.drawable.default_profile_photo).into(view)
-    }
-}
-
 enum class NowFragment
 {
     MEMBER, TEAM, CHAT
@@ -26,6 +13,19 @@ enum class NowFragment
 enum class TeamViewMode
 {
     All, MY
+}
+
+@BindingAdapter("photo_uri")
+fun bindImageFromUrl(view: CircleImageView, profilePhotoUri: String?)
+{
+    if(!profilePhotoUri.isNullOrEmpty())
+    {
+        Glide.with(view.context).load(profilePhotoUri).into(view)
+    }
+    else
+    {
+        Glide.with(view.context).load(R.drawable.default_profile_photo).into(view)
+    }
 }
 
 val skillList = listOf("c"          , "c++"          , "c#"        , "go"           , "java"      , "javascript", "typescript", "php"         , "perl"       , "ruby"        ,

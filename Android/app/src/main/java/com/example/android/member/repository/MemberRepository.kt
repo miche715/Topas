@@ -46,7 +46,7 @@ class MemberRepository @Inject constructor()
 
                 querySnapshot.result.documents.forEach()
                 {documentSnapshot ->
-                    if((documentSnapshot["email"] as String) != currentUser!!.email)  // 자기 자신은 표시하지 않음
+                    if((documentSnapshot["email"] as String) != currentUser.email)  // 자기 자신은 표시하지 않음
                     {
                         @Suppress("UNCHECKED_CAST")
                         User().apply()
@@ -97,7 +97,7 @@ class MemberRepository @Inject constructor()
 
                 querySnapshot.result.documents.forEach()
                 {documentSnapshot ->
-                    if((documentSnapshot["email"] as String) != currentUser!!.email)  // 자기 자신은 표시하지 않음
+                    if((documentSnapshot["email"] as String) != currentUser.email)  // 자기 자신은 표시하지 않음
                     {
                         @Suppress("UNCHECKED_CAST")
                         User().apply()

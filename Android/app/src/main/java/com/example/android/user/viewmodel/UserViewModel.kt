@@ -103,7 +103,7 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
         }
     }
 
-    private val _mySkillResult: MutableLiveData<MutableList<String>> = MutableLiveData(currentUser!!.skill!!.toMutableList())  // 화면에 보여질 원래 내 스킬 들을 넣어줌
+    private val _mySkillResult: MutableLiveData<MutableList<String>> = MutableLiveData(currentUser.skill!!.toMutableList())  // 화면에 보여질 원래 내 스킬 들을 넣어줌
     val mySkillResult: LiveData<MutableList<String>> = _mySkillResult
     private var tempMySkillList = mutableListOf<String>()
 
@@ -134,7 +134,7 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
     fun cancelMySkill()
     {
         _searchSkillResult.value?.clear()
-        _mySkillResult.value = _mySkillString.value?.split(", ")?.toMutableList() ?: currentUser!!.skill?.toMutableList()
+        _mySkillResult.value = _mySkillString.value?.split(", ")?.toMutableList() ?: currentUser.skill?.toMutableList()
     }
 
     fun initializeSearchErrorMessage()

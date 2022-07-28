@@ -27,7 +27,7 @@
             app:civ_border_width="2dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:profilePhotoUrl="@{chat.userProfilePhotoUri}" />
+            app:photo_uri="@{chat.userProfilePhotoUri}" />
 
         <TextView
             android:id="@+id/nickNameTextView"
