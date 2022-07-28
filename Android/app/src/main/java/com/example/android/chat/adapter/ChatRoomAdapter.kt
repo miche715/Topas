@@ -46,6 +46,6 @@ class ChatRoomAdapter(private val chatRoomListFragment: ChatRoomListFragment) : 
 
     fun clearChatRoomList()
     {
-        this.items = mutableListOf()
+        items.clear()
     }
 }
