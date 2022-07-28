@@ -72,7 +72,7 @@ class TeamDetailActivity : BaseActivity<ActivityTeamDetailBinding>(R.layout.acti
     {
         Intent(this@TeamDetailActivity, ChatRoomActivity::class.java).run()
         {
-            this.putExtra("destinationUser", team.leaderDocumentId)
+            this.putExtra("destinationDocumentId", team.leaderDocumentId)
             this.putExtra("destinationNickName", team.leaderNickName)
             this.putExtra("destinationProfilePhotoUri", team.leaderProfilePhotoUri)
             startActivity(this)
