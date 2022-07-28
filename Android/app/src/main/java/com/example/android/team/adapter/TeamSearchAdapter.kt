@@ -40,7 +40,7 @@ class TeamSearchAdapter(private val teamSearchActivity: TeamSearchActivity) : Re
                 adapter = teamRequireSkillAdapter
                 layoutManager = flexBoxLayoutManager
             }
-            teamRequireSkillAdapter.setTeamRequireSkillList(item.skill!!.toMutableList())
+            teamRequireSkillAdapter.setTeamRequireSkillList(item.skill!!)
         }
     }
 

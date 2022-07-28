@@ -40,7 +40,7 @@ class TeamAdapter(private val teamContactFragment: TeamContactFragment) : Recycl
                 adapter = teamRequireSkillAdapter
                 layoutManager = flexBoxLayoutManager
             }
-            teamRequireSkillAdapter.setTeamRequireSkillList(item.skill!!.toMutableList())
+            teamRequireSkillAdapter.setTeamRequireSkillList(item.skill!!)
         }
     }
 

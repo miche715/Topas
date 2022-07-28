@@ -64,7 +64,7 @@ class MemberRepository @Inject constructor()
                             }
                             this.exposure = documentSnapshot["exposure"] as Boolean
                             this.introduce = documentSnapshot["introduce"] as String
-                            this.skill = documentSnapshot["skill"] as List<String>
+                            this.skill = documentSnapshot["skill"] as MutableList<String>
                         }.run()
                         {
                             tempLoadMemberListResult.add(this)
@@ -82,7 +82,7 @@ class MemberRepository @Inject constructor()
 
     private var tempLoadMemberBySkillList = mutableListOf<User>()
 
-    fun loadMemberBySkillListFirebase(skill: List<String>, _loadMemberBySkillResult: MutableLiveData<MutableList<User>>, _loadMemberBySkillErrorMessage: MutableLiveData<String?>)
+    fun loadMemberBySkillListFirebase(skill: MutableList<String>, _loadMemberBySkillResult: MutableLiveData<MutableList<User>>, _loadMemberBySkillErrorMessage: MutableLiveData<String?>)
     {
         tempLoadMemberBySkillList.clear()
 
@@ -115,7 +115,7 @@ class MemberRepository @Inject constructor()
                             }
                             this.exposure = documentSnapshot["exposure"] as Boolean
                             this.introduce = documentSnapshot["introduce"] as String
-                            this.skill = documentSnapshot["skill"] as List<String>
+                            this.skill = documentSnapshot["skill"] as MutableList<String>
                         }.run()
                         {
                             tempLoadMemberBySkillList.add(this)

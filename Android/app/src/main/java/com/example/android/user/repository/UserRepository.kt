@@ -18,7 +18,7 @@ import kotlinx.coroutines.tasks.await
 
 class UserRepository @Inject constructor()
 {
-    fun updateUserFirebase(name: String, nickName: String, profilePhoto: Uri?, introduce: String, isExposureChecked: Boolean, skill: List<String>?, _userUpdateResult: MutableLiveData<Any>)
+    fun updateUserFirebase(name: String, nickName: String, profilePhoto: Uri?, introduce: String, isExposureChecked: Boolean, skill: MutableList<String>?, _userUpdateResult: MutableLiveData<Any>)
     {
         CoroutineScope(Dispatchers.IO).launch()
         {

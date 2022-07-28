@@ -32,7 +32,7 @@ class ChatRoomAdapter(private val chatRoomListFragment: ChatRoomListFragment) : 
         }
     }
 
-    fun setChatRoomList(items: List<ChatRoom>)
+    fun setChatRoomList(items: MutableList<ChatRoom>)
     {
         items.forEach()
         {
@@ -41,8 +41,6 @@ class ChatRoomAdapter(private val chatRoomListFragment: ChatRoomListFragment) : 
                 this.items.add(it)
             }
         }
-
-        //this.items = items.toMutableList()
         notifyDataSetChanged()
     }
 

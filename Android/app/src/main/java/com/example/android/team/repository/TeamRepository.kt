@@ -61,7 +61,7 @@ class TeamRepository @Inject constructor()
                         }
                         this.title = documentSnapshot["title"] as String
                         this.explanation = documentSnapshot["explanation"] as String
-                        this.skill = documentSnapshot["skill"] as List<String>
+                        this.skill = documentSnapshot["skill"] as MutableList<String>
                     }.run()
                     {
                         tempLoadTeamListResult.add(this)
@@ -124,7 +124,7 @@ class TeamRepository @Inject constructor()
                         }
                         this.title = documentSnapshot["title"] as String
                         this.explanation = documentSnapshot["explanation"] as String
-                        this.skill = documentSnapshot["skill"] as List<String>
+                        this.skill = documentSnapshot["skill"] as MutableList<String>
                     }.run()
                     {
                         tempLoadTeamListResult.add(this)
@@ -170,7 +170,7 @@ class TeamRepository @Inject constructor()
                             }
                             this.title = documentSnapshot["title"] as String
                             this.explanation = documentSnapshot["explanation"] as String
-                            this.skill = documentSnapshot["skill"] as List<String>
+                            this.skill = documentSnapshot["skill"] as MutableList<String>
                         }.run()
                         {
                             tempLoadTeamBySkillList.add(this)

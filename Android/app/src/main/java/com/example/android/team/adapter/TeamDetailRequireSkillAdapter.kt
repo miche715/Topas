@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.databinding.ItemTeamDetailRequireSkillBinding
 
-class TeamDetailRequireSkillAdapter(private val items: List<String>) : RecyclerView.Adapter<TeamDetailRequireSkillAdapter.ViewHolder>()
+class TeamDetailRequireSkillAdapter(private val items: MutableList<String>) : RecyclerView.Adapter<TeamDetailRequireSkillAdapter.ViewHolder>()
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
     {

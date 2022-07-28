@@ -40,7 +40,7 @@ class MemberAdapter(private val memberContactFragment: MemberContactFragment) : 
                 adapter = memberHaveSkillAdapter
                 layoutManager = flexBoxLayoutManager
             }
-            memberHaveSkillAdapter.setMemberSkillList(item.skill!!.toMutableList())
+            memberHaveSkillAdapter.setMemberSkillList(item.skill!!)
         }
     }
 

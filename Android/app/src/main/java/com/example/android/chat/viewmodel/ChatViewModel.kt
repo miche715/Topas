@@ -12,8 +12,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ChatViewModel @Inject constructor(private val chatRepository: ChatRepository) : ViewModel()
 {
-    private val _chatRoomResult: MutableLiveData<List<ChatRoom>> = MutableLiveData()
-    val chatRoomResult: LiveData<List<ChatRoom>> = _chatRoomResult
+    private val _chatRoomResult: MutableLiveData<MutableList<ChatRoom>> = MutableLiveData()
+    val chatRoomResult: LiveData<MutableList<ChatRoom>> = _chatRoomResult
 
     fun loadChatRoom()
     {
@@ -35,16 +35,16 @@ class ChatViewModel @Inject constructor(private val chatRepository: ChatReposito
         }
     }
 
-    private val _receiveInitialChatResult: MutableLiveData<List<Chat>> = MutableLiveData()
-    val receiveInitialChatResult: LiveData<List<Chat>> = _receiveInitialChatResult
+    private val _receiveInitialChatResult: MutableLiveData<MutableList<Chat>> = MutableLiveData()
+    val receiveInitialChatResult: LiveData<MutableList<Chat>> = _receiveInitialChatResult
 
     fun receiveInitialChat(currentChatRoom: ChatRoom)
     {
         chatRepository.receiveInitialChatFirebase(currentChatRoom.chatRoomDocumentId!!, _receiveInitialChatResult)
     }
 
-    private val _receiveChatResult: MutableLiveData<List<Chat>> = MutableLiveData()
-    val receiveChatResult: LiveData<List<Chat>> = _receiveChatResult
+    private val _receiveChatResult: MutableLiveData<MutableList<Chat>> = MutableLiveData()
+    val receiveChatResult: LiveData<MutableList<Chat>> = _receiveChatResult
 
     fun receiveChat(currentChatRoom: ChatRoom)
     {

@@ -14,12 +14,12 @@ class ChatRepository @Inject constructor()
 {
     private lateinit var tempChatRoomList: MutableList<ChatRoom>
 
-    fun loadChatRoomFirebase(_chatRoomResult: MutableLiveData<List<ChatRoom>>)
+    fun loadChatRoomFirebase(_chatRoomResult: MutableLiveData<MutableList<ChatRoom>>)
     {
         tempChatRoomList = mutableListOf()
 
         firebaseFirestore.collection("chat").whereArrayContainsAny("join_user_document_id", listOf(currentUser.documentId!!)).orderBy("time_stamp", Query.Direction.DESCENDING).addSnapshotListener()
-        {querySnapshot, exception ->
+        {querySnapshot, _ ->
             if(querySnapshot != null)
             {
                 querySnapshot.forEach()
@@ -28,22 +28,22 @@ class ChatRepository @Inject constructor()
                     tempChatRoomList.add(ChatRoom().apply()
                     {
                         this.chatRoomDocumentId = queryDocumentSnapshot.id
-                        this.joinUserDocumentId = queryDocumentSnapshot.data["join_user_document_id"] as List<String>
-                        this.destinationUserDocumentId = (queryDocumentSnapshot.data["join_user_document_id"] as List<String>).filterNot { it == currentUser.documentId }.first()
-                        this.destinationUserNickName = (queryDocumentSnapshot.data["join_user_nick_name"]?.let { it as List<String>})?.filterNot { it == currentUser.nickName }?.first()
-                        this.destinationUserProfilePhotoUri = (queryDocumentSnapshot.data["join_user_profile_photo_uri"]?.let { it as List<String> })?.filterNot { it == currentUser.profilePhotoUri }?.first()
+                        this.joinUserDocumentId = queryDocumentSnapshot.data["join_user_document_id"] as MutableList<String?>
+                        this.destinationUserDocumentId = (queryDocumentSnapshot.data["join_user_document_id"] as MutableList<String>).filterNot { it == currentUser.documentId }.first()
+                        this.destinationUserNickName = (queryDocumentSnapshot.data["join_user_nick_name"]?.let { it as MutableList<String>})?.filterNot { it == currentUser.nickName }?.first()
+                        this.destinationUserProfilePhotoUri = (queryDocumentSnapshot.data["join_user_profile_photo_uri"]?.let { it as MutableList<String> })?.filterNot { it == currentUser.profilePhotoUri }?.first()
                     })
                 }
-                _chatRoomResult.value = tempChatRoomList.toList()
+                _chatRoomResult.value = tempChatRoomList
             }
         }
     }
 
     fun makeChatRoomAndSendChatFirebase(message: String, destinationDocumentId: String?, destinationNickName: String?, destinationProfilePhotoUri: String?, _currentChatRoomResult: MutableLiveData<ChatRoom>)
     {
-        val newChatRoom: Map<String, List<String?>> = mapOf("join_user_document_id" to listOf(currentUser.documentId!!, destinationDocumentId),
-                                                           "join_user_nick_name" to listOf(currentUser.nickName!!, destinationNickName),
-                                                           "join_user_profile_photo_uri" to listOf(currentUser.profilePhotoUri, destinationProfilePhotoUri))
+        val newChatRoom: Map<String, MutableList<String?>> = mapOf("join_user_document_id" to mutableListOf(currentUser.documentId!!, destinationDocumentId),
+                                                           "join_user_nick_name" to mutableListOf(currentUser.nickName!!, destinationNickName),
+                                                           "join_user_profile_photo_uri" to mutableListOf(currentUser.profilePhotoUri, destinationProfilePhotoUri))
 
         firebaseFirestore.collection("chat").add(newChatRoom).addOnCompleteListener()
         {documentReference ->
@@ -73,7 +73,7 @@ class ChatRepository @Inject constructor()
 
     private lateinit var tempReceiveChatList: MutableList<Chat>
 
-    fun receiveInitialChatFirebase(currentChatRoomDocumentId: String, _receiveInitialChatResult: MutableLiveData<List<Chat>>)
+    fun receiveInitialChatFirebase(currentChatRoomDocumentId: String, _receiveInitialChatResult: MutableLiveData<MutableList<Chat>>)
     {
         tempReceiveChatList = mutableListOf()
 
@@ -98,16 +98,16 @@ class ChatRepository @Inject constructor()
                     }
                 })
             }
-            _receiveInitialChatResult.value = tempReceiveChatList.toList()
+            _receiveInitialChatResult.value = tempReceiveChatList
         }
     }
 
-    fun receiveChatFirebase(currentChatRoomDocumentId: String, _receiveChatResult: MutableLiveData<List<Chat>>)
+    fun receiveChatFirebase(currentChatRoomDocumentId: String, _receiveChatResult: MutableLiveData<MutableList<Chat>>)
     {
         tempReceiveChatList = mutableListOf()
 
         firebaseFirestore.collection("chat").document(currentChatRoomDocumentId).collection("chatting").orderBy("time_stamp", Query.Direction.ASCENDING).addSnapshotListener()
-        {querySnapshot, exception ->
+        {querySnapshot, _ ->
            if(querySnapshot != null)
            {
                querySnapshot.forEach()
@@ -129,7 +129,7 @@ class ChatRepository @Inject constructor()
                        }
                    })
                }
-               _receiveChatResult.value = tempReceiveChatList.toList()
+               _receiveChatResult.value = tempReceiveChatList
            }
         }
     }

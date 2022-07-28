@@ -60,13 +60,13 @@ class ChatRoomActivity : BaseActivity<ActivityChatRoomBinding>(R.layout.activity
 
         chatViewModel.receiveInitialChatResult.observe(this)
         {
-            chatAdapter.addChatList(it.toMutableList())
+            chatAdapter.addChatList(it)
             binding.chatRecyclerView.smoothScrollToPosition(chatAdapter.itemCount - 1)
         }
 
         chatViewModel.receiveChatResult.observe(this)
         {
-            chatAdapter.addChatList(it.toMutableList())
+            chatAdapter.addChatList(it)
             binding.chatRecyclerView.smoothScrollToPosition(chatAdapter.itemCount - 1)
         }
     }

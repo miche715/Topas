@@ -40,7 +40,7 @@ class MemberSearchAdapter(private val memberSearchActivity: MemberSearchActivity
                 adapter = memberHaveSkillAdapter
                 layoutManager = flexBoxLayoutManager
             }
-            memberHaveSkillAdapter.setMemberSkillList(item.skill!!.toMutableList())
+            memberHaveSkillAdapter.setMemberSkillList(item.skill!!)
         }
     }
 

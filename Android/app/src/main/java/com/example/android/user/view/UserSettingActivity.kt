@@ -124,11 +124,11 @@ class UserSettingActivity : BaseActivity<ActivityUserSettingBinding>(R.layout.ac
         val isExposureChecked = binding.exposureCheckBox.isChecked
         val skill = if(binding.skillTextView.text.isEmpty())
         {
-            listOf()
+            mutableListOf()
         }
         else
         {
-            binding.skillTextView.text.split(", ")
+            binding.skillTextView.text.split(", ").toMutableList()
         }
 
         userViewModel.updateUser(name, nickName, profilePhoto, introduce, isExposureChecked, skill)

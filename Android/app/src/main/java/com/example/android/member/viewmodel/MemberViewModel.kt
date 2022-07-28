@@ -60,6 +60,6 @@ class MemberViewModel @Inject constructor(private val memberRepository: MemberRe
 
     fun loadMemberBySkillList(skill: String)
     {
-        memberRepository.loadMemberBySkillListFirebase(listOf(skill), _loadMemberBySkillResult, _loadMemberBySkillErrorMessage)
+        memberRepository.loadMemberBySkillListFirebase(mutableListOf(skill), _loadMemberBySkillResult, _loadMemberBySkillErrorMessage)
     }
 }
