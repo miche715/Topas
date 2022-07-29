@@ -34,18 +34,11 @@ class ChatRoomAdapter(private val chatRoomListFragment: ChatRoomListFragment) : 
 
     fun setChatRoomList(items: MutableList<ChatRoom>)
     {
+        this.items.clear()
         items.forEach()
         {
-            if(it !in this.items)
-            {
-                this.items.add(it)
-            }
+            this.items.add(it)
         }
         notifyDataSetChanged()
-    }
-
-    fun clearChatRoomList()
-    {
-        items.clear()
     }
 }

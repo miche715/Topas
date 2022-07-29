@@ -27,7 +27,6 @@ class ChatRoomListFragment : BaseFragment<FragmentChatRoomListBinding>(R.layout.
 
         chatViewModel.chatRoomResult.observe(this@ChatRoomListFragment.activity!!)
         {
-            chatRoomAdapter.clearChatRoomList()
             chatRoomAdapter.setChatRoomList(it)
         }
     }

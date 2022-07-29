@@ -1,5 +1,6 @@
 package com.example.android.chat.repository
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.android.base.BaseApplication.Companion.firebaseFirestore
 import com.example.android.base.BaseApplication.Companion.currentUser
@@ -17,23 +18,25 @@ class ChatRepository @Inject constructor()
         * 사용: ChatRoomListFragment
         * 용도: 내가 속해있는 채팅방들의 목록 표시. 새롭게 채팅방이 생길 때마다 자동으로 추가됨.
     */
-    private lateinit var tempChatRoomList: MutableList<ChatRoom>
+    private val tempChatRoomList = mutableListOf<ChatRoom>()
 
     fun loadChatRoomFirebase(_chatRoomResult: MutableLiveData<MutableList<ChatRoom>>)
     {
-        tempChatRoomList = mutableListOf()
-
         firebaseFirestore
             .collection("chat")
             .whereArrayContainsAny("join_user_document_id", listOf(currentUser.documentId!!)).orderBy("time_stamp", Query.Direction.DESCENDING)
             .addSnapshotListener()
         {querySnapshot, _ ->
-            if(querySnapshot != null)
+            tempChatRoomList.clear()
+
+            if(querySnapshot?.size()!! > 0)
             {
+                Log.d("*** loadChatRoomFirebase ChatRoom 리스트 로딩 성공 ***", "${querySnapshot.toString()}")
+
                 querySnapshot.forEach()
                 {queryDocumentSnapshot ->
                     @Suppress("UNCHECKED_CAST")
-                    tempChatRoomList.add(ChatRoom().apply()
+                    val chatRoom = ChatRoom().apply()
                     {
                         this.chatRoomDocumentId = queryDocumentSnapshot.id
                         this.joinUserDocumentId = queryDocumentSnapshot.data["join_user_document_id"] as MutableList<String?>
@@ -49,9 +52,20 @@ class ChatRepository @Inject constructor()
                         {
                             it == currentUser.profilePhotoUri
                         }?.first()
-                    })
+                    }
+
+                    if(chatRoom !in tempChatRoomList)
+                    {
+                        tempChatRoomList.add(chatRoom)
+                    }
                 }
                 _chatRoomResult.value = tempChatRoomList
+            }
+            else
+            {
+                Log.d("*** loadChatRoomFirebase ChatRoom 리스트 로딩 성공 했지만 채팅방이 없음 ***", "${querySnapshot.toString()}")
+
+                _chatRoomResult.value = mutableListOf()
             }
         }
     }
