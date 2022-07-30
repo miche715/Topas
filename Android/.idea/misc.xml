@@ -8,6 +8,7 @@
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable-v24/chevron_left.xml" value="0.2065" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable-v24/chevron_right-48px.xml" value="0.1" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable-v24/chevron_right.xml" value="0.2065" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable-v24/exit.xml" value="0.3" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable-v24/groups.xml" value="0.2075" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable-v24/logout.xml" value="0.1" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/drawable-v24/person.xml" value="0.1" />
@@ -53,6 +54,7 @@
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/fragment_splash3.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/fragment_team_contact.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/fragment_user_skill.xml" value="0.3175438596491228" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/item_chat_exit.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/item_chat_my.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/item_chat_room.xml" value="0.3175438596491228" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/item_chat_your.xml" value="0.33559782608695654" />
@@ -84,6 +86,7 @@
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/layout/splash3.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/menu/bottom_navigation_contact_menu.xml" value="0.3651041666666667" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/menu/menu_bottom_navigation_contact.xml" value="0.3770833333333333" />
+        <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/menu/menu_chat_room.xml" value="0.3651041666666667" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/menu/menu_contact.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/menu/menu_toolbar_contact.xml" value="0.3770833333333333" />
         <entry key="..\:/Users/com/Desktop/pacman/workspace/Topas/Android/app/src/main/res/menu/menu_toolbar_contact_chat.xml" value="0.36614583333333334" />

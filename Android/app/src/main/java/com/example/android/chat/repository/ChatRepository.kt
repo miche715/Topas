@@ -40,10 +40,10 @@ class ChatRepository @Inject constructor()
                     {
                         this.chatRoomDocumentId = queryDocumentSnapshot.id
                         this.joinUserDocumentId = queryDocumentSnapshot.data["join_user_document_id"] as MutableList<String?>
-                        this.destinationUserDocumentId = (queryDocumentSnapshot.data["join_user_document_id"] as MutableList<String>).filterNot()
-                        {
-                            it == currentUser.documentId
-                        }.first()
+//                        this.destinationUserDocumentId = (queryDocumentSnapshot.data["join_user_document_id"] as MutableList<String>).filterNot()
+//                        {
+//                            it == currentUser.documentId
+//                        }.first()
                         this.destinationUserNickName = (queryDocumentSnapshot.data["join_user_nick_name"]?.let { it as MutableList<String>})?.filterNot()
                         {
                             it == currentUser.nickName
@@ -125,6 +125,32 @@ class ChatRepository @Inject constructor()
     //=======================================================================================================================================================================//
     /*
         * 사용: ChatRoomActivity
+        * 용도: 채팅방에서 나감.
+    */
+    fun exitChatRoomFirebase(currentChatRoom: ChatRoom)
+    {
+        if(currentChatRoom.chatRoomDocumentId != null)
+        {
+            val exitChat: Map<String, Any?> = mapOf("is_exit" to true,
+                "message" to "${currentUser.nickName}님이 채팅방에서 나가셨습니다.",
+                "user_document_id" to currentUser.documentId!!,
+                "user_nick_name" to currentUser.nickName!!,
+                "user_profile_photo_uri" to currentUser.profilePhotoUri,
+                "time_stamp" to Timestamp.now())
+            currentChatRoom.joinUserDocumentId!!.remove(currentUser.documentId)
+
+            firebaseFirestore.collection("chat").document(currentChatRoom.chatRoomDocumentId!!).collection("chatting").add(exitChat)
+            firebaseFirestore.collection("chat").document(currentChatRoom.chatRoomDocumentId!!).set(mapOf("time_stamp" to Timestamp.now()), SetOptions.merge())
+            firebaseFirestore
+                .collection("chat").document(currentChatRoom.chatRoomDocumentId!!)
+                .set(mapOf("join_user_document_id" to currentChatRoom.joinUserDocumentId!!), SetOptions.merge())
+        }
+    }
+    //=======================================================================================================================================================================//
+
+    //=======================================================================================================================================================================//
+    /*
+        * 사용: ChatRoomActivity
         * 용도: 채팅방에 입장했을 때 서버에 저장되어 있는 그 채팅방의 저장된 채팅을 전부 가져옴.
     */
     private lateinit var tempReceiveChatList: MutableList<Chat>
@@ -141,23 +167,34 @@ class ChatRepository @Inject constructor()
             .addOnCompleteListener()
         {querySnapshot ->
             querySnapshot.result.forEach()
-            {
-                tempReceiveChatList.add(Chat().apply()
+            {queryDocumentSnapshot ->
+                if(queryDocumentSnapshot["is_exit"]?.let { it as Boolean }?:kotlin.run { false })  // 상대방이 나감
                 {
-                    this.userDocumentId = it["user_document_id"] as String
-                    this.userNickName = it["user_nick_name"] as String
-                    this.userProfilePhotoUri = it["user_profile_photo_uri"]?.let { it as String }
-                    this.message = it["message"]?.let { it as String }?: ""
-                    this.timeStamp = it["time_stamp"] as Timestamp
-                    this.viewType = if(this.userDocumentId == currentUser.documentId)
+                    tempReceiveChatList.add(Chat().apply()
                     {
-                        0  // 내 채팅
-                    }
-                    else
+                        this.message = queryDocumentSnapshot["message"]?.let { it as String }?: ""
+                        this.viewType = 2
+                    })
+                }
+                else
+                {
+                    tempReceiveChatList.add(Chat().apply()
                     {
-                        1  // 상대방 채팅
-                    }
-                })
+                        this.userDocumentId = queryDocumentSnapshot["user_document_id"] as String
+                        this.userNickName = queryDocumentSnapshot["user_nick_name"] as String
+                        this.userProfilePhotoUri = queryDocumentSnapshot["user_profile_photo_uri"]?.let { it as String }
+                        this.message = queryDocumentSnapshot["message"]?.let { it as String }?: ""
+                        this.timeStamp = queryDocumentSnapshot["time_stamp"] as Timestamp
+                        this.viewType = if(this.userDocumentId == currentUser.documentId)
+                        {
+                            0  // 내 채팅
+                        }
+                        else
+                        {
+                            1  // 상대방 채팅
+                        }
+                    })
+                }
             }
             _receiveInitialChatResult.value = tempReceiveChatList
         }
@@ -182,23 +219,34 @@ class ChatRepository @Inject constructor()
            if(querySnapshot != null)
            {
                querySnapshot.forEach()
-               {
-                   tempReceiveChatList.add(Chat().apply()
+               {queryDocumentSnapshot ->
+                   if(queryDocumentSnapshot["is_exit"]?.let { it as Boolean }?:kotlin.run { false })  // 상대방이 나감
                    {
-                       this.userDocumentId = it["user_document_id"] as String
-                       this.userNickName = it["user_nick_name"] as String
-                       this.userProfilePhotoUri = it["user_profile_photo_uri"]?.let { it as String }
-                       this.message = it["message"]?.let { it as String }?: ""
-                       this.timeStamp = it["time_stamp"] as Timestamp
-                       this.viewType = if(this.userDocumentId == currentUser.documentId)
+                       tempReceiveChatList.add(Chat().apply()
                        {
-                           0  // 내 채팅
-                       }
-                       else
+                           this.message = queryDocumentSnapshot["message"]?.let { it as String }?: ""
+                           this.viewType = 2
+                       })
+                   }
+                   else
+                   {
+                       tempReceiveChatList.add(Chat().apply()
                        {
-                           1  // 상대방 채팅
-                       }
-                   })
+                           this.userDocumentId = queryDocumentSnapshot["user_document_id"] as String
+                           this.userNickName = queryDocumentSnapshot["user_nick_name"] as String
+                           this.userProfilePhotoUri = queryDocumentSnapshot["user_profile_photo_uri"]?.let { it as String }
+                           this.message = queryDocumentSnapshot["message"]?.let { it as String }?: ""
+                           this.timeStamp = queryDocumentSnapshot["time_stamp"] as Timestamp
+                           this.viewType = if(this.userDocumentId == currentUser.documentId)
+                           {
+                               0  // 내 채팅
+                           }
+                           else
+                           {
+                               1  // 상대방 채팅
+                           }
+                       })
+                   }
                }
                _receiveChatResult.value = tempReceiveChatList
            }
@@ -206,5 +254,3 @@ class ChatRepository @Inject constructor()
     }
     //=======================================================================================================================================================================//
 }
-
-

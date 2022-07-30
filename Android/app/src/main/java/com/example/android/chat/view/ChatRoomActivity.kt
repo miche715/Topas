@@ -1,6 +1,9 @@
 package com.example.android.chat.view
 
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.R
 import com.example.android.base.BaseActivity
@@ -58,13 +61,13 @@ class ChatRoomActivity : BaseActivity<ActivityChatRoomBinding>(R.layout.activity
             chatViewModel.receiveChat(currentChatRoom)
         }
 
-        chatViewModel.receiveInitialChatResult.observe(this)
+        chatViewModel.receiveInitialChatResult.observe(this@ChatRoomActivity)
         {
             chatAdapter.addChatList(it)
             binding.chatRecyclerView.smoothScrollToPosition(chatAdapter.itemCount - 1)
         }
 
-        chatViewModel.receiveChatResult.observe(this)
+        chatViewModel.receiveChatResult.observe(this@ChatRoomActivity)
         {
             chatAdapter.addChatList(it)
             binding.chatRecyclerView.smoothScrollToPosition(chatAdapter.itemCount - 1)
@@ -75,5 +78,35 @@ class ChatRoomActivity : BaseActivity<ActivityChatRoomBinding>(R.layout.activity
     {
         chatViewModel.sendChat(binding.chatEditText.text.toString(), currentChatRoom, destinationDocumentId, destinationNickName, destinationProfilePhotoUri)
         binding.chatEditText.text = null
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean
+    {
+        menuInflater.inflate(R.menu.menu_chat_room, menu)
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean
+    {
+        when(item.itemId)
+        {
+            R.id.exitIcon -> {
+                with(AlertDialog.Builder(this@ChatRoomActivity))
+                {
+                    this.setMessage("채팅방을 나가시겠습니까?")
+                    this.setPositiveButton("확인")
+                    { _, _ ->
+                        chatViewModel.exitChatRoom(currentChatRoom)
+                        finish()
+                        overridePendingTransition(0, 0);
+                    }
+                    this.setNegativeButton("취소") { _, _ -> }
+                }.show()
+
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }
