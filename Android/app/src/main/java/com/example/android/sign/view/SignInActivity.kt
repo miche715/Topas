@@ -1,8 +1,14 @@
 package com.example.android.sign.view
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.view.View
 import androidx.activity.viewModels
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.PermissionChecker.PERMISSION_GRANTED
 import com.example.android.R
 import com.example.android.base.BaseActivity
 import com.example.android.contact.view.ContactActivity
@@ -25,6 +31,8 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
 
         binding.signViewModel = signViewModel
         binding.signInActivity = this@SignInActivity
+
+        checkInternetPermission()
 
         signViewModel.signInResult.observe(this)
         {
@@ -70,6 +78,29 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
         Intent(this@SignInActivity, SignUpActivity::class.java).run()
         {
             startActivity(this)
+        }
+    }
+
+    private fun checkInternetPermission()
+    {
+        val internetPermission = ContextCompat.checkSelfPermission(this@SignInActivity, Manifest.permission.INTERNET)
+
+        if(internetPermission != PackageManager.PERMISSION_GRANTED)
+        {
+            requestInternetPermission()
+        }
+    }
+
+    private fun requestInternetPermission()
+    {
+        ActivityCompat.requestPermissions(this@SignInActivity, arrayOf(Manifest.permission.INTERNET), 1000)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray)
+    {
+        when(requestCode)
+        {
+            1000 ->  if(grantResults[0] != PackageManager.PERMISSION_GRANTED) { finishAffinity() }
         }
     }
 }

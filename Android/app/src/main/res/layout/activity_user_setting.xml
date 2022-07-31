@@ -105,7 +105,7 @@
                             android:enabled="@{currentUser.profilePhotoUri == null ? true : false}"
                             android:fontFamily="@font/noto_sans_kr_regular"
                             android:includeFontPadding="false"
-                            android:onClick="@{() -> userSettingActivity.addProfilePhoto()}"
+                            android:onClick="@{() -> userSettingActivity.onAddProfilePhotoButtonClick()}"
                             android:paddingLeft="8dp"
                             android:shadowColor="@color/week_color"
                             android:text="사진 등록"

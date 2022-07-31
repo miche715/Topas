@@ -99,7 +99,7 @@
                             android:shadowColor="@color/week_color"
                             android:text="사진 등록"
                             android:textSize="14sp"
-                            android:onClick="@{() -> signUpActivity.addProfilePhoto()}" />
+                            android:onClick="@{() -> signUpActivity.onAddProfilePhotoButtonClick()}" />
 
                         <Button
                             android:id="@+id/removeProfilePhotoButton"

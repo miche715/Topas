@@ -1,10 +1,14 @@
 package com.example.android.sign.view
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.android.R
 import com.example.android.base.BaseActivity
 import com.example.android.databinding.ActivitySignUpBinding
@@ -60,13 +64,9 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
         }
     }
 
-    fun addProfilePhoto()  // 프로필 사진 선택
+    fun onAddProfilePhotoButtonClick()  // 프로필 사진 선택
     {
-        Intent(Intent.ACTION_GET_CONTENT).run()
-        {
-            this.type = "image/*"
-            activityResultLauncher.launch(this)
-        }
+        checkReadExternalStoragePermission()
     }
 
     fun removeProfilePhoto()  // 선택한 프로필 사진을 제거
@@ -91,5 +91,39 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
         val profilePhoto = profilePhoto
 
         signViewModel.signUp(email, password, passwordConfirm, name, nickName, profilePhoto)
+    }
+
+    private fun checkReadExternalStoragePermission()
+    {
+        if(ContextCompat.checkSelfPermission(this@SignUpActivity, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this@SignUpActivity, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1000)
+        }
+        else
+        {
+            addProfilePhoto()
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray)
+    {
+        when(requestCode)
+        {
+            1000 -> {
+                if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                {
+                    addProfilePhoto()
+                }
+            }
+        }
+    }
+
+    private fun addProfilePhoto()
+    {
+        Intent(Intent.ACTION_GET_CONTENT).run()
+        {
+            this.type = "image/*"
+            activityResultLauncher.launch(this)
+        }
     }
 }
