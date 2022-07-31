@@ -45,12 +45,17 @@ class TeamSearchActivity : BaseActivity<ActivityTeamSearchBinding>(R.layout.acti
         }
     }
 
-    fun searchSkill()
+    private fun loadTeam(skill: String)
+    {
+        teamViewModel.loadTeamBySkillList(skill)
+    }
+
+    fun onSkillEditTextChange()
     {
         teamViewModel.searchSkill(binding.skillEditText.text.toString())
     }
 
-    fun selectSkill(skill: String, view: View)
+    fun onSkillTextViewClick(skill: String, view: View)
     {
         hideKeyBoard(view.windowToken)
         binding.skillEditText.text = null
@@ -58,14 +63,8 @@ class TeamSearchActivity : BaseActivity<ActivityTeamSearchBinding>(R.layout.acti
         loadTeam(skill)
     }
 
-    private fun loadTeam(skill: String)
+    fun onTeamRecyclerViewItemClick(team: Team)
     {
-        teamViewModel.loadTeamBySkillList(skill)
-    }
-
-    fun onClickTeam(team: Team)
-    {
-        println(team)
         Intent(this@TeamSearchActivity, TeamDetailActivity::class.java).run()
         {
             putExtra("team", team)

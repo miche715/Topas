@@ -23,7 +23,7 @@
             android:fontFamily="@font/noto_sans_kr_regular"
             android:gravity="left|center_vertical"
             android:includeFontPadding="true"
-            android:onClick="@{() -> teamCreateActivity.selectSkill(skill)}"
+            android:onClick="@{() -> teamCreateActivity.onSkillTextViewOrRemoveSkillImageButtonClick(skill)}"
             android:text="@{skill}"
             android:textColor="@color/strong_color"
             android:textSize="14sp"

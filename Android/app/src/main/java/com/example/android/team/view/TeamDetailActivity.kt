@@ -49,7 +49,7 @@ class TeamDetailActivity : BaseActivity<ActivityTeamDetailBinding>(R.layout.acti
         }
     }
 
-    fun onModifyClick(team: Team)
+    fun onModifyButtonClick(team: Team)
     {
         Intent(this@TeamDetailActivity, TeamModifyActivity::class.java).run()
         {
@@ -58,7 +58,7 @@ class TeamDetailActivity : BaseActivity<ActivityTeamDetailBinding>(R.layout.acti
         }
     }
 
-    fun onDeleteClick(team: Team)
+    fun onDeleteButtonClick(team: Team)
     {
         with(AlertDialog.Builder(this))
         {
@@ -68,7 +68,7 @@ class TeamDetailActivity : BaseActivity<ActivityTeamDetailBinding>(R.layout.acti
         }.show()
     }
 
-    fun onContactClick(team: Team)
+    fun onContactButtonClick(team: Team)
     {
         Intent(this@TeamDetailActivity, ChatRoomActivity::class.java).run()
         {

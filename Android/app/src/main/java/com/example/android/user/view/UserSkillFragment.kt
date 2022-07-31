@@ -46,18 +46,18 @@ class UserSkillFragment : BaseFragment<FragmentUserSkillBinding>(R.layout.fragme
         }
     }
 
-    fun searchSkill()
+    fun onSkillEditTextChange()
     {
         userViewModel.searchSkill(binding!!.skillEditText.text.toString())
     }
 
-    fun selectSkill(skill: String)
+    fun onSkillTextViewOrRemoveSkillImageButtonClick(skill: String)
     {
         userViewModel.updateMySkill(skill)
         binding!!.skillEditText.text = null
     }
 
-    fun complete()
+    fun onCompleteSkillButtonClick()
     {
         userViewModel.completeMySkill()
         activity!!.supportFragmentManager
@@ -66,7 +66,7 @@ class UserSkillFragment : BaseFragment<FragmentUserSkillBinding>(R.layout.fragme
             .remove(this@UserSkillFragment).commit()
     }
 
-    fun cancel()
+    fun onCancelSkillButtonClick()
     {
         userViewModel.cancelMySkill()
         activity!!.supportFragmentManager

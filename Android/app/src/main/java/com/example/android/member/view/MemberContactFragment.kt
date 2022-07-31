@@ -64,7 +64,7 @@ class MemberContactFragment : BaseFragment<FragmentMemberContactBinding>(R.layou
         memberViewModel.loadMemberList()
     }
 
-    fun onContactClick(member: User)
+    fun onMemberRecyclerViewItemClick(member: User)
     {
         Intent(this@MemberContactFragment.context!!, ChatRoomActivity::class.java).run()
         {

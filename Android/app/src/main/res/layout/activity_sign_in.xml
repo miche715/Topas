@@ -115,7 +115,7 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="24dp"
-                    android:onClick="@{() -> signInActivity.signIn(signInButton)}"
+                    android:onClick="@{() -> signInActivity.onSignInButtonClick(signInButton)}"
                     android:text="로그인"
                     app:layout_constraintEnd_toEndOf="@+id/passwordEditText"
                     app:layout_constraintStart_toStartOf="@+id/passwordEditText"
@@ -142,7 +142,7 @@
                         style="@style/sign_in_action_text_view_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="@{() -> signInActivity.findEmail()}"
+                        android:onClick="@{() -> signInActivity.onFindEmailTextViewClick()}"
                         android:text=" 이메일 찾기 " />
 
                     <TextView
@@ -156,7 +156,7 @@
                         style="@style/sign_in_action_text_view_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="@{() -> signInActivity.findPassword()}"
+                        android:onClick="@{() -> signInActivity.onFindPasswordTextViewClick()}"
                         android:text=" 패스워드 찾기" />
                 </LinearLayout>
 
@@ -183,7 +183,7 @@
                         style="@style/sign_in_action_text_view_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="@{() -> signInActivity.signUp()}"
+                        android:onClick="@{() -> signInActivity.onSignUpButtonClick()}"
                         android:text=" 회원가입" />
                 </LinearLayout>
 

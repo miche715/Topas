@@ -40,7 +40,7 @@ class TeamModifyActivity : BaseActivity<ActivityTeamModifyBinding>(R.layout.acti
 
         team.skill!!.forEach()
         {
-            selectSkill(it)
+            onSkillTextViewOrRemoveSkillImageButtonClick(it)
         }
 
         teamViewModel.searchTeamRequireSkillResult.observe(this@TeamModifyActivity)
@@ -67,18 +67,18 @@ class TeamModifyActivity : BaseActivity<ActivityTeamModifyBinding>(R.layout.acti
         }
     }
 
-    fun searchSkill()
+    fun onSkillEditTextChange()
     {
         teamViewModel.searchSkill(binding.skillEditText.text.toString())
     }
 
-    fun selectSkill(skill: String)
+    fun onSkillTextViewOrRemoveSkillImageButtonClick(skill: String)
     {
         teamViewModel.updateRequireSkill(skill)
         binding.skillEditText.text = null
     }
 
-    fun modifyTeam()
+    fun onModifyTeamButtonClick()
     {
         teamViewModel.modifyTeam(binding.titleEditText.text.toString(), binding.explanationEditText.text.toString(), team.teamDocumentId!!)
     }

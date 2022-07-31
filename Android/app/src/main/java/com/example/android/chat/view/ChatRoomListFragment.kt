@@ -31,7 +31,7 @@ class ChatRoomListFragment : BaseFragment<FragmentChatRoomListBinding>(R.layout.
         }
     }
 
-    fun onChatRoomClick(chatRoom: ChatRoom)
+    fun onChatRoomRecyclerViewItemClick(chatRoom: ChatRoom)
     {
         Intent(this@ChatRoomListFragment.context, ChatRoomActivity::class.java).run()
         {

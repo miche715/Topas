@@ -46,12 +46,17 @@ class MemberSearchActivity : BaseActivity<ActivityMemberSearchBinding>(R.layout.
         }
     }
 
-    fun searchSkill()
+    private fun loadMember(skill: String)
+    {
+        memberViewModel.loadMemberBySkillList(skill)
+    }
+
+    fun onSkillEditTextChange()
     {
         memberViewModel.searchSkill(binding.skillEditText.text.toString())
     }
 
-    fun selectSkill(skill: String, view: View)
+    fun onSkillTextViewClick(skill: String, view: View)
     {
         hideKeyBoard(view.windowToken)
         binding.skillEditText.text = null
@@ -59,12 +64,7 @@ class MemberSearchActivity : BaseActivity<ActivityMemberSearchBinding>(R.layout.
         loadMember(skill)
     }
 
-    private fun loadMember(skill: String)
-    {
-        memberViewModel.loadMemberBySkillList(skill)
-    }
-
-    fun onContactClick(member: User)
+    fun onContactButtonClick(member: User)
     {
         Intent(this@MemberSearchActivity, ChatRoomActivity::class.java).run()
         {

@@ -89,51 +89,6 @@ class UserSettingActivity : BaseActivity<ActivityUserSettingBinding>(R.layout.ac
         return super.onOptionsItemSelected(item)
     }
 
-    fun onAddProfilePhotoButtonClick()  // 프로필 사진 선택
-    {
-        checkReadExternalStoragePermission()
-    }
-
-    fun removeProfilePhoto()  // 선택한 프로필 사진을 제거
-    {
-        profilePhoto = null
-        binding.profilePhotoCircleImageView.setImageResource(R.drawable.default_profile_photo)
-
-        binding.addProfilePhotoButton.isEnabled = true
-        binding.removeProfilePhotoButton.isEnabled = false
-    }
-
-    fun updateSkill(view: View)
-    {
-        hideKeyBoard(view.windowToken)
-        supportFragmentManager.beginTransaction()
-            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right)
-            .replace(binding.userSkillFragmentContainerView.id, UserSkillFragment())
-            .commitNow()
-    }
-
-    fun updateUser(view: View)
-    {
-        hideKeyBoard(view.windowToken)
-        loadingDialog.show()
-
-        val name = binding.nameEditText.text.toString()
-        val nickName = binding.nickNameEditText.text.toString()
-        val profilePhoto = profilePhoto
-        val introduce = binding.introduceEditText.text.toString()
-        val isExposureChecked = binding.exposureCheckBox.isChecked
-        val skill = if(binding.skillTextView.text.isEmpty())
-        {
-            mutableListOf()
-        }
-        else
-        {
-            binding.skillTextView.text.split(", ").toMutableList()
-        }
-
-        userViewModel.updateUser(name, nickName, profilePhoto, introduce, isExposureChecked, skill)
-    }
-
     private fun checkReadExternalStoragePermission()
     {
         if(ContextCompat.checkSelfPermission(this@UserSettingActivity, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
@@ -166,5 +121,50 @@ class UserSettingActivity : BaseActivity<ActivityUserSettingBinding>(R.layout.ac
             this.type = "image/*"
             activityResultLauncher.launch(this)
         }
+    }
+
+    fun onAddProfilePhotoButtonClick()  // 프로필 사진 선택
+    {
+        checkReadExternalStoragePermission()
+    }
+
+    fun onRemoveProfilePhotoButtonClick()  // 선택한 프로필 사진을 제거
+    {
+        profilePhoto = null
+        binding.profilePhotoCircleImageView.setImageResource(R.drawable.default_profile_photo)
+
+        binding.addProfilePhotoButton.isEnabled = true
+        binding.removeProfilePhotoButton.isEnabled = false
+    }
+
+    fun onSkillImageButtonClick(view: View)
+    {
+        hideKeyBoard(view.windowToken)
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right)
+            .replace(binding.userSkillFragmentContainerView.id, UserSkillFragment())
+            .commitNow()
+    }
+
+    fun onUpdateUserButtonClick(view: View)
+    {
+        hideKeyBoard(view.windowToken)
+        loadingDialog.show()
+
+        val name = binding.nameEditText.text.toString()
+        val nickName = binding.nickNameEditText.text.toString()
+        val profilePhoto = profilePhoto
+        val introduce = binding.introduceEditText.text.toString()
+        val isExposureChecked = binding.exposureCheckBox.isChecked
+        val skill = if(binding.skillTextView.text.isEmpty())
+        {
+            mutableListOf()
+        }
+        else
+        {
+            binding.skillTextView.text.split(", ").toMutableList()
+        }
+
+        userViewModel.updateUser(name, nickName, profilePhoto, introduce, isExposureChecked, skill)
     }
 }

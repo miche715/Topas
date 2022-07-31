@@ -3,12 +3,10 @@ package com.example.android.sign.view
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.PermissionChecker.PERMISSION_GRANTED
 import com.example.android.R
 import com.example.android.base.BaseActivity
 import com.example.android.contact.view.ContactActivity
@@ -52,35 +50,6 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
         }
     }
 
-    fun signIn(view: View)
-    {
-        hideKeyBoard(view.windowToken)
-        loadingDialog.show()
-
-        val email = binding.emailEditText.text.toString()
-        val password = binding.passwordEditText.text.toString()
-
-        signViewModel.signIn(email, password)
-    }
-
-    fun findEmail()
-    {
-        println("이메일 찾기")
-    }
-
-    fun findPassword()
-    {
-        println("비밀번호 찾기")
-    }
-
-    fun signUp()
-    {
-        Intent(this@SignInActivity, SignUpActivity::class.java).run()
-        {
-            startActivity(this)
-        }
-    }
-
     private fun checkInternetPermission()
     {
         val internetPermission = ContextCompat.checkSelfPermission(this@SignInActivity, Manifest.permission.INTERNET)
@@ -101,6 +70,32 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
         when(requestCode)
         {
             1000 ->  if(grantResults[0] != PackageManager.PERMISSION_GRANTED) { finishAffinity() }
+        }
+    }
+
+    fun onSignInButtonClick(view: View)
+    {
+        hideKeyBoard(view.windowToken)
+        loadingDialog.show()
+
+        signViewModel.signIn(binding.emailEditText.text.toString(), binding.passwordEditText.text.toString())
+    }
+
+    fun onFindEmailTextViewClick()
+    {
+        println("이메일 찾기")
+    }
+
+    fun onFindPasswordTextViewClick()
+    {
+        println("비밀번호 찾기")
+    }
+
+    fun onSignUpButtonClick()
+    {
+        Intent(this@SignInActivity, SignUpActivity::class.java).run()
+        {
+            startActivity(this)
         }
     }
 }

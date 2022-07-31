@@ -64,35 +64,6 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
         }
     }
 
-    fun onAddProfilePhotoButtonClick()  // 프로필 사진 선택
-    {
-        checkReadExternalStoragePermission()
-    }
-
-    fun removeProfilePhoto()  // 선택한 프로필 사진을 제거
-    {
-        profilePhoto = null
-        binding.profilePhotoCircleImageView.setImageResource(R.drawable.default_profile_photo)
-
-        binding.addProfilePhotoButton.isEnabled = true
-        binding.removeProfilePhotoButton.isEnabled = false
-    }
-
-    fun signUp(view: View)  // 회원가입
-    {
-        hideKeyBoard(view.windowToken)
-        loadingDialog.show()
-
-        val email = binding.emailEditText.text.toString()
-        val password = binding.passwordEditText.text.toString()
-        val passwordConfirm = binding.passwordConfirmEditText.text.toString()
-        val name = binding.nameEditText.text.toString()
-        val nickName = binding.nickNameEditText.text.toString()
-        val profilePhoto = profilePhoto
-
-        signViewModel.signUp(email, password, passwordConfirm, name, nickName, profilePhoto)
-    }
-
     private fun checkReadExternalStoragePermission()
     {
         if(ContextCompat.checkSelfPermission(this@SignUpActivity, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
@@ -125,5 +96,34 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
             this.type = "image/*"
             activityResultLauncher.launch(this)
         }
+    }
+
+    fun onAddProfilePhotoButtonClick()  // 프로필 사진 선택
+    {
+        checkReadExternalStoragePermission()
+    }
+
+    fun onRemoveProfilePhotoButtonClick()  // 선택한 프로필 사진을 제거
+    {
+        profilePhoto = null
+        binding.profilePhotoCircleImageView.setImageResource(R.drawable.default_profile_photo)
+
+        binding.addProfilePhotoButton.isEnabled = true
+        binding.removeProfilePhotoButton.isEnabled = false
+    }
+
+    fun onSignUpButtonClick(view: View)  // 회원가입
+    {
+        hideKeyBoard(view.windowToken)
+        loadingDialog.show()
+
+        val email = binding.emailEditText.text.toString()
+        val password = binding.passwordEditText.text.toString()
+        val passwordConfirm = binding.passwordConfirmEditText.text.toString()
+        val name = binding.nameEditText.text.toString()
+        val nickName = binding.nickNameEditText.text.toString()
+        val profilePhoto = profilePhoto
+
+        signViewModel.signUp(email, password, passwordConfirm, name, nickName, profilePhoto)
     }
 }

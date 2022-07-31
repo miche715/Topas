@@ -24,7 +24,7 @@
             android:fontFamily="@font/noto_sans_kr_regular"
             android:gravity="left|center_vertical"
             android:includeFontPadding="true"
-            android:onClick="@{() -> teamSearchActivity.selectSkill(skill, skillTextView)}"
+            android:onClick="@{() -> teamSearchActivity.onSkillTextViewClick(skill, skillTextView)}"
             android:text="@{skill}"
             android:textColor="@color/strong_color"
             android:textSize="14sp"

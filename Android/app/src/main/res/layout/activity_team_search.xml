@@ -48,7 +48,7 @@
             android:hint="스킬을 입력해주세요."
             android:includeFontPadding="false"
             android:inputType="text"
-            android:onTextChanged="@{() -> teamSearchActivity.searchSkill()}"
+            android:onTextChanged="@{() -> teamSearchActivity.onSkillEditTextChange()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolBar" />

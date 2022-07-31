@@ -15,9 +15,9 @@ class OnBoarding3Fragment : BaseFragment<FragmentOnBoarding3Binding>(R.layout.fr
         binding!!.onBoarding3Fragment = this@OnBoarding3Fragment
     }
 
-    fun signUp()
+    fun onSignUpButtonClick()
     {
-        sharedPreferences.edit().putBoolean("isOnBoarded", true).commit()  // 온보딩 화면 다 봤으니까, 다시 않나오게 저장
+        sharedPreferences.edit().putBoolean("isOnBoarded", true).commit()  // 온보딩 화면 다 봤으니까, 다시 안나오게 저장
 
         Intent(activity, SignUpActivity::class.java).run()
         {
@@ -25,9 +25,9 @@ class OnBoarding3Fragment : BaseFragment<FragmentOnBoarding3Binding>(R.layout.fr
         }
     }
 
-    fun signIn()
+    fun onSignInButtonClick()
     {
-        sharedPreferences.edit().putBoolean("isOnBoarded", true).commit()  // 온보딩 화면 다 봤으니까, 다시 않나오게 저장
+        sharedPreferences.edit().putBoolean("isOnBoarded", true).commit()  // 온보딩 화면 다 봤으니까, 다시 얀나오게 저장
 
         Intent(activity, SignInActivity::class.java).run()
         {

@@ -63,16 +63,6 @@ class TeamContactFragment : BaseFragment<FragmentTeamContactBinding>(R.layout.fr
         }
     }
 
-    fun teamViewModeSelect()
-    {
-        when(binding!!.teamViewModeSpinner.selectedItemPosition)
-        {
-            0 -> teamViewMode = TeamViewMode.All
-            1 -> teamViewMode = TeamViewMode.MY
-        }
-        loadAndInitializeTeam()
-    }
-
     private fun loadAndInitializeTeam()
     {
         teamAdapter.clearTeamList()  // 어댑터의 리스트를 비움
@@ -101,7 +91,17 @@ class TeamContactFragment : BaseFragment<FragmentTeamContactBinding>(R.layout.fr
         }
     }
 
-    fun createTeam()
+    fun onTeamViewModeSpinnerItemClick()
+    {
+        when(binding!!.teamViewModeSpinner.selectedItemPosition)
+        {
+            0 -> teamViewMode = TeamViewMode.All
+            1 -> teamViewMode = TeamViewMode.MY
+        }
+        loadAndInitializeTeam()
+    }
+
+    fun onCreateTeamFloatingActionButtonClick()
     {
         Intent(this@TeamContactFragment.context, TeamCreateActivity::class.java).run()
         {
@@ -109,7 +109,7 @@ class TeamContactFragment : BaseFragment<FragmentTeamContactBinding>(R.layout.fr
         }
     }
 
-    fun onClickTeam(team: Team)
+    fun onTeamRecyclerViewItemClick(team: Team)
     {
         Intent(this@TeamContactFragment.context, TeamDetailActivity::class.java).run()
         {

@@ -35,7 +35,7 @@
             app:layout_constraintBottom_toTopOf="@+id/signInButton"
             app:layout_constraintEnd_toEndOf="@+id/signInButton"
             app:layout_constraintStart_toStartOf="@+id/signInButton"
-            android:onClick="@{() -> onBoarding3Fragment.signUp()}"/>
+            android:onClick="@{() -> onBoarding3Fragment.onSignUpButtonClick()}"/>
 
         <Button
             android:id="@+id/signInButton"
@@ -49,7 +49,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:onClick="@{() -> onBoarding3Fragment.signIn()}"/>
+            android:onClick="@{() -> onBoarding3Fragment.onSignInButtonClick()}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

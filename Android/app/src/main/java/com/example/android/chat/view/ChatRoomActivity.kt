@@ -74,12 +74,6 @@ class ChatRoomActivity : BaseActivity<ActivityChatRoomBinding>(R.layout.activity
         }
     }
 
-    fun onChatButtonClick()
-    {
-        chatViewModel.sendChat(binding.chatEditText.text.toString(), currentChatRoom, destinationDocumentId, destinationNickName, destinationProfilePhotoUri)
-        binding.chatEditText.text = null
-    }
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean
     {
         menuInflater.inflate(R.menu.menu_chat_room, menu)
@@ -108,5 +102,11 @@ class ChatRoomActivity : BaseActivity<ActivityChatRoomBinding>(R.layout.activity
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    fun onChatImageButtonClick()
+    {
+        chatViewModel.sendChat(binding.chatEditText.text.toString(), currentChatRoom, destinationDocumentId, destinationNickName, destinationProfilePhotoUri)
+        binding.chatEditText.text = null
     }
 }

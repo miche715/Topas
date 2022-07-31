@@ -51,18 +51,18 @@ class TeamCreateActivity : BaseActivity<ActivityTeamCreateBinding>(R.layout.acti
         }
     }
 
-    fun searchSkill()
+    fun onSkillEditTextChange()
     {
         teamViewModel.searchSkill(binding.skillEditText.text.toString())
     }
 
-    fun selectSkill(skill: String)
+    fun onSkillTextViewOrRemoveSkillImageButtonClick(skill: String)
     {
         teamViewModel.updateRequireSkill(skill)
         binding.skillEditText.text = null
     }
 
-    fun createTeam()
+    fun onCreateTeamButtonClick()
     {
         teamViewModel.createTeam(binding.titleEditText.text.toString(), binding.explanationEditText.text.toString())
     }
