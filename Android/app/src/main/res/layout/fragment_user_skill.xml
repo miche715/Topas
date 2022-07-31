@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="userViewModel"
+            type="com.example.android.user.viewmodel.UserViewModel" />
+
+        <variable
+            name="userSkillFragment"
+            type="com.example.android.user.view.UserSkillFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_color"
+        android:clickable="true">
+
+        <EditText
+            android:id="@+id/skillEditText"
+            style="@style/sign_up_edit_text_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
+            android:defaultFocusHighlightEnabled="true"
+            android:focusedByDefault="true"
+            android:hint="보유 스킬을 검색해주세요."
+            android:inputType="text"
+            android:onTextChanged="@{() -> userSkillFragment.onSkillEditTextChange()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/skillDescriptionTextView"
+            style="@style/sign_up_description_text_view_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="선택된 스킬"
+            app:layout_constraintEnd_toEndOf="@+id/skillEditText"
+            app:layout_constraintStart_toStartOf="@+id/skillEditText"
+            app:layout_constraintTop_toBottomOf="@+id/skillEditText" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mySkillRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/skillDescriptionTextView"
+            app:layout_constraintStart_toStartOf="@+id/skillDescriptionTextView"
+            app:layout_constraintTop_toBottomOf="@+id/skillDescriptionTextView"
+            tools:listitem="@layout/item_user_have_skill" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/searchSkillRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:visibility="@{userViewModel.searchSkillErrorMessage == null ?  View.VISIBLE : View.GONE}"
+            android:scrollbarFadeDuration="0"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/cancelSkillButton"
+            app:layout_constraintEnd_toEndOf="@+id/mySkillRecyclerView"
+            app:layout_constraintStart_toStartOf="@+id/mySkillRecyclerView"
+            app:layout_constraintTop_toBottomOf="@+id/mySkillRecyclerView"
+            tools:listitem="@layout/item_user_search_skill_all" />
+
+        <TextView
+            android:id="@+id/skillSearchErrorMessageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@{userViewModel.searchSkillErrorMessage}"
+            android:textColor="@color/week_color"
+            android:textSize="14sp"
+            android:visibility="@{userViewModel.searchSkillErrorMessage == null ?  View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/searchSkillRecyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/searchSkillRecyclerView" />
+
+        <Button
+            android:id="@+id/completeSkillButton"
+            style="@style/brand_button_style"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="12dp"
+            android:text="완료"
+            android:onClick="@{() -> userSkillFragment.onCompleteSkillButtonClick()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cancelSkillButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/cancelSkillButton"
+            style="@style/white_button_style"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="12dp"
+            android:onClick="@{() -> userSkillFragment.onCancelSkillButtonClick()}"
+            android:text="취소"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/completeSkillButton" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

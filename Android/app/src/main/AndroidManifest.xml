@@ -3,7 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.android">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
+        android:name=".base.BaseApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,8 +18,43 @@
         android:theme="@style/Theme.Android"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".chat.view.ChatRoomActivity"
+            android:exported="false" />
+        <activity
+            android:name=".team.view.TeamModifyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".team.view.TeamDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".team.view.TeamSearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".team.view.TeamCreateActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".member.view.MemberSearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".contact.view.ContactActivity"
+            android:exported="false" />
+        <activity
+            android:name=".user.view.UserSettingActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".sign.view.SignInActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".sign.view.SignUpActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".onboard.view.OnBoardingActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Android.OnBoarding">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

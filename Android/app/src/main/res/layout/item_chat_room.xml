@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="chatRoomListFragment"
+            type="com.example.android.chat.view.ChatRoomListFragment" />
+
+        <variable
+            name="chatRoom"
+            type="com.example.android.chat.domain.ChatRoom" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> chatRoomListFragment.onChatRoomRecyclerViewItemClick(chatRoom)}">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profilePhotoCircleImageView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="12dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/default_profile_photo"
+            app:civ_border_color="#000000"
+            app:civ_border_overlay="true"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:photo_uri="@{chatRoom.destinationUserProfilePhotoUri}" />
+
+        <TextView
+            android:id="@+id/nickNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:text="@{chatRoom.destinationUserNickName}"
+            android:textColor="@color/strong_color"
+            app:layout_constraintStart_toEndOf="@+id/profilePhotoCircleImageView"
+            app:layout_constraintTop_toTopOf="@+id/profilePhotoCircleImageView" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

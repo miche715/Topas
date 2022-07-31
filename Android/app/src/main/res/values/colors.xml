@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- 브랜드 색 -->
+    <color name="brand_color">#0066FF</color>
+
+    <!-- 반전 브랜드 색 -->
+    <color name="negative_brand_color">#FA9000</color>
+
+    <!-- 강한 색 (주로 검은색이 필요한 곳에 사용)-->
+    <color name="strong_color">#191919</color>
+
+    <!-- 중간 색 (주로 컴포넌트 배경에 사용)-->
+    <color name="middle_color">#F1F1F5</color>
+
+    <!-- 약한 색 (주로 힌트 글자에 사용)-->
+    <color name="week_color">#999999</color>
+
+    <!-- 에러 색 -->
+    <color name="error_color">#FF3120</color>
+
+    <!-- 하얀 색 (주로 하얀색이 필요한 곳이나 배경에 사용) -->
+    <color name="white_color">#F8F8FA</color>
+
+
+
+
+
+
+    <!-- system color -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>

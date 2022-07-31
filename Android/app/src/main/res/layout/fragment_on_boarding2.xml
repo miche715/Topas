@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/brand_color"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/onBoardTitleTextView2"
+            style="@style/on_boarding_title_text_view_style"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="120dp"
+            android:text="팀원을 찾고 계십니까?"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/onBoardTextTextView21"
+            android:text="Toaps에는"
+            app:layout_constraintStart_toStartOf="@+id/onBoardTitleTextView2"
+            app:layout_constraintTop_toBottomOf="@+id/onBoardTitleTextView2"
+            style="@style/on_boarding_text_text_view_style" />
+
+        <TextView
+            android:id="@+id/onBoardTextTextView22"
+            android:text="수 많은 사람들이"
+            app:layout_constraintStart_toStartOf="@+id/onBoardTextTextView21"
+            app:layout_constraintTop_toBottomOf="@+id/onBoardTextTextView21"
+            style="@style/on_boarding_text_text_view_style" />
+
+        <TextView
+            android:id="@+id/onBoardTextTextView23"
+            android:text="당신의 팀을 위해 기다립니다."
+            app:layout_constraintStart_toStartOf="@+id/onBoardTextTextView22"
+            app:layout_constraintTop_toBottomOf="@+id/onBoardTextTextView22"
+            style="@style/on_boarding_text_text_view_style" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+

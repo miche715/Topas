@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/member"
+        android:enabled="true"
+        android:icon="@drawable/person"
+        android:title="팀원" />
+
+    <item
+        android:id="@+id/team"
+        android:enabled="true"
+        android:icon="@drawable/groups"
+        android:title="팀" />
+    <item
+        android:id="@+id/chat"
+        android:icon="@android:drawable/sym_action_chat"
+        android:title="채팅" />
+
+</menu>
