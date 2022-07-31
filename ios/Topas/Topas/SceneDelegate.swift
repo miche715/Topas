@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  ios
+//  Topas
 //
-//  Created by 김경호 on 2022/07/12.
+//  Created by 김경호 on 2022/07/26.
 //
 
 import UIKit
@@ -17,16 +17,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
-        if true {//UserDB.isFirstTime(){
-            let storyboard = UIStoryboard(name: "Onboard", bundle: nil)
-            
-            guard let onboarding = storyboard.instantiateViewController(withIdentifier: "onBoarding") as? OnBoarding else { return }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if true{ //UserDB.isFirstTime(){
+            guard let onboarding = storyboard.instantiateViewController(withIdentifier: "onBoarding") as? OnBoarding else {return}
             
             window?.rootViewController = onboarding
         } else {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            //guard let main = storyboard.instantiateViewController(withIdentifier: "Main") as? mainViewController else {return}
+            let main = storyboard.instantiateViewController(withIdentifier: "Main")
             
-            guard let main = storyboard.instantiateViewController(withIdentifier: "Main") as? MainViewController else { return }
             window?.rootViewController = main
         }
     }
@@ -61,5 +61,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 }
-
 

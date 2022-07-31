@@ -338,4 +338,7 @@ fabric.properties
 
 !/gradle/wrapper/gradle-wrapper.jar
 
+## IOS -Google-
+GoogleService-Info.plist
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,androidstudio,xcode,kotlin,swift,android

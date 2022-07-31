@@ -1,12 +1,12 @@
 //
 //  AppDelegate.swift
-//  ios
+//  Topas
 //
-//  Created by 김경호 on 2022/07/12.
+//  Created by 김경호 on 2022/07/26.
 //
 
 import UIKit
-import FirebaseCore
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
