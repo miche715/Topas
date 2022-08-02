@@ -46,7 +46,7 @@ class SignUpGoogleActivity : BaseActivity<ActivitySignUpGoogleBinding>(R.layout.
             binding.removeProfilePhotoButton.isEnabled = true
         }
     }
-    private var googleSingActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+    private var googleSignActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
     {
         if(it.resultCode == RESULT_OK)
         {
@@ -77,7 +77,7 @@ class SignUpGoogleActivity : BaseActivity<ActivitySignUpGoogleBinding>(R.layout.
                     {
                         GoogleSignIn.getClient(this@SignUpGoogleActivity, this).signInIntent.run()
                         {
-                            googleSingActivityResultLauncher.launch(this)
+                            googleSignActivityResultLauncher.launch(this)
                         }
                     }
                 }

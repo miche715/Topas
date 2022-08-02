@@ -26,15 +26,15 @@ class ChatRepository @Inject constructor()
             .collection("chat")
             .whereArrayContainsAny("join_user_document_id", listOf(currentUser.documentId!!)).orderBy("time_stamp", Query.Direction.DESCENDING)
             .addSnapshotListener()
-        {querySnapshot, _ ->
+        { querySnapshot, _ ->
             tempChatRoomList.clear()
 
             if(querySnapshot?.size()!! > 0)
             {
-                Log.d("*** loadChatRoomFirebase ChatRoom 리스트 로딩 성공 ***", "${querySnapshot.toString()}")
+                Log.i("${this.javaClass.simpleName} loadChatRoomFirebase", "채팅방 로딩 성공")
 
                 querySnapshot.forEach()
-                {queryDocumentSnapshot ->
+                { queryDocumentSnapshot ->
                     @Suppress("UNCHECKED_CAST")
                     val chatRoom = ChatRoom().apply()
                     {
@@ -63,7 +63,7 @@ class ChatRepository @Inject constructor()
             }
             else
             {
-                Log.d("*** loadChatRoomFirebase ChatRoom 리스트 로딩 성공 했지만 채팅방이 없음 ***", "${querySnapshot.toString()}")
+                Log.i("${this.javaClass.simpleName} loadChatRoomFirebase", "채팅방 로딩에 성공했지만 채팅방이 없음")
 
                 _chatRoomResult.value = mutableListOf()
             }
@@ -89,7 +89,9 @@ class ChatRepository @Inject constructor()
         firebaseFirestore.collection("chat")
             .add(newChatRoom)
             .addOnCompleteListener()
-        {documentReference ->
+        { documentReference ->
+            Log.i("${this.javaClass.simpleName} makeChatRoomAndSendChatFirebase", "채팅방 생성 성공")
+
             _currentChatRoomResult.value = ChatRoom().apply()
             {
                 this.chatRoomDocumentId = documentReference.result.id
@@ -117,8 +119,26 @@ class ChatRepository @Inject constructor()
                                               "user_profile_photo_uri" to currentUser.profilePhotoUri,
                                               "time_stamp" to Timestamp.now())
 
-        firebaseFirestore.collection("chat").document(currentChatRoomDocumentId).collection("chatting").add(newChat)
-        firebaseFirestore.collection("chat").document(currentChatRoomDocumentId).set(mapOf("time_stamp" to Timestamp.now()), SetOptions.merge())
+        firebaseFirestore
+            .collection("chat").document(currentChatRoomDocumentId).collection("chatting")
+            .add(newChat)
+            .addOnCompleteListener()
+        { documentReference ->
+            if(documentReference.isSuccessful)
+            {
+                Log.i("${this.javaClass.simpleName} sendChatFirebase", "채팅 송신 성공")
+            }
+        }
+        firebaseFirestore
+            .collection("chat").document(currentChatRoomDocumentId)
+            .set(mapOf("time_stamp" to Timestamp.now()), SetOptions.merge())
+            .addOnCompleteListener()
+            { task ->
+                if(task.isSuccessful)
+                {
+                    Log.i("${this.javaClass.simpleName} sendChatFirebase", "채팅방 시간 최신화 성공")
+                }
+            }
     }
     //=======================================================================================================================================================================//
 
@@ -139,11 +159,36 @@ class ChatRepository @Inject constructor()
                 "time_stamp" to Timestamp.now())
             currentChatRoom.joinUserDocumentId!!.remove(currentUser.documentId)
 
-            firebaseFirestore.collection("chat").document(currentChatRoom.chatRoomDocumentId!!).collection("chatting").add(exitChat)
-            firebaseFirestore.collection("chat").document(currentChatRoom.chatRoomDocumentId!!).set(mapOf("time_stamp" to Timestamp.now()), SetOptions.merge())
+            firebaseFirestore
+                .collection("chat").document(currentChatRoom.chatRoomDocumentId!!).collection("chatting")
+                .add(exitChat)
+                .addOnCompleteListener()
+                { documentReference ->
+                    if(documentReference.isSuccessful)
+                    {
+                        Log.i("${this.javaClass.simpleName} exitChatRoomFirebase", "채팅방 나가기 채팅 송신 성공")
+                    }
+                }
+            firebaseFirestore
+                .collection("chat").document(currentChatRoom.chatRoomDocumentId!!)
+                .set(mapOf("time_stamp" to Timestamp.now()), SetOptions.merge())
+                .addOnCompleteListener()
+                { task ->
+                    if(task.isSuccessful)
+                    {
+                        Log.i("${this.javaClass.simpleName} exitChatRoomFirebase", "채팅방 시간 최신화 성공")
+                    }
+                }
             firebaseFirestore
                 .collection("chat").document(currentChatRoom.chatRoomDocumentId!!)
                 .set(mapOf("join_user_document_id" to currentChatRoom.joinUserDocumentId!!), SetOptions.merge())
+                .addOnCompleteListener()
+                { task ->
+                    if(task.isSuccessful)
+                    {
+                        Log.i("${this.javaClass.simpleName} exitChatRoomFirebase", "채팅방 나가기 성공")
+                    }
+                }
         }
     }
     //=======================================================================================================================================================================//
@@ -165,7 +210,9 @@ class ChatRepository @Inject constructor()
             .orderBy("time_stamp", Query.Direction.ASCENDING)
             .get()
             .addOnCompleteListener()
-        {querySnapshot ->
+        { querySnapshot ->
+            Log.i("${this.javaClass.simpleName} receiveInitialChatFirebase", "초기 채딩 로딩 성공")
+
             querySnapshot.result.forEach()
             {queryDocumentSnapshot ->
                 if(queryDocumentSnapshot["is_exit"]?.let { it as Boolean }?:kotlin.run { false })  // 상대방이 나감
@@ -215,9 +262,11 @@ class ChatRepository @Inject constructor()
             .collection("chat").document(currentChatRoomDocumentId).collection("chatting")
             .orderBy("time_stamp", Query.Direction.ASCENDING)
             .addSnapshotListener()
-        {querySnapshot, _ ->
+        { querySnapshot, _ ->
            if(querySnapshot != null)
            {
+               Log.i("${this.javaClass.simpleName} receiveChatFirebase", "채팅 로딩 성공")
+
                querySnapshot.forEach()
                {queryDocumentSnapshot ->
                    if(queryDocumentSnapshot["is_exit"]?.let { it as Boolean }?:kotlin.run { false })  // 상대방이 나감

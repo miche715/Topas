@@ -41,10 +41,10 @@ class TeamRepository @Inject constructor()
         loadTeamListQuery
             .get()
             .addOnCompleteListener()
-        {querySnapshot ->
+        { querySnapshot ->
             if(querySnapshot.result.size() > 0)
             {
-                Log.d("*** loadTeamListFirebase Team 리스트 로딩 성공 ***", "${querySnapshot.result}")
+                Log.i("${this.javaClass.simpleName} loadTeamListFirebase", "팀 로딩 성공")
 
                 nextLoadTeamListQuery(querySnapshot.result.documents[querySnapshot.result.size() - 1])
 
@@ -73,10 +73,6 @@ class TeamRepository @Inject constructor()
                 }
                 _loadTeamListResult.value = tempLoadTeamListResult
             }
-//            else
-//            {
-//
-//            }
         }
     }
     //=======================================================================================================================================================================//
@@ -107,11 +103,11 @@ class TeamRepository @Inject constructor()
         loadTeamListQuery
             .get()
             .addOnCompleteListener()
-        {querySnapshot ->
+        { querySnapshot ->
+            Log.i("${this.javaClass.simpleName} loadMyTeamListFirebase", "내가 만든 팀 로딩 성공")
+
             if(querySnapshot.result.size() > 0)
             {
-                Log.d("*** loadMyTeamListFirebase Team 리스트 로딩 성공 ***", "${querySnapshot.result}")
-
                 nextLoadMyTeamListQuery(querySnapshot.result.documents[querySnapshot.result.size() - 1])
 
                 querySnapshot.result.documents.forEach()
@@ -139,10 +135,6 @@ class TeamRepository @Inject constructor()
                 }
                 _loadTeamListResult.value = tempLoadTeamListResult
             }
-//            else
-//            {
-//                Log.d("*** loadMyTeamListFirebase Team 리스트 로딩 성공 ***", "근데 하나도 없음")
-//            }
         }
     }
     //=======================================================================================================================================================================//
@@ -165,13 +157,13 @@ class TeamRepository @Inject constructor()
             .whereArrayContainsAny("skill", skill).orderBy("update_at", Query.Direction.DESCENDING)
             .get()
             .addOnCompleteListener()
-            {querySnapshot ->
-                if(querySnapshot.result.size() > 0)  // 정보 노출을 허용한 유저가 0명 이상임
-                {
-                    Log.d("*** loadTeamBySkillListFirebase Team 리스트 로딩 성공 ***", "${querySnapshot.result}")
+            { querySnapshot ->
+                Log.i("${this.javaClass.simpleName} loadTeamBySkillListFirebase", "스킬을 필요로 하는 팀 검색 성공")
 
+                if(querySnapshot.result.size() > 0)
+                {
                     querySnapshot.result.documents.forEach()
-                    {documentSnapshot ->
+                    { documentSnapshot ->
                         @Suppress("UNCHECKED_CAST")
                         Team().apply()
                         {
@@ -201,7 +193,7 @@ class TeamRepository @Inject constructor()
                         _loadTeamBySkillErrorMessage.value = "검색 결과가 없습니다."
                     }
                 }
-                else  // 정보 노출을 허용한 유저가 없음
+                else
                 {
                     _loadTeamBySkillErrorMessage.value = "검색 결과가 없습니다."
                 }
@@ -231,10 +223,10 @@ class TeamRepository @Inject constructor()
             .collection("team")
             .add(newTeam)
             .addOnCompleteListener()  // Firestroe에 팀 등록 시도
-        {documentReference ->
+        { documentReference ->
             if(documentReference.isSuccessful)  // 성공
             {
-                Log.d("*** createTeamFirebase Firestore team 컬렉션에 등록 성공 ***", "${documentReference.result}")
+                Log.i("${this.javaClass.simpleName} createTeamFirebase", "Firestore에 팀 등록 성공")
 
                 _createTeamResult.value = true
             }
@@ -254,10 +246,10 @@ class TeamRepository @Inject constructor()
             .collection("team").document(team.teamDocumentId!!)
             .delete()
             .addOnCompleteListener()
-        {void ->
-            if(void.isSuccessful)
+        { task ->
+            if(task.isSuccessful)
             {
-                Log.d("*** deleteTeamFirebase Team 삭제 성공 ***", "${void.result}")
+                Log.i("${this.javaClass.simpleName} createTeamFirebase", "Firestore에 팀 삭제 성공")
 
                 _deleteTeamResult.value = true
             }
@@ -287,10 +279,10 @@ class TeamRepository @Inject constructor()
             .collection("team").document(teamDocumentId)
             .set(updateTeam, SetOptions.merge())
             .addOnCompleteListener()
-        {void ->
-            if(void.isSuccessful)  // 성공
+        { task ->
+            if(task.isSuccessful)  // 성공
             {
-                Log.d("*** modifyTeamFirebase Firestore team 컬렉션에 수정 성공 ***", "${void.result}")
+                Log.i("${this.javaClass.simpleName} createTeamFirebase", "Firestore에 팀 수정 성공")
 
                 _modifyTeamResult.value = true
             }

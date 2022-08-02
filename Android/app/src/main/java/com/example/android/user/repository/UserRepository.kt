@@ -38,7 +38,7 @@ class UserRepository @Inject constructor()
                 .whereEqualTo("nick_name", nickName)
                 .get()
                 .addOnCompleteListener()
-            {querySnapshot ->
+            { querySnapshot ->
                 if(querySnapshot.result.size() == 0 || querySnapshot.result.documents[0].id == currentUser.documentId)  // 내가 닉네임을 바꿨는데 같은 사람이 없거나 혹은 닉네임을 안바꿈
                 {
                     val profilePhotoUri = runBlocking()  // 프로필 사진을 업로드하고 그 URI를 가져오는 동안 유저 등록을 잠시 기다리도록 하기 위해 사용
@@ -77,10 +77,10 @@ class UserRepository @Inject constructor()
                         .collection("user").document(currentUser.documentId!!)
                         .set(updateUser, SetOptions.merge())
                         .addOnCompleteListener()  // 병합
-                    {void ->
-                        if(void.isSuccessful)  // 사용자 정보 업데이트 성공
+                    { task ->
+                        if(task.isSuccessful)  // 사용자 정보 업데이트 성공
                         {
-                            Log.d("*** updateUserFirebase Firestore user 컬렉션에 업데이트 성공 ***", "User information update has been completed.")
+                            Log.i("${this.javaClass.simpleName} updateUserFirebase", "유저 정보 수정 성공")
 
                             currentUser.name = name
                             currentUser.nickName = nickName
@@ -91,17 +91,11 @@ class UserRepository @Inject constructor()
 
                             _userUpdateResult.value = true
                         }
-                        else  // 사용자 정보 업데이트 실패
-                        {
-                            Log.d("*** updateUserFirebase Firestore user 컬렉션에 업데이트 실패 ***", "Failed to update user information due to an unknown error.")
-
-                            _userUpdateResult.value = "알 수 없는 오류가 발생하여 저장에 실패했습니다."
-                        }
                     }
                 }
                 else  // 닉네임을 바꿨는데 같은 사람이 있음
                 {
-                    Log.e("*** updateUserFirebase 실패 ***", "The nickname is already in use by another account.")
+                    Log.e("${this.javaClass.simpleName} updateUserFirebase", "이미 사용중인 닉네임이라 유저 정보 수정 실패")
 
                     _userUpdateResult.value = "이미 사용중인 닉네임 입니다."
                 }

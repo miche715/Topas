@@ -39,15 +39,15 @@ class MemberRepository @Inject constructor()
         loadMemberListQuery
             .get()
             .addOnCompleteListener()
-        {querySnapshot ->
+        { querySnapshot ->
+            Log.i("${this.javaClass.simpleName} loadMemberListFirebase", "멤버 로딩 성공")
+
             if(querySnapshot.result.size() > 0)  // 정보 노출을 허용한 유저가 0명 이상임
             {
-                Log.d("*** loadMemberListFirebase User 리스트 로딩 성공 ***", "${querySnapshot.result}")
-
                 nextLoadMemberListQuery(querySnapshot.result.documents[querySnapshot.result.size() - 1])
 
                 querySnapshot.result.documents.forEach()
-                {documentSnapshot ->
+                { documentSnapshot ->
                     if((documentSnapshot["email"] as String) != currentUser.email)  // 자기 자신은 표시하지 않음
                     {
                         @Suppress("UNCHECKED_CAST")
@@ -75,10 +75,6 @@ class MemberRepository @Inject constructor()
                 }
                 _loadMemberListResult.value = tempLoadMemberListResult
             }
-//            else  // 정보 노출을 허용한 유저가 없음
-//            {
-//
-//            }
         }
     }
     //=======================================================================================================================================================================//
@@ -100,11 +96,11 @@ class MemberRepository @Inject constructor()
             .whereEqualTo("exposure", true).whereArrayContainsAny("skill", skill).orderBy("update_at", Query.Direction.DESCENDING)
             .get()
             .addOnCompleteListener()
-        {querySnapshot ->
+        { querySnapshot ->
+            Log.i("${this.javaClass.simpleName} loadMemberBySkillListFirebase", "스킬을 가지고 있는 멤버 검색 성공")
+
             if(querySnapshot.result.size() > 0)  // 정보 노출을 허용한 유저가 0명 이상임
             {
-                Log.d("*** loadMemberBySkillListFirebase User 리스트 로딩 성공 ***", "${querySnapshot.result}")
-
                 querySnapshot.result.documents.forEach()
                 {documentSnapshot ->
                     if((documentSnapshot["email"] as String) != currentUser.email)  // 자기 자신은 표시하지 않음

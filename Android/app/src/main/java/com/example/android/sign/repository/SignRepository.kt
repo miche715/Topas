@@ -36,16 +36,16 @@ class SignRepository @Inject constructor()
                 .whereEqualTo("nick_name", nickName)
                 .get()
                 .addOnCompleteListener()  // user 컬렉션에 같은 닉네임이 있는지
-                {querySnapshot ->
+                { querySnapshot ->
                     if(querySnapshot.result.size() == 0)  // 같은 닉네임이 없다
                     {
                         firebaseAuth
                             .signInWithCredential(credential)
                             .addOnCompleteListener()  // Auth에 회원가입 시도
-                            {authResult ->
+                            { authResult ->
                                 if(authResult.isSuccessful)  // Auth에 가입 성공
                                 {
-                                    Log.d("*** signUpFirebase Auth에 가입 성공 ***", "${authResult.result}")
+                                    Log.i("${this.javaClass.simpleName} signUpGoogleFirebase", "Auth에 구글 계정으로 가입 성공")
 
                                     val profilePhotoUri = runBlocking()  // 프로필 사진을 업로드하고 그 URI을 가져오는 동안 유저 등록을 잠시 기다리도록 하기 위해 사용
                                     {
@@ -73,48 +73,47 @@ class SignRepository @Inject constructor()
                                         .collection("user")
                                         .add(newUser)
                                         .addOnCompleteListener()  // Auth에 가입은 성공 했으니까 user 컬렉션에 유저 정보를 넣음
-                                        {documentReference ->
-                                            Log.d("*** signUpFirebase Firestore user 컬렉션에 등록 성공 ***", "${documentReference.result}")
+                                        { documentReference ->
+                                            Log.i("${this.javaClass.simpleName} signUpGoogleFirebase", "Firestore에 정보 등록 성공")
 
                                             if(documentReference.isSuccessful)  // user 컬렉션 등록 성공
                                             {
                                                 firebaseAuth
                                                     .signInWithCredential(credential)
                                                     .addOnCompleteListener()
-                                                    {
-                                                        @Suppress("UNCHECKED_CAST")
-                                                        currentUser = User().apply()
+                                                    { authResult ->
+                                                        if(authResult.isSuccessful)
                                                         {
-                                                            this.documentId = documentReference.result.id
-                                                            this.email = newUser["email"] as String
-                                                            this.name = newUser["name"] as String
-                                                            this.nickName = newUser["nick_name"] as String
-                                                            this.profilePhotoUri = newUser["profile_photo_uri"]?.let()
+                                                            Log.i("${this.javaClass.simpleName} signUpGoogleFirebase", "구글 로그인 성공")
+
+                                                            @Suppress("UNCHECKED_CAST")
+                                                            currentUser = User().apply()
                                                             {
-                                                                it as String
-                                                            }?: kotlin.run()
-                                                            {
-                                                                null
+                                                                this.documentId = documentReference.result.id
+                                                                this.email = newUser["email"] as String
+                                                                this.name = newUser["name"] as String
+                                                                this.nickName = newUser["nick_name"] as String
+                                                                this.profilePhotoUri = newUser["profile_photo_uri"]?.let()
+                                                                {
+                                                                    it as String
+                                                                }?: kotlin.run()
+                                                                {
+                                                                    null
+                                                                }
+                                                                this.introduce = newUser["introduce"] as String
+                                                                this.exposure = newUser["exposure"] as Boolean
+                                                                this.skill = newUser["skill"] as MutableList<String>
                                                             }
-                                                            this.introduce = newUser["introduce"] as String
-                                                            this.exposure = newUser["exposure"] as Boolean
-                                                            this.skill = newUser["skill"] as MutableList<String>
+
+                                                            _signUpGoogleResult.value = true
                                                         }
-
-                                                        _signUpGoogleResult.value = true
                                                     }
-                                            }
-                                            else  // user 컬렉션 등록 실패
-                                            {
-                                                Log.e("*** signUpFirebase Firestore user 컬렉션에 등록 실패 ***", "${documentReference.exception?.message}")
-
-                                                _signUpGoogleResult.value = "알 수 없는 오류가 발생하여 가입에 실패했습니다."
                                             }
                                         }
                                 }
                                 else  // Auth에 가입 실패
                                 {
-                                    Log.e("*** signUpFirebase Auth에 가입 실패 ***", "${authResult.exception?.message}")
+                                    Log.e("${this.javaClass.simpleName} signUpGoogleFirebase", "Auth에 구글 계정으로 가입 실패")
 
                                     _signUpGoogleResult.value = "이미 가입된 이메일 입니다."
                                 }
@@ -122,7 +121,7 @@ class SignRepository @Inject constructor()
                     }
                     else  // 같은 닉네임이 있다
                     {
-                        Log.e("*** signUpFirebase 실패 ***", "The nickname is already in use by another account.")
+                        Log.e("${this.javaClass.simpleName} signUpGoogleFirebase", "Firestore에 이미 같은 닉네임이 있어서 실패")
 
                         _signUpGoogleResult.value = "이미 사용중인 닉네임 입니다."
                     }
@@ -150,16 +149,16 @@ class SignRepository @Inject constructor()
                 .whereEqualTo("nick_name", nickName)
                 .get()
                 .addOnCompleteListener()  // user 컬렉션에 같은 닉네임이 있는지
-            {querySnapshot ->
+            { querySnapshot ->
                 if(querySnapshot.result.size() == 0)  // 같은 닉네임이 없다
                 {
                     firebaseAuth
                         .createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener()  // Auth에 회원가입 시도
-                    {authResult ->
+                    { authResult ->
                         if(authResult.isSuccessful)  // Auth에 가입 성공
                         {
-                            Log.d("*** signUpFirebase Auth에 가입 성공 ***", "${authResult.result}")
+                            Log.i("${this.javaClass.simpleName} signUpFirebase", "Auth에 가입 성공")
 
                             val profilePhotoUri = runBlocking()  // 프로필 사진을 업로드하고 그 URI을 가져오는 동안 유저 등록을 잠시 기다리도록 하기 위해 사용
                             {
@@ -187,48 +186,47 @@ class SignRepository @Inject constructor()
                                 .collection("user")
                                 .add(newUser)
                                 .addOnCompleteListener()  // Auth에 가입은 성공 했으니까 user 컬렉션에 유저 정보를 넣음
-                            {documentReference ->
+                            { documentReference ->
                                 if(documentReference.isSuccessful)  // user 컬렉션 등록 성공
                                 {
-                                    Log.d("*** signUpFirebase Firestore user 컬렉션에 등록 성공 ***", "${documentReference.result}")
+                                    Log.i("${this.javaClass.simpleName} signUpFirebase", "Firestore에 정보 등록 성공")
 
                                     firebaseAuth
                                         .signInWithEmailAndPassword(email, password)
                                         .addOnCompleteListener()
-                                        {
-                                            @Suppress("UNCHECKED_CAST")
-                                            currentUser = User().apply()
+                                        { authResult ->
+                                            if(authResult.isSuccessful)
                                             {
-                                                this.documentId = documentReference.result.id
-                                                this.email = newUser["email"] as String
-                                                this.name = newUser["name"] as String
-                                                this.nickName = newUser["nick_name"] as String
-                                                this.profilePhotoUri = newUser["profile_photo_uri"]?.let()
+                                                Log.i("${this.javaClass.simpleName} signUpFirebase", "로그인 성공")
+
+                                                @Suppress("UNCHECKED_CAST")
+                                                currentUser = User().apply()
                                                 {
-                                                    it as String
-                                                }?: kotlin.run()
-                                                {
-                                                    null
+                                                    this.documentId = documentReference.result.id
+                                                    this.email = newUser["email"] as String
+                                                    this.name = newUser["name"] as String
+                                                    this.nickName = newUser["nick_name"] as String
+                                                    this.profilePhotoUri = newUser["profile_photo_uri"]?.let()
+                                                    {
+                                                        it as String
+                                                    }?: kotlin.run()
+                                                    {
+                                                        null
+                                                    }
+                                                    this.introduce = newUser["introduce"] as String
+                                                    this.exposure = newUser["exposure"] as Boolean
+                                                    this.skill = newUser["skill"] as MutableList<String>
                                                 }
-                                                this.introduce = newUser["introduce"] as String
-                                                this.exposure = newUser["exposure"] as Boolean
-                                                this.skill = newUser["skill"] as MutableList<String>
+
+                                                _signUpResult.value = true
                                             }
-
-                                            _signUpResult.value = true
                                         }
-                                }
-                                else  // user 컬렉션 등록 실패
-                                {
-                                    Log.e("*** signUpFirebase Firestore user 컬렉션에 등록 실패 ***", "${documentReference.exception?.message}")
-
-                                    _signUpResult.value = "알 수 없는 오류가 발생하여 가입에 실패했습니다."
                                 }
                             }
                         }
                         else  // Auth에 가입 실패
                         {
-                            Log.e("*** signUpFirebase Auth에 가입 실패 ***", "${authResult.exception?.message}")
+                            Log.e("${this.javaClass.simpleName} signUpFirebase", "Auth에 가입 실패")
 
                             _signUpResult.value = "이미 가입된 이메일 입니다."
                         }
@@ -236,7 +234,7 @@ class SignRepository @Inject constructor()
                 }
                 else  // 같은 닉네임이 있다
                 {
-                    Log.e("*** signUpFirebase 실패 ***", "The nickname is already in use by another account.")
+                    Log.e("${this.javaClass.simpleName} signUpFirebase", "Firestore에 이미 같은 닉네임이 있어서 실패")
 
                     _signUpResult.value = "이미 사용중인 닉네임 입니다."
                 }
@@ -259,40 +257,43 @@ class SignRepository @Inject constructor()
             .whereEqualTo("email", googleSignInAccount.email)
             .get()
             .addOnCompleteListener()
-            {querySnapshot ->
+            { querySnapshot ->
                 if(querySnapshot.result.size() == 1)
                 {
                     firebaseAuth
                         .signInWithCredential(credential)
                         .addOnCompleteListener()
-                        {authResult ->
-                            Log.d("*** signInGoogleFirebase Auth에 로그인 성공 ***", "${querySnapshot.result}")
-
-                            @Suppress("UNCHECKED_CAST")
-                            currentUser = User().apply()
+                        { authResult ->
+                            if(authResult.isSuccessful)
                             {
-                                this.documentId = querySnapshot.result.documents[0].id
-                                this.email = querySnapshot.result.documents[0].data!!["email"] as String
-                                this.name = querySnapshot.result.documents[0].data!!["name"] as String
-                                this.nickName = querySnapshot.result.documents[0].data!!["nick_name"] as String
-                                this.profilePhotoUri = querySnapshot.result.documents[0].data!!["profile_photo_uri"]?.let()
-                                {
-                                    it as String
-                                }?: kotlin.run()
-                                {
-                                    null
-                                }
-                                this.introduce = querySnapshot.result.documents[0].data!!["introduce"] as String
-                                this.exposure = querySnapshot.result.documents[0].data!!["exposure"] as Boolean
-                                this.skill = querySnapshot.result.documents[0].data!!["skill"] as MutableList<String>
-                            }
+                                Log.i("${this.javaClass.simpleName} signInGoogleFirebase", "구글 로그인 성공")
 
-                            _signInGoogleResult.value = true
+                                @Suppress("UNCHECKED_CAST")
+                                currentUser = User().apply()
+                                {
+                                    this.documentId = querySnapshot.result.documents[0].id
+                                    this.email = querySnapshot.result.documents[0].data!!["email"] as String
+                                    this.name = querySnapshot.result.documents[0].data!!["name"] as String
+                                    this.nickName = querySnapshot.result.documents[0].data!!["nick_name"] as String
+                                    this.profilePhotoUri = querySnapshot.result.documents[0].data!!["profile_photo_uri"]?.let()
+                                    {
+                                        it as String
+                                    }?: kotlin.run()
+                                    {
+                                        null
+                                    }
+                                    this.introduce = querySnapshot.result.documents[0].data!!["introduce"] as String
+                                    this.exposure = querySnapshot.result.documents[0].data!!["exposure"] as Boolean
+                                    this.skill = querySnapshot.result.documents[0].data!!["skill"] as MutableList<String>
+                                }
+
+                                _signInGoogleResult.value = true
+                            }
                         }
                 }
                 else
                 {
-                    Log.e("*** signInGoogleFirebase Auth에 로그인 실패 ***", "${querySnapshot.exception?.message}")
+                    Log.e("${this.javaClass.simpleName} signInGoogleFirebase", "구글 계정으로 가입된 정보가 없어서 실패")
 
                     _signInGoogleResult.value = false
                 }
@@ -312,17 +313,17 @@ class SignRepository @Inject constructor()
         firebaseAuth
             .signInWithEmailAndPassword(email, password)
             .addOnCompleteListener()  // Auth에 로그인 시도
-        {authResult ->
+        { authResult ->
             if(authResult.isSuccessful)  // Auth 로그인 성공
             {
-                Log.d("*** signInFirebase Auth에 로그인 성공 ***", "${authResult.result}")
+                Log.i("${this.javaClass.simpleName} signInFirebase", "로그인 성공")
 
                 firebaseFirestore
                     .collection("user")
                     .whereEqualTo("email", email)
                     .get()
                     .addOnCompleteListener()
-                {querySnapshot ->
+                { querySnapshot ->
                     @Suppress("UNCHECKED_CAST")
                     currentUser = User().apply()
                     {
@@ -347,7 +348,7 @@ class SignRepository @Inject constructor()
             }
             else  // Auth 로그인 실패
             {
-                Log.e("*** signInFirebase Auth에 로그인 실패 ***", "${authResult.exception?.message}")
+                Log.e("${this.javaClass.simpleName} signInFirebase", "로그인 실패")
 
                 _signInResult.value = "이메일 또는 패스워드가 잘못됐습니다."
             }
