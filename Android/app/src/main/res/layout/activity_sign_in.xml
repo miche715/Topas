@@ -192,7 +192,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
                     android:layout_weight="1"
-                    android:text="────────또는────────"
+                    android:text="또는"
                     app:layout_constraintEnd_toEndOf="@+id/signInButton"
                     app:layout_constraintStart_toStartOf="@+id/signInButton"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
@@ -214,7 +214,27 @@
                     app:layout_constraintStart_toStartOf="@+id/signInButton"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="20dp"
+                    android:background="@color/week_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView"
+                    app:layout_constraintEnd_toStartOf="@+id/textView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView" />
 
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/week_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView"
+                    app:layout_constraintTop_toTopOf="@+id/textView" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
