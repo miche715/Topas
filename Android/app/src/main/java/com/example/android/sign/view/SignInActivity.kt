@@ -40,6 +40,10 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
             val credential: AuthCredential = GoogleAuthProvider.getCredential(googleSignInAccount.idToken, null)
             signViewModel.signInGoogle(googleSignInAccount, credential)
         }
+        else
+        {
+            loadingDialog.dismiss()
+        }
     }
 
     override fun onInitialize()
