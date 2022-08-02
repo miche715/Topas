@@ -39,33 +39,6 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
             val googleSignInAccount = GoogleSignIn.getSignedInAccountFromIntent(it.data).getResult(ApiException::class.java)
             val credential: AuthCredential = GoogleAuthProvider.getCredential(googleSignInAccount.idToken, null)
             signViewModel.signInGoogle(googleSignInAccount, credential)
-
-//            {googleSignInAccount ->
-//                googleSignInAccount.idToken
-//                if(tokenId != null && tokenId != "")
-//                {
-//                    val credential: AuthCredential = GoogleAuthProvider.getCredential(googleSignInAccount.idToken, null)
-//                    BaseApplication.firebaseAuth.signInWithCredential(credential).addOnCompleteListener()
-//                    {
-//                        if(BaseApplication.firebaseAuth.currentUser != null)
-//                        {
-//                            val user: FirebaseUser = BaseApplication.firebaseAuth.currentUser!!
-//                            email = user.email.toString()
-//                            Log.e(TAG, "email : $email")
-//                            Log.e(TAG, "uid : ${user.uid}")
-//                            val googleSignInToken = googleSignInAccount.idToken ?: ""
-//                            if(googleSignInToken != "")
-//                            {
-//                                Log.e(TAG, "googleSignInToken : $googleSignInToken")
-//                            }
-//                            else
-//                            {
-//                                Log.e(TAG, "googleSignInToken이 null")
-//                            }
-//                        }
-//                    }
-//                }
-//            }
         }
     }
 
@@ -77,6 +50,11 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
         binding.signInActivity = this@SignInActivity
 
         checkInternetPermission()
+
+        if(intent.getBooleanExtra("google", false))
+        {
+            onSignGoogleButtonClick()
+        }
 
         signViewModel.signInResult.observe(this@SignInActivity)
         {

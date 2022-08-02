@@ -198,13 +198,17 @@
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
                 <Button
-                    android:id="@+id/singWithGoogleButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:id="@+id/signWithGoogleButton"
+                    style="@style/white_button_style"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="14dp"
                     android:layout_marginBottom="12dp"
-                    android:text="구글로 시작"
+                    android:drawableLeft="@drawable/google"
                     android:onClick="@{() -> signInActivity.onSignGoogleButtonClick()}"
+                    android:paddingLeft="110dp"
+                    android:paddingRight="100dp"
+                    android:text="구글로 시작"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/signInButton"
                     app:layout_constraintStart_toStartOf="@+id/signInButton"

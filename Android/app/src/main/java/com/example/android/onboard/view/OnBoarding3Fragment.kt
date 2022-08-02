@@ -34,4 +34,15 @@ class OnBoarding3Fragment : BaseFragment<FragmentOnBoarding3Binding>(R.layout.fr
             startActivity(this)
         }
     }
+
+    fun onSignWithGoogleButtonClick()
+    {
+        sharedPreferences.edit().putBoolean("isOnBoarded", true).commit()  // 온보딩 화면 다 봤으니까, 다시 얀나오게 저장
+
+        Intent(activity, SignInActivity::class.java).run()
+        {
+            putExtra("google", true)
+            startActivity(this)
+        }
+    }
 }

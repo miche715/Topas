@@ -31,11 +31,12 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginBottom="12dp"
+            android:onClick="@{() -> onBoarding3Fragment.onSignUpButtonClick()}"
             android:text="새로운 회원으로 가입하기"
-            app:layout_constraintBottom_toTopOf="@+id/signInButton"
+            app:layout_constraintBottom_toTopOf="@+id/signWithGoogleButton"
             app:layout_constraintEnd_toEndOf="@+id/signInButton"
-            app:layout_constraintStart_toStartOf="@+id/signInButton"
-            android:onClick="@{() -> onBoarding3Fragment.onSignUpButtonClick()}"/>
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/signInButton" />
 
         <Button
             android:id="@+id/signInButton"
@@ -45,11 +46,28 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="12dp"
+            android:onClick="@{() -> onBoarding3Fragment.onSignInButtonClick()}"
             android:text="기존 회원으로 시작하기"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/signUpButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:onClick="@{() -> onBoarding3Fragment.onSignInButtonClick()}"/>
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/signWithGoogleButton"
+            style="@style/white_button_style"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="12dp"
+            android:drawableLeft="@drawable/google"
+            android:paddingLeft="110dp"
+            android:paddingRight="100dp"
+            android:text="구글로 시작"
+            android:onClick="@{() -> onBoarding3Fragment.onSignWithGoogleButtonClick()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/signInButton"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/signInButton" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
