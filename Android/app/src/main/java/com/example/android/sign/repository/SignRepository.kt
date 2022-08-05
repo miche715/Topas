@@ -26,7 +26,7 @@ class SignRepository @Inject constructor()
                              nickName: String,
                              profilePhoto: Uri?,
                              googleSignInAccount: GoogleSignInAccount,
-                             credential: AuthCredential,
+                             authCredential: AuthCredential,
                             _signUpGoogleResult: MutableLiveData<Any>)
     {
         CoroutineScope(Dispatchers.IO).launch()
@@ -40,7 +40,7 @@ class SignRepository @Inject constructor()
                     if(querySnapshot.result.size() == 0)  // 같은 닉네임이 없다
                     {
                         firebaseAuth
-                            .signInWithCredential(credential)
+                            .signInWithCredential(authCredential)
                             .addOnCompleteListener()  // Auth에 회원가입 시도
                             { authResult ->
                                 if(authResult.isSuccessful)  // Auth에 가입 성공
@@ -79,7 +79,7 @@ class SignRepository @Inject constructor()
                                             if(documentReference.isSuccessful)  // user 컬렉션 등록 성공
                                             {
                                                 firebaseAuth
-                                                    .signInWithCredential(credential)
+                                                    .signInWithCredential(authCredential)
                                                     .addOnCompleteListener()
                                                     { authResult ->
                                                         if(authResult.isSuccessful)
@@ -249,7 +249,7 @@ class SignRepository @Inject constructor()
         * 용도: 입력으로 들어온 구글 로그인 정보가 Firestore에 있는지 확인.
     */
     fun signInGoogleFirebase(googleSignInAccount: GoogleSignInAccount,
-                             credential: AuthCredential,
+                             authCredential: AuthCredential,
                              _signInGoogleResult: MutableLiveData<Boolean>)
     {
         firebaseFirestore
@@ -261,7 +261,7 @@ class SignRepository @Inject constructor()
                 if(querySnapshot.result.size() == 1)
                 {
                     firebaseAuth
-                        .signInWithCredential(credential)
+                        .signInWithCredential(authCredential)
                         .addOnCompleteListener()
                         { authResult ->
                             if(authResult.isSuccessful)

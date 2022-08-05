@@ -51,8 +51,8 @@ class SignUpGoogleActivity : BaseActivity<ActivitySignUpGoogleBinding>(R.layout.
         if(it.resultCode == RESULT_OK)
         {
             val googleSignInAccount = GoogleSignIn.getSignedInAccountFromIntent(it.data).getResult(ApiException::class.java)
-            val credential: AuthCredential = GoogleAuthProvider.getCredential(googleSignInAccount.idToken, null)
-            signViewModel.signUpGoogle(binding.nameEditText.text.toString(), binding.nickNameEditText.text.toString(), profilePhoto, googleSignInAccount, credential)
+            val authCredential = GoogleAuthProvider.getCredential(googleSignInAccount.idToken, null)
+            signViewModel.signUpGoogle(binding.nameEditText.text.toString(), binding.nickNameEditText.text.toString(), profilePhoto, googleSignInAccount, authCredential)
         }
     }
 

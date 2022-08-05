@@ -37,8 +37,8 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
         if(it.resultCode == RESULT_OK)
         {
             val googleSignInAccount = GoogleSignIn.getSignedInAccountFromIntent(it.data).getResult(ApiException::class.java)
-            val credential: AuthCredential = GoogleAuthProvider.getCredential(googleSignInAccount.idToken, null)
-            signViewModel.signInGoogle(googleSignInAccount, credential)
+            val authCredential = GoogleAuthProvider.getCredential(googleSignInAccount.idToken, null)
+            signViewModel.signInGoogle(googleSignInAccount, authCredential)
         }
         else
         {
@@ -117,7 +117,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
     {
         when(requestCode)
         {
-            1000 ->  if(grantResults[0] != PackageManager.PERMISSION_GRANTED) { finishAffinity() }
+            1000 -> if(grantResults[0] != PackageManager.PERMISSION_GRANTED) { finishAffinity() }
         }
     }
 

@@ -74,9 +74,9 @@ class SignViewModel @Inject constructor(private val signRepository: SignReposito
     private val _signUpGoogleResult: MutableLiveData<Any> = MutableLiveData()
     val signUpGoogleResult: LiveData<Any> = _signUpGoogleResult
 
-    fun signUpGoogle(name: String, nickName: String, profilePhoto: Uri?, googleSignInAccount: GoogleSignInAccount, credential: AuthCredential)
+    fun signUpGoogle(name: String, nickName: String, profilePhoto: Uri?, googleSignInAccount: GoogleSignInAccount, authCredential: AuthCredential)
     {
-        signRepository.signUpGoogleFirebase(name, nickName, profilePhoto, googleSignInAccount, credential, _signUpGoogleResult)
+        signRepository.signUpGoogleFirebase(name, nickName, profilePhoto, googleSignInAccount, authCredential, _signUpGoogleResult)
     }
     //=======================================================================================================================================================================//
 
@@ -84,9 +84,9 @@ class SignViewModel @Inject constructor(private val signRepository: SignReposito
     private val _signInGoogleResult: MutableLiveData<Boolean> = MutableLiveData()
     val signInGoogleResult: LiveData<Boolean> = _signInGoogleResult
 
-    fun signInGoogle(googleSignInAccount: GoogleSignInAccount, credential: AuthCredential)
+    fun signInGoogle(googleSignInAccount: GoogleSignInAccount, authCredential: AuthCredential)
     {
-        signRepository.signInGoogleFirebase(googleSignInAccount, credential, _signInGoogleResult)
+        signRepository.signInGoogleFirebase(googleSignInAccount, authCredential, _signInGoogleResult)
     }
     //=======================================================================================================================================================================//
 
