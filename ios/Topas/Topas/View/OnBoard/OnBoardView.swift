@@ -4,7 +4,6 @@
 //
 //  Created by 김경호 on 2022/07/25.
 //
-
 import UIKit
 
 class onboard1: UIView{

@@ -1,0 +1,515 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA8CAC722897CA9E00656F8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8CAC712897CA9E00656F8E /* AppDelegate.swift */; };
+		AA8CAC742897CA9E00656F8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8CAC732897CA9E00656F8E /* SceneDelegate.swift */; };
+		AA8CAC762897CA9E00656F8E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8CAC752897CA9E00656F8E /* ViewController.swift */; };
+		AA8CAC792897CA9E00656F8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA8CAC772897CA9E00656F8E /* Main.storyboard */; };
+		AA8CAC7B2897CA9F00656F8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA8CAC7A2897CA9F00656F8E /* Assets.xcassets */; };
+		AA8CAC7E2897CA9F00656F8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA8CAC7C2897CA9F00656F8E /* LaunchScreen.storyboard */; };
+		AA8CAC8A2897CCF800656F8E /* UserDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8CAC892897CCF800656F8E /* UserDB.swift */; };
+		AA8CAC902897CD7000656F8E /* OnBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8CAC8F2897CD7000656F8E /* OnBoardViewController.swift */; };
+		AA8CAC922897CDAB00656F8E /* OnBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8CAC912897CDAB00656F8E /* OnBoardView.swift */; };
+		AA8CAC942897CDE200656F8E /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8CAC932897CDE200656F8E /* SignInView.swift */; };
+		AA8CAC962897D41000656F8E /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8CAC952897D41000656F8E /* SignInViewController.swift */; };
+		AA8CAC982897D41C00656F8E /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8CAC972897D41C00656F8E /* SignUpViewController.swift */; };
+		AA8CAC9A2897D9B500656F8E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8CAC992897D9B500656F8E /* SignUpView.swift */; };
+		FAC1C7D138DD494A67635C34 /* Pods_Topas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041718547D1D9369A2042C85 /* Pods_Topas.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		041718547D1D9369A2042C85 /* Pods_Topas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Topas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		31B48C64B202FBA9FDF8FD8C /* Pods-Topas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Topas.debug.xcconfig"; path = "Target Support Files/Pods-Topas/Pods-Topas.debug.xcconfig"; sourceTree = "<group>"; };
+		5E4EA5DD04739570754A2BA6 /* Pods-Topas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Topas.release.xcconfig"; path = "Target Support Files/Pods-Topas/Pods-Topas.release.xcconfig"; sourceTree = "<group>"; };
+		AA8CAC6E2897CA9E00656F8E /* Topas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Topas.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA8CAC712897CA9E00656F8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AA8CAC732897CA9E00656F8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		AA8CAC752897CA9E00656F8E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AA8CAC782897CA9E00656F8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AA8CAC7A2897CA9F00656F8E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AA8CAC7D2897CA9F00656F8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AA8CAC7F2897CA9F00656F8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA8CAC892897CCF800656F8E /* UserDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDB.swift; sourceTree = "<group>"; };
+		AA8CAC8F2897CD7000656F8E /* OnBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardViewController.swift; sourceTree = "<group>"; };
+		AA8CAC912897CDAB00656F8E /* OnBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardView.swift; sourceTree = "<group>"; };
+		AA8CAC932897CDE200656F8E /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		AA8CAC952897D41000656F8E /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		AA8CAC972897D41C00656F8E /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		AA8CAC992897D9B500656F8E /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA8CAC6B2897CA9E00656F8E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAC1C7D138DD494A67635C34 /* Pods_Topas.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7F12D59A7B316083FED4A6EF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				041718547D1D9369A2042C85 /* Pods_Topas.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8AD891947A44421675C0CFBF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				31B48C64B202FBA9FDF8FD8C /* Pods-Topas.debug.xcconfig */,
+				5E4EA5DD04739570754A2BA6 /* Pods-Topas.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		AA8CAC652897CA9E00656F8E = {
+			isa = PBXGroup;
+			children = (
+				AA8CAC702897CA9E00656F8E /* Topas */,
+				AA8CAC6F2897CA9E00656F8E /* Products */,
+				8AD891947A44421675C0CFBF /* Pods */,
+				7F12D59A7B316083FED4A6EF /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		AA8CAC6F2897CA9E00656F8E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA8CAC6E2897CA9E00656F8E /* Topas.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA8CAC702897CA9E00656F8E /* Topas */ = {
+			isa = PBXGroup;
+			children = (
+				AA8CAC872897CCE600656F8E /* View */,
+				AA8CAC862897CCDF00656F8E /* ViewController */,
+				AA8CAC852897CCD600656F8E /* Model */,
+				AA8CAC712897CA9E00656F8E /* AppDelegate.swift */,
+				AA8CAC732897CA9E00656F8E /* SceneDelegate.swift */,
+				AA8CAC752897CA9E00656F8E /* ViewController.swift */,
+				AA8CAC772897CA9E00656F8E /* Main.storyboard */,
+				AA8CAC7A2897CA9F00656F8E /* Assets.xcassets */,
+				AA8CAC7C2897CA9F00656F8E /* LaunchScreen.storyboard */,
+				AA8CAC7F2897CA9F00656F8E /* Info.plist */,
+			);
+			path = Topas;
+			sourceTree = "<group>";
+		};
+		AA8CAC852897CCD600656F8E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AA8CAC892897CCF800656F8E /* UserDB.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AA8CAC862897CCDF00656F8E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AA8CAC8E2897CD4B00656F8E /* Auth */,
+				AA8CAC8D2897CD4400656F8E /* OnBoard */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		AA8CAC872897CCE600656F8E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AA8CAC8C2897CD3F00656F8E /* Auth */,
+				AA8CAC8B2897CD3800656F8E /* OnBoard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AA8CAC8B2897CD3800656F8E /* OnBoard */ = {
+			isa = PBXGroup;
+			children = (
+				AA8CAC912897CDAB00656F8E /* OnBoardView.swift */,
+			);
+			path = OnBoard;
+			sourceTree = "<group>";
+		};
+		AA8CAC8C2897CD3F00656F8E /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				AA8CAC932897CDE200656F8E /* SignInView.swift */,
+				AA8CAC992897D9B500656F8E /* SignUpView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		AA8CAC8D2897CD4400656F8E /* OnBoard */ = {
+			isa = PBXGroup;
+			children = (
+				AA8CAC8F2897CD7000656F8E /* OnBoardViewController.swift */,
+			);
+			path = OnBoard;
+			sourceTree = "<group>";
+		};
+		AA8CAC8E2897CD4B00656F8E /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				AA8CAC952897D41000656F8E /* SignInViewController.swift */,
+				AA8CAC972897D41C00656F8E /* SignUpViewController.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA8CAC6D2897CA9E00656F8E /* Topas */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA8CAC822897CA9F00656F8E /* Build configuration list for PBXNativeTarget "Topas" */;
+			buildPhases = (
+				D0A4401436DD12BABA42AFC2 /* [CP] Check Pods Manifest.lock */,
+				AA8CAC6A2897CA9E00656F8E /* Sources */,
+				AA8CAC6B2897CA9E00656F8E /* Frameworks */,
+				AA8CAC6C2897CA9E00656F8E /* Resources */,
+				7DA71AE082E36DF0E4CF1C46 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Topas;
+			productName = Topas;
+			productReference = AA8CAC6E2897CA9E00656F8E /* Topas.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA8CAC662897CA9E00656F8E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					AA8CAC6D2897CA9E00656F8E = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+				};
+			};
+			buildConfigurationList = AA8CAC692897CA9E00656F8E /* Build configuration list for PBXProject "Topas" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AA8CAC652897CA9E00656F8E;
+			productRefGroup = AA8CAC6F2897CA9E00656F8E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA8CAC6D2897CA9E00656F8E /* Topas */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA8CAC6C2897CA9E00656F8E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA8CAC7E2897CA9F00656F8E /* LaunchScreen.storyboard in Resources */,
+				AA8CAC7B2897CA9F00656F8E /* Assets.xcassets in Resources */,
+				AA8CAC792897CA9E00656F8E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7DA71AE082E36DF0E4CF1C46 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Topas/Pods-Topas-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Topas/Pods-Topas-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Topas/Pods-Topas-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D0A4401436DD12BABA42AFC2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Topas-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA8CAC6A2897CA9E00656F8E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA8CAC8A2897CCF800656F8E /* UserDB.swift in Sources */,
+				AA8CAC942897CDE200656F8E /* SignInView.swift in Sources */,
+				AA8CAC762897CA9E00656F8E /* ViewController.swift in Sources */,
+				AA8CAC922897CDAB00656F8E /* OnBoardView.swift in Sources */,
+				AA8CAC962897D41000656F8E /* SignInViewController.swift in Sources */,
+				AA8CAC722897CA9E00656F8E /* AppDelegate.swift in Sources */,
+				AA8CAC9A2897D9B500656F8E /* SignUpView.swift in Sources */,
+				AA8CAC982897D41C00656F8E /* SignUpViewController.swift in Sources */,
+				AA8CAC742897CA9E00656F8E /* SceneDelegate.swift in Sources */,
+				AA8CAC902897CD7000656F8E /* OnBoardViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		AA8CAC772897CA9E00656F8E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA8CAC782897CA9E00656F8E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AA8CAC7C2897CA9F00656F8E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA8CAC7D2897CA9F00656F8E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AA8CAC802897CA9F00656F8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AA8CAC812897CA9F00656F8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AA8CAC832897CA9F00656F8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31B48C64B202FBA9FDF8FD8C /* Pods-Topas.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Topas/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.project.Topas;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AA8CAC842897CA9F00656F8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E4EA5DD04739570754A2BA6 /* Pods-Topas.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Topas/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.project.Topas;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA8CAC692897CA9E00656F8E /* Build configuration list for PBXProject "Topas" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA8CAC802897CA9F00656F8E /* Debug */,
+				AA8CAC812897CA9F00656F8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA8CAC822897CA9F00656F8E /* Build configuration list for PBXNativeTarget "Topas" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA8CAC832897CA9F00656F8E /* Debug */,
+				AA8CAC842897CA9F00656F8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AA8CAC662897CA9E00656F8E /* Project object */;
+}

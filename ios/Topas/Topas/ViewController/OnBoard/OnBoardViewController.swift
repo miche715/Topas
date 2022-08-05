@@ -4,7 +4,6 @@
 //
 //  Created by 김경호 on 2022/07/25.
 //
-
 import UIKit
 
 class OnBoarding: UIViewController, UIScrollViewDelegate {
@@ -51,6 +50,7 @@ class OnBoarding: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = UIColor(named: "BrandColor")
         //가져온 View 배열을 scroll view에 넣어 준다.
         for i in 0..<onboards.count{
             let onbaord = onboards[i]
@@ -83,7 +83,3 @@ class OnBoarding: UIViewController, UIScrollViewDelegate {
     
     
 }
-
-
-
-
