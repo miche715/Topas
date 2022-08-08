@@ -52,6 +52,7 @@ class ChatRepository @Inject constructor()
                         {
                             it == currentUser.profilePhotoUri
                         }?.first()
+                        this.lastMessage = queryDocumentSnapshot.data["last_message"] as String
                     }
 
                     if(chatRoom !in tempChatRoomList)
@@ -131,12 +132,12 @@ class ChatRepository @Inject constructor()
         }
         firebaseFirestore
             .collection("chat").document(currentChatRoomDocumentId)
-            .set(mapOf("time_stamp" to Timestamp.now()), SetOptions.merge())
+            .set(mapOf("time_stamp" to newChat["time_stamp"], "last_message" to newChat["message"]), SetOptions.merge())
             .addOnCompleteListener()
             { task ->
                 if(task.isSuccessful)
                 {
-                    Log.i("${this.javaClass.simpleName} sendChatFirebase", "채팅방 시간 최신화 성공")
+                    Log.i("${this.javaClass.simpleName} sendChatFirebase", "채팅방 시간, 마지막 메세지 최신화 성공")
                 }
             }
     }
