@@ -5,6 +5,7 @@
 //  Created by 김경호 on 2022/07/25.
 //
 import UIKit
+import SnapKit
 
 class SignInView : UIView{
     override init(frame: CGRect) {
@@ -17,138 +18,140 @@ class SignInView : UIView{
         commonInit()
     }
     
+    // UI 구성들
+    let title = UILabel().then{
+        $0.numberOfLines = 3
+        $0.text = "Topas 에서\n스터디, 프로젝트\n팀 완성 하세요."
+        $0.font = UIFont.boldSystemFont(ofSize: 30)
+    }
     
+    let idbox = UITextField().then{
+        $0.placeholder = "이메일을 입력해주세요."
+        $0.textColor = .gray
+        $0.backgroundColor = .systemGray6
+        $0.layer.cornerRadius = 1
+        $0.autocapitalizationType = .none
+    }
     
-    let title: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 3
-        label.text = "Topas 에서\n스터디, 프로젝트\n팀 완성 하세요."
-        label.frame = CGRect(x: 30, y: 100, width: 250, height: 150)
-        label.font = UIFont.boldSystemFont(ofSize: 30)
-        
-        return label
-    }()
+    let pwbox = UITextField().then{
+        $0.placeholder = "비밀번호를 입력해주세요."
+        $0.textColor = .gray
+        $0.textContentType = .password
+        $0.isSecureTextEntry = true
+        $0.backgroundColor = .systemGray6
+        $0.layer.cornerRadius = 1
+        $0.autocapitalizationType = .none
+    }
     
+    let loginFlagLabel = UILabel().then{
+        $0.textColor = .red
+    }
+
+    let SignInButton = UIButton().then{
+        $0.setTitle("로그인", for: .normal)
+        $0.setTitleColor(UIColor.white, for: .normal)
+        $0.backgroundColor = UIColor(named: "BrandColor")
+        
+        // 그림자 효과
+        $0.layer.shadowColor = UIColor.black.cgColor
+        $0.layer.masksToBounds = false
+        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
+        $0.layer.shadowOpacity = 0.3
+        
+        $0.layer.cornerRadius = 6
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.black.cgColor
+    }
+
+    let underText = UILabel().then{
+        $0.text = "계정을 잊으셨습니까?\t\t\t 또는\n아직 회원이 아니십니까?"
+        $0.font = UIFont.systemFont(ofSize: 14)
+        $0.numberOfLines = 2
+        $0.textColor = .lightGray
+        $0.textAlignment = .center
+    }
+
+    let findEmailButton = UIButton().then{
+        $0.setTitle("이메일 찾기", for: .normal)
+        $0.setTitleColor(UIColor(named: "BrandColor"), for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+    }
     
-    let idbox: UITextField = {
-        let idbox = UITextField()
-        idbox.placeholder = "이메일을 입력해주세요."
-        idbox.textColor = .gray
-        idbox.backgroundColor = .systemGray6
-        idbox.frame = CGRect(x: 30, y: 300, width: 350, height: 50)
-        idbox.layer.cornerRadius = 1
-        
-        return idbox
-    }()
-    
-    let pwbox: UITextField = {
-        let pwbox = UITextField()
-        
-        pwbox.placeholder = "비밀번호를 입력해주세요."
-        pwbox.textColor = .gray
-        pwbox.backgroundColor = .systemGray6
-        pwbox.frame = CGRect(x: 30, y: 360, width: 350, height: 50)
-        pwbox.layer.cornerRadius = 1
-        
-        return pwbox
-    }()
-    
-    let SignInButton: UIButton = {
-        let button = UIButton()
-        
-        button.setTitle("로그인", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.frame = CGRect(x: 30, y: 440, width: 350, height: 40)
-        button.backgroundColor = #colorLiteral(red: 0.002839220921, green: 0.4000240564, blue: 1, alpha: 1)
-        //그림자
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.masksToBounds = false
-        button.layer.shadowOffset = CGSize(width: 0, height: 4)
-        button.layer.shadowOpacity = 0.3
-        
-        button.layer.cornerRadius = 6
-        
-        button.layer.borderWidth = 1
-        
-        button.layer.borderColor = UIColor.black.cgColor
-        
-        return button
-    }()
-    
-    let underText : UILabel = {
-        let label = UILabel()
-        
-        label.text = "계정을 잊으셨습니까?\t\t\t 또는\n아직 회원이 아니십니까?"
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.numberOfLines = 2
-        label.textColor = .lightGray
-        label.textAlignment = .center
-        return label
-    }()
-    
-    let findEmailButton : UIButton = {
-        let button = UIButton()
-        
-        button.setTitle("이메일 찾기", for: .normal)
-        button.setTitleColor(UIColor.blue, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        
-        return button
-    }()
-    
-    let findPWButton : UIButton = {
-        let button = UIButton()
-        
-        button.setTitle("비밀번호 찾기", for: .normal)
-        button.setTitleColor(UIColor.blue, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        
-        return button
-    }()
-    
-    let signupButton : UIButton = {
-        let button = UIButton()
-        
-        button.setTitle("회원가입", for: .normal)
-        button.setTitleColor(UIColor.blue, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        
-        return button
-    }()
+    let findPWButton = UIButton().then{
+        $0.setTitle("비밀번호 찾기", for: .normal)
+        $0.setTitleColor(UIColor(named: "BrandColor"), for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+    }
+
+    let signupButton = UIButton().then{
+        $0.setTitle("회원가입", for: .normal)
+        $0.setTitleColor(UIColor(named: "BrandColor"), for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+    }
     
     private func commonInit(){
         self.backgroundColor = .white
         
         self.addSubview(title)
-        self.title.translatesAutoresizingMaskIntoConstraints = false
-        self.title.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
-        self.title.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
+        title.snp.makeConstraints{
+            $0.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(50)
+            $0.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(30)
+        }
         
         self.addSubview(idbox)
+        idbox.snp.makeConstraints{
+            $0.top.equalTo(title.snp.bottom).offset(50)
+            $0.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(30)
+            $0.height.equalTo(50)
+            $0.width.equalTo(self.safeAreaLayoutGuide.snp.width).multipliedBy(0.85)
+        }
         
         self.addSubview(pwbox)
-        self.addSubview(SignInButton)
+        pwbox.snp.makeConstraints{
+            $0.top.equalTo(idbox.snp.bottom).offset(10)
+            $0.leading.equalTo(idbox.snp.leading)
+            $0.height.equalTo(50)
+            $0.width.equalTo(idbox.snp.width)
+        }
         
+        self.addSubview(loginFlagLabel)
+        loginFlagLabel.snp.makeConstraints{
+            $0.top.equalTo(pwbox.snp.bottom).offset(5)
+            $0.leading.equalTo(pwbox.snp.leading)
+        }
+        
+        self.addSubview(SignInButton)
+        SignInButton.snp.makeConstraints{
+            $0.top.equalTo(pwbox.snp.bottom).offset(40)
+            $0.leading.equalTo(pwbox.snp.leading)
+            $0.width.equalTo(pwbox.snp.width)
+            $0.height.equalTo(40)
+        }
         
         self.addSubview(underText)
-        self.underText.translatesAutoresizingMaskIntoConstraints = false
-        self.underText.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 410).isActive = true
-        self.underText.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 45).isActive = true
-        
+        underText.snp.makeConstraints{
+            $0.top.equalTo(SignInButton.snp.bottom).offset(10)
+            $0.leading.equalTo(SignInButton.snp.leading)
+        }
+
         self.addSubview(findEmailButton)
-        self.findEmailButton.translatesAutoresizingMaskIntoConstraints = false
-        self.findEmailButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 402).isActive = true
-        self.findEmailButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 170).isActive = true
-        
+        findEmailButton.snp.makeConstraints{
+            $0.top.equalTo(underText.snp.top).offset(-7)
+            $0.leading.equalTo(underText.snp.leading).offset(125)
+        }
+
         self.addSubview(findPWButton)
-        self.findPWButton.translatesAutoresizingMaskIntoConstraints = false
-        self.findPWButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 402).isActive = true
-        self.findPWButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 275).isActive = true
-        
+        findPWButton.snp.makeConstraints{
+            $0.top.equalTo(underText.snp.top).offset(-7)
+            $0.leading.equalTo(underText.snp.leading).offset(230)
+        }
+
         self.addSubview(signupButton)
-        self.signupButton.translatesAutoresizingMaskIntoConstraints = false
-        self.signupButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 420).isActive = true
-        self.signupButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 230).isActive = true
+        signupButton.snp.makeConstraints{
+            $0.top.equalTo(underText.snp.top).offset(9)
+            $0.leading.equalTo(underText.snp.leading).offset(190)
+        }
+
     }
     
     
