@@ -6,11 +6,11 @@
 //
 
 import UIKit
+import SwiftUI
 
 class SignUpView: UIView{
     let scrollView = UIScrollView().then{
         $0.backgroundColor = .white
-        $0.frame = CGRect(x: 50, y: 50, width: 100, height: 100)
         
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -20,16 +20,13 @@ class SignUpView: UIView{
         //$0.layer.cornerRadius = $0.frame.width / 2
         $0.clipsToBounds = true
         $0.backgroundColor = .blue
-        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.contentMode = .scaleAspectFill
+        $0.image = UIImage(named: "defaultProfile")
     }
     
     let profileLabel = UILabel().then{
         $0.text = "프로필 사진"
-        $0.textColor = .blue
-        $0.frame = CGRect(x: 5, y: 5, width: 100, height: 100)
-        
-        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.textColor = UIColor(named: "BrandColor")
     }
     
     let emailLabel = UILabel().then{
@@ -66,9 +63,9 @@ class SignUpView: UIView{
     let pwInput : UITextField = {
         let view = UITextField()
         
-        view.placeholder = "4~20 자리 영어 대﹒소문자, 숫자, 특수문자 조합"
+        view.placeholder = "6~20 자리 영어 대﹒소문자, 숫자, 특수문자 조합"
         view.textColor = .gray
-        //view.isSecureTextEntry = true
+        view.isSecureTextEntry = true
         view.textContentType = .password
         view.autocapitalizationType = .none
         
@@ -95,9 +92,9 @@ class SignUpView: UIView{
     let pwreInput : UITextField = {
         let view = UITextField()
         
-        view.placeholder = "4~20 자리 영어 대﹒소문자, 숫자, 특수문자 조합"
+        view.placeholder = "6~20 자리 영어 대﹒소문자, 숫자, 특수문자 조합"
         view.textColor = .gray
-        //view.isSecureTextEntry = true
+        view.isSecureTextEntry = true
         view.textContentType = .password
         view.autocapitalizationType = .none
         
@@ -172,7 +169,7 @@ class SignUpView: UIView{
     let SignUpbutton = UIButton().then{
         $0.setTitle("회원가입", for: .normal)
         $0.setTitleColor(UIColor.white, for: .normal)
-        $0.backgroundColor = #colorLiteral(red: 0.002839220921, green: 0.4000240564, blue: 1, alpha: 1)
+        $0.backgroundColor = UIColor(named: "BrandColor")
         
         $0.layer.shadowColor = UIColor.black.cgColor
         $0.layer.masksToBounds = false
@@ -196,29 +193,25 @@ class SignUpView: UIView{
     
     private func commonInit(){
         self.backgroundColor = .white
+        
         self.addSubview(scrollView)
-        
-        
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
-            scrollView.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor)
-        ])
+        scrollView.snp.makeConstraints{
+            $0.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+            $0.width.equalTo(self.safeAreaLayoutGuide.snp.width)
+            $0.height.equalTo(self.safeAreaLayoutGuide.snp.height)
+        }
         
         scrollView.addSubview(profileImage)
-        profileImage.snp.makeConstraints{ make in
-            make.top.equalTo(scrollView.snp.top).offset(100)
-            make.centerX.equalTo(scrollView)
-            //make.width.equalTo(scrollView).multipliedBy(0.2)
-            make.width.height.equalTo(100)
+        profileImage.snp.makeConstraints{
+            $0.top.equalTo(scrollView.snp.top).offset(100)
+            $0.centerX.equalTo(scrollView)
+            $0.width.height.equalTo(100)
         }
         
         scrollView.addSubview(profileLabel)
-        profileLabel.snp.makeConstraints{ make in
-            make.top.equalTo(profileImage.snp.bottom).offset(20)
-            make.centerX.equalTo(profileImage)
+        profileLabel.snp.makeConstraints{
+            $0.top.equalTo(profileImage.snp.bottom).offset(20)
+            $0.centerX.equalTo(profileImage)
         }
         
         scrollView.addSubview(emailLabel)
@@ -229,10 +222,10 @@ class SignUpView: UIView{
         }
         
         scrollView.addSubview(emailInput)
-        emailInput.snp.makeConstraints{ make in
-            make.top.equalTo(emailLabel.snp.bottom).offset(10)
-            make.width.equalTo(scrollView.snp.width).multipliedBy(0.8)
-            make.centerX.equalTo(profileLabel)
+        emailInput.snp.makeConstraints{
+            $0.top.equalTo(emailLabel.snp.bottom).offset(10)
+            $0.width.equalTo(scrollView.snp.width).multipliedBy(0.8)
+            $0.centerX.equalTo(profileLabel)
         }
         
         scrollView.addSubview(emailckLabel)

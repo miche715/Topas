@@ -9,6 +9,7 @@ import UIKit
 import SwiftUI
 import Then
 import SnapKit
+import FirebaseAuth
 
 class SignUp: UIViewController{
     let vc = SignUpView()
@@ -29,6 +30,7 @@ class SignUp: UIViewController{
         
         // 패스워드 확인 바뀌었을 떄 값 체크하는 메소드를 추가해준다.
         vc.pwreInput.addTarget(self, action: #selector(setLabelPasswordConfirm(_:)), for: .editingChanged)
+        vc.SignUpbutton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,8 +46,12 @@ class SignUp: UIViewController{
         let camera = UIAlertAction(title: "카메라", style: .default){
             (action) in self.openCamera()
         }
-        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         
+        let setdefault = UIAlertAction(title: "기본 사진", style: .default){
+            (action) in self.setDefault()
+        }
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         
         alert.addAction(library)
         alert.addAction(camera)
@@ -65,6 +71,14 @@ class SignUp: UIViewController{
     func openLibrary(){
         profilePickController.sourceType = .photoLibrary
         present(profilePickController, animated: false, completion: nil)
+    }
+     
+    func setDefault(){
+        self.vc.profileImage.image = UIImage(named: "defaultProfile")
+        
+        UserDB.setPhoto(photo: "defaultProfile")
+        
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -88,7 +102,97 @@ class SignUp: UIViewController{
         vc.profileImage.addGestureRecognizer(tabGestureRecognizer)
         vc.profileImage.isUserInteractionEnabled = true
     }
-    
+    @objc func signUp(){
+        let email = vc.emailInput.text!
+        let pw = vc.pwInput.text!
+        let pwConfirm = vc.pwreInput.text!
+        let name = vc.nameInput.text!
+        let nickname = vc.nicknameInput.text!
+        
+        var flag = true
+        
+        if email.count <= 0{
+            vc.emailckLabel.text = "이메일을 입력해주세요."
+            flag = false
+        }
+        else
+        {
+            vc.emailckLabel.text = ""
+        }
+        
+        if pw.count <= 0{
+            vc.pwckLabel.text = "비밀번호를 입력해주세요."
+            flag = false
+        }
+        else
+        {
+            vc.pwckLabel.text = ""
+        }
+        
+        if name.count <= 0{
+            vc.nameckLabel.text = "이름을 입력해주세요."
+            flag = false
+        }
+        else
+        {
+            vc.nameckLabel.text = ""
+        }
+        
+        if nickname.count <= 0{
+            vc.nicknameckLabel.text = "닉네임을 입력해주세요."
+            flag = false
+        }
+        else
+        {
+            vc.nicknameckLabel.text = ""
+        }
+        
+        if pw != pwConfirm{
+            vc.pwreckLabel.text = "비밀번호가 다릅니다."
+            flag = false
+        }
+        else
+        {
+            vc.pwreckLabel.text = ""
+        }
+        
+        if flag{
+            Auth.auth().createUser(withEmail: email, password: pw){ user, error in
+                if user != nil{
+                    print("SignUP Success")
+                    
+                    //Firestore에 데이터 전송
+                    UserDB.signupModel(email : email, name : name, nicname : nickname, photo : String)
+                    
+                    guard let mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "Main") as? ViewController else { return }
+                    self.present(mainViewController, animated: true, completion: nil)
+                } else{
+                    print("SignUP Fail")
+                    let errorCode = AuthErrorCode.Code(rawValue: error!._code)!
+                    print(error)
+                    
+                    switch errorCode{
+                    case .invalidEmail:
+                        self.vc.emailckLabel.text = "잘못된 형식의 이메일입니다."
+                        self.vc.emailckLabel.textColor = .red
+                    case .emailAlreadyInUse:
+                        self.vc.emailckLabel.text = "이미 사용중인 이메일입니다."
+                        self.vc.emailckLabel.textColor = .red
+                    case .weakPassword:
+                        self.vc.pwckLabel.text = "취약한 비밀번호입니다."
+                        self.vc.pwckLabel.textColor = .red
+                    case .wrongPassword:
+                        self.vc.pwckLabel.text = "잘못된 형식의 비밀번호입니다."
+                        self.vc.pwckLabel.textColor = .red
+                    default:
+                        print(errorCode)
+                    }
+
+                }
+                
+            }
+        }
+    }
     
 }
 extension SignUp : UIImagePickerControllerDelegate, UINavigationControllerDelegate{
@@ -155,11 +259,20 @@ extension SignUp: UITextFieldDelegate{
             }
             return false
         case vc.pwreInput:
-            print("hello")
+            if string.pwCheck() || isBackSpace == -92 {
+                return true
+            }
+            return false
         case vc.nameInput:
-            print("nameInput")
+            if string.nameCheck() || isBackSpace == -92 {
+                return true
+            }
+            return false
         default:
-            print("nicknameInput")
+            if string.nickCheck() || isBackSpace == -92 {
+                return true
+            }
+            return false
         }
         return true
         
@@ -171,8 +284,7 @@ extension String{
     // 필터링을 위함
     func emailCheck() -> Bool {
         do{
-            
-            let regex = try NSRegularExpression(pattern: "^[a-zA-Z1-9@.\\s]$", options: .caseInsensitive)
+            let regex = try NSRegularExpression(pattern: "^[a-zA-Z0-9@.]$", options: .caseInsensitive)
             if let _ = regex.firstMatch(in: self,options: NSRegularExpression.MatchingOptions.reportProgress, range: NSMakeRange(0, self.count)){
                 return true
             }
@@ -184,7 +296,31 @@ extension String{
     
     func pwCheck() -> Bool {
         do {
-            let regex = try NSRegularExpression(pattern: "^[a-zA-Z1-9@#$%^&*.!?\\s]$", options: .caseInsensitive)
+            let regex = try NSRegularExpression(pattern: "^[a-zA-Z0-9@#$%^&*.!?]$", options: .caseInsensitive)
+            if let _ = regex.firstMatch(in: self,options: NSRegularExpression.MatchingOptions.reportProgress, range: NSMakeRange(0, self.count)){
+                return true
+            }
+        }catch{
+            return false
+        }
+        return false
+    }
+    
+    func nameCheck() -> Bool{
+        do {
+            let regex = try NSRegularExpression(pattern: "^[가-힣ㄱ-ㅎㅏ-ㅣ]$", options: .caseInsensitive)
+            if let _ = regex.firstMatch(in: self,options: NSRegularExpression.MatchingOptions.reportProgress, range: NSMakeRange(0, self.count)){
+                return true
+            }
+        }catch{
+            return false
+        }
+        return false
+    }
+    
+    func nickCheck() -> Bool{
+        do {
+            let regex = try NSRegularExpression(pattern: "^[가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9@#$%^&*.!?\\s]$", options: .caseInsensitive)
             if let _ = regex.firstMatch(in: self,options: NSRegularExpression.MatchingOptions.reportProgress, range: NSMakeRange(0, self.count)){
                 return true
             }

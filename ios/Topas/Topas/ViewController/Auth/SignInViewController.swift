@@ -21,8 +21,6 @@ class SingIn : UIViewController{
         vc.SignInButton.addTarget(self, action: #selector(signIn), for: .touchUpInside)
     }
     
-        
-    
     @objc func signUpLink(){
         self.performSegue(withIdentifier: "toSignUp", sender: self)
     }
@@ -34,6 +32,7 @@ class SingIn : UIViewController{
             Auth.auth().signIn(withEmail: id, password: pw){ user, error in
                 if user != nil{
                     print("Login Success")
+                    UserDB.LoginSuccess()
                     guard let mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "Main") as? ViewController else {return}
                     mainViewController.modalTransitionStyle = .coverVertical
                     mainViewController.modalPresentationStyle = .fullScreen
