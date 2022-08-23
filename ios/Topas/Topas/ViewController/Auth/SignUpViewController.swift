@@ -75,10 +75,7 @@ class SignUp: UIViewController{
      
     func setDefault(){
         self.vc.profileImage.image = UIImage(named: "defaultProfile")
-        
-        UserDB.setPhoto(photo: "defaultProfile")
-        
-        
+        UserDB.setDefaultImage()
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -162,7 +159,12 @@ class SignUp: UIViewController{
                     print("SignUP Success")
                     
                     //Firestore에 데이터 전송
-                    UserDB.signupModel(email : email, name : name, nicname : nickname, photo : String)
+                    if UserDefaults.standard.string(forKey: "profile_photo") == "defaultProfile"{
+                        UserDB.signupModel(email : email, name : name, nick_name : nickname, photo : nil)
+
+                    } else {
+                        UserDB.signupModel(email: email, name: name, nick_name: nickname, photo: self.vc.profileImage.image)
+                    }
                     
                     guard let mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "Main") as? ViewController else { return }
                     self.present(mainViewController, animated: true, completion: nil)
