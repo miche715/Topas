@@ -46,7 +46,6 @@ class SignUp: UIViewController{
         let camera = UIAlertAction(title: "카메라", style: .default){
             (action) in self.openCamera()
         }
-        
         let setdefault = UIAlertAction(title: "기본 사진", style: .default){
             (action) in self.setDefault()
         }
@@ -55,6 +54,7 @@ class SignUp: UIViewController{
         
         alert.addAction(library)
         alert.addAction(camera)
+        alert.addAction(setdefault)
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
     }
@@ -82,6 +82,7 @@ class SignUp: UIViewController{
         if let image = info[UIImagePickerController.InfoKey.originalImage]
             as? UIImage{
             vc.profileImage.image = image
+            UserDB.setProfileImage()
         } else {
             print("사진을 불러올 수 없습니다.")
         }
@@ -161,12 +162,12 @@ class SignUp: UIViewController{
                     //Firestore에 데이터 전송
                     if UserDefaults.standard.string(forKey: "profile_photo") == "defaultProfile"{
                         UserDB.signupModel(email : email, name : name, nick_name : nickname, photo : nil)
-
                     } else {
                         UserDB.signupModel(email: email, name: name, nick_name: nickname, photo: self.vc.profileImage.image)
                     }
                     
                     guard let mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "Main") as? ViewController else { return }
+                    mainViewController.modalPresentationStyle = .fullScreen
                     self.present(mainViewController, animated: true, completion: nil)
                 } else{
                     print("SignUP Fail")

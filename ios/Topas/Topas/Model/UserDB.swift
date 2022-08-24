@@ -38,7 +38,7 @@ public class UserDB{
         let db = Firestore.firestore()
         
         //UserDefaults에 기본 데이터들을 저장
-        //self.setinit(email, name, nick_name)
+        self.setinit(email, name, nick_name)
         
         //Firestore에 유저 프로필 정보 생성 및 저장
         let profileDocument = db.collection("user").document() // Document 생성
@@ -52,16 +52,14 @@ public class UserDB{
         profileDocument.setData(["email":email,
                                  "exposure":true,
                                  "introduce":"",
+                                 "name":name,
                                  "nick_name":nick_name,
                                  "skill":[],
                                  "update_at" : date.string(from: Date())
                                 ])
         
         //프로필 사진을 로컬 및 Storage에 저장, UserDefaults값을 profile로바꿔줌
-        if photo == nil{
-            setDefaultImage()
-        } else {
-            setProfileImage()
+        if photo != nil{
             ImageFileManager.saveImage(name: "profile.jpg", image: photo!)
             FirebaseStorageManager.uploadImage(image: photo!) { url in
                 if let url = url {
@@ -69,9 +67,7 @@ public class UserDB{
                     profileDocument.setData(["profile_photo_uri":url.absoluteString])
                 }
             }
-            
         }
-        
     }
     
     static func setDefaultImage(){
