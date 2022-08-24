@@ -12,7 +12,7 @@ public class UserDB{
     static func isFirstTime() -> Bool{
         let defaults = UserDefaults.standard
         if defaults.object(forKey: "isFirstTime") == nil{
-            defaults.set("No", forKey: "isFirstTime")
+            defaults.set(true, forKey: "isFirstTime")
             return true
         } else{
             return false
@@ -30,6 +30,7 @@ public class UserDB{
     
     static func LoginSuccess(){
         let defaults = UserDefaults.standard
+        defaults.set(true, forKey: "isFirstTime")
         defaults.set(true, forKey: "isLogin")
     }
     
@@ -68,6 +69,7 @@ public class UserDB{
                 }
             }
         }
+        LoginSuccess()
     }
     
     static func setDefaultImage(){

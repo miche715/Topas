@@ -21,20 +21,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         FirebaseApp.configure()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        if true{ //UserDB.isFirstTime(){
+        if UserDB.isFirstTime(){
             guard let onboarding = storyboard.instantiateViewController(withIdentifier: "onBoarding") as? OnBoarding else {return}
-            
             window?.rootViewController = onboarding
+        } else if UserDB.isLogin(){
+            let login = storyboard.instantiateViewController(withIdentifier: "SignIn")
+            window?.rootViewController = login
         } else {
-            //guard let main = storyboard.instantiateViewController(withIdentifier: "Main") as? mainViewController else {return}
-            if UserDB.isLogin(){
-                let login = storyboard.instantiateViewController(withIdentifier: "SignIn")
-                window?.rootViewController = login
-            } else {
-                let main = storyboard.instantiateViewController(withIdentifier: "Main")
-                window?.rootViewController = main
-            }
-
+            let main = storyboard.instantiateViewController(withIdentifier: "Main")
+            window?.rootViewController = main
         }
     }
 
