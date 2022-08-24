@@ -38,23 +38,30 @@ class OnBoarding: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        scrollView.snp.makeConstraints{
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            $0.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading)
+            $0.width.equalTo(self.view.safeAreaLayoutGuide.snp.width)
+            $0.height.equalTo(self.view.safeAreaLayoutGuide.snp.height)
+        }
+        
         scrollView.delegate = self
         view.backgroundColor = UIColor(named: "BrandColor")
+        
         //가져온 View 배열을 scroll view에 넣어 준다.
-        scrollView.contentSize.width = self.view.frame.width * CGFloat(3)
+        scrollView.contentSize.width = scrollView.safeAreaLayoutGuide.layoutFrame.width * CGFloat(3)
+        
         for i in 0..<onboards.count{
             let onbaord = onboards[i]
-            var xPosition = self.view.frame.width * CGFloat(i)
+            var xPosition = scrollView.safeAreaLayoutGuide.layoutFrame.width * CGFloat(i)//self.view.frame.width * CGFloat(i)
             scrollView.addSubview(onbaord)
-            onbaord.snp.makeConstraints{
-                $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-                $0.leading.equalTo(xPosition)
-                $0.height.equalTo(self.view.safeAreaLayoutGuide.snp.height)
-                $0.width.equalTo(self.view.safeAreaLayoutGuide.snp.width)
-            }
-            //onbaord.frame = CGRect(x: xPosition, y: 0, width: self.view.frame.width, height: self.view.frame.height)
-            //scrollView.contentSize.width = self.view.frame.width * CGFloat(1 + i)
             
+            onbaord.snp.makeConstraints{
+                $0.top.equalTo(scrollView.safeAreaLayoutGuide.snp.top)
+                $0.leading.equalTo(xPosition)
+                $0.height.equalTo(scrollView.safeAreaLayoutGuide.snp.height)
+                $0.width.equalTo(scrollView.safeAreaLayoutGuide.snp.width)
+            }
         }
         setPageControl()
     }
