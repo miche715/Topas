@@ -31,10 +31,23 @@ class SignUp: UIViewController{
         // 패스워드 확인 바뀌었을 떄 값 체크하는 메소드를 추가해준다.
         vc.pwreInput.addTarget(self, action: #selector(setLabelPasswordConfirm(_:)), for: .editingChanged)
         vc.SignUpbutton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
+        
+        vc.emailInput.becomeFirstResponder()
+        vc.pwInput.becomeFirstResponder()
+        vc.pwreInput.becomeFirstResponder()
+        vc.nicknameInput.becomeFirstResponder()
+        vc.nameInput.becomeFirstResponder()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         vc.profileImage.layer.cornerRadius = vc.profileImage.frame.width / 2
+        
+        //키보드 추가
+        self.addKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.removeKeyboardNotifications()
     }
     
     func profileImageAdd(){
@@ -197,6 +210,46 @@ class SignUp: UIViewController{
         }
     }
     
+    //키보드 관련한 메소드들
+    func addKeyboardNotifications(){
+        //키보드가 나타날 때 앱에게 알리는 메서드
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        //키보드가 사라질 때 앱에게 알리는 메서드
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func removeKeyboardNotifications(){
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    //키보드가 나타났다는 알림을 받으면 실행할 메서드
+    @objc func keyboardWillShow(_ noti: NSNotification){
+        //키보드의 높이만큼 화면을 올려줌
+        if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+//            self.view.frame.origin.y -= keyboardHeight
+            UIView.animate(withDuration: 0.3, animations: {
+                self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardHeight)
+            })
+            print("hello")
+        }
+    }
+    
+    //키보드가 사라졌다는 알림을 받으면 실행할 메서드
+    @objc func keyboardWillHide(_ noti: NSNotification){
+//        //키보드의 높이만큼 화면을 내려준다.
+//        if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+//            let keyboardRectangle = keyboardFrame.cgRectValue
+//            let keyboardHeight = keyboardRectangle.height
+//            //self.view.frame.origin.y += keyboardHeight
+//            //self.vc.scrollView.frame.origin.y += keyboardHeight
+//            self.view.frame.origin.y += keyboardHeight
+//        }
+        self.view.transform = .identity
+    }
 }
 extension SignUp : UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     

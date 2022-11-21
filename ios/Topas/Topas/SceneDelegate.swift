@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if UserDB.isFirstTime(){
             guard let onboarding = storyboard.instantiateViewController(withIdentifier: "onBoarding") as? OnBoarding else {return}
             window?.rootViewController = onboarding
-        } else if UserDB.isLogin(){
+        } else if !UserDB.isLogin(){
             let login = storyboard.instantiateViewController(withIdentifier: "SignIn")
             window?.rootViewController = login
         } else {
