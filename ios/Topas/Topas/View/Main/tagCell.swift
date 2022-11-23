@@ -9,10 +9,12 @@ import UIKit
 import SnapKit
 
 class TagCell : UICollectionViewCell{
-    let tagLabel = UILabel().then{
-        $0.font = .systemFont(ofSize: 14)
+    var tagLabel = UILabel().then{
+        $0.font = .systemFont(ofSize: 20)
         $0.textColor = .gray
-        
+        $0.backgroundColor = .systemGray5
+        $0.layer.masksToBounds = true
+        $0.layer.cornerRadius = 4
     }
     
     override init(frame: CGRect) {
@@ -30,5 +32,6 @@ class TagCell : UICollectionViewCell{
         tagLabel.snp.makeConstraints{
             $0.center.equalToSuperview()
         }
+        
     }
 }

@@ -8,8 +8,12 @@
 import UIKit
 
 class Team : UIViewController{
+    
+    let vc = TeamView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("test2")
+        
+        self.view = vc
     }
 }

@@ -15,7 +15,12 @@ class People : UIViewController{
 
     var dataSources = [MainCellModel]()
 
-
+    let tagList: [String] = [
+        "이창희",
+        "김경호",
+        "코딩노예",
+        "살려줘"
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +36,8 @@ class People : UIViewController{
         vc.tableView.register(MainListCell.self, forCellReuseIdentifier: MainListCell.identifier)
         vc.tableView.delegate = self
         vc.tableView.dataSource = self
+        
+        
         
     }
 

@@ -44,10 +44,25 @@ class MainListCell: UITableViewCell {
         $0.layer.borderWidth = 1
     }
     
-    let tagLabel = UILabel().then{
-        $0.font = .systemFont(ofSize: 24)
-        $0.textColor = .gray
-    }
+    let collectionView:  UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.register(TagCell.self, forCellWithReuseIdentifier: "TagCell")
+        return cv
+    }()
+    
+//    let tagLabel = UILabel().then{
+//        $0.font = .systemFont(ofSize: 24)
+//        $0.textColor = .gray
+//    }
+//    
+//    let tagCollection = UICollectionView().then{
+//        let flowLayout = UICollectionViewFlowLayout()
+//        flowLayout.itemSize = CGSize(width: 100, height: 100)
+//
+//        $0.collectionViewLayout = flowLayout
+//        $0.backgroundColor = UIColor.red
+//    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -69,8 +84,6 @@ class MainListCell: UITableViewCell {
             
         }
         
-        
-        
         self.addSubview(introduce)
         introduce.snp.makeConstraints{
             $0.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(15)
@@ -78,7 +91,6 @@ class MainListCell: UITableViewCell {
             $0.top.equalTo(profile.snp.centerY).offset(50)
             $0.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-10)
             $0.height.equalTo(40)
-            
         }
         
         self.addSubview(nickname)
@@ -95,11 +107,20 @@ class MainListCell: UITableViewCell {
             $0.height.equalTo(30)
         }
         
-        self.addSubview(tagLabel)
-        tagLabel.snp.makeConstraints{
-            $0.center.equalToSuperview()
-        }
+//        self.addSubview(tagCollection)
+//        tagCollection.snp.makeConstraints{
+//            $0.leading.equalTo(self.safeAreaLayoutGuide.snp.leading)
+//            $0.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing)
+//            $0.top.equalTo(introduce.snp.bottom)
+//            $0.height.equalTo(40)
+//        }
         
+        self.addSubview(collectionView)
+        collectionView.snp.makeConstraints{
+            $0.leading.equalTo(self.safeAreaLayoutGuide.snp.leading)
+            $0.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing)
+            $0.top.equalTo(introduce.snp.bottom)
+        }
     }
 }
 
