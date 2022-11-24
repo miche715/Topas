@@ -28,8 +28,6 @@ class PeopleView : UIView{
     let navItem = UINavigationItem(title: "팀원 모집")
 
     let tableView = UITableView()
-
-    
     
     private func commoninit(){
         self.backgroundColor = .white
@@ -51,6 +49,7 @@ class PeopleView : UIView{
             $0.height.equalTo(self.safeAreaLayoutGuide.snp.height)
             $0.width.equalTo(self.safeAreaLayoutGuide.snp.width)
         }
+        
     }
 }
 

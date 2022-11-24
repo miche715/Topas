@@ -33,5 +33,8 @@ class TagCell : UICollectionViewCell{
             $0.center.equalToSuperview()
         }
         
+        // 둥글게
+        self.layer.masksToBounds = true
+        self.layer.cornerRadius = 4
     }
 }

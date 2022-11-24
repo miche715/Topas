@@ -12,6 +12,8 @@ class MainListCell: UITableViewCell {
 
     static let identifier = "mainCell"
     
+    private var skills : [String] = []
+    
     let profile = UIImageView().then{
         $0.layer.borderWidth = 2
         $0.layer.cornerRadius = 64 * 0.5
@@ -20,17 +22,20 @@ class MainListCell: UITableViewCell {
         $0.clipsToBounds = true
     }
     
+    // 글자 크기에 맞게 label 크기 증가 해결하기
     let introduce = UILabel().then{
-        $0.backgroundColor = UIColor.blue
+        $0.backgroundColor = UIColor.systemBlue
         $0.textColor = UIColor.white
         $0.layer.borderWidth = 1
-//        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.textAlignment = .center
+        $0.lineBreakMode = .byWordWrapping
+        $0.numberOfLines = 0
+        $0.font = UIFont.systemFont(ofSize: 20)
     }
     
     let nickname = UILabel().then{
         $0.textColor = UIColor.black
         $0.font = UIFont.systemFont(ofSize: 20)
-//        $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     let talkButton = UIButton().then{
@@ -51,19 +56,6 @@ class MainListCell: UITableViewCell {
         return cv
     }()
     
-//    let tagLabel = UILabel().then{
-//        $0.font = .systemFont(ofSize: 24)
-//        $0.textColor = .gray
-//    }
-//    
-//    let tagCollection = UICollectionView().then{
-//        let flowLayout = UICollectionViewFlowLayout()
-//        flowLayout.itemSize = CGSize(width: 100, height: 100)
-//
-//        $0.collectionViewLayout = flowLayout
-//        $0.backgroundColor = UIColor.red
-//    }
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         commoninit()
@@ -81,16 +73,6 @@ class MainListCell: UITableViewCell {
 //            $0.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-10)
             $0.width.equalTo(64)
             $0.height.equalTo(64)
-            
-        }
-        
-        self.addSubview(introduce)
-        introduce.snp.makeConstraints{
-            $0.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(15)
-            $0.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing).offset(-15)
-            $0.top.equalTo(profile.snp.centerY).offset(50)
-            $0.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-10)
-            $0.height.equalTo(40)
         }
         
         self.addSubview(nickname)
@@ -107,20 +89,26 @@ class MainListCell: UITableViewCell {
             $0.height.equalTo(30)
         }
         
-//        self.addSubview(tagCollection)
-//        tagCollection.snp.makeConstraints{
-//            $0.leading.equalTo(self.safeAreaLayoutGuide.snp.leading)
-//            $0.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing)
-//            $0.top.equalTo(introduce.snp.bottom)
-//            $0.height.equalTo(40)
-//        }
+        self.addSubview(introduce)
+        introduce.snp.makeConstraints{
+            $0.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(15)
+            $0.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing).offset(-15)
+            $0.top.equalTo(profile.snp.centerY).offset(50)
+//            $0.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-10)
+            $0.height.equalTo(50)
+        }
         
         self.addSubview(collectionView)
         collectionView.snp.makeConstraints{
-            $0.leading.equalTo(self.safeAreaLayoutGuide.snp.leading)
-            $0.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing)
-            $0.top.equalTo(introduce.snp.bottom)
+            $0.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(15)
+            $0.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing).offset(-15)
+            $0.top.equalTo(introduce.snp.bottom).offset(10)
+            $0.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-10)
+            $0.height.equalTo(50)
         }
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
 }
 
@@ -129,12 +117,40 @@ extension MainListCell{
 //        profile.image = model.profile
         nickname.text = model.nickname
         introduce.text = model.introduce
+        skills = model.skills
     }
 }
+extension MainListCell : UICollectionViewDelegate, UICollectionViewDataSource{
+    // cell 개수
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("-----------------------------")
+        print(skills.count)
+        return skills.count
+    }
 
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCell", for: indexPath) as? TagCell ?? TagCell()
+        cell.tagLabel.text = skills[indexPath.row]
+        return cell
+    }
+}
+extension MainListCell : UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
+      let label = UILabel().then {
+          $0.font = .systemFont(ofSize: 14)
+          $0.text = skills[indexPath.item]
+          $0.sizeToFit()
+      }
+      let size = label.frame.size
+
+      return CGSize(width: size.width + 16, height: size.height + 10)
+    }
+    
+}
 struct MainCellModel{
     let profile : UIImage
     let introduce : String
     let nickname : String
+    let skills : [String]
 }

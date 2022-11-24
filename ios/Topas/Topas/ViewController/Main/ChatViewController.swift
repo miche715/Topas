@@ -29,7 +29,7 @@ class Chat : UIViewController{
         vc.collectionView.dataSource = self
     }
 }
-extension Chat: UICollectionViewDelegate, UICollectionViewDataSource{
+extension Chat : UICollectionViewDelegate, UICollectionViewDataSource{
     // cell 개수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return tagList.count
@@ -41,7 +41,7 @@ extension Chat: UICollectionViewDelegate, UICollectionViewDataSource{
         return cell
     }
 }
-extension Chat: UICollectionViewDelegateFlowLayout{
+extension Chat : UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
       let label = UILabel().then {
