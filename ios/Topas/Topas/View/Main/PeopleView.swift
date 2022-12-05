@@ -48,6 +48,7 @@ class PeopleView : UIView{
             $0.leading.equalTo(self.safeAreaLayoutGuide.snp.leading)
             $0.height.equalTo(self.safeAreaLayoutGuide.snp.height)
             $0.width.equalTo(self.safeAreaLayoutGuide.snp.width)
+            $0.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
         }
         
     }

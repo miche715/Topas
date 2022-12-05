@@ -49,12 +49,19 @@ class MainListCell: UITableViewCell {
         $0.layer.borderWidth = 1
     }
     
-    let collectionView:  UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.register(TagCell.self, forCellWithReuseIdentifier: "TagCell")
-        return cv
-    }()
+    
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init()).then{
+//        let layout = LeftAlignedCollectionViewFlowLayout()
+        let layout = MiddleAlignedCollectionViewFlowLayout()
+//        layout.minimumLineSpacing = 3
+        layout.minimumInteritemSpacing = 3
+//        layout.sectionInset = UIEdgeInsets(top: 5, left: 2, bottom: 5, right: 2)
+        
+        $0.isScrollEnabled = false
+        $0.collectionViewLayout = layout
+        $0.backgroundColor = .systemBackground
+        $0.register(TagCell.self, forCellWithReuseIdentifier: "TagCell")
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -65,7 +72,7 @@ class MainListCell: UITableViewCell {
         fatalError("init(coder:) has not implemented")
     }
     
-    func commoninit(){
+    private func commoninit(){
         self.addSubview(profile)
         profile.snp.makeConstraints{
             $0.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(16)
@@ -137,16 +144,16 @@ extension MainListCell : UICollectionViewDelegate, UICollectionViewDataSource{
 extension MainListCell : UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-      let label = UILabel().then {
-          $0.font = .systemFont(ofSize: 14)
-          $0.text = skills[indexPath.item]
-          $0.sizeToFit()
-      }
-      let size = label.frame.size
-
-      return CGSize(width: size.width + 16, height: size.height + 10)
+        
+        let label = UILabel().then {
+            $0.font = .systemFont(ofSize: 14)
+            $0.text = skills[indexPath.item]
+            $0.sizeToFit()
+        }
+        let size = label.frame.size
+        
+        return CGSize(width: size.width + 16, height: size.height + 10)
     }
-    
 }
 struct MainCellModel{
     let profile : UIImage

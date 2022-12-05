@@ -14,13 +14,6 @@ class People : UIViewController{
     let vc = PeopleView()
 
     var dataSources = [MainCellModel]()
-
-    let tagList: [String] = [
-        "이창희",
-        "김경호",
-        "코딩노예",
-        "살려줘"
-    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()

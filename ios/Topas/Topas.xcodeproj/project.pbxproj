@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA0114FE293DD0220004B51F /* ChatTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0114FD293DD0220004B51F /* ChatTableCell.swift */; };
+		AA3E0E96293E6F4A001C5181 /* ChatDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3E0E95293E6F4A001C5181 /* ChatDB.swift */; };
 		AA56677D292B6A830092AA50 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA56677C292B6A820092AA50 /* TagCell.swift */; };
+		AA56677F292FA5F20092AA50 /* MiddleAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA56677E292FA5F20092AA50 /* MiddleAlignedCollectionViewFlowLayout.swift */; };
 		AA8CAC722897CA9E00656F8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8CAC712897CA9E00656F8E /* AppDelegate.swift */; };
 		AA8CAC742897CA9E00656F8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8CAC732897CA9E00656F8E /* SceneDelegate.swift */; };
 		AA8CAC762897CA9E00656F8E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8CAC752897CA9E00656F8E /* ViewController.swift */; };
@@ -40,7 +43,10 @@
 		041718547D1D9369A2042C85 /* Pods_Topas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Topas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		31B48C64B202FBA9FDF8FD8C /* Pods-Topas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Topas.debug.xcconfig"; path = "Target Support Files/Pods-Topas/Pods-Topas.debug.xcconfig"; sourceTree = "<group>"; };
 		5E4EA5DD04739570754A2BA6 /* Pods-Topas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Topas.release.xcconfig"; path = "Target Support Files/Pods-Topas/Pods-Topas.release.xcconfig"; sourceTree = "<group>"; };
+		AA0114FD293DD0220004B51F /* ChatTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableCell.swift; sourceTree = "<group>"; };
+		AA3E0E95293E6F4A001C5181 /* ChatDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDB.swift; sourceTree = "<group>"; };
 		AA56677C292B6A820092AA50 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
+		AA56677E292FA5F20092AA50 /* MiddleAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddleAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		AA8CAC6E2897CA9E00656F8E /* Topas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Topas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA8CAC712897CA9E00656F8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA8CAC732897CA9E00656F8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				AA8CAC892897CCF800656F8E /* UserDB.swift */,
+				AA3E0E95293E6F4A001C5181 /* ChatDB.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -208,6 +215,8 @@
 				AAC05CA2291E393300C053BE /* MainListCell.swift */,
 				AAC05CA3291E393300C053BE /* MainListCell.xib */,
 				AA56677C292B6A820092AA50 /* TagCell.swift */,
+				AA56677E292FA5F20092AA50 /* MiddleAlignedCollectionViewFlowLayout.swift */,
+				AA0114FD293DD0220004B51F /* ChatTableCell.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -343,11 +352,13 @@
 			files = (
 				AA8CAC8A2897CCF800656F8E /* UserDB.swift in Sources */,
 				AA8CAC942897CDE200656F8E /* SignInView.swift in Sources */,
+				AA0114FE293DD0220004B51F /* ChatTableCell.swift in Sources */,
 				AA8CAC762897CA9E00656F8E /* ViewController.swift in Sources */,
 				AA8CAC922897CDAB00656F8E /* OnBoardView.swift in Sources */,
 				AA56677D292B6A830092AA50 /* TagCell.swift in Sources */,
 				AA8CAC962897D41000656F8E /* SignInViewController.swift in Sources */,
 				AAC05C9D28BE5C0300C053BE /* ChatViewController.swift in Sources */,
+				AA56677F292FA5F20092AA50 /* MiddleAlignedCollectionViewFlowLayout.swift in Sources */,
 				AAC05CA128EDF7BA00C053BE /* MainTabBarViewController.swift in Sources */,
 				AA8CAC722897CA9E00656F8E /* AppDelegate.swift in Sources */,
 				AAC05C9228BE5B8100C053BE /* PeopleView.swift in Sources */,
@@ -360,6 +371,7 @@
 				AA8CAC902897CD7000656F8E /* OnBoardViewController.swift in Sources */,
 				AAC05C9628BE5BA100C053BE /* PeopleViewController.swift in Sources */,
 				AAC05CA4291E393300C053BE /* MainListCell.swift in Sources */,
+				AA3E0E96293E6F4A001C5181 /* ChatDB.swift in Sources */,
 				AAC05C9F28E33C0F00C053BE /* mainTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
