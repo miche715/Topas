@@ -12,12 +12,9 @@ class Chat : UIViewController{
     
     let vc = ChatView()
     
-    let tagList: [String] = [
-        "이창희",
-        "김경호",
-        "코딩노예",
-        "살려줘"
-    ]
+    var chatList: [chatInfo] = []
+    
+    chatList.append(.init(profil))
     
     
     override func viewDidLoad() {
@@ -25,32 +22,46 @@ class Chat : UIViewController{
         
         self.view = vc
         
-        vc.collectionView.delegate = self
-        vc.collectionView.dataSource = self
+        vc.tableView.dataSource = self
+        vc.tableView.delegate = self
     }
 }
-extension Chat : UICollectionViewDelegate, UICollectionViewDataSource{
-    // cell 개수
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tagList.count
+extension Chat : UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tagList.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCell", for: indexPath) as? TagCell ?? TagCell()
-        cell.tagLabel.text = tagList[indexPath.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell =
+        let cell = tableView.dequeueReusableCell(withIdentifier: MainListCell.identifier) as? MainListCell ?? MainListCell()
+        cell.bind(model: dataSources[indexPath.row])
         return cell
     }
+    
+    
 }
-extension Chat : UICollectionViewDelegateFlowLayout{
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-      let label = UILabel().then {
-          $0.font = .systemFont(ofSize: 14)
-          $0.text = tagList[indexPath.item]
-          $0.sizeToFit()
-      }
-      let size = label.frame.size
-
-      return CGSize(width: size.width + 16, height: size.height + 10)
-    }
-}
+//extension Chat : UICollectionViewDelegate, UICollectionViewDataSource{
+//    // cell 개수
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return tagList.count
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCell", for: indexPath) as? TagCell ?? TagCell()
+//        cell.tagLabel.text = tagList[indexPath.row]
+//        return cell
+//    }
+//}
+//extension Chat : UICollectionViewDelegateFlowLayout{
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//      let label = UILabel().then {
+//          $0.font = .systemFont(ofSize: 14)
+//          $0.text = tagList[indexPath.item]
+//          $0.sizeToFit()
+//      }
+//      let size = label.frame.size
+//
+//      return CGSize(width: size.width + 16, height: size.height + 10)
+//    }
+//}

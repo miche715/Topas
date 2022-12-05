@@ -18,6 +18,10 @@ class ChatView: UIView{
         return cv
     }()
     
+    let tableView = UITableView().then{
+        $0.backgroundColor = .white
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commoninit()
@@ -30,8 +34,8 @@ class ChatView: UIView{
     private func commoninit(){
         self.backgroundColor = .white
         
-        self.addSubview(collectionView)
-        collectionView.snp.makeConstraints{
+        self.addSubview(tableView)
+        tableView.snp.makeConstraints{
             $0.leading.equalTo(self.safeAreaLayoutGuide.snp.leading)
             $0.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing)
             $0.top.equalTo(self.safeAreaLayoutGuide.snp.top)
