@@ -29,6 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = login
         } else {
             let main = storyboard.instantiateViewController(withIdentifier: "Main")
+            MainDB.LoadList()
             window?.rootViewController = main
         }
     }

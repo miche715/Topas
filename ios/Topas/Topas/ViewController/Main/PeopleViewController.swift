@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import FirebaseFirestore
 
 class People : UIViewController{
 
@@ -14,6 +15,9 @@ class People : UIViewController{
     let vc = PeopleView()
 
     var dataSources = [MainCellModel]()
+    var testData : [MainCellModel] = []
+    
+    let db = MainDB()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,19 +37,18 @@ class People : UIViewController{
     }
 
     private func loadData() {
-        dataSources.append(.init(profile: UIImage(named: "defaultProfile")!, introduce: "나는야 주스 될 거야 나는야 케챱 될거야 나는야 춤을 출 거야 멋쟁이 토마토 토마토 또르르륵 또르르륵 빗방울이 내린다. 또르르륵 또르르륵 또르르륵 또르륵", nickname: "Huko", skills: ["Swift", "Python"]))
-        dataSources.append(.init(profile: UIImage(named: "defaultProfile")!, introduce: "죽여버리겠어", nickname: "이", skills: ["JS", "SQL","Swift","JavaScript","Java","Kotlin","Python","C","C#","C++","Unity","Hello","박준형개새키","Test"]))
-        dataSources.append(.init(profile: UIImage(named: "defaultProfile")!, introduce: "나는 기집애 마인드", nickname: "승", skills: ["SQL", "JS"]))
-        dataSources.append(.init(profile: UIImage(named: "defaultProfile")!, introduce: "나는 경호한정 녹턴 궁", nickname: "동", skills: ["Kotlin"]))
-        dataSources.append(.init(profile: UIImage(named: "defaultProfile")!, introduce: "나는 버러지", nickname: "두", skills: ["Unity", "Python"]))
-        vc.tableView.reloadData()
+        
+        //DB값 가져오는데 시간이 걸려서 딜레이를 걸어둠
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            print("Main View DB Get")
+            self.dataSources = MainDB.getUserList()
+            self.vc.tableView.reloadData()
+        }
     }
 }
 
 extension People : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("---------------------------------------------dataSources")
-        print(dataSources.count)
         return dataSources.count
     }
 

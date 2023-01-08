@@ -14,32 +14,32 @@ class Chat : UIViewController{
     
     var chatList: [chatInfo] = []
     
-    chatList.append(.init(profil))
+//    chatList.append(.init(profil))
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view = vc
-        
-        vc.tableView.dataSource = self
-        vc.tableView.delegate = self
+
+//        vc.tableView.dataSource = self
+//        vc.tableView.delegate = self
     }
 }
-extension Chat : UITableViewDelegate, UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        tagList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell =
-        let cell = tableView.dequeueReusableCell(withIdentifier: MainListCell.identifier) as? MainListCell ?? MainListCell()
-        cell.bind(model: dataSources[indexPath.row])
-        return cell
-    }
-    
-    
-}
+//extension Chat : UITableViewDelegate, UITableViewDataSource{
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        tagList.count
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell =
+//        let cell = tableView.dequeueReusableCell(withIdentifier: MainListCell.identifier) as? MainListCell ?? MainListCell()
+//        cell.bind(model: dataSources[indexPath.row])
+//        return cell
+//    }
+//
+//
+//}
 //extension Chat : UICollectionViewDelegate, UICollectionViewDataSource{
 //    // cell 개수
 //    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

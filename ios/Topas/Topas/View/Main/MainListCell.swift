@@ -155,9 +155,10 @@ extension MainListCell : UICollectionViewDelegateFlowLayout{
         return CGSize(width: size.width + 16, height: size.height + 10)
     }
 }
-struct MainCellModel{
-    let profile : UIImage
-    let introduce : String
-    let nickname : String
-    let skills : [String]
-}
+
+//struct MainCellModel{
+//    let profile : UIImage
+//    let introduce : String
+//    let nickname : String
+//    let skills : [String]
+//}
